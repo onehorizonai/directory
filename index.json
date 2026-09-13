@@ -56,6 +56,24 @@
       "path": "skills/pdf-form-filler/SKILL.md"
     },
     {
+      "name": "plan-a-feature",
+      "title": "Plan a Feature",
+      "tagline": "Turn a feature request into a self-contained, executable implementation plan without writing code.",
+      "description": "Use when the user hands you a feature request, change request, or bug-fix request that touches existing behavior and asks for an implementation plan, spec, or design before code is written — e.g. \"plan how to build X\", \"write a spec for Y before we implement it\", \"what's the plan for this change\", \"don't write code yet, just plan it out\". Produces a self-contained implementation plan grounded in the real codebase, not a code change.",
+      "category": "engineering",
+      "tags": [
+        "planning",
+        "implementation-plan",
+        "requirements",
+        "architecture"
+      ],
+      "compatibility": [],
+      "overview": "Turning a feature request straight into code skips the step where the request meets the real system: what already exists, what it assumes, what must keep working, and where the request is actually ambiguous. This skill produces that missing step — an implementation plan grounded in the actual codebase (not the request text alone) that names the current behavior, the desired behavior, the decisions that had to be made to get from one to the other, and the checkable increments another agent can execute without rejoining this conversation.",
+      "whenToUse": "- A feature request, change request, or bug-fix request arrives and the next expected output is a plan, spec, or design — not a diff — e.g. \"plan how we'd add X\", \"write an implementation plan for Y\", \"spec this out before anyone codes it\", \"what would it take to change Z\".\n- The request touches existing, non-trivial behavior (an existing endpoint, data model, UI flow, integration, or user-facing contract) where getting the current behavior wrong would produce a plan nobody can execute safely.\n- The user explicitly wants investigation and decisions separated from implementation (\"don't build it yet, just figure out the approach\").",
+      "examples": "```\nWe need to let users export their project data as a CSV. Can you plan how\nwe'd build that before anyone writes code?\n```\n\nExpected approach: find the existing project/data model and any current\nexport or serialization code, note what \"project data\" concretely includes\ntoday, decide (or ask, if genuinely ambiguous) what belongs in the export,\npreserve existing API/permission boundaries, and return a plan with steps\nlike \"add an export endpoint,\" \"stream large projects instead of loading\nthem fully,\" each paired with how it'll be verified (e.g. a test with a\nproject over the in-memory threshold).\n\n```\nUsers say the \"invite teammate\" flow silently fails when the invitee\nalready has an account under a different email. Plan the fix — don't\nimplement it yet.\n```\n\nExpected approach: reproduce the current behavior from the invite code and\ntests, state current vs. desired behavior precisely (what \"silently fails\"\nmeans today vs. what should happen), check whether other flows share the\nsame invite path (an invariant to preserve), and produce increments such as\n\"detect the existing-account case,\" \"surface a specific error instead of\nswallowing it,\" each with its own verification.",
+      "path": "skills/plan-a-feature/SKILL.md"
+    },
+    {
       "name": "refactor-code",
       "title": "Refactor Code",
       "tagline": "Restructure code safely — same behavior, verified — without smuggling in a feature or a fix.",
@@ -73,22 +91,6 @@
       "path": "skills/refactor-code/SKILL.md"
     },
     {
-      "name": "plan-a-feature",
-      "title": "Plan a Feature",
-      "tagline": "Turn a feature request into a self-contained, executable implementation plan without writing code.",
-      "description": "Use when the user hands you a feature request, change request, or bug-fix request that touches existing behavior and asks for an implementation plan, spec, or design before code is written — e.g. \"plan how to build X\", \"write a spec for Y before we implement it\", \"what's the plan for this change\", \"don't write code yet, just plan it out\". Produces a self-contained implementation plan grounded in the real codebase, not a code change.",
-      "category": "engineering",
-      "tags": [
-        "planning",
-        "implementation-plan",
-        "requirements",
-        "architecture"
-      ],
-      "compatibility": [],
-      "overview": "Turning a feature request straight into code skips the step where the request meets the real system: what already exists, what it assumes, what must keep working, and where the request is actually ambiguous. This skill produces that missing step — an implementation plan grounded in the actual codebase (not the request text alone) that names the current behavior, the desired behavior, the decisions that had to be made to get from one to the other, and the checkable increments another agent can execute without rejoining this conversation.",
-      "whenToUse": "- A feature request, change request, or bug-fix request arrives and the next expected output is a plan, spec, or design — not a diff — e.g. \"plan how we'd add X\", \"write an implementation plan for Y\", \"spec this out before anyone codes it\", \"what would it take to change Z\".\n- The request touches existing, non-trivial behavior (an existing endpoint, data model, UI flow, integration, or user-facing contract) where getting the current behavior wrong would produce a plan nobody can execute safely.\n- The user explicitly wants investigation and decisions separated from implementation (\"don't build it yet, just figure out the approach\").",
-      "examples": "```\nWe need to let users export their project data as a CSV. Can you plan how\nwe'd build that before anyone writes code?\n```\n\nExpected approach: find the existing project/data model and any current\nexport or serialization code, note what \"project data\" concretely includes\ntoday, decide (or ask, if genuinely ambiguous) what belongs in the export,\npreserve existing API/permission boundaries, and return a plan with steps\nlike \"add an export endpoint,\" \"stream large projects instead of loading\nthem fully,\" each paired with how it'll be verified (e.g. a test with a\nproject over the in-memory threshold).\n\n```\nUsers say the \"invite teammate\" flow silently fails when the invitee\nalready has an account under a different email. Plan the fix — don't\nimplement it yet.\n```\n\nExpected approach: reproduce the current behavior from the invite code and\ntests, state current vs. desired behavior precisely (what \"silently fails\"\nmeans today vs. what should happen), check whether other flows share the\nsame invite path (an invariant to preserve), and produce increments such as\n\"detect the existing-account case,\" \"surface a specific error instead of\nswallowing it,\" each with its own verification.",
-      "path": "skills/plan-a-feature/SKILL.md"
       "name": "research-technical-question",
       "title": "Research a Technical Question",
       "tagline": "Answer a scoped technical question with sourced findings and visible uncertainty.",
@@ -107,22 +109,24 @@
       "path": "skills/research-technical-question/SKILL.md"
     },
     {
-      "name": "write-ux-copy",
-      "title": "Write UX Copy",
-      "tagline": "Write interface copy for a specific product state, action, error, confirmation, or recovery path.",
-      "description": "Use when writing or revising interface copy for one specific, already-decided product state, action, error, confirmation, or recovery path in an existing product — for example a loading message, an error string, a permission-denied message, an empty state, or a destructive-action confirmation. Not for marketing or landing-page copy, not for naming a whole feature or product, not for writing copy when the underlying product state or behavior hasn't been decided yet, and not for translating existing copy into another language.",
-      "category": "design",
+      "name": "review-a-refactor",
+      "title": "Review a Refactor",
+      "tagline": "Check a claimed behavior-preserving refactor for hidden behavior changes, scope creep, and weakened tests.",
+      "description": "Use when a change under review is claimed to be a behavior-preserving refactor — a diff, PR, commit range, or branch against a named base — and the job is to check whether it actually is one. Covers fixing the exact change range and stated invariants/baseline, checking behavioral equivalence (public interfaces, state, side effects, permissions, async ordering), catching hidden scope expansion (a feature, bug fix, or migration smuggled in under refactor cover), inspecting test diffs for weakened coverage, and judging structural correctness against the named problem — without treating \"I'd have used a different pattern\" as a finding. Returns prioritized findings only; does not edit the code. Not for reviewing a change that was never claimed to be behavior-preserving (a general diff/PR review — in this directory, the `review-code` skill) and not for performing the refactor itself (in this directory, the `refactor-code` skill).",
+      "category": "engineering",
       "tags": [
-        "ux-writing",
-        "microcopy",
-        "error-messages",
-        "accessibility"
+        "refactoring",
+        "code-review",
+        "regressions",
+        "testing"
       ],
       "compatibility": [],
-      "overview": "This skill writes copy for one specific, already-decided interface moment\n— a state, action, error, confirmation, or recovery path — not whole\nflows or products, and not the decision about what the interface should\ndo. It produces copy grounded in what the interface actually does at that\nmoment, not invented behavior: the copy is only as specific as what the\nimplementation can actually establish, and it always points to a real next\naction.",
-      "whenToUse": "- Writing or rewriting a loading, success, or validation message.\n- Writing an error string, including a server-failure or permission-denied\n  message.\n- Writing an empty state (first-use or filtered-empty) or a\n  destructive-action confirmation dialog.\n- Writing a retry or recovery message for a failed action.\n\nDon't use this for marketing or landing-page copy, naming a feature or\nproduct, copy for a state that hasn't been implemented or decided yet\n(resolve that first), or translating existing copy into another language.",
-      "examples": "```\nWrite the error copy for a failed file upload. The API can return a\nsize-limit error, a network error, or a generic server error.\n```\n\nExpected approach: inspect the actual error the API returns for each\ncase rather than assuming one generic message; write copy for what could\nnot complete plus the real retry or next action for each case; if the UI\ncurrently can't tell two of these causes apart, flag that instead of\ninventing distinct messages for causes the code can't actually\ndistinguish.\n\n```\nWrite the confirmation dialog for \"Delete project.\"\n```\n\nExpected approach: check the actual behavior to confirm whether deletion\nis recoverable (e.g. a trash/undo window) or permanent; name the project\nand the real consequence in the dialog body; put \"Delete project\" — not\n\"OK\" or \"Confirm\" — on the confirming button.",
-      "path": "skills/write-ux-copy/SKILL.md"
+      "overview": "A refactor is judged by a stricter bar than a normal change: nothing\nobservable is supposed to be different. That bar is easy to violate quietly\n— a \"just a rename\" diff that also changes a return value, a \"just an\nextraction\" that drops an error path, a \"cleanup\" that fixes a bug or adds a\ncapability along the way, or a test that was loosened just enough to let a\nreal behavior change through green. This skill is a procedure for reviewing\none concrete change that's been claimed as behavior-preserving: fix the\nchange range and the invariants/baseline it's supposed to preserve, check\nbehavioral equivalence against them, check the diff didn't grow into\napproved-behavior work while looking structural, inspect the test diff for\nweakened coverage, and judge whether the named structural problem was\nactually solved — all without demanding a different architecture as a\nmatter of taste. It reviews and reports; it does not edit the code or\nperform the refactor itself.",
+      "whenToUse": "- A diff, PR, commit range, or branch is presented as a refactor —\n  \"behavior-preserving,\" \"just cleanup,\" \"no functional change,\" \"internal\n  only\" — and needs checking against that claim before merge.\n- Someone wants to know whether a \"simple rename/extraction/reorg\" quietly\n  changed what the system does, drops state, or weakens a permission check.\n- A refactor's test diff needs scrutiny for deleted cases, relaxed\n  assertions, or altered snapshots/mocks/fixtures that could be hiding a\n  behavior change behind a passing suite.\n- A change claims to solve a specific structural problem and it's unclear\n  whether it actually solved it, left the problem half-done, or expanded\n  into adjacent restructuring beyond what was named.",
+      "examples": "```\nReview this PR: it claims to extract the duplicated discount-calculation\nlogic from three checkout handlers into one shared function, behavior\nunchanged. Base is main.\n```\n\nExpected approach: fix the range (PR vs main), pull the named problem\n(duplicated discount logic across three handlers) and invariants (each\nhandler's current discount output and error behavior for the same inputs),\ncheck scope purity (confirm no handler's actual discount math changed),\ncheck equivalence by comparing each handler's output before/after for the\nsame inputs, read the full test diff for any relaxed discount assertions,\njudge whether all three call sites now genuinely share the one function\n(not two still duplicated and one migrated), validate any suspected mismatch\nby running the handler tests, and report confirmed regressions, open\nquestions, and optional improvements separately with an overall verdict.\n\n```\nReview this branch against main. The commit message says \"refactor: split\nthe 800-line UserService into smaller modules, no behavior change.\" No\nwritten invariants were given.\n```\n\nExpected approach: fix the range (branch vs main), derive invariants since\nnone were stated — read UserService's current public methods, callers, and\nexisting tests to establish what \"no behavior change\" must mean here; check\nscope purity for anything beyond splitting (e.g. a changed permission check\ntucked into the new module boundaries); check equivalence for each public\nmethod's return values, side effects, and any ordering between the new\nmodules; read the full test diff for tests that were split apart in a way\nthat dropped an assertion instead of just relocating it; judge whether the\nsplit actually reduced the original problem (one 800-line file) rather than\njust moving the same tangle into multiple files that still call each other\ndirectly; validate suspected issues against the code and test suite before\nreporting; and state clearly if any invariant had to be assumed because none\nwas given.",
+      "path": "skills/review-a-refactor/SKILL.md"
+    },
+    {
       "name": "review-code",
       "title": "Review Code",
       "tagline": "Review a code change for defects, regressions, and requirement gaps without editing it.",
@@ -140,6 +144,8 @@
       "whenToUse": "- The user asks to review a diff, pull request, branch, or commit range —\n  \"review this PR\", \"review my changes before I merge\", \"did this diff\n  break anything\", \"check this change for defects or regressions\".\n- A change needs checking against its original requirements or acceptance\n  criteria, not just a general code-quality pass.\n- Someone wants a second look at a change's blast radius — callers, state,\n  permissions, interfaces, tests, side effects — before it ships.",
       "examples": "```\nReview PR #482 (feature/order-status-filter branch vs main) for defects\nbefore merge. Acceptance: invalid status returns 400; omitted status\nreturns all orders (unchanged).\n```\n\nExpected approach: fix the baseline (feature/order-status-filter vs main\nat the PR's current head), check the diff against the stated acceptance\ncriteria (invalid-status handling, omitted-status behavior), check\nintegration with the route's existing callers/tests/permissions, validate\nany suspected issue (e.g. by reading the validation code or running the\nroute's tests) before reporting it, and return confirmed defects, open\nquestions, and optional improvements as separate groups — without editing\nthe PR.\n\n```\nReview my last three commits on this branch against main. I don't have a\nwritten spec, just: \"add retry logic to the payment webhook handler.\"\n```\n\nExpected approach: fix the range (last three commits vs main), note the\nrequirement is informal and check the diff against that stated intent\n(retry logic added, existing webhook behavior otherwise preserved), inspect\nintegration (callers of the handler, idempotency/state on retry,\nerror/side-effect behavior), validate any suspected defect (e.g. a\nduplicate-charge risk) against the actual code path before reporting it,\nand flag anything that can't be checked (e.g. no test suite access) as a\nnamed coverage gap rather than skipping it silently.",
       "path": "skills/review-code/SKILL.md"
+    },
+    {
       "name": "verify-implementation",
       "title": "Verify an Implementation",
       "tagline": "Check a finished implementation against its acceptance criteria and report what passed, failed, or couldn't be verified.",
@@ -156,6 +162,24 @@
       "whenToUse": "- An implementation, PR, or task is claimed complete and needs an\n  independent pass to confirm it actually satisfies its acceptance\n  criteria before it's accepted.\n- Someone hands off work with \"this should be done\" or \"can you verify\n  this\" and wants a real answer, not a restatement of what was intended.\n- A task is moved to a review/done state and the review step needs\n  evidence, not just the author's word, that each criterion holds.",
       "examples": "```\nVerify the merged PR that adds a `status` filter to GET /api/orders\nagainst its stated acceptance: invalid status returns 400; omitted status\nreturns all orders unchanged; valid status filters correctly.\n```\n\nExpected approach: map each acceptance line to a check (invalid value →\n400, omitted param → unchanged full list, valid value → filtered list);\nrun all three against the merged branch through the real API, not just by\nreading the diff. All three come back matching the stated acceptance, and\nan unrelated test that was already failing on the base branch before this\nPR is confirmed pre-existing rather than attributed to this change; report\nall three criteria as passed with the actual response evidence, and note\nthe endpoint's existing pagination behavior as out of scope for this\nverification.\n\n```\nVerify the claimed-complete \"export to CSV\" feature. Acceptance criteria\nsay the export must include all visible columns and match the current\nfilter/sort state. The CI environment for this repo has no access to the\nproduction database used for the export job.\n```\n\nExpected approach: map both criteria to checks — columns/order for the\nfirst, filter/sort parity for the second — and run what can be run against\na reachable environment (e.g. a staging dataset or local fixture); for the\npart of the export path that depends on the production database that\nisn't reachable, report that portion as not verified with the specific\naccess gap named, rather than assuming it behaves like the reachable\nenvironment or reporting it as passed.",
       "path": "skills/verify-implementation/SKILL.md"
+    },
+    {
+      "name": "write-ux-copy",
+      "title": "Write UX Copy",
+      "tagline": "Write interface copy for a specific product state, action, error, confirmation, or recovery path.",
+      "description": "Use when writing or revising interface copy for one specific, already-decided product state, action, error, confirmation, or recovery path in an existing product — for example a loading message, an error string, a permission-denied message, an empty state, or a destructive-action confirmation. Not for marketing or landing-page copy, not for naming a whole feature or product, not for writing copy when the underlying product state or behavior hasn't been decided yet, and not for translating existing copy into another language.",
+      "category": "design",
+      "tags": [
+        "ux-writing",
+        "microcopy",
+        "error-messages",
+        "accessibility"
+      ],
+      "compatibility": [],
+      "overview": "This skill writes copy for one specific, already-decided interface moment\n— a state, action, error, confirmation, or recovery path — not whole\nflows or products, and not the decision about what the interface should\ndo. It produces copy grounded in what the interface actually does at that\nmoment, not invented behavior: the copy is only as specific as what the\nimplementation can actually establish, and it always points to a real next\naction.",
+      "whenToUse": "- Writing or rewriting a loading, success, or validation message.\n- Writing an error string, including a server-failure or permission-denied\n  message.\n- Writing an empty state (first-use or filtered-empty) or a\n  destructive-action confirmation dialog.\n- Writing a retry or recovery message for a failed action.\n\nDon't use this for marketing or landing-page copy, naming a feature or\nproduct, copy for a state that hasn't been implemented or decided yet\n(resolve that first), or translating existing copy into another language.",
+      "examples": "```\nWrite the error copy for a failed file upload. The API can return a\nsize-limit error, a network error, or a generic server error.\n```\n\nExpected approach: inspect the actual error the API returns for each\ncase rather than assuming one generic message; write copy for what could\nnot complete plus the real retry or next action for each case; if the UI\ncurrently can't tell two of these causes apart, flag that instead of\ninventing distinct messages for causes the code can't actually\ndistinguish.\n\n```\nWrite the confirmation dialog for \"Delete project.\"\n```\n\nExpected approach: check the actual behavior to confirm whether deletion\nis recoverable (e.g. a trash/undo window) or permanent; name the project\nand the real consequence in the dialog body; put \"Delete project\" — not\n\"OK\" or \"Confirm\" — on the confirming button.",
+      "path": "skills/write-ux-copy/SKILL.md"
     }
   ]
 }
