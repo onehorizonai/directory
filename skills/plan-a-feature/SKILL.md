@@ -33,7 +33,7 @@ Turning a feature request straight into code skips the step where the request me
 - The change is small, obvious, and reversible (a one-line fix, a typo, a config value) — plan the change inline instead of invoking this ceremony.
 - The user wants code written now, not a plan — use an implementation skill/workflow instead.
 - The request has no decision to make and no code to inspect (pure open-ended research or brainstorming) — that's a research task, not a feature plan.
-- The target system is greenfield with genuinely no product decision to resolve from evidence (no repo, no request-specific constraints) — recommending a stack/architecture from scratch is still in scope, but if even the goal itself is undefined, resolve that first.
+- The request's own goal, not just the approach, is undefined — resolve what's being asked for first; see Failure behavior.
 
 ## Prerequisites
 
