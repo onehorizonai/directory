@@ -53,6 +53,21 @@ writeFileSync(join(REPO_ROOT, "index.json"), `${JSON.stringify(index, null, 2)}\
 // lists one plugin with source "./" rather than one plugin per skill —
 // which would require nesting a skills/ dir inside every skills/<name>/,
 // contradicting the flat layout. See docs/website-integration.md.
+//
+// No sibling .claude-plugin/plugin.json is needed: per
+// code.claude.com/docs/en/plugins-reference and /plugin-marketplaces
+// (verified 2026-09-13), plugin.json is optional — Claude Code
+// auto-discovers the skills/ directory at the plugin root, and a
+// marketplace entry may carry name/description/version inline (as here)
+// without setting `strict: false`, since there's no plugin.json for it to
+// conflict with.
+//
+// `keywords` (a documented optional marketplace plugin-entry field) is the
+// union of every skill's tags, so someone browsing/searching this
+// marketplace entry in Claude Code sees what it actually contains instead
+// of just the static top-level description above.
+const keywords = [...new Set(skills.flatMap((skill) => skill.tags))].sort();
+
 const marketplace = {
   name: "onehorizon-directory",
   owner: {
@@ -65,6 +80,7 @@ const marketplace = {
       source: "./",
       description: "Curated One Horizon skills, installable as a Claude Code plugin.",
       version,
+      ...(keywords.length > 0 ? { keywords } : {}),
     },
   ],
 };

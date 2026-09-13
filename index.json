@@ -1,3 +1,21 @@
 {
-  "skills": []
+  "skills": [
+    {
+      "name": "pdf-form-filler",
+      "title": "PDF Form Filler",
+      "tagline": "Fill out PDF form fields programmatically from structured data.",
+      "description": "Use when the user has a fillable PDF form (AcroForm) and wants its fields filled from structured data — a JSON/CSV record, a spreadsheet row, or values described in the conversation — instead of typing into each field by hand. Also use when the user asks what fields a PDF form contains before filling it.",
+      "category": "productivity",
+      "tags": [
+        "pdf",
+        "forms",
+        "automation"
+      ],
+      "compatibility": [],
+      "overview": "Most \"fillable\" PDFs (tax forms, applications, contracts, intake forms) are\nAcroForms: the PDF itself carries named form fields, and any AcroForm-aware\nlibrary can read and write those fields directly without touching page\ngraphics. This skill covers the workflow for filling such a PDF from\nstructured data: inspect the form to find its real field names, map input\ndata onto those names, write the values back, and hand back a completed\nPDF — flattened (values baked into the page, no longer editable) if the\nuser needs a final document, or left as a live form if they'll keep\nediting it.\n\nIt does not cover scanned/flat PDFs with no AcroForm fields — those need\nOCR and coordinate-based text placement, which is a different (and much\nless reliable) problem; say so if a form turns out to have no fields\nrather than guessing coordinates.",
+      "whenToUse": "- The user provides a PDF form and a data source (JSON, CSV, a spreadsheet\n  row, or values typed directly in chat) and asks to fill it in.\n- The user has the same form to fill many times from a list of records\n  (batch filling) and wants one PDF per record.\n- The user asks \"what fields does this PDF have?\" or \"what are the exact\n  field names in this form?\" before supplying data.\n- The user wants a filled form flattened into a static, non-editable PDF\n  for sending or archiving.\n\nDon't reach for this skill if the PDF has no fillable fields at all (a\nscanned image or a form with no AcroForm) — check first per\n[references/field-inspection.md](references/field-inspection.md), and tell\nthe user if that's the case instead of attempting to fill it.",
+      "examples": "```\nFill out this W-9 with:\n- Name: Acme Consulting LLC\n- Business type: LLC, taxed as partnership\n- Address: 123 Market St, Springfield, IL 62704\n- TIN: 12-3456789\n\n[attached: w9-blank.pdf]\n```\n\nExpected approach: list the form's field names first\n(see [references/field-inspection.md](references/field-inspection.md)), map\neach supplied value to the matching field (asking the user if a mapping is\nambiguous, e.g. multiple similarly-named checkboxes), fill the form, and\nreturn `w9-filled.pdf`.\n\n```\nHere's a list of 40 vendors (vendors.csv) and a blank onboarding-form.pdf.\nFill one copy per vendor and flatten each one.\n```\n\nExpected approach: inspect the form once, confirm the CSV column headers\nmap cleanly onto field names, then loop over rows producing\n`onboarding-form-<vendor-slug>.pdf` for each, flattened since these are\nfinal documents.",
+      "path": "skills/pdf-form-filler/SKILL.md"
+    }
+  ]
 }

@@ -19,21 +19,24 @@ https://raw.githubusercontent.com/onehorizonai/directory/main/index.json
 {
   "skills": [
     {
-      "name": "pdf-form-filler",
-      "title": "PDF Form Filler",
-      "tagline": "Fill out PDF form fields programmatically from structured data.",
-      "description": "Use when the user wants to programmatically fill in fields on an existing PDF form.",
+      "name": "example-skill-name",
+      "title": "Example Skill",
+      "tagline": "One sentence a human scans while browsing the list.",
+      "description": "Runtime-facing trigger text: when an agent should invoke this skill.",
       "category": "productivity",
-      "tags": ["pdf", "forms"],
+      "tags": ["example-tag"],
       "compatibility": ["claude-code", "cursor"],
       "overview": "...",
       "whenToUse": "...",
       "examples": "...",
-      "path": "skills/pdf-form-filler/SKILL.md"
+      "path": "skills/example-skill-name/SKILL.md"
     }
   ]
 }
 ```
+
+(See [`skills/pdf-form-filler/SKILL.md`](../skills/pdf-form-filler/SKILL.md)
+for a real entry with real values in this exact shape.)
 
 - `category` values come from `schema/categories.json` — fetch that file too
   if you need display labels rather than raw ids.
