@@ -261,6 +261,25 @@
       "whenToUse": "- Writing or rewriting a loading, success, or validation message.\n- Writing an error string, including a server-failure or permission-denied\n  message.\n- Writing an empty state (first-use or filtered-empty) or a\n  destructive-action confirmation dialog.\n- Writing a retry or recovery message for a failed action.\n\nDon't use this for marketing or landing-page copy, naming a feature or\nproduct, copy for a state that hasn't been implemented or decided yet\n(resolve that first), or translating existing copy into another language.",
       "examples": "```\nWrite the error copy for a failed file upload. The API can return a\nsize-limit error, a network error, or a generic server error.\n```\n\nExpected approach: inspect the actual error the API returns for each\ncase rather than assuming one generic message; write copy for what could\nnot complete plus the real retry or next action for each case; if the UI\ncurrently can't tell two of these causes apart, flag that instead of\ninventing distinct messages for causes the code can't actually\ndistinguish.\n\n```\nWrite the confirmation dialog for \"Delete project.\"\n```\n\nExpected approach: check the actual behavior to confirm whether deletion\nis recoverable (e.g. a trash/undo window) or permanent; name the project\nand the real consequence in the dialog body; put \"Delete project\" — not\n\"OK\" or \"Confirm\" — on the confirming button.",
       "path": "skills/write-ux-copy/SKILL.md"
+    },
+    {
+      "name": "write-website-copy",
+      "title": "Write Website Copy",
+      "tagline": "Write or rewrite product website copy for a defined reader, purpose, offer, and action using only approved facts.",
+      "description": "Use when writing or rewriting product website copy — homepage, landing page, pricing page, feature page, about page, or similar — for a defined reader, page purpose, offer, and next action, using only approved facts and proof. Not for interface copy such as error strings, empty states, or confirmation dialogs (use write-ux-copy for that), not for deciding page strategy, structure, or positioning before it's approved (resolve that first), and not for translating existing page copy into another language.",
+      "category": "content-and-writing",
+      "tags": [
+        "website-copy",
+        "marketing-copy",
+        "landing-page",
+        "cta",
+        "conversion"
+      ],
+      "compatibility": [],
+      "overview": "This skill writes or rewrites product website copy — a homepage, landing\npage, pricing page, feature page, about page, or similar — for one already-\ndefined reader, page purpose, offer, and next action. It produces copy\ngrounded in approved facts and real material conditions, not invented proof,\nurgency, or outcomes: a benefit only appears if a supported capability backs\nit, and the call to action only promises what the offer actually delivers.",
+      "whenToUse": "- Writing new copy for a website page once the audience, purpose, offer, and\n  approved facts are known.\n- Rewriting or tightening existing page copy — a headline, subheadline,\n  body section, or CTA — against the same defined reader and offer.\n- Producing headline or CTA options for a page where the underlying strategy\n  (what the page is for, what it offers) is already decided.",
+      "examples": "```\nRewrite the hero section of our pricing page. Reader: a solution-aware\nevaluator comparing us to two competitors. Offer: 14-day free trial, no\ncard required, cancel anytime. Approved facts: SOC 2 Type II, 99.9% uptime\nSLA, works with our three listed integrations. Voice: direct, no hype.\n```\n\nExpected approach: state the proposition (what the product does, for whom,\nwhat changes) in the headline; use only SOC 2, uptime, and the named\nintegrations as proof; keep \"14-day free trial, no card required, cancel\nanytime\" exact in the CTA area; no invented urgency or comparison claims\nagainst the named competitors beyond what's approved; check the draft in\nthe actual pricing page layout before calling it done.\n\n```\nGive me three headline options for the feature page for our new export\ntool. Approved fact: exports to CSV and Sheets today; PDF is not supported\nyet.\n```\n\nExpected approach: produce three genuinely different angles (e.g. framed\naround the workflow it removes, the formats it supports, the audience it\nserves) rather than three reorderings of one sentence; keep PDF out of all\nthree since it isn't an approved capability; flag if any angle would need a\nfact that isn't on the approved list.",
+      "path": "skills/write-website-copy/SKILL.md"
     }
   ]
 }

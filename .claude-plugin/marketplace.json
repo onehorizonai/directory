@@ -16,6 +16,11 @@
         "android",
         "architecture",
         "automation",
+        "code-quality",
+        "code-review",
+        "coding",
+        "conversion",
+        "cta",
         "bug-fix",
         "code-quality",
         "code-review",
@@ -29,6 +34,8 @@
         "implementation",
         "implementation-plan",
         "ios",
+        "landing-page",
+        "marketing-copy",
         "microcopy",
         "mobile",
         "native",
@@ -47,6 +54,8 @@
         "testing",
         "ui",
         "ux-writing",
+        "verification",
+        "website-copy"
         "verification"
       ]
     }
