@@ -56,6 +56,10 @@
       "path": "skills/pdf-form-filler/SKILL.md"
     },
     {
+      "name": "plan-a-bug-fix",
+      "title": "Plan a Bug Fix",
+      "tagline": "Turn a reported problem into a confirmed cause and a bounded, verifiable fix plan — without patching it yet.",
+      "description": "Use when a bug, error, or reported problem needs investigation and a bounded fix plan before any code changes — e.g. \"here's a bug report, plan the fix\", \"users say X is broken, find out what's wrong and how to fix it\", \"investigate this error and tell me the smallest fix\", \"don't patch it yet, just find the cause and plan it out\". Establishes expected vs. observed behavior and the strongest available reproduction signal, separates confirmed evidence from hypotheses, and produces a plan for the smallest cause-focused fix plus how to verify it against the original symptom. Not for a request to build new behavior (see plan-a-feature) and not for writing the fix itself (see implement-feature) — this skill investigates and plans only.",
       "name": "plan-a-feature",
       "title": "Plan a Feature",
       "tagline": "Turn a feature request into a self-contained, executable implementation plan without writing code.",
@@ -90,6 +94,43 @@
       "whenToUse": "- The ask is to plan reducing duplication, splitting a tangled module,\n  extracting a function/component, renaming for clarity, collapsing a dead\n  abstraction, or otherwise restructuring code that already works — before\n  anyone starts moving code.\n- Someone says \"plan how we'd clean this up,\" \"what would it take to split\n  this module,\" or \"figure out the safest way to extract this, don't do it\n  yet.\"\n- The request is explicitly scoped as internal-only (no new capability, no\n  different output, no different API response) and wants the approach and\n  risk worked out before execution.",
       "examples": "```\nThis file has the same validation logic copy-pasted across four handler\nfunctions. Plan how we'd extract it into one shared helper without changing\nwhat any handler returns — don't write the change yet.\n```\n\nExpected approach: name the problem (validation duplicated across four\nhandlers), freeze invariants (each handler's current return value and error\nresponse for valid/invalid input), inspect existing tests and note which\nhandlers lack coverage for those cases, plan characterization tests for the\ngaps, then plan the extraction as one small step per handler (each paired\nwith a check that the handler's response is unchanged), name the stopping\ncondition (all four handlers call the shared helper, no handler's response\nchanged), and return the plan without touching the handlers.\n\n```\nThis module reaches directly into another module's internals instead of\ngoing through its public interface. Plan a safe way to fix the dependency\nwithout changing any of its outputs — plan only, no code yet.\n```\n\nExpected approach: name the problem (the module bypasses the other module's\npublic interface), freeze invariants (every value and side effect currently\nproduced through the internal reach-in), inspect existing tests for those\ncall sites and plan characterization tests where coverage is missing, plan\nredirecting the calls through the public interface in small per-call-site\nsteps each checked against the consuming code's current output, list\nanything found that behaves like a latent bug as excluded follow-up work,\nand return the plan.",
       "path": "skills/plan-a-refactor/SKILL.md"
+    },
+    {
+      "name": "refactor-code",
+      "title": "Refactor Code",
+      "tagline": "Restructure code safely — same behavior, verified — without smuggling in a feature or a fix.",
+      "description": "Use when the ask is to improve a codebase's internal structure — reduce duplication, untangle a dependency, extract or rename something, clarify a boundary — while the system's externally observable behavior stays exactly the same. Covers naming the specific structural problem, freezing the behavior that must not change, moving code in small verified steps, and proving nothing observable drifted. Not for adding a capability, fixing a bug, migrating a framework/dependency, or any other change where what the system does is expected to change — those are approved-behavior work (in this directory, the `implement-feature` skill), not this one.",
+      "category": "engineering",
+      "tags": [
+        "debugging",
+        "planning",
+        "bug-fix",
+        "root-cause",
+        "regression-testing"
+      ],
+      "compatibility": [],
+      "overview": "A bug report invites an immediate patch, but a fix built on a guessed\ncause instead of a confirmed one tends to hide the symptom rather than\nremove it, or breaks something else that was working. This skill is the\ninvestigation-and-planning step for a reported problem: pin down what was\nexpected, what was actually observed, and the strongest available\nreproduction signal; trace the cause through the real code, logs, and\nrecent changes rather than the first plausible story; and return a plan\nfor the smallest fix that addresses the confirmed cause, with a way to\nverify it against the original symptom. It investigates and plans; it does\nnot edit code.",
+      "whenToUse": "- A bug, defect, error, or \"X is broken\" report exists and the next needed\n  output is a diagnosis and fix plan, not an immediate patch.\n- The symptom is described but the cause isn't yet confirmed, and evidence\n  (a reproduction, logs, recent changes) exists or can be gathered from\n  the codebase or system.\n- The user explicitly wants the cause and approach separated from\n  implementation — \"figure out what's wrong first\", \"plan the fix, don't\n  apply it yet\".",
+      "examples": "```\nUsers report that exporting a project to CSV sometimes comes back empty.\nCan you figure out what's going on and plan the fix?\n```\n\nExpected approach: get or build a reproduction (a project size or shape\nthat triggers it), trace the export code path, compare an export that\nworks against one that comes back empty, confirm the cause (e.g. an\nexception silently swallowed past some row count) with the actual\nevidence, then plan the smallest fix — e.g. stop swallowing that\nexception and surface it — paired with rerunning the reproduction and a\nregression test for that project shape.\n\n```\nSome users see their dashboard widgets randomly reorder after a page\nrefresh. No error is thrown. Investigate and plan the fix.\n```\n\nExpected approach: get a concrete reproduction (which widget set, browser,\naccount state triggers it), read the widget-ordering code and any recent\nchanges to it, compare a session where order is stable against one where\nit isn't, form and test hypotheses one at a time (e.g. an unstable sort,\na race between two writes of the same preference, a missing tiebreaker)\nuntil one is confirmed by evidence, then plan a fix that addresses that\nspecific cause, with verification against the original reproduction plus\na regression test asserting stable order across repeated refreshes.",
+      "path": "skills/plan-a-bug-fix/SKILL.md"
+    },
+    {
+      "name": "plan-a-feature",
+      "title": "Plan a Feature",
+      "tagline": "Turn a feature request into a self-contained, executable implementation plan without writing code.",
+      "description": "Use when the user hands you a feature request or change request that touches existing behavior and asks for an implementation plan, spec, or design before code is written — e.g. \"plan how to build X\", \"write a spec for Y before we implement it\", \"what's the plan for this change\", \"don't write code yet, just plan it out\". Produces a self-contained implementation plan grounded in the real codebase, not a code change. For a reported defect where the cause isn't confirmed yet, see plan-a-bug-fix instead.",
+      "category": "engineering",
+      "tags": [
+        "planning",
+        "implementation-plan",
+        "requirements",
+        "architecture"
+      ],
+      "compatibility": [],
+      "overview": "Turning a feature request straight into code skips the step where the request meets the real system: what already exists, what it assumes, what must keep working, and where the request is actually ambiguous. This skill produces that missing step — an implementation plan grounded in the actual codebase (not the request text alone) that names the current behavior, the desired behavior, the decisions that had to be made to get from one to the other, and the checkable increments another agent can execute without rejoining this conversation.",
+      "whenToUse": "- A feature request, change request, or bug-fix request arrives and the next expected output is a plan, spec, or design — not a diff — e.g. \"plan how we'd add X\", \"write an implementation plan for Y\", \"spec this out before anyone codes it\", \"what would it take to change Z\".\n- The request touches existing, non-trivial behavior (an existing endpoint, data model, UI flow, integration, or user-facing contract) where getting the current behavior wrong would produce a plan nobody can execute safely.\n- The user explicitly wants investigation and decisions separated from implementation (\"don't build it yet, just figure out the approach\").",
+      "examples": "```\nWe need to let users export their project data as a CSV. Can you plan how\nwe'd build that before anyone writes code?\n```\n\nExpected approach: find the existing project/data model and any current\nexport or serialization code, note what \"project data\" concretely includes\ntoday, decide (or ask, if genuinely ambiguous) what belongs in the export,\npreserve existing API/permission boundaries, and return a plan with steps\nlike \"add an export endpoint,\" \"stream large projects instead of loading\nthem fully,\" each paired with how it'll be verified (e.g. a test with a\nproject over the in-memory threshold).\n\n```\nWe want to let a team have more than one admin instead of exactly one.\nPlan the change before anyone implements it.\n```\n\nExpected approach: find where \"admin\" is currently modeled and enforced\n(schema, permission checks, UI that assumes a single admin), state current\nvs. desired behavior precisely (exactly-one vs. one-or-more), identify\ninvariants to preserve (existing single-admin teams must keep working\nunchanged), decide how the transition/migration works for existing teams,\nand produce increments such as \"relax the schema constraint,\" \"update\npermission checks to allow multiple admins,\" \"add an admin-management UI\naffordance,\" each paired with its own verification.",
+      "path": "skills/plan-a-feature/SKILL.md"
     },
     {
       "name": "refactor-code",
