@@ -19,6 +19,9 @@
         "code-quality",
         "code-review",
         "coding",
+        "consistency",
+        "code-review",
+        "coding",
         "conversion",
         "cta",
         "bug-fix",
@@ -53,6 +56,11 @@
         "technical-question",
         "testing",
         "ui",
+        "ui-audit",
+        "ux-review",
+        "ux-writing",
+        "verification",
+        "web"
         "ux-writing",
         "verification",
         "website-copy"

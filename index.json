@@ -1,6 +1,25 @@
 {
   "skills": [
     {
+      "name": "audit-web-ui",
+      "title": "Audit Web UI",
+      "tagline": "Audit an implemented web interface for UX, state, accessibility, and consistency defects against the running product.",
+      "description": "Use when an already-implemented web interface needs a UX and quality audit against the running product — a route, page, or flow that exists and is reachable, checked for task flow and hierarchy, complete states, state preservation, responsive behavior, keyboard/focus/accessibility, API and permission boundaries, and visual consistency with the existing design system. Requests like \"review this screen for UX issues\", \"audit the new settings page\", \"check this flow for accessibility and consistency problems\", or \"does this UI match how the rest of the product behaves\". Returns validated, prioritized findings with observed evidence; does not edit the UI and does not review a design mockup or an unimplemented plan.",
+      "category": "engineering",
+      "tags": [
+        "ux-review",
+        "accessibility",
+        "ui-audit",
+        "consistency",
+        "web"
+      ],
+      "compatibility": [],
+      "overview": "A finished screen can look plausible in a screenshot and still fail the task\nit exists for: state that resets on navigation, an empty or error state that\nwas never built, an action that only a mouse can reach, or a layout that\ncontradicts how the rest of the product groups the same objects. This skill\nis a fixed procedure for auditing one implemented web interface — a route,\npage, or flow that is actually running, not a mockup or a plan — against the\nproduct's own interface model and design system. It inspects the real UI\n(browser/Playwright evidence over static reading of the code), exercises the\nstates the task requires, and separates measurable inconsistencies and\nbehavioral defects from subjective visual preference. It reviews and reports;\nit does not edit the interface.",
+      "whenToUse": "- A newly built or changed web screen, component, or flow needs an\n  independent UX/quality pass before or after it ships — \"audit this page\",\n  \"review this flow for UX problems\", \"is this screen accessible and\n  consistent with the rest of the app\".\n- Someone wants to know whether an implemented interface's states (loading,\n  empty, error, permission-limited, long-content, narrow/wide) actually work,\n  not just whether the happy path renders.\n- A screen needs checking against the product's established interaction\n  patterns, spacing/typography scale, terminology, and information hierarchy\n  rather than against generic best-practice checklists alone.",
+      "examples": "```\nAudit the new /settings/billing page (staging, build abc123) for UX and\naccessibility problems before it ships.\n```\n\nExpected approach: fix the target (staging, that route, that build); load the\nproduct's design system and check what the billing object/actions/workflow\npriority should look like; inspect the real page in the browser; walk the\nprimary flow (view plan, update payment method, cancel); exercise loading,\nempty (no payment method), error (failed update), and permission-limited\n(non-admin) states; check keyboard/focus operation and state preservation\nacross a validation error; check spacing/terminology/grouping against other\nsettings pages; validate each suspected issue against rendered output or the\ndesign system before reporting it; return confirmed defects, open questions,\nand optional improvements as separate groups without editing the page.\n\n```\nReview this dashboard redesign against the old one — does it actually work\nbetter, or does it just look different?\n```\n\nExpected approach: fix both targets (redesigned route/build vs. the prior\nversion, same environment); identify the dashboard's primary objects and\nwhich metrics/actions the task model says should carry the most priority;\ninspect both versions in the browser under matching viewport/theme/data;\ncompare only screenshots taken under those matching conditions; separate\nmeasurable regressions (e.g. a primary action now behind an extra click, a\nlost keyboard path, broken vertical rhythm) from the reviewer's own visual\ntaste; report the former as confirmed defects with the evidence and design\nprinciple involved, and explicitly exclude the latter rather than reporting\nit as a defect.",
+      "path": "skills/audit-web-ui/SKILL.md"
+    },
+    {
       "name": "implement-feature",
       "title": "Implement a Feature",
       "tagline": "Turn an approved feature or change into a small, verified patch that fits the existing codebase.",
