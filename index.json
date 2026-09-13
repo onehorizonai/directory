@@ -1,6 +1,23 @@
 {
   "skills": [
     {
+      "name": "implement-feature",
+      "title": "Implement a Feature",
+      "tagline": "Turn an approved feature or change into a small, verified patch that fits the existing codebase.",
+      "description": "Use when there's an approved feature, bugfix, or behavior change to build in an existing codebase — a ticket, spec, or approved plan already states what should happen, and the next step is writing the code. Covers inspecting the existing implementation before touching it, making the smallest change that satisfies the approved behavior, and verifying the result. Not for discovery, design, or approval work, and not for unscoped refactors, dependency upgrades, or architecture changes.",
+      "category": "engineering",
+      "tags": [
+        "coding",
+        "implementation",
+        "testing"
+      ],
+      "compatibility": [],
+      "overview": "This skill covers only the implementation step for a feature or change\nthat's already approved — a ticket, spec, or plan states what should\nhappen. It does not cover deciding what to build; that happens before this\nskill is invoked. Given the approved scope, it produces the smallest patch\nthat satisfies it, built on the codebase's own existing patterns, and\nverified against real checks rather than described from memory.",
+      "whenToUse": "- An approved feature, bugfix, or behavior change exists (ticket, spec,\n  approved plan) and the next step is writing the code for it in an\n  existing codebase.\n- The user asks to \"implement X\" / \"build this\" / \"make this change\" and\n  points at scope that's already decided, not still being explored.\n\nDon't use this for open-ended discovery, design, or \"what should we build\"\nconversations — resolve scope first. Don't use it for a full rewrite, an\narchitecture migration, or a dependency upgrade unless that is explicitly\nthe approved change.",
+      "examples": "```\nImplement the approved change: add a `status` filter query param to\nGET /api/orders that returns only orders matching the given status.\nAcceptance: invalid status returns 400; omitted status returns all\norders (current behavior unchanged).\n```\n\nExpected approach: read the existing orders route/controller, its tests,\nand how other query params are validated on this endpoint; add the filter\nusing the same validation/error pattern already used there; add tests for\na valid status, an invalid status (400), and the omitted case (unchanged);\nrun the route's test suite and report the results.\n\n```\nAdd a \"Duplicate task\" action next to the existing \"Delete task\" action in\nthe task list UI, per the approved design. Duplicating should copy the\ntask's fields except id and createdAt.\n```\n\nExpected approach: find the existing Delete action's component/handler as\nthe pattern to mirror, add Duplicate using the same event/state-update\npath, add a test covering the duplicated task's fields and that\nid/createdAt differ, run the component/UI test suite, and inspect the diff\nbefore reporting.",
+      "path": "skills/implement-feature/SKILL.md"
+    },
+    {
       "name": "pdf-form-filler",
       "title": "PDF Form Filler",
       "tagline": "Fill out PDF form fields programmatically from structured data.",
