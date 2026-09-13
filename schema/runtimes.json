@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Closed list of runtime identifiers usable in a skill's optional metadata.compatibility array, and the source for the README install table. Omitting metadata.compatibility on a skill means it is assumed to work on any Agent-Skills-compatible runtime.",
+  "runtimes": [
+    {
+      "id": "claude-code",
+      "label": "Claude Code",
+      "installPath": ".claude/skills/<name>/",
+      "notes": "Also installable as a plugin marketplace: /plugin marketplace add onehorizonai/directory"
+    },
+    {
+      "id": "cursor",
+      "label": "Cursor",
+      "installPath": ".cursor/skills/<name>/"
+    },
+    {
+      "id": "codex",
+      "label": "Codex",
+      "installPath": ".agents/skills/<name>/"
+    },
+    {
+      "id": "any",
+      "label": "Any Agent Skills-compatible runtime",
+      "installPath": "Copy the skill's folder into that runtime's skills directory."
+    }
+  ]
+}
