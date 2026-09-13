@@ -1,0 +1,20 @@
+{
+  "name": "onehorizon-directory",
+  "owner": {
+    "name": "One Horizon",
+    "url": "https://onehorizon.ai"
+  },
+  "plugins": [
+    {
+      "name": "directory",
+      "source": "./",
+      "description": "Curated One Horizon skills, installable as a Claude Code plugin.",
+      "version": "1.0.0",
+      "keywords": [
+        "automation",
+        "forms",
+        "pdf"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Closed list of categories a skill's metadata.category must pick from. Adding a category is a deliberate edit to this file, not free text in a skill's frontmatter.",
+  "categories": [
+    { "id": "content-and-writing", "label": "Content & Writing" },
+    { "id": "engineering", "label": "Engineering" },
+    { "id": "research", "label": "Research" },
+    { "id": "productivity", "label": "Productivity" },
+    { "id": "data-and-analytics", "label": "Data & Analytics" },
+    { "id": "design", "label": "Design" },
+    { "id": "operations", "label": "Operations" },
+    { "id": "other", "label": "Other" }
+  ]
+}
