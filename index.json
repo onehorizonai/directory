@@ -90,6 +90,22 @@
       "path": "skills/research-technical-question/SKILL.md"
     },
     {
+      "name": "write-ux-copy",
+      "title": "Write UX Copy",
+      "tagline": "Write interface copy for a specific product state, action, error, confirmation, or recovery path.",
+      "description": "Use when writing or revising interface copy for one specific, already-decided product state, action, error, confirmation, or recovery path in an existing product — for example a loading message, an error string, a permission-denied message, an empty state, or a destructive-action confirmation. Not for marketing or landing-page copy, not for naming a whole feature or product, not for writing copy when the underlying product state or behavior hasn't been decided yet, and not for translating existing copy into another language.",
+      "category": "design",
+      "tags": [
+        "ux-writing",
+        "microcopy",
+        "error-messages",
+        "accessibility"
+      ],
+      "compatibility": [],
+      "overview": "This skill writes copy for one specific, already-decided interface moment\n— a state, action, error, confirmation, or recovery path — not whole\nflows or products, and not the decision about what the interface should\ndo. It produces copy grounded in what the interface actually does at that\nmoment, not invented behavior: the copy is only as specific as what the\nimplementation can actually establish, and it always points to a real next\naction.",
+      "whenToUse": "- Writing or rewriting a loading, success, or validation message.\n- Writing an error string, including a server-failure or permission-denied\n  message.\n- Writing an empty state (first-use or filtered-empty) or a\n  destructive-action confirmation dialog.\n- Writing a retry or recovery message for a failed action.\n\nDon't use this for marketing or landing-page copy, naming a feature or\nproduct, copy for a state that hasn't been implemented or decided yet\n(resolve that first), or translating existing copy into another language.",
+      "examples": "```\nWrite the error copy for a failed file upload. The API can return a\nsize-limit error, a network error, or a generic server error.\n```\n\nExpected approach: inspect the actual error the API returns for each\ncase rather than assuming one generic message; write copy for what could\nnot complete plus the real retry or next action for each case; if the UI\ncurrently can't tell two of these causes apart, flag that instead of\ninventing distinct messages for causes the code can't actually\ndistinguish.\n\n```\nWrite the confirmation dialog for \"Delete project.\"\n```\n\nExpected approach: check the actual behavior to confirm whether deletion\nis recoverable (e.g. a trash/undo window) or permanent; name the project\nand the real consequence in the dialog body; put \"Delete project\" — not\n\"OK\" or \"Confirm\" — on the confirming button.",
+      "path": "skills/write-ux-copy/SKILL.md"
       "name": "review-code",
       "title": "Review Code",
       "tagline": "Review a code change for defects, regressions, and requirement gaps without editing it.",

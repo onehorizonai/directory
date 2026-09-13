@@ -11,6 +11,14 @@
       "description": "Curated One Horizon skills, installable as a Claude Code plugin.",
       "version": "1.0.0",
       "keywords": [
+        "accessibility",
+        "automation",
+        "coding",
+        "error-messages",
+        "evidence",
+        "forms",
+        "implementation",
+        "microcopy",
         "architecture",
         "accessibility",
         "android",
@@ -32,6 +40,8 @@
         "review",
         "sources",
         "technical-question",
+        "testing",
+        "ux-writing"
         "testing"
         "coding",
         "desktop",
