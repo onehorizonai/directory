@@ -22,12 +22,19 @@
         "ios",
         "mobile",
         "native",
+        "acceptance-criteria",
+        "automation",
+        "coding",
+        "evidence",
+        "forms",
+        "implementation",
         "pdf",
         "research",
         "sources",
         "technical-question",
         "testing",
         "ui"
+        "verification"
       ]
     }
   ]
