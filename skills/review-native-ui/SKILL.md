@@ -78,6 +78,9 @@ does not edit the interface under review.
   acceptance criteria (pass/fail against a spec), with no native
   platform-convention, state/lifecycle, or accessibility-tree dimension in
   scope — that's `verify-implementation`, not this skill.
+- The ask is a general source-diff or code-quality review (correctness,
+  reuse, maintainability) with no request to inspect the running native
+  interface itself — that's `review-code`, not this skill.
 
 ## Prerequisites
 
@@ -116,57 +119,77 @@ reason to skip the review.
    the actual running interface on a simulator/emulator or device. Don't
    review from code or screenshots alone when the real interface is
    reachable.
-3. **Review platform conventions** — check navigation, controls, gestures,
+3. **Review object/action/concept priority** — before checking
+   convention-by-convention, identify the interface's primary objects,
+   actions, and workflows/concepts, and the relative priority they should
+   carry. Check whether navigation, placement, size, grouping, and
+   progressive disclosure actually communicate that priority — this is
+   more important than surface-styling review, not a subset of it. A
+   secondary action rendered as the most visually prominent control, or a
+   primary object's state buried behind progressive disclosure with no
+   documented product/usability reason, is a finding, independent of
+   whether individual controls match platform styling.
+4. **Review platform conventions** — check navigation, controls, gestures,
    menus, dialogs, typography, and spacing against the current official
    platform guidance for the target OS (Apple Human Interface Guidelines,
    Google Material/Android guidance, or Microsoft Windows design guidance),
    not recalled from memory. A deviation with no documented product/
    usability reason is a finding; matching another platform's look is
    never itself a justification for a native deviation, and differing from
-   another platform's look is never itself a defect (see step 9).
-4. **Review state ownership/lifetime and interruption/restoration** — what
+   another platform's look is never itself a defect (see step 10). Include
+   a semantic-color check as its own explicit item, separate from the
+   accessibility-contrast check in step 9: color used to signal state,
+   hierarchy, selection, or available actions must be applied consistently
+   and match the platform's semantic-color conventions, not just used
+   decoratively or inconsistently — this is a meaning check, not a
+   contrast/legibility check.
+5. **Review state ownership/lifetime and interruption/restoration** — what
    survives navigation, backgrounding, rotation/resizing, recreation, and
    relaunch; how the interface behaves through connectivity loss,
    authorization expiry/denial, cancellation/retry, and return-to-app.
    Flag duplicate requests or false success on uncertain outcomes.
-5. **Review permissions** — requested in context at point of use, and
+6. **Review permissions** — requested in context at point of use, and
    handled gracefully when denied or revoked, matching the app's existing
    permission pattern.
-6. **Review adaptive layout** — available window sizes, orientation/
+7. **Review adaptive layout** — available window sizes, orientation/
    folding, multitasking, keyboard, safe areas/insets, and spatial
    stability during transitions.
-7. **Review text scaling and localization** — platform text-scaling
+8. **Review text scaling and localization** — platform text-scaling
    behavior (Dynamic Type, font scale) at larger sizes, and
    platform-aware dates/numbers/plurals/direction/longer-translation
    handling.
-8. **Review input and accessibility** — the input methods relevant to the
+9. **Review input and accessibility** — the input methods relevant to the
    platform (touch, keyboard, precision pointer) and actual accessibility
    semantics through the real accessibility tree/assistive technology
    (VoiceOver, TalkBack, UI Automation) — not visual inspection alone:
    labels/traits, reading order, usable target sizes, contrast, reduced
    motion.
-9. **Validate and separate findings** — before any suspected issue counts
-   as a finding, check it against the real interface, platform guidance,
-   the app's own patterns, or another appropriate source. Explicitly
-   separate observable violations (a documented convention or contract
-   break) from subjective cross-platform visual preferences — the latter
-   are not findings unless tied to a concrete usability or accessibility
-   problem.
-10. **Report environment evidence** — record what was actually checked:
+10. **Validate and separate findings** — before any suspected issue counts
+    as a finding, check it against the real interface, platform guidance,
+    the app's own patterns, or another appropriate source. Explicitly
+    separate observable violations (a documented convention or contract
+    break, or a mismatch between the interface's primary objects/actions/
+    concepts and the priority its navigation/placement/size/grouping/
+    disclosure or semantic color actually communicates) from subjective
+    cross-platform visual preferences — the latter are not findings unless
+    tied to a concrete usability or accessibility problem.
+11. **Report environment evidence** — record what was actually checked:
     device/OS/window used, simulator vs. physical device, and any
     simulator-only limitation (e.g. some permission flows, haptics, or
     assistive-technology behavior don't fully reproduce off-device).
-11. **Rank and structure findings** — prioritize by real impact,
+12. **Rank and structure findings** — prioritize by real impact,
     consolidate duplicates, and split into confirmed defects, open
     questions, and optional improvements before returning them.
 
 ```mermaid
 flowchart TD
   Start[Fixed target: app, platform,<br/>min OS, framework version, build] --> Inspect[Inspect architecture<br/>+ real running interface]
-  Inspect --> Conventions[Platform conventions vs.<br/>current official guidance]
+  Inspect --> Priority[Primary objects/actions/concepts<br/>vs. nav, placement, size,<br/>grouping, disclosure]
+  Inspect --> Conventions[Platform conventions +<br/>semantic color vs. current<br/>official guidance]
   Inspect --> State[State/lifecycle,<br/>interruption/restoration]
   Inspect --> Access[Adaptive layout, text scaling,<br/>input, accessibility tree]
-  Conventions --> Suspect{Suspected issue}
+  Priority --> Suspect{Suspected issue}
+  Conventions --> Suspect
   State --> Suspect
   Access --> Suspect
   Suspect --> Validate[Validate against interface,<br/>guidance, or app pattern]
@@ -223,6 +246,12 @@ Before handing back findings, check:
   it was reachable.
 - Platform conventions were checked against current official guidance, not
   recalled from memory.
+- The interface's primary objects, actions, and concepts were identified,
+  and navigation, placement, size, grouping, and progressive disclosure
+  were checked against the priority those objects/actions/concepts should
+  carry — not assumed to be right because individual conventions passed.
+- Color used for state, hierarchy, selection, or action was checked for
+  semantic consistency, as a distinct check from accessibility contrast.
 - State/lifecycle, interruption/restoration, permissions, adaptive layout,
   text scaling/localization, input, and accessibility-tree behavior were
   each considered, not only visual layout.

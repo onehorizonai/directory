@@ -19,6 +19,15 @@ A finding only counts as confirmed when one of these is true:
   action produces a duplicate request or false success, an accessibility
   label is missing or wrong, a target is unreachable by keyboard or
   assistive technology, layout breaks or clips at a supported size.
+- Navigation, placement, size, grouping, or progressive disclosure
+  misrepresents the interface's primary objects/actions/concepts and their
+  relative priority (e.g. a secondary action rendered more prominently
+  than the primary one, a primary object's state buried behind
+  disclosure), or color that signals state/hierarchy/selection/action is
+  used decoratively or inconsistently — with no documented product/
+  usability reason. This counts even when every individual control is
+  otherwise convention-correct and contract-clean; the defect is in the
+  interface model, not in any one control.
 
 None of these, on their own, are findings:
 
@@ -27,14 +36,39 @@ None of these, on their own, are findings:
 - "This differs from the other native platform's version of the same
   screen" — native platforms are expected to diverge in presentation while
   sharing product meaning.
-- A stylistic preference (spacing, color choice, icon style) with no tie to
-  a documented convention, an app-internal inconsistency, or a usability/
-  accessibility impact.
+- A stylistic preference (spacing, purely decorative color with no
+  signalling role, icon style) with no tie to a documented convention, an
+  app-internal inconsistency, a usability/accessibility impact, or a
+  misrepresented object/action/concept priority.
 
 When unsure which bucket a suspected issue falls into, state the specific
 guidance passage or app pattern it's checked against; if none exists, it's
 a preference, not a defect — report it as an optional improvement only if
 it has a concrete, stated usability rationale, otherwise drop it.
+
+## Object/action/concept priority and semantic color
+
+Check these before or alongside platform-convention checks — they're about
+whether the interface model is right, not whether individual controls are
+styled correctly:
+
+- Identify the primary objects, actions, and workflows/concepts the
+  interface is meant to represent, and the relative priority they should
+  carry. Then check whether navigation, placement, size, grouping, and
+  progressive disclosure actually reflect that priority — a secondary
+  action can pass every convention check individually and still be the
+  most visually prominent control on the screen, or a primary object's
+  state can be technically present but buried behind a disclosure
+  control. Either is a finding when there's no documented product/
+  usability reason for it, even though no single convention was broken.
+- Check color for semantic use, separately from the accessibility-contrast
+  check: color that signals state, hierarchy, selection, or available
+  actions should be applied consistently and match the platform's
+  semantic-color conventions (e.g. a destructive action always using the
+  same color, a selected state always using the same indicator color).
+  Decorative or inconsistent use of color for what looks like a
+  state/hierarchy/selection signal is a finding on its own, independent of
+  whether the colors used pass contrast requirements.
 
 ## Per-platform verification checklist
 
