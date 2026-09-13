@@ -12,16 +12,19 @@
       "version": "1.0.0",
       "keywords": [
         "automation",
-        "evidence",
-        "forms",
-        "pdf",
-        "research",
-        "sources",
-        "technical-question",
+        "code-review",
         "coding",
+        "defects",
+        "evidence",
         "forms",
         "implementation",
         "pdf",
+        "quality",
+        "regressions",
+        "research",
+        "review",
+        "sources",
+        "technical-question",
         "testing"
       ]
     }
