@@ -11,18 +11,18 @@
       "description": "Curated One Horizon skills, installable as a Claude Code plugin.",
       "version": "1.0.0",
       "keywords": [
+        "acceptance-criteria",
         "automation",
+        "coding",
         "evidence",
         "forms",
+        "implementation",
         "pdf",
         "research",
         "sources",
         "technical-question",
-        "coding",
-        "forms",
-        "implementation",
-        "pdf",
-        "testing"
+        "testing",
+        "verification"
       ]
     }
   ]
