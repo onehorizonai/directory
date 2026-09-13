@@ -110,10 +110,11 @@ export function findRelativeLinks(body) {
   const linkPattern = /]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
   let match;
   while ((match = linkPattern.exec(body))) {
-    const target = match[1];
+    let target = match[1];
     if (/^([a-z]+:)?\/\//i.test(target) || target.startsWith("#") || target.startsWith("mailto:")) {
       continue;
     }
+    target = target.replace(/^\.\//, "");
     if (/^(references|assets|scripts)\//.test(target)) {
       links.push(target);
     }

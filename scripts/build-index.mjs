@@ -15,9 +15,11 @@
 // timestamp — a `generatedAt` field would make every regeneration diff
 // dirty even when nothing actually changed.
 
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { REPO_ROOT, listSkillFolders, parseSkillMd, extractSections } from "./lib.mjs";
+
+const { version } = JSON.parse(readFileSync(join(REPO_ROOT, "package.json"), "utf8"));
 
 const folders = listSkillFolders();
 
@@ -62,7 +64,7 @@ const marketplace = {
       name: "directory",
       source: "./",
       description: "Curated One Horizon skills, installable as a Claude Code plugin.",
-      version: "1.0.0",
+      version,
     },
   ],
 };

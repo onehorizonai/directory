@@ -11,7 +11,6 @@ document covers how an already-accepted skill gets added to the repo.
    (kebab-case):
 
    ```
-   mkdir -p skills
    cp -r _template skills/your-skill-name
    ```
 

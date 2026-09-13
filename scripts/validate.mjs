@@ -176,6 +176,10 @@ if (existsSync(TEMPLATE_SKILL_MD_PATH)) {
 // meant to be sourced from schema/categories.json and schema/runtimes.json.
 // This doesn't enforce sourcing mechanically, but it catches the schema and
 // the README silently drifting apart as categories/runtimes are added.
+// One-directional: it fails when the README is missing a current schema
+// entry, but not when the README still lists one that's since been removed
+// from the schema — a stale README row is a manual-review problem, not one
+// this check catches.
 
 const readme = readFileSync(join(REPO_ROOT, "README.md"), "utf8");
 
