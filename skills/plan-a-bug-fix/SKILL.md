@@ -204,13 +204,15 @@ exception and surface it — paired with rerunning the reproduction and a
 regression test for that project shape.
 
 ```
-The "invite teammate" flow throws a 500 when the invitee already has an
-account under a different email. Don't fix it yet, just plan it.
+Some users see their dashboard widgets randomly reorder after a page
+refresh. No error is thrown. Investigate and plan the fix.
 ```
 
-Expected approach: reproduce the 500 from the invite code and existing
-tests, read the actual stack trace, trace where the account lookup
-diverges for that case, confirm which line or condition causes the
-unhandled case, and plan a fix that handles it explicitly (not a blanket
-try/catch), with verification against the original reproduction plus a
-regression test for the existing-account-different-email case.
+Expected approach: get a concrete reproduction (which widget set, browser,
+account state triggers it), read the widget-ordering code and any recent
+changes to it, compare a session where order is stable against one where
+it isn't, form and test hypotheses one at a time (e.g. an unstable sort,
+a race between two writes of the same preference, a missing tiebreaker)
+until one is confirmed by evidence, then plan a fix that addresses that
+specific cause, with verification against the original reproduction plus
+a regression test asserting stable order across repeated refreshes.
