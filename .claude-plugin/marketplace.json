@@ -20,6 +20,15 @@
         "code-review",
         "coding",
         "consistency",
+        "code-review",
+        "coding",
+        "conversion",
+        "cta",
+        "bug-fix",
+        "code-quality",
+        "code-review",
+        "coding",
+        "debugging",
         "defects",
         "desktop",
         "error-messages",
@@ -28,6 +37,8 @@
         "implementation",
         "implementation-plan",
         "ios",
+        "landing-page",
+        "marketing-copy",
         "microcopy",
         "mobile",
         "native",
@@ -35,10 +46,12 @@
         "planning",
         "quality",
         "refactoring",
+        "regression-testing",
         "regressions",
         "requirements",
         "research",
         "review",
+        "root-cause",
         "sources",
         "technical-question",
         "testing",
@@ -48,6 +61,10 @@
         "ux-writing",
         "verification",
         "web"
+        "ux-writing",
+        "verification",
+        "website-copy"
+        "verification"
       ]
     }
   ]

@@ -1,12 +1,14 @@
 ---
 name: plan-a-feature
 description: >-
-  Use when the user hands you a feature request, change request, or bug-fix
-  request that touches existing behavior and asks for an implementation plan,
-  spec, or design before code is written — e.g. "plan how to build X", "write
-  a spec for Y before we implement it", "what's the plan for this change",
+  Use when the user hands you a feature request or change request that
+  touches existing behavior and asks for an implementation plan, spec, or
+  design before code is written — e.g. "plan how to build X", "write a
+  spec for Y before we implement it", "what's the plan for this change",
   "don't write code yet, just plan it out". Produces a self-contained
   implementation plan grounded in the real codebase, not a code change.
+  For a reported defect where the cause isn't confirmed yet, see
+  plan-a-bug-fix instead.
 metadata:
   title: Plan a Feature
   tagline: Turn a feature request into a self-contained, executable implementation plan without writing code.
@@ -34,6 +36,7 @@ Turning a feature request straight into code skips the step where the request me
 - The user wants code written now, not a plan — use an implementation skill/workflow instead.
 - The request has no decision to make and no code to inspect (pure open-ended research or brainstorming) — that's a research task, not a feature plan.
 - The request's own goal, not just the approach, is undefined — resolve what's being asked for first; see Failure behavior.
+- The request is a reported defect where the cause isn't confirmed yet — establish the symptom and cause first with `plan-a-bug-fix`, then plan the fix.
 
 ## Prerequisites
 
@@ -104,14 +107,15 @@ them fully," each paired with how it'll be verified (e.g. a test with a
 project over the in-memory threshold).
 
 ```
-Users say the "invite teammate" flow silently fails when the invitee
-already has an account under a different email. Plan the fix — don't
-implement it yet.
+We want to let a team have more than one admin instead of exactly one.
+Plan the change before anyone implements it.
 ```
 
-Expected approach: reproduce the current behavior from the invite code and
-tests, state current vs. desired behavior precisely (what "silently fails"
-means today vs. what should happen), check whether other flows share the
-same invite path (an invariant to preserve), and produce increments such as
-"detect the existing-account case," "surface a specific error instead of
-swallowing it," each with its own verification.
+Expected approach: find where "admin" is currently modeled and enforced
+(schema, permission checks, UI that assumes a single admin), state current
+vs. desired behavior precisely (exactly-one vs. one-or-more), identify
+invariants to preserve (existing single-admin teams must keep working
+unchanged), decide how the transition/migration works for existing teams,
+and produce increments such as "relax the schema constraint," "update
+permission checks to allow multiple admins," "add an admin-management UI
+affordance," each paired with its own verification.
