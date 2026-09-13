@@ -10,8 +10,9 @@ description: >-
   separates confirmed evidence from hypotheses, and produces a plan for
   the smallest cause-focused fix plus how to verify it against the
   original symptom. Not for a request to build new behavior (see
-  plan-a-feature) and not for writing the fix itself (see
-  implement-feature) — this skill investigates and plans only.
+  plan-a-feature) and not for a request where the fix should actually be
+  written and verified, not just planned (see debug-a-bug) — this skill
+  investigates and plans only.
 metadata:
   title: Plan a Bug Fix
   tagline: Turn a reported problem into a confirmed cause and a bounded, verifiable fix plan — without patching it yet.
@@ -54,6 +55,9 @@ not edit code.
   that's a feature or change plan; use `plan-a-feature`.
 - The cause is already confirmed and the next step is writing the patch —
   use `implement-feature`.
+- The ask is for the whole loop — reproduce, diagnose, fix, and verify —
+  done in one pass rather than split into a separate planning step — use
+  `debug-a-bug`.
 - The ask is to review someone else's already-written fix — use
   `review-code`.
 - No evidence can be gathered at all (no code access, no logs, no

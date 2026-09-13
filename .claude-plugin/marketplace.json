@@ -16,18 +16,13 @@
         "android",
         "architecture",
         "automation",
-        "code-quality",
-        "code-review",
-        "coding",
-        "consistency",
-        "code-review",
-        "coding",
-        "conversion",
-        "cta",
         "bug-fix",
         "code-quality",
         "code-review",
         "coding",
+        "consistency",
+        "conversion",
+        "cta",
         "debugging",
         "defects",
         "design-system",
@@ -58,18 +53,12 @@
         "technical-question",
         "testing",
         "ui",
-        "ux-writing",
-        "verification",
-        "web"
         "ui-audit",
         "ux-review",
         "ux-writing",
         "verification",
-        "web"
-        "ux-writing",
-        "verification",
+        "web",
         "website-copy"
-        "verification"
       ]
     }
   ]
