@@ -12,16 +12,16 @@
       "version": "1.0.0",
       "keywords": [
         "automation",
-        "evidence",
-        "forms",
-        "pdf",
-        "research",
-        "sources",
-        "technical-question",
+        "code-quality",
         "coding",
+        "evidence",
         "forms",
         "implementation",
         "pdf",
+        "refactoring",
+        "research",
+        "sources",
+        "technical-question",
         "testing"
       ]
     }
