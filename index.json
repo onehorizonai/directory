@@ -18,6 +18,27 @@
       "path": "skills/implement-feature/SKILL.md"
     },
     {
+      "name": "implement-native-ui",
+      "title": "Implement Native UI",
+      "tagline": "Turn an approved native app UI change into a platform-conventional, verified patch using the app's existing architecture.",
+      "description": "Use when an approved native UI change — a design, mock, spec, or ticket that's already decided — needs to be built into an existing iOS, Android, desktop, or other native app, and the next step is writing the code for it using the app's existing native architecture and the target platform's interaction conventions. Not for deciding or approving the design itself, not for web/browser-only UI, not for a new app with no existing architecture to follow, and not for migrating framework, navigation architecture, or deployment target — that needs an explicit prior decision, not this skill.",
+      "category": "engineering",
+      "tags": [
+        "native",
+        "mobile",
+        "ios",
+        "android",
+        "desktop",
+        "accessibility",
+        "ui"
+      ],
+      "compatibility": [],
+      "overview": "This skill covers only implementing an already-approved native UI change in\nan existing app — it does not cover deciding what the UI should be. Given\nthe approved change, it declares the target platform and inspects the app's\nexisting native architecture, models the interface's objects, actions, and\nconcepts before touching layout, implements using the platform's own\ninteraction conventions and the app's established patterns, defines state\nownership/lifetime and interruption behavior explicitly, and verifies the\nresult on the actual target platform rather than from code alone.",
+      "whenToUse": "- An approved native UI change (design, mock, spec, or ticket) exists for an\n  existing iOS, Android, desktop, or other native app, and the next step is\n  building it.\n- The user asks to implement a specific screen, view, or interaction in a\n  native app project where the scope is already settled.\n\nDon't use this for deciding or approving the design itself — resolve that\nfirst. Don't use it for web or browser-only UI, which has a different\nlayout and platform constraint set. Don't use it for a new app with no\nexisting native architecture to follow. Don't use it for any change that\nwould require migrating framework, navigation architecture, or deployment\ntarget without an explicit prior decision to do so.",
+      "examples": "```\nAdd a \"Notify me\" toggle to the existing iOS settings screen, per the\napproved design. Toggling it on should request notification permission if\nnot already granted.\n```\n\nExpected approach: inspect the existing settings screen's state/binding\npattern and how other toggles on that screen are wired; implement the new\ntoggle using that same pattern and SwiftUI's system `Toggle` control;\nhandle the permission-request flow using the app's existing permission\npattern rather than a new one; verify with Dynamic Type and VoiceOver on a\nsimulator or device.\n\n```\nAdd multi-select to the existing Android task list, per the approved\ndesign: long-press selects an item, a selection toolbar appears, and the\nselection and scroll position must survive rotation and returning from\nthe backgrounded app.\n```\n\nExpected approach: inspect the existing list's state-hoisting pattern and\nwhere scroll position is currently tracked; hoist selection state the same\nway and persist both selection and scroll position across\nconfiguration change and process death using the app's existing\n`SavedStateHandle`/state-restoration pattern; verify with TalkBack, a\nrotation check, and a background/foreground round-trip on an emulator or\ndevice.",
+      "path": "skills/implement-native-ui/SKILL.md"
+    },
+    {
       "name": "pdf-form-filler",
       "title": "PDF Form Filler",
       "tagline": "Fill out PDF form fields programmatically from structured data.",
