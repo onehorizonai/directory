@@ -18,6 +18,27 @@
       "path": "skills/implement-feature/SKILL.md"
     },
     {
+      "name": "implement-native-ui",
+      "title": "Implement Native UI",
+      "tagline": "Turn an approved native app UI change into a platform-conventional, verified patch using the app's existing architecture.",
+      "description": "Use when an approved native UI change — a design, mock, spec, or ticket that's already decided — needs to be built into an existing iOS, Android, desktop, or other native app, and the next step is writing the code for it using the app's existing native architecture and the target platform's interaction conventions. Not for deciding or approving the design itself, not for web/browser-only UI, not for a new app with no existing architecture to follow, and not for migrating framework, navigation architecture, or deployment target — that needs an explicit prior decision, not this skill.",
+      "category": "engineering",
+      "tags": [
+        "native",
+        "mobile",
+        "ios",
+        "android",
+        "desktop",
+        "accessibility",
+        "ui"
+      ],
+      "compatibility": [],
+      "overview": "This skill covers only implementing an already-approved native UI change in\nan existing app — it does not cover deciding what the UI should be. Given\nthe approved change, it declares the target platform and inspects the app's\nexisting native architecture, models the interface's objects, actions, and\nconcepts before touching layout, implements using the platform's own\ninteraction conventions and the app's established patterns, defines state\nownership/lifetime and interruption behavior explicitly, and verifies the\nresult on the actual target platform rather than from code alone.",
+      "whenToUse": "- An approved native UI change (design, mock, spec, or ticket) exists for an\n  existing iOS, Android, desktop, or other native app, and the next step is\n  building it.\n- The user asks to implement a specific screen, view, or interaction in a\n  native app project where the scope is already settled.\n\nDon't use this for deciding or approving the design itself — resolve that\nfirst. Don't use it for web or browser-only UI, which has a different\nlayout and platform constraint set. Don't use it for a new app with no\nexisting native architecture to follow. Don't use it for any change that\nwould require migrating framework, navigation architecture, or deployment\ntarget without an explicit prior decision to do so.",
+      "examples": "```\nAdd a \"Notify me\" toggle to the existing iOS settings screen, per the\napproved design. Toggling it on should request notification permission if\nnot already granted.\n```\n\nExpected approach: inspect the existing settings screen's state/binding\npattern and how other toggles on that screen are wired; implement the new\ntoggle using that same pattern and SwiftUI's system `Toggle` control;\nhandle the permission-request flow using the app's existing permission\npattern rather than a new one; verify with Dynamic Type and VoiceOver on a\nsimulator or device.\n\n```\nAdd multi-select to the existing Android task list, per the approved\ndesign: long-press selects an item, a selection toolbar appears, and the\nselection and scroll position must survive rotation and returning from\nthe backgrounded app.\n```\n\nExpected approach: inspect the existing list's state-hoisting pattern and\nwhere scroll position is currently tracked; hoist selection state the same\nway and persist both selection and scroll position across\nconfiguration change and process death using the app's existing\n`SavedStateHandle`/state-restoration pattern; verify with TalkBack, a\nrotation check, and a background/foreground round-trip on an emulator or\ndevice.",
+      "path": "skills/implement-native-ui/SKILL.md"
+    },
+    {
       "name": "pdf-form-filler",
       "title": "PDF Form Filler",
       "tagline": "Fill out PDF form fields programmatically from structured data.",
@@ -70,6 +91,22 @@
       "whenToUse": "- The user asks to review a diff, pull request, branch, or commit range —\n  \"review this PR\", \"review my changes before I merge\", \"did this diff\n  break anything\", \"check this change for defects or regressions\".\n- A change needs checking against its original requirements or acceptance\n  criteria, not just a general code-quality pass.\n- Someone wants a second look at a change's blast radius — callers, state,\n  permissions, interfaces, tests, side effects — before it ships.",
       "examples": "```\nReview PR #482 (feature/order-status-filter branch vs main) for defects\nbefore merge. Acceptance: invalid status returns 400; omitted status\nreturns all orders (unchanged).\n```\n\nExpected approach: fix the baseline (feature/order-status-filter vs main\nat the PR's current head), check the diff against the stated acceptance\ncriteria (invalid-status handling, omitted-status behavior), check\nintegration with the route's existing callers/tests/permissions, validate\nany suspected issue (e.g. by reading the validation code or running the\nroute's tests) before reporting it, and return confirmed defects, open\nquestions, and optional improvements as separate groups — without editing\nthe PR.\n\n```\nReview my last three commits on this branch against main. I don't have a\nwritten spec, just: \"add retry logic to the payment webhook handler.\"\n```\n\nExpected approach: fix the range (last three commits vs main), note the\nrequirement is informal and check the diff against that stated intent\n(retry logic added, existing webhook behavior otherwise preserved), inspect\nintegration (callers of the handler, idempotency/state on retry,\nerror/side-effect behavior), validate any suspected defect (e.g. a\nduplicate-charge risk) against the actual code path before reporting it,\nand flag anything that can't be checked (e.g. no test suite access) as a\nnamed coverage gap rather than skipping it silently.",
       "path": "skills/review-code/SKILL.md"
+      "name": "verify-implementation",
+      "title": "Verify an Implementation",
+      "tagline": "Check a finished implementation against its acceptance criteria and report what passed, failed, or couldn't be verified.",
+      "description": "Use when an implementation is already claimed complete — a handoff, a pull request, a \"this is done\" message, or a task marked ready for review — and the job is to independently establish what it actually does against its stated acceptance criteria, then report what passed, failed, or could not be verified. Not for writing or fixing the implementation itself, and not for the inline verification a developer already does while actively writing the code (see implement-feature for that).",
+      "category": "engineering",
+      "tags": [
+        "verification",
+        "testing",
+        "acceptance-criteria",
+        "evidence"
+      ],
+      "compatibility": [],
+      "overview": "A completion claim (\"this is done\", a PR ready for review, a task moved to\nreview) is a claim, not evidence. This skill is a procedure for\nindependently checking that claim: map the stated acceptance criteria to\nconcrete checks, run those checks against the final, integrated state of\nthe implementation, and report exactly what passed, what failed, and what\ncould not be verified at all. It never repairs what it finds — fixing is a\nseparate, later step owned by whoever invoked this skill.",
+      "whenToUse": "- An implementation, PR, or task is claimed complete and needs an\n  independent pass to confirm it actually satisfies its acceptance\n  criteria before it's accepted.\n- Someone hands off work with \"this should be done\" or \"can you verify\n  this\" and wants a real answer, not a restatement of what was intended.\n- A task is moved to a review/done state and the review step needs\n  evidence, not just the author's word, that each criterion holds.",
+      "examples": "```\nVerify the merged PR that adds a `status` filter to GET /api/orders\nagainst its stated acceptance: invalid status returns 400; omitted status\nreturns all orders unchanged; valid status filters correctly.\n```\n\nExpected approach: map each acceptance line to a check (invalid value →\n400, omitted param → unchanged full list, valid value → filtered list);\nrun all three against the merged branch through the real API, not just by\nreading the diff. All three come back matching the stated acceptance, and\nan unrelated test that was already failing on the base branch before this\nPR is confirmed pre-existing rather than attributed to this change; report\nall three criteria as passed with the actual response evidence, and note\nthe endpoint's existing pagination behavior as out of scope for this\nverification.\n\n```\nVerify the claimed-complete \"export to CSV\" feature. Acceptance criteria\nsay the export must include all visible columns and match the current\nfilter/sort state. The CI environment for this repo has no access to the\nproduction database used for the export job.\n```\n\nExpected approach: map both criteria to checks — columns/order for the\nfirst, filter/sort parity for the second — and run what can be run against\na reachable environment (e.g. a staging dataset or local fixture); for the\npart of the export path that depends on the production database that\nisn't reachable, report that portion as not verified with the specific\naccess gap named, rather than assuming it behaves like the reachable\nenvironment or reporting it as passed.",
+      "path": "skills/verify-implementation/SKILL.md"
     }
   ]
 }
