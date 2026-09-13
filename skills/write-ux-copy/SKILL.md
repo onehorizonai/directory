@@ -77,7 +77,13 @@ For each string, gather:
 4. Draft copy that states only what the system actually knows, gives a
    real recovery or next action, and preserves user-entered data where the
    interface allows. Never apologize for a cause the system can't
-   establish, and never promise a retry that doesn't exist.
+   establish, and never promise a retry that doesn't exist. Use plain,
+   respectful language and match tone to the stakes of the action — a
+   flippant or jokey tone has no place in a data-loss or account-impact
+   confirmation. Keep any technical diagnostics (error codes, stack
+   traces, internal identifiers) out of the user-facing string, or
+   translate them into terms the audience can act on; log or expose raw
+   detail elsewhere for support/debugging, not in the copy itself.
 5. For a consequential or hard-to-reverse action, name the target and the
    consequence explicitly, and put the action's own name — not a generic
    "OK" or "Confirm" — on the confirming button.
@@ -94,7 +100,8 @@ For each string, gather:
   valid input already entered.
 - **Server failure** — state what could not complete and a safe next
   action; never claim nothing changed when the outcome is actually
-  uncertain.
+  uncertain; keep the message in plain language and leave raw error
+  codes/stack traces out of it, even when they're available.
 - **Permission denied** — offer only a recovery/access route that's real
   (e.g. "request access" only if that flow exists).
 - **No data / first-use** — orient the user to first use and any
@@ -158,6 +165,9 @@ flagged as indistinguishable.
   associated with their field.
 - Confirm status changes are exposed to assistive technology and not
   signaled by icon/color/position alone.
+- Confirm tone is plain and respectful and scaled to the action's stakes,
+  and that no raw technical diagnostics (error codes, stack traces,
+  internal identifiers) leaked into user-facing text.
 - Report which states were inspected, which were inferred, and which
   weren't checked — separately, not blended into one "done" claim.
 
