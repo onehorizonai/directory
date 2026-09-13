@@ -58,6 +58,26 @@
       "path": "skills/implement-native-ui/SKILL.md"
     },
     {
+      "name": "implement-web-ui-change",
+      "title": "Implement a Web UI Change",
+      "tagline": "Turn an approved web UI change into a working, accessible, design-system-consistent patch verified in a running browser.",
+      "description": "Use when an approved web UI change — a design, mock, spec, or ticket that's already decided — needs to be built into an existing web app or website, using the product's existing design system, components, and interaction conventions. Not for deciding or approving the design itself, not for native iOS/Android/desktop UI (see implement-native-ui), not for a new site/app with no existing design system to follow, and not for a framework, routing-architecture, or global design-token migration — that needs an explicit prior decision, not this skill.",
+      "category": "engineering",
+      "tags": [
+        "web",
+        "frontend",
+        "ui",
+        "accessibility",
+        "design-system",
+        "testing"
+      ],
+      "compatibility": [],
+      "overview": "This skill covers only implementing an already-approved web UI change in an\nexisting product — it does not cover deciding what the UI should be. Given\nthe approved change, it inspects the existing route, design system, and\nAPI/permission contracts before touching anything; models the interface's\nobjects, actions, and workflows to decide layout and priority before\nstyling; implements using the product's existing components, tokens, and\nstate patterns, with real (not mocked) states and preserved input/focus;\nbuilds in accessible, mouse-optional interaction; and verifies the result\nin a running browser rather than from code or description alone.",
+      "whenToUse": "- An approved web UI change (design, mock, spec, or ticket) exists for an\n  existing web app or website, and the next step is building it.\n- The user asks to implement a specific page, view, or interaction on the\n  web where the scope is already settled.\n\nDon't use this for deciding or approving the design itself — resolve that\nfirst. Don't use it for native iOS, Android, or desktop UI, which has a\ndifferent component system and platform convention set (see\n`implement-native-ui`). Don't use it for a new site or app with no existing\ndesign system to follow. Don't use it for any change that would require\nmigrating framework, routing architecture, or global design tokens without\nan explicit prior decision to do so. Use `implement-feature` instead when\nthe approved scope is a behavior change that happens to touch a web\ncomponent but isn't itself about the interface (e.g. a new query param,\na validation rule, a backend integration) — this skill is for changes\nwhose approved scope is the interface itself: layout, states, interaction,\nor visual/structural presentation.",
+      "examples": "```\nOn the web project list, add a real empty state (no projects yet) and a\nfiltered-empty state (filters applied but no matches), per the approved\ndesign. Both should reuse the existing illustration/message pattern from\nother list pages, and the filtered-empty state needs a \"Clear filters\"\naction.\n```\n\nExpected approach: inspect how other list pages in the product already\nrender empty vs. filtered-empty (component, copy pattern, illustration\ntokens) and reuse that pattern rather than inventing a new one; wire the\ndistinction to the real query/filter state instead of a heuristic guess;\nimplement \"Clear filters\" using the existing filter-reset action; verify\nboth states render correctly at narrow and wide viewports, that \"Clear\nfilters\" is reachable and operable by keyboard, and that the transition\nbetween states doesn't shift the surrounding layout.\n\n```\nUpdate the account settings page to show a \"read-only\" banner and disable\nall form fields when the current user's role lacks edit permission, per\nthe approved spec.\n```\n\nExpected approach: inspect the actual permission check the API already\nenforces for this page rather than inferring it from the UI; reuse the\nproduct's existing disabled-field and banner/alert components and tokens;\nconfirm the disabled state is exposed to assistive technology (not just\nvisually dimmed) and that focus order skips disabled controls sensibly;\nverify both the permitted and read-only cases in a running browser,\nincluding that the API still rejects an edit attempt server-side even if a\nclient bypasses the disabled UI.",
+      "path": "skills/implement-web-ui-change/SKILL.md"
+    },
+    {
       "name": "pdf-form-filler",
       "title": "PDF Form Filler",
       "tagline": "Fill out PDF form fields programmatically from structured data.",
