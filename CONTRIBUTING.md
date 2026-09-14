@@ -63,17 +63,16 @@ tell what a skill produces without reading every section of it:
 - **Research** — investigates an external or technical question and returns
   sourced findings with visible uncertainty. Never edits code or performs
   the action it researches. (`research-technical-question`)
-- **Review** (or a domain-specific verb like **Audit** for UI work) — checks
-  a fixed target (a plan, a diff, a running interface) against a stated
-  baseline and returns validated, prioritized findings only. Never edits
-  the thing under review. (`review-a-plan`, `review-a-refactor`,
-  `review-code`, `review-native-ui`, `audit-web-ui`)
-- **Code** (or a domain-specific verb like **Implement**, **Debug**, or
+- **Review** — checks a fixed target (a plan, a diff, a running interface)
+  against a stated baseline and returns validated, prioritized findings
+  only. Never edits the thing under review. (`review-a-plan`,
+  `review-a-refactor`, `review-code`, `review-native-ui`, `review-web-ui`)
+- **Code** (or a domain-specific verb like **Build**, **Debug**, or
   **Refactor**) — carries out an already-approved change: writes the code,
   verifies it against real checks, and reports the result. Doesn't decide
-  what to build or approve scope — that's Plan's job. (`implement-feature`,
-  `implement-web-ui-change`, `implement-native-ui`, `refactor-code`,
-  `debug-a-bug`)
+  what to build or approve scope — that's Plan's job. (`build-feature`,
+  `build-web-ui-change`, `build-native-ui`, `refactor-code`,
+  `debug-code`)
 - **Verify** — independently checks a completion claim against stated
   acceptance criteria after the fact; distinct from the inline verification
   an implementation skill already runs on its own work.
@@ -107,7 +106,7 @@ product's own term instead of a generic stand-in:
   task flow, or a third-party tracker. Relabeling a real external thing
   with a One Horizon word would misdescribe it, not clarify it.
 
-A skill's own domain verb (`audit`, `debug`, `refactor`) can stay
+A skill's own domain verb (`build`, `debug`, `refactor`) can stay
 descriptive in its name — it doesn't need to literally repeat "review" or
 "plan". Each skill must stand on its own: write its `description` and "Do
 not use when" section to describe the situation that's out of scope (the
