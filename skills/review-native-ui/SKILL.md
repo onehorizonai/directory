@@ -68,9 +68,9 @@ does not edit the interface under review.
   pass.
 - Nothing has been built yet and the ask is to decide or approve a new
   design — that's design/product work, not review of an existing interface.
-- The UI is web or browser-only with no native shell to inspect — this
-  skill's platform-convention and accessibility-tree checks are
-  native-specific.
+- The UI is web or browser-only with no native shell to inspect — use
+  `audit-web-ui` instead; this skill's platform-convention and
+  accessibility-tree checks are native-specific.
 - The exact app, platform, and version under review can't be pinned down
   (see Failure behavior) — resolve that first rather than reviewing a
   moving or undefined target.

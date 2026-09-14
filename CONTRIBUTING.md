@@ -50,6 +50,47 @@ document covers how an already-accepted skill gets added to the repo.
 Don't add install instructions to your `SKILL.md` — that's documented once,
 generically, in the [README](README.md#installing-a-skill) for every skill.
 
+## Terminology conventions
+
+Skills in this directory describe work using a small, consistent set of
+modes, so an agent can tell what a skill produces without reading every
+section of it:
+
+- **Plan** — turns a request into a self-contained implementation plan
+  grounded in the real system. Reads and reasons; never edits code, never
+  performs the change. (`plan-a-feature`, `plan-a-refactor`,
+  `plan-a-bug-fix`)
+- **Research** — investigates an external or technical question and returns
+  sourced findings with visible uncertainty. Never edits code or performs
+  the action it researches. (`research-technical-question`)
+- **Review** (or a domain-specific verb like **Audit** for UI work) — checks
+  a fixed target (a plan, a diff, a running interface) against a stated
+  baseline and returns validated, prioritized findings only. Never edits
+  the thing under review. (`review-a-plan`, `review-a-refactor`,
+  `review-code`, `review-native-ui`, `audit-web-ui`)
+- **Implement / Debug / Refactor** — carries out an already-approved change:
+  writes the code, verifies it against real checks, and reports the result.
+  Doesn't decide what to build or approve scope — that's Plan's job.
+  (`implement-feature`, `implement-web-ui-change`, `implement-native-ui`,
+  `refactor-code`, `debug-a-bug`)
+- **Verify** — independently checks a completion claim against stated
+  acceptance criteria after the fact; distinct from the inline verification
+  an implementation skill already runs on its own work.
+  (`verify-implementation`)
+- **Write** — produces copy or other content for an already-decided scope;
+  doesn't decide strategy, positioning, or product behavior itself.
+  (`write-ux-copy`, `write-website-copy`)
+
+A skill's own domain verb (`audit`, `debug`, `refactor`) can stay
+descriptive in its name — it doesn't need to literally repeat "review" or
+"plan" — as long as its `description` and "Do not use when" section name
+the specific neighboring skills that handle the adjacent modes, so routing
+between skills stays unambiguous. Don't invent a skill-specific artifact
+file (`spec.md`, `review.md`, `plan.md`) as a second source of truth; a
+skill's own `## Output` section is the contract for what it returns, and
+how the caller stores or hands that off is the caller's concern, not the
+skill's.
+
 ## Review checklist
 
 This mirrors what `npm run validate` checks, so you can catch problems
