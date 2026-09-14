@@ -1,0 +1,347 @@
+---
+name: review-ux
+description: >-
+  Use when a proposed or implemented experience — a mockup, wireframe,
+  written interaction plan/spec, or a built screen/flow on any platform —
+  needs review for UX problems and product-model consistency: whether its
+  prioritized use cases are understandable, executable, consistent, and
+  recoverable. Establishes the actors, objects, actions, prioritized use
+  cases, relationships, and lifecycle states from evidence before judging
+  anything, then checks entry/orientation, state-specific actions, hierarchy
+  against use-case priority, decision context, consistency, progressive
+  disclosure, consequences/reversibility, recovery, continuity, 0/1/some/many
+  cases, and completion feedback — using a state × action matrix where
+  useful — plus structural clarity (shared alignment axes, unnecessary
+  containers/insets/dividers, vertical rhythm) judged only by whether it
+  supports hierarchy and grouping, never visual taste. Exercises important
+  use cases in the real interface when tooling permits, but doesn't require
+  it. Returns confirmed UX problems, questions about product intent, and
+  judgment-based recommendations, kept separate. Not for a pure visual-style
+  critique, not for platform-specific mechanics like rendered
+  accessibility-tree behavior or DOM/CSS inspection, and does not modify the
+  reviewed implementation.
+metadata:
+  title: Review UX
+  tagline: Review a proposed or implemented experience for UX problems and product-model consistency, without critiquing visual style.
+  category: engineering
+  tags:
+    - ux-review
+    - product-model
+    - consistency
+    - interaction-design
+    - usability
+---
+
+## Overview
+
+An experience can look reasonable and still fail the people using it: a
+priority action buried behind a rarely used one, a state with no way back,
+a decision made without the information it needs, or a layout whose extra
+containers and uneven spacing quietly work against the hierarchy it's
+supposed to show. This skill is a fixed procedure for reviewing one
+proposed or implemented experience — a mockup, a written interaction
+plan/spec, or a built screen/flow, on any platform or technology — against
+its own product model rather than against visual preference. It
+establishes the actors, objects, actions, prioritized use cases,
+relationships, and lifecycle states from real evidence first, then checks
+whether the experience makes those use cases understandable, executable,
+consistent, and recoverable, and whether its structure (alignment,
+containers, rhythm) reinforces that model instead of just decorating it. It
+exercises the real interface when the target is implemented and tooling
+permits, but a proposed experience with no running interface yet is still a
+valid target. It reviews and reports; it does not modify the reviewed
+implementation.
+
+## When to use
+
+- A proposed experience (mockup, wireframe, written interaction plan or
+  spec) or an implemented one (a specific build, screen, or flow, on any
+  platform) needs a UX pass focused on whether its prioritized use cases
+  actually work — "review this flow for UX problems", "does this plan hold
+  together as an experience", "check this design against how the product
+  already models this object".
+- Someone wants to know whether hierarchy, grouping, progressive
+  disclosure, recovery paths, and continuity match the experience's own
+  stated or evident priorities — not a generic best-practices checklist and
+  not a visual-style opinion.
+- A screen or plan needs checking for whether its structure (alignment
+  axes, containers, spacing, rhythm) supports the intended hierarchy and
+  grouping, as distinct from whether it matches a particular visual style.
+
+## Do not use when
+
+- The request is only about visual style, taste, or aesthetic preference
+  with no interaction-model or product-consistency question attached — that
+  is not this skill's job at any stage.
+- The ask is to also fix or redesign what's found, not just review it —
+  finish the review first, then apply changes only as a separate,
+  explicitly authorized step.
+- The review needs to be against rendered accessibility-tree/assistive-
+  technology behavior, DOM/computed styles, CSS breakpoint mechanics, or a
+  named platform's interface-convention guidelines (HIG, Material, or
+  similar) as the primary concern — that is platform-specific implementation
+  review, not the product-model and interaction-quality review this skill
+  performs.
+- The target keeps changing while under review, or can't be pinned to one
+  fixed version (see [Failure behavior](#failure-behavior)) — fix a version
+  first rather than reviewing a moving target.
+- The ask is a general source-diff or code-quality review (correctness,
+  reuse, maintainability) with no UX or product-model question in scope.
+
+## Prerequisites
+
+The artifact under review, fixed to one version: a mockup/wireframe image,
+a written interaction plan or spec, or an implemented build/route/screen
+with its environment and version stated. Access to whatever establishes the
+product model — existing product requirements, prior UX planning output, or
+observable behavior elsewhere in the product — is required; it is the
+primary evidence this review runs on. Access to the real running interface
+(browser, simulator/emulator, or device) raises confidence and is used to
+exercise prioritized use cases when the target is implemented and that
+access exists, but it is not a hard requirement: a proposed experience with
+no running interface yet is still reviewable by tracing its described
+model and flows.
+
+## Inputs
+
+- The fixed artifact: mockup/wireframe, written plan/spec text, or the
+  exact implemented build/route/screen/flow and its version.
+- The actors, objects, actions, prioritized use cases, and states the
+  artifact is meant to support, and any product requirements or prior UX
+  planning output that establishes or constrains them. Ask for this if it
+  isn't discoverable — reviewing product-model consistency with no model to
+  check against is a materially narrower job.
+- Access to the real interface, where the target is implemented and such
+  access exists.
+- Any known invariants: an established pattern elsewhere in the product
+  this experience must stay consistent with, a platform/technology
+  constraint, or a stated target audience/permission model.
+
+## Procedure
+
+1. **Fix the target.** Resolve and state exactly what's under review — a
+   proposed artifact (mockup, wireframe, plan/spec) or an implemented one
+   (build/route/screen/flow, environment, version) — before assessing
+   anything. Confirm it isn't still being actively changed.
+2. **Establish the model from evidence.** Identify the actors (who, goals,
+   permissions), objects, actions available on each object, prioritized use
+   cases, relationships between objects, lifecycle states, and each
+   priority use case's intended success condition. Ground this in product
+   requirements, prior UX planning output, or observed behavior elsewhere in
+   the product — not invented. Where priority isn't stated anywhere, record
+   it as an open question rather than assuming an order.
+3. **Walk each prioritized use case.** For entry/orientation: is there a
+   clear entry point with sufficient context; is the object and its current
+   state understandable; do the available actions match that state and the
+   actor's permissions; is the information needed for a decision available
+   near that decision; is the result and resulting state understandable on
+   completion.
+4. **Check hierarchy against priority.** Does prominence, placement, and
+   grouping reflect actual use-case priority and frequency, not just build
+   convenience; are related things grouped with consistent terminology; do
+   secondary or rare actions use progressive disclosure instead of
+   competing permanently with primary work.
+5. **Check consequence, recovery, and continuity.** Are consequences and
+   reversibility of actions clear; do happy, empty, loading, error,
+   permission, interrupted, and recovery paths make sense; does context or
+   state survive navigation or interruption where the use case needs it to;
+   do 0/1/some/many cases stay usable; can a user recognize relevant context
+   in place rather than needing to remember it from elsewhere.
+6. **Build a state × action matrix where useful.** When behavior varies
+   materially across states or permission levels, tabulate object states
+   against available actions to expose anything missing, duplicated, or
+   inconsistent. Skip this for a use case simple enough that a matrix would
+   add no signal beyond step 3–5.
+7. **Check structural clarity.** Look for a few strong shared alignment
+   axes versus unnecessary vertical seams, nested insets, extra containers,
+   or dividers that add complexity without communicating a relationship.
+   Check vertical rhythm — whether typography, line height, control sizing,
+   and section spacing form a coherent, related scale. Judge every one of
+   these only by whether it supports hierarchy, grouping, scanning, or
+   consistency; never flag it for failing to match pixel-exact sameness or a
+   reviewer's own visual taste.
+8. **Exercise the real interface when reachable.** For an implemented
+   target with available tooling, actually walk the prioritized use cases:
+   enter → orient → act → understand result → recover. For a proposed
+   target, trace the same sequence through the described model and flows
+   instead, and note that this is a lower-confidence walkthrough than an
+   exercised one.
+9. **Validate every suspected issue.** Before it counts as a finding, check
+   it against the actual artifact/interface, the product requirements or
+   prior planning output, or an established pattern elsewhere in the
+   product. Do not manufacture a product priority in order to create a
+   finding, and do not treat a personal stylistic preference as a defect.
+10. **Classify and rank.** Split into confirmed UX problems, questions
+    about product intent, and judgment-based recommendations (see
+    [Output](#output)); prioritize by real impact on the prioritized use
+    cases, and consolidate duplicates.
+
+```mermaid
+flowchart TD
+  Fix[Fix the target:<br/>proposed or implemented, one version] --> Model[Establish model from evidence:<br/>actors, objects, actions,<br/>use cases, relationships, states]
+  Model --> Walk[Walk prioritized use cases:<br/>entry, hierarchy, consequence,<br/>recovery, continuity, scale cases]
+  Model --> Structure[Structural clarity:<br/>alignment axes, containers,<br/>vertical rhythm]
+  Walk --> Matrix{Behavior varies<br/>materially by state?}
+  Matrix -->|yes| StateAction[State x action matrix]
+  Matrix -->|no| Suspect
+  StateAction --> Suspect[Suspected issue]
+  Structure --> Suspect
+  Suspect --> Exercise[Exercise in real interface<br/>when implemented + reachable,<br/>else trace the described model]
+  Exercise --> Validate[Validate against artifact,<br/>requirements, or product pattern]
+  Validate --> Problem[Confirmed UX problem]
+  Validate --> Question[Product intent unclear]
+  Validate --> Taste[Reviewer preference only -- dropped]
+  Validate --> Rec[Judgment-based recommendation]
+  Problem --> Report[Report, ranked by impact]
+  Question --> Report
+  Rec --> Report
+```
+
+## Output
+
+Return findings grouped in this order, each group visibly separate:
+
+1. **Confirmed UX problems** — validated against behavior, requirements,
+   an inconsistency with established product patterns, an inaccessible
+   state or action, or another concrete failure — most-impactful first.
+2. **Questions about product intent** — cases where a use case's priority,
+   an intended behavior, or a design decision can't be confirmed from
+   available evidence because product intent itself is unclear; this skill
+   does not resolve these, only surfaces them precisely.
+3. **Judgment-based recommendations** — real, evidence-backed improvements
+   with explicit reasoning, kept distinct from both of the above and never
+   a bare statement of preference.
+
+Each finding includes:
+
+- **Location** — the exact use case, screen/state, or plan section
+- **Failure scenario** — the concrete interaction, state, or condition that
+  surfaces it
+- **Impact** — on the specific prioritized use case, not just on appearance
+- **Evidence** — what was actually observed (interface walkthrough, matrix
+  entry, quoted plan text) or, for structural findings, the principle
+  (hierarchy, grouping, scanning, consistency) the current structure
+  conflicts with
+- **Suggested correction** — the smallest supported fix or decision,
+  described only; this skill does not apply it
+- **Confidence/condition** — when an assumption remains, or when the
+  finding rests on a traced (not exercised) walkthrough
+
+State explicitly which prioritized use cases, states, and structural checks
+were actually covered, and which were not — including whether the real
+interface was reachable — rather than leaving coverage implicit.
+
+## Verification
+
+Before handing back findings, check:
+
+- The target (proposed artifact or implemented build/version) was fixed
+  and stated, not left implicit.
+- Actors, objects, actions, prioritized use cases, relationships, and
+  lifecycle states were established from evidence before any finding was
+  made, not assumed to justify one.
+- Each prioritized use case was checked for whether it is understandable,
+  executable, consistent with the rest of the product, and recoverable —
+  the four qualities this skill exists to verify.
+- Hierarchy/prominence was checked against actual use-case priority, not
+  assumed correct because the screen looks complete.
+- Consequence, reversibility, recovery, continuity, and 0/1/some/many cases
+  were each considered for use cases where they plausibly apply.
+- A state × action matrix was used wherever behavior varied materially by
+  state, and skipped only where it would add no signal.
+- Structural clarity (alignment axes, containers, vertical rhythm) was
+  judged only against hierarchy/grouping/scanning/consistency — never
+  against pixel sameness or reviewer taste.
+- The real interface was exercised when the target was implemented and
+  tooling permitted; where it wasn't reachable, that gap is stated, not
+  silently treated as equivalent to a traced walkthrough.
+- Every confirmed UX problem was validated against the artifact/interface,
+  product requirements, or an established product pattern.
+- Confirmed UX problems, questions about product intent, and judgment-based
+  recommendations stayed in three separate, unflattened groups.
+- No finding rests on a manufactured product priority or the reviewer's own
+  visual taste.
+- Nothing in the reviewed implementation was modified during the review.
+
+## Boundaries
+
+This is a Review-step skill: it reviews and reports, and does not modify
+the implementation or artifact under review, and does not apply any of its
+own suggested corrections, unless a human or the invoking task explicitly
+authorizes a separate step. Product-model and interaction-quality
+consistency takes precedence over local novelty — a change that looks
+fresher but breaks an established use-case priority, grouping, or recovery
+path is a problem, not an improvement, even when nothing else about it is
+wrong. This skill does not adjudicate open questions about product intent;
+it surfaces them precisely and leaves the decision to whoever owns product
+direction. It does not cover platform-specific implementation mechanics
+(rendered accessibility-tree behavior, DOM/CSS inspection, a named
+platform's interface-convention compliance) as its primary concern — those
+require a review targeted at that platform and technology. Keep review and
+modification separate unless both are explicitly requested together.
+Protect secrets and sensitive material encountered while reviewing —
+reference their location rather than reproducing them in findings.
+
+## Failure behavior
+
+- No fixed target, or the target keeps changing while under review → stop
+  and ask rather than reviewing a moving target.
+- No product requirements, prior UX planning output, or observable existing
+  behavior available to establish the model → say so as a coverage gap and
+  ask what the experience is supposed to accomplish, rather than inventing
+  actors, objects, or priorities to review against.
+- The target is implemented but the real interface isn't reachable (no
+  browser/simulator/device access) → state that the walkthrough was traced
+  through the artifact/description instead of exercised, as a named,
+  lower-confidence gap, not silently treated as equivalent evidence.
+- A suspected issue can't be validated with available evidence → report it
+  as a question about product intent, not a confirmed UX problem.
+- A suspected issue turns out to rest only on the reviewer's own visual
+  taste with no tie to hierarchy, grouping, scanning, consistency, or a
+  concrete use-case failure → drop it, or move it to recommendations with
+  that caveat; never report it as a confirmed problem.
+- Secrets or sensitive material are encountered while reviewing → don't
+  reproduce them in the findings output; reference their location only.
+
+## Examples
+
+```
+Here's a wireframe for a new "project archive" flow (attached). Review it
+for UX problems before we build it.
+```
+
+Expected approach: fix the wireframe as the target, one version; establish
+the model from it and from how "project" is already handled elsewhere in
+the product — actors (owner, member, viewer), the project object and its
+active/archived states, the archive/restore actions, and the prioritized
+use case (archive a project without losing access to its data); walk that
+use case for entry point, whether the consequence (can members still see
+it?) and reversibility (can it be restored?) are clear, and what the empty
+and error states look like; check whether "archived" is visually
+distinguished consistently with how other states are shown elsewhere in the
+product; since nothing is built yet, trace the walkthrough through the
+wireframe rather than exercising a real interface, and note that
+explicitly; separate a confirmed problem (no restore action is shown
+anywhere) from a question (is archiving reversible for all roles, or only
+owners? — unclear from the wireframe) before reporting.
+
+```
+Review the new bulk-tagging feature on the /library route (staging, build
+def456) — does it fit how the rest of the app handles multi-select actions?
+```
+
+Expected approach: fix the target (staging, that route, that build);
+establish the model from the library's existing single-select actions and
+any stated requirements for bulk tagging; identify the prioritized use case
+(tag many items at once) and its states (0 selected, 1, some, all); inspect
+the real running page and exercise the use case — select several items, add
+a tag, check the result and undo path; build a state × action matrix if the
+available bulk actions differ meaningfully between "some selected" and "all
+selected"; check whether the bulk toolbar's placement and prominence match
+how other primary actions are surfaced elsewhere in the app, and whether
+its container/spacing choices reinforce that hierarchy or just add an extra
+visual boundary; validate any suspected issue against the running page or
+existing patterns before reporting it; report confirmed problems (e.g. no
+way to undo a bulk tag) separately from a judgment-based recommendation
+(e.g. the toolbar could sit closer to the selection count for scanability)
+with its reasoning stated.
