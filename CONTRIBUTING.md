@@ -83,13 +83,16 @@ section of it:
 
 A skill's own domain verb (`audit`, `debug`, `refactor`) can stay
 descriptive in its name — it doesn't need to literally repeat "review" or
-"plan" — as long as its `description` and "Do not use when" section name
-the specific neighboring skills that handle the adjacent modes, so routing
-between skills stays unambiguous. Don't invent a skill-specific artifact
-file (`spec.md`, `review.md`, `plan.md`) as a second source of truth; a
-skill's own `## Output` section is the contract for what it returns, and
-how the caller stores or hands that off is the caller's concern, not the
-skill's.
+"plan". Each skill must stand on its own: write its `description` and "Do
+not use when" section to describe the situation that's out of scope (the
+artifact type, the state of the work, the requested outcome), not to name
+or depend on another skill in this directory. A skill should work
+correctly even if every other skill were removed. The mode list above is
+an index for maintainers, not something an individual `SKILL.md` should
+reference. Don't invent a skill-specific artifact file (`spec.md`,
+`review.md`, `plan.md`) as a second source of truth; a skill's own
+`## Output` section is the contract for what it returns, and how the
+caller stores or hands that off is the caller's concern, not the skill's.
 
 ## Review checklist
 
