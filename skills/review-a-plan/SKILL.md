@@ -221,7 +221,7 @@ Before handing back findings, check:
 
 This skill reviews and reports; it does not rewrite the plan and does not
 implement any part of it, and does not apply any of its own suggested
-corrections, unless a human or the invoking task explicitly authorizes a
+corrections, unless a human or the invoking step explicitly authorizes a
 separate step. It never treats a missing template section as a defect on
 its own — a finding requires a requirement mismatch, an unsupported claim,
 an unresolved decision that should have been surfaced, a non-executable

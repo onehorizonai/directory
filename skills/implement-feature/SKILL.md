@@ -2,8 +2,9 @@
 name: implement-feature
 description: >-
   Use when there's an approved feature, bugfix, or behavior change to build
-  in an existing codebase — a ticket, spec, or approved plan already states
-  what should happen, and the next step is writing the code. Covers
+  in an existing codebase — a linked Initiative, Bug, TODO, spec, or
+  approved plan already states what should happen, and the next step is
+  writing the code. Covers
   inspecting the existing implementation before touching it, making the
   smallest change that satisfies the approved behavior, and verifying the
   result. Not for discovery, design, or approval work, and not for
@@ -21,16 +22,18 @@ metadata:
 ## Overview
 
 This skill covers only the implementation step for a feature or change
-that's already approved — a ticket, spec, or plan states what should
-happen. It does not cover deciding what to build; that happens before this
+that's already approved — a linked Initiative, Bug, TODO, spec, or plan
+states what should happen. It does not cover deciding what to build; that
+happens before this
 skill is invoked. Given the approved scope, it produces the smallest patch
 that satisfies it, built on the codebase's own existing patterns, and
 verified against real checks rather than described from memory.
 
 ## When to use
 
-- An approved feature, bugfix, or behavior change exists (ticket, spec,
-  approved plan) and the next step is writing the code for it in an
+- An approved feature, bugfix, or behavior change exists (a linked
+  Initiative, Bug, TODO, spec, or approved plan) and the next step is
+  writing the code for it in an
   existing codebase.
 - The user asks to "implement X" / "build this" / "make this change" and
   points at scope that's already decided, not still being explored.
@@ -127,13 +130,13 @@ a valid status, an invalid status (400), and the omitted case (unchanged);
 run the route's test suite and report the results.
 
 ```
-Add a "Duplicate task" action next to the existing "Delete task" action in
-the task list UI, per the approved design. Duplicating should copy the
-task's fields except id and createdAt.
+Add a "Duplicate order" action next to the existing "Delete order" action
+in the orders list UI, per the approved design. Duplicating should copy
+the order's fields except id and createdAt.
 ```
 
 Expected approach: find the existing Delete action's component/handler as
 the pattern to mirror, add Duplicate using the same event/state-update
-path, add a test covering the duplicated task's fields and that
+path, add a test covering the duplicated order's fields and that
 id/createdAt differ, run the component/UI test suite, and inspect the diff
 before reporting.

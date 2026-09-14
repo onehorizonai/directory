@@ -71,8 +71,9 @@ anyway.
 
 - The exact change range and baseline (diff, PR, commit range, or
   branch-vs-base).
-- The original requirements, acceptance criteria, ticket, or spec the
-  change is supposed to satisfy. Ask for it if not supplied — reviewing
+- The original requirements, acceptance criteria, linked Initiative/Bug/
+  TODO, or spec the change is supposed to satisfy. Ask for it if not
+  supplied — reviewing
   only for code quality with no requirement source is a materially
   different, narrower job.
 - Any known invariants, design/source references, or constraints the change
@@ -178,7 +179,7 @@ rather than folding it into this general procedure by default.
 
 This skill reviews and reports; it does not edit the code under review and
 does not apply any of its own suggested corrections, unless a human or the
-invoking task explicitly authorizes a separate edit step. The natural next
+invoking step explicitly authorizes a separate edit step. The natural next
 step — an implementation/fix skill — is a follow-on the caller can invoke
 separately, not a hard dependency; this skill works standalone. Keep review
 and modification separate unless both are explicitly requested together.

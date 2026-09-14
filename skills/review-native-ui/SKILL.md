@@ -271,7 +271,7 @@ Before handing back findings, check:
 
 This skill reviews and reports; it does not edit the interface under
 review and does not apply any of its own suggested corrections, unless a
-human or the invoking task explicitly authorizes a separate edit step. The
+human or the invoking step explicitly authorizes a separate edit step. The
 natural next step — a native implementation/fix skill — is a follow-on the
 caller can invoke separately, not a hard dependency; this skill works
 standalone. Cross-platform visual consistency alone is never sufficient
@@ -320,12 +320,12 @@ open questions, and optional improvements with environment evidence (
 simulator vs. device, iOS version used).
 
 ```
-Check the Android task-list multi-select flow for accessibility and
+Check the Android contacts-list multi-select flow for accessibility and
 lifecycle issues. It should survive rotation and returning from a
 backgrounded app.
 ```
 
-Expected approach: fix the target (Android, the task-list screen, the
+Expected approach: fix the target (Android, the contacts-list screen, the
 multi-select flow, stated min OS); inspect the real running flow on an
 emulator or device; verify selection state and scroll position actually
 survive rotation and a background/foreground round-trip; verify TalkBack

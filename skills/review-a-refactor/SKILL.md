@@ -86,8 +86,9 @@ a blocker, not something to review anyway.
   stated invariants — the public interfaces, values/errors, side effects,
   ordering, persisted state, permissions, timing guarantees, and external
   contracts that are supposed to stay exactly the same. If these weren't
-  supplied explicitly, derive them from the PR/task description, the
-  code's existing callers and tests, and its current behavior — never
+  supplied explicitly, derive them from the PR description, the linked
+  Initiative/Bug/TODO, the code's existing callers and tests, and its
+  current behavior — never
   invent an invariant that isn't traceable to one of those sources.
 - Any explicit exclusions — code or behavior stated as out of scope for
   this change.
@@ -101,7 +102,8 @@ a blocker, not something to review anyway.
    confirm it isn't still moving, before reading any code.
 2. **Fix the stated invariants** — collect the named structural problem and
    the invariants the change claims to preserve; where none were supplied,
-   derive them from the task/PR description, callers, and existing tests.
+   derive them from the linked Initiative/Bug/TODO, the PR description,
+   callers, and existing tests.
    Treat a change with no derivable invariants and no stated problem as a
    scope gap (see [Failure behavior](#failure-behavior)), not license to
    review against assumptions no one stated.
@@ -231,7 +233,7 @@ Before handing back findings, check:
 
 This skill reviews and reports; it does not edit the code under review and
 does not apply any of its own suggested corrections, unless a human or the
-invoking task explicitly authorizes a separate edit step. It never rejects a
+invoking step explicitly authorizes a separate edit step. It never rejects a
 structural choice solely because a reviewer would have designed it
 differently — a finding requires a broken invariant, hidden scope, a
 weakened test, or an unsolved/half-done version of the diff's own named
@@ -245,7 +247,8 @@ findings.
 - No fixed change range/baseline, or the target keeps moving → stop and ask
   rather than reviewing a moving target.
 - No stated invariants or named structural problem, and neither can be
-  reasonably derived from the task/PR/callers/tests → report it as a
+  reasonably derived from the linked Initiative/Bug/TODO, the PR, callers,
+  or tests → report it as a
   coverage gap and ask what "same behavior" and "the problem being solved"
   were supposed to mean, rather than inventing them.
 - A suspected regression can't be validated with available evidence or

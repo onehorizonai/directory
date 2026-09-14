@@ -1,8 +1,9 @@
 ---
 name: implement-web-ui-change
 description: >-
-  Use when an approved web UI change — a design, mock, spec, or ticket
-  that's already decided — needs to be built into an existing web app or
+  Use when an approved web UI change — a design, mock, spec, ticket, or
+  linked Initiative, Bug, or TODO that's already decided — needs to be
+  built into an existing web app or
   website, using the product's existing design system, components, and
   interaction conventions. Not for deciding or approving the design itself,
   not for native iOS/Android/desktop UI, not for a new site/app with no
@@ -36,8 +37,9 @@ in a running browser rather than from code or description alone.
 
 ## When to use
 
-- An approved web UI change (design, mock, spec, or ticket) exists for an
-  existing web app or website, and the next step is building it.
+- An approved web UI change (design, mock, spec, ticket, or a linked
+  Initiative, Bug, or TODO) exists for an existing web app or website, and
+  the next step is building it.
 - The user asks to implement a specific page, view, or interaction on the
   web where the scope is already settled.
 
