@@ -1,4 +1,6 @@
-# directory
+![The Directory](assets/banner.png)
+
+# The Directory
 
 The canonical, curated home for One Horizon skills — and, over time, other
 directory content like MCP server configs and plugins.
@@ -68,8 +70,8 @@ directory/
     marketplace.json          # generated — Claude Code plugin manifest
   schema/
     skill.schema.json         # JSON Schema for SKILL.md frontmatter
-    categories.json           # closed list of allowed categories
-    runtimes.json             # closed list of runtime ids
+    categories.json             # closed list of allowed categories
+    runtimes.json               # closed list of runtime ids
   scripts/
     validate.mjs              # validates every skills/*/SKILL.md
     build-index.mjs           # generates index.json + marketplace.json
@@ -96,6 +98,10 @@ that produce them.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a skill, including the
 validation rules CI enforces.
+
+## Author & Maintainer
+
+[One Horizon](https://onehorizon.ai)
 
 ## License
 
