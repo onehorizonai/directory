@@ -7,7 +7,7 @@ description: >-
   against its stated acceptance criteria, then report what passed, failed,
   or could not be verified. Not for writing or fixing the implementation
   itself, and not for the inline verification a developer already does
-  while actively writing the code (see implement-feature for that).
+  while actively writing the code.
 metadata:
   title: Verify an Implementation
   tagline: Check a finished implementation against its acceptance criteria and report what passed, failed, or couldn't be verified.
@@ -42,7 +42,8 @@ separate, later step owned by whoever invoked this skill.
 ## Do not use when
 
 - The implementation is still being actively written by its own author —
-  that's `implement-feature`'s inline verification step, not this skill.
+  that's the author's own inline verification step, not an independent
+  check.
 - There are no stated acceptance criteria and none can be obtained or
   reasonably inferred from a linked spec/task — treat that as a blocker
   (see [Failure behavior](#failure-behavior)) rather than inventing

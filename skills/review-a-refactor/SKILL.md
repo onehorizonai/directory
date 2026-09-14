@@ -3,18 +3,14 @@ name: review-a-refactor
 description: >-
   Use when a change under review is claimed to be a behavior-preserving
   refactor — a diff, PR, commit range, or branch against a named base — and
-  the job is to check whether it actually is one. Covers fixing the exact
-  change range and stated invariants/baseline, checking behavioral
+  the job is to check whether it actually is one. Checks behavioral
   equivalence (public interfaces, state, side effects, permissions, async
-  ordering), catching hidden scope expansion (a feature, bug fix, or
-  migration smuggled in under refactor cover), inspecting test diffs for
-  weakened coverage, and judging structural correctness against the named
-  problem — without treating "I'd have used a different pattern" as a
-  finding. Returns prioritized findings only; does not edit the code. Not
-  for reviewing a change that was never claimed to be behavior-preserving
-  (a general diff/PR review — in this directory, the `review-code` skill)
-  and not for performing the refactor itself (in this directory, the
-  `refactor-code` skill).
+  ordering), catches hidden scope expansion (a feature, bug fix, or
+  migration smuggled in under refactor cover), inspects test diffs for
+  weakened coverage, and judges structural correctness against the named
+  problem. Returns prioritized findings only; does not edit the code, and
+  is not for reviewing a change that was never claimed to be
+  behavior-preserving or for performing the refactor itself.
 metadata:
   title: Review a Refactor
   tagline: Check a claimed behavior-preserving refactor for hidden behavior changes, scope creep, and weakened tests.
@@ -60,12 +56,11 @@ perform the refactor itself.
 ## Do not use when
 
 - The change was never claimed to be behavior-preserving, or its purpose is
-  a feature, bug fix, or migration — review it for defects and requirement
-  coverage generally instead (in this directory, the `review-code` skill).
-  Reviewing a feature change under this skill's equivalence bar would reject
-  the very behavior change it was supposed to make.
-- The request is to perform or continue the refactor, not review one that's
-  already written — that's the `refactor-code` skill's job, not this one.
+  a feature, bug fix, or migration — reviewing it under this skill's
+  equivalence bar would reject the very behavior change it was supposed to
+  make; review it for defects and requirement coverage generally instead.
+- The request is to perform or continue the refactor, not review one
+  that's already written.
 - The change range or the invariants/baseline it's meant to preserve can't
   be pinned down (see [Failure behavior](#failure-behavior)) — resolve that
   first rather than reviewing a moving target or guessing at what "same

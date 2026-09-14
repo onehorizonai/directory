@@ -5,10 +5,10 @@ description: >-
   that's already decided — needs to be built into an existing web app or
   website, using the product's existing design system, components, and
   interaction conventions. Not for deciding or approving the design itself,
-  not for native iOS/Android/desktop UI (see implement-native-ui), not for a
-  new site/app with no existing design system to follow, and not for a
-  framework, routing-architecture, or global design-token migration — that
-  needs an explicit prior decision, not this skill.
+  not for native iOS/Android/desktop UI, not for a new site/app with no
+  existing design system to follow, and not for a framework,
+  routing-architecture, or global design-token migration — that needs an
+  explicit prior decision, not this skill.
 metadata:
   title: Implement a Web UI Change
   tagline: Turn an approved web UI change into a working, accessible, design-system-consistent patch verified in a running browser.
@@ -43,16 +43,15 @@ in a running browser rather than from code or description alone.
 
 Don't use this for deciding or approving the design itself — resolve that
 first. Don't use it for native iOS, Android, or desktop UI, which has a
-different component system and platform convention set (see
-`implement-native-ui`). Don't use it for a new site or app with no existing
-design system to follow. Don't use it for any change that would require
-migrating framework, routing architecture, or global design tokens without
-an explicit prior decision to do so. Use `implement-feature` instead when
-the approved scope is a behavior change that happens to touch a web
-component but isn't itself about the interface (e.g. a new query param,
-a validation rule, a backend integration) — this skill is for changes
-whose approved scope is the interface itself: layout, states, interaction,
-or visual/structural presentation.
+different component system and platform convention set. Don't use it for a
+new site or app with no existing design system to follow. Don't use it for
+any change that would require migrating framework, routing architecture, or
+global design tokens without an explicit prior decision to do so. This
+skill is for changes whose approved scope is the interface itself: layout,
+states, interaction, or visual/structural presentation — not a behavior
+change that happens to touch a web component but isn't itself about the
+interface (e.g. a new query param, a validation rule, a backend
+integration).
 
 ## Prerequisites
 

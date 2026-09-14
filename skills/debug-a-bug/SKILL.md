@@ -11,11 +11,10 @@ description: >-
   tests one supported hypothesis at a time, applies the smallest
   cause-focused fix, and reruns the original reproduction plus relevant
   regressions on the final state to report passed, failed, or not verified.
-  Not for investigation-and-plan-only work where no patch is applied (see
-  plan-a-bug-fix), not for a cause that's already confirmed with nothing
-  left to diagnose (see implement-feature), not for independently checking
-  someone else's completion claim (see verify-implementation), and not for
-  reviewing an already-written fix (see review-code).
+  Not for investigation-and-plan-only work where no patch is applied, not
+  for a cause that's already confirmed with nothing left to diagnose, not
+  for independently checking someone else's completion claim, and not for
+  reviewing an already-written fix.
 metadata:
   title: Debug a Bug
   tagline: Reproduce, diagnose, fix, and verify a reported bug — evidence-driven, one hypothesis at a time.
@@ -37,8 +36,8 @@ capture what actually happened, build the strongest available reproduction,
 trace the cause through real evidence rather than the first plausible
 story, apply the smallest change that addresses the confirmed cause, and
 rerun the original reproduction plus relevant regressions against the final
-state before reporting the result. It both diagnoses and fixes — unlike
-`plan-a-bug-fix`, which stops at a plan.
+state before reporting the result. It both diagnoses the cause and applies
+the fix in one pass, rather than stopping at a diagnosis or a plan.
 
 ## When to use
 
@@ -54,14 +53,12 @@ state before reporting the result. It both diagnoses and fixes — unlike
 
 ## Do not use when
 
-- The ask is investigation and a fix plan only, with no patch applied —
-  use `plan-a-bug-fix`.
+- The ask is investigation and a fix plan only, with no patch applied.
 - The cause is already confirmed and there's nothing left to diagnose,
-  just approved behavior to build — use `implement-feature`.
+  just approved behavior to build.
 - The ask is to independently check someone else's completion claim about
-  a fix that's already been written — use `verify-implementation`.
-- The ask is to review an already-written fix rather than produce one —
-  use `review-code`.
+  a fix that's already been written, not to produce one.
+- The ask is to review an already-written fix rather than produce one.
 - No evidence can be gathered at all (no code access, no logs, no
   reproduction, and none obtainable) — say so; see
   [Failure behavior](#failure-behavior) rather than patching blind.

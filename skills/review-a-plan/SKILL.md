@@ -1,20 +1,16 @@
 ---
 name: review-a-plan
 description: >-
-  Use when a fixed implementation plan, spec, or design doc — e.g. one
-  produced by plan-a-feature, plan-a-refactor, plan-a-bug-fix, or written by
-  a human — needs review before implementation starts: "review this plan",
-  "is this spec ready to build from", "check this implementation plan for
-  gaps before we execute it", "does this plan actually cover the
-  requirements". Covers fixing the plan version and the original
-  requirements it must satisfy, checking current/desired behavior claims
-  against real system evidence, checking invariants, decisions, open
-  questions, dependencies, and approval points are present and traceable,
-  and flagging unsupported assumptions and non-executable vagueness in the
-  implementation steps. Returns prioritized findings only; does not rewrite
-  or implement the plan. Not for reviewing code (a diff, PR, or branch — in
-  this directory, review-code or review-a-refactor) and not for producing
-  the plan itself (plan-a-feature, plan-a-refactor, plan-a-bug-fix).
+  Use when a fixed implementation plan, spec, or design doc — written by an
+  agent or a human — needs review before implementation starts: "review
+  this plan", "is this spec ready to build from", "check this
+  implementation plan for gaps before we execute it". Checks the plan's
+  current/desired behavior claims against real system evidence, and
+  whether its invariants, decisions, open questions, dependencies, and
+  approval points are present, traceable, and executable. Returns
+  prioritized findings only; does not rewrite or implement the plan, and is
+  not for reviewing code (a diff, PR, or branch) or for producing the plan
+  itself.
 metadata:
   title: Review a Plan
   tagline: Check a fixed implementation plan against original requirements and system evidence before anyone builds from it.
@@ -44,10 +40,10 @@ rewrite or implement the plan.
 
 ## When to use
 
-- A written plan, spec, or design doc exists — from `plan-a-feature`,
-  `plan-a-refactor`, `plan-a-bug-fix`, or a human — and needs a check before
-  implementation starts: "review this plan", "is this spec ready to build
-  from", "check this implementation plan before we execute it".
+- A written plan, spec, or design doc exists — agent- or human-written —
+  and needs a check before implementation starts: "review this plan", "is
+  this spec ready to build from", "check this implementation plan before
+  we execute it".
 - Someone wants to know whether a plan's "current behavior" claims are
   actually true, whether its decisions and open questions are visible, or
   whether its steps are concrete enough for another agent to execute.
@@ -56,11 +52,10 @@ rewrite or implement the plan.
 
 ## Do not use when
 
-- No written plan exists yet — that's `plan-a-feature`, `plan-a-refactor`,
-  or `plan-a-bug-fix`'s job to produce, not this skill's job to review
-  something that hasn't been written.
+- No written plan exists yet — producing one is a different job than
+  reviewing something that hasn't been written.
 - The artifact under review is code (a diff, PR, commit range, or branch),
-  not a plan — use `review-code` or `review-a-refactor` instead.
+  not a plan.
 - The plan is still being actively rewritten while under review — fix a
   version first (see [Failure behavior](#failure-behavior)) rather than
   reviewing a moving target.

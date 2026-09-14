@@ -9,9 +9,8 @@ description: >-
   break, the baseline evidence, and small reviewable transformation steps
   each paired with a check. Not for writing the refactor itself, and not for
   planning a feature, bug fix, dependency/framework migration, or any change
-  where behavior is expected to change — those follow a different plan
-  (elsewhere in this directory, `plan-a-feature`) or a different execution
-  skill (`refactor-code`) once the plan is approved.
+  where behavior is expected to change, and not for executing an
+  already-approved refactor plan.
 metadata:
   title: Plan a Refactor
   tagline: Turn a structural code change into a reviewable, behavior-preserving plan without writing code.
@@ -54,11 +53,9 @@ one at a time — without doing any of the moving itself.
 - The plan is for adding a capability, changing an API response, fixing a
   bug, changing what a user sees or can do, or migrating a
   framework/dependency/runtime — any of these means behavior is expected to
-  change, which is a feature/change plan (elsewhere in this directory,
-  `plan-a-feature`), not a refactor plan.
+  change, which is a feature/change plan, not a refactor plan.
 - The refactor is already planned and approved and the next step is doing
-  it — use the `refactor-code` execution skill instead; this skill stops at
-  the plan.
+  it, not planning it — this skill stops at the plan.
 - The ask is "make this faster" — a performance change is judged by a
   benchmark, not by behavior preservation; it needs a different plan even
   if the mechanics look similar.
@@ -212,9 +209,9 @@ Before returning the plan, confirm:
   don't pick one silently.
 - Inspection reveals the change can't stay behavior-preserving (a step
   would require changing a return value, a side effect, or a public
-  interface to work) — say so plainly and hand the request to a
-  feature/change plan (elsewhere in this directory, `plan-a-feature`)
-  instead of forcing it into a behavior-preserving shape.
+  interface to work) — say so plainly instead of forcing it into a
+  behavior-preserving shape; that scope belongs to a feature/change plan,
+  not this one.
 - Always separate what was actually inspected from what's assumed, and list
   discovered-but-excluded items separately from the planned steps.
 

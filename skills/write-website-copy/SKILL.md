@@ -5,9 +5,9 @@ description: >-
   page, pricing page, feature page, about page, or similar — for a defined
   reader, page purpose, offer, and next action, using only approved facts and
   proof. Not for interface copy such as error strings, empty states, or
-  confirmation dialogs (use write-ux-copy for that), not for deciding page
-  strategy, structure, or positioning before it's approved (resolve that
-  first), and not for translating existing page copy into another language.
+  confirmation dialogs, not for deciding page strategy, structure, or
+  positioning before it's approved (resolve that first), and not for
+  translating existing page copy into another language.
 metadata:
   title: Write Website Copy
   tagline: Write or rewrite product website copy for a defined reader, purpose, offer, and action using only approved facts.
@@ -42,7 +42,7 @@ it, and the call to action only promises what the offer actually delivers.
 
 - The copy is interface copy for a specific product state, action, error,
   confirmation, or recovery path (a loading message, error string, empty
-  state, destructive-action confirmation) — use `write-ux-copy` instead.
+  state, destructive-action confirmation) rather than page copy.
 - The page's strategy isn't decided yet: no defined audience, purpose,
   offer, or approved facts to write from. Resolve that first (a positioning
   or brief step), then come back with the decisions in hand.

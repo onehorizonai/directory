@@ -77,10 +77,10 @@ does not edit the interface under review.
 - The ask is only to check a finished implementation against its stated
   acceptance criteria (pass/fail against a spec), with no native
   platform-convention, state/lifecycle, or accessibility-tree dimension in
-  scope — that's `verify-implementation`, not this skill.
+  scope.
 - The ask is a general source-diff or code-quality review (correctness,
   reuse, maintainability) with no request to inspect the running native
-  interface itself — that's `review-code`, not this skill.
+  interface itself.
 
 ## Prerequisites
 
