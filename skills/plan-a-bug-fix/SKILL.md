@@ -9,10 +9,9 @@ description: >-
   vs. observed behavior and the strongest available reproduction signal,
   separates confirmed evidence from hypotheses, and produces a plan for
   the smallest cause-focused fix plus how to verify it against the
-  original symptom. Not for a request to build new behavior (see
-  plan-a-feature) and not for a request where the fix should actually be
-  written and verified, not just planned (see debug-a-bug) — this skill
-  investigates and plans only.
+  original symptom. Not for a request to build new behavior, and not for a
+  request where the fix should actually be written and verified, not just
+  planned — this skill investigates and plans only.
 metadata:
   title: Plan a Bug Fix
   tagline: Turn a reported problem into a confirmed cause and a bounded, verifiable fix plan — without patching it yet.
@@ -52,14 +51,13 @@ not edit code.
 ## Do not use when
 
 - The request is to add or change behavior that isn't currently broken —
-  that's a feature or change plan; use `plan-a-feature`.
-- The cause is already confirmed and the next step is writing the patch —
-  use `implement-feature`.
+  that's a feature or change plan, not a bug fix plan.
+- The cause is already confirmed and the next step is writing the patch,
+  not planning it.
 - The ask is for the whole loop — reproduce, diagnose, fix, and verify —
-  done in one pass rather than split into a separate planning step — use
-  `debug-a-bug`.
-- The ask is to review someone else's already-written fix — use
-  `review-code`.
+  done in one pass rather than split into a separate planning step.
+- The ask is to review someone else's already-written fix, not produce a
+  plan.
 - No evidence can be gathered at all (no code access, no logs, no
   reproduction, and none obtainable) — say so; see Failure behavior rather
   than fabricating a diagnosis.

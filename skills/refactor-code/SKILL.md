@@ -8,8 +8,8 @@ description: >-
   the behavior that must not change, moving code in small verified steps,
   and proving nothing observable drifted. Not for adding a capability,
   fixing a bug, migrating a framework/dependency, or any other change where
-  what the system does is expected to change — those are approved-behavior
-  work (in this directory, the `implement-feature` skill), not this one.
+  what the system does is expected to change — that's approved-behavior
+  work, not a refactor.
 metadata:
   title: Refactor Code
   tagline: Restructure code safely — same behavior, verified — without smuggling in a feature or a fix.
@@ -48,8 +48,7 @@ were supposed to change what.
 - The ask adds a capability, changes an API response, fixes a bug, changes
   what a user sees or can do, or migrates a framework/dependency/runtime —
   any of these means the system's behavior is expected to change, which
-  makes it approved-behavior work (in this directory, the
-  `implement-feature` skill), not a refactor.
+  makes it approved-behavior work, not a refactor.
 - The ask starts as "just cleanup" but, once inspected, actually depends on
   changing a return value, a side effect, or a public interface to work —
   stop and hand it off rather than finishing it under this skill's looser
@@ -215,10 +214,10 @@ The patch, limited to the named structural problem, plus a report with:
   code has no test coverage and none can be added) — stop and report the
   gap rather than moving code with no way to verify it stayed equivalent.
 - A step turns out to require an actual behavior change to work, or an
-  invariant conflicts with what the code is asked to do — stop, report the
-  specific conflict, and hand it off as approved-behavior work (in this
-  directory, the `implement-feature` skill) rather than continuing under
-  this skill's behavior-preserving assumptions.
+  invariant conflicts with what the code is asked to do — stop and report
+  the specific conflict rather than continuing under this skill's
+  behavior-preserving assumptions; that work needs an approved behavior
+  change first, not a refactor.
 - A required verification step (test run, build, type-check) can't be
   run — report it as "not run" with the reason instead of skipping it
   silently or assuming it would pass.

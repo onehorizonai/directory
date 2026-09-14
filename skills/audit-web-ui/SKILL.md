@@ -61,8 +61,11 @@ it does not edit the interface.
 - The target route or version can't be pinned down (see
   [Failure behavior](#failure-behavior)) — resolve that first rather than
   auditing a moving target.
-- The request is a pure code-correctness review with no UI/UX angle — use a
-  general code-review skill instead.
+- The request is a pure code-correctness review with no UI/UX angle —
+  review it for defects and requirement coverage generally instead.
+- The UI is a native iOS/Android/desktop app rather than a web interface —
+  the checks here (browser rendering, DOM, CSS breakpoints) don't apply to
+  a native shell.
 
 ## Prerequisites
 

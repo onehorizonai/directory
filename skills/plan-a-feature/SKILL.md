@@ -7,8 +7,8 @@ description: >-
   spec for Y before we implement it", "what's the plan for this change",
   "don't write code yet, just plan it out". Produces a self-contained
   implementation plan grounded in the real codebase, not a code change.
-  For a reported defect where the cause isn't confirmed yet, see
-  plan-a-bug-fix instead.
+  Not for a reported defect where the cause isn't confirmed yet — that
+  needs cause confirmation before a fix can be planned.
 metadata:
   title: Plan a Feature
   tagline: Turn a feature request into a self-contained, executable implementation plan without writing code.
@@ -36,7 +36,7 @@ Turning a feature request straight into code skips the step where the request me
 - The user wants code written now, not a plan — use an implementation skill/workflow instead.
 - The request has no decision to make and no code to inspect (pure open-ended research or brainstorming) — that's a research task, not a feature plan.
 - The request's own goal, not just the approach, is undefined — resolve what's being asked for first; see Failure behavior.
-- The request is a reported defect where the cause isn't confirmed yet — establish the symptom and cause first with `plan-a-bug-fix`, then plan the fix.
+- The request is a reported defect where the cause isn't confirmed yet — establish the symptom and cause first, then plan the fix.
 
 ## Prerequisites
 
