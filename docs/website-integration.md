@@ -35,7 +35,7 @@ https://raw.githubusercontent.com/onehorizonai/directory/main/index.json
 }
 ```
 
-(See [`skills/pdf-form-filler/SKILL.md`](../skills/pdf-form-filler/SKILL.md)
+(See [`skills/review-code/SKILL.md`](../skills/review-code/SKILL.md)
 for a real entry with real values in this exact shape.)
 
 - `category` values come from `schema/categories.json` — fetch that file too

@@ -1,5 +1,5 @@
 ---
-name: implement-native-ui
+name: build-native-ui
 description: >-
   Use when an approved native UI change — a design, mock, spec, ticket, or
   linked Initiative, Bug, or TODO that's already decided — needs to be
@@ -12,7 +12,7 @@ description: >-
   architecture, or deployment target — that needs an explicit prior
   decision, not this skill.
 metadata:
-  title: Implement Native UI
+  title: Build Native UI
   tagline: Turn an approved native app UI change into a platform-conventional, verified patch using the app's existing architecture.
   category: engineering
   tags:

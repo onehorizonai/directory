@@ -25,7 +25,7 @@
       "properties": {
         "title": {
           "type": "string",
-          "description": "Human display title for the listing card, e.g. \"PDF Form Filler\".",
+          "description": "Human display title for the listing card, e.g. \"Review Code\".",
           "minLength": 1
         },
         "tagline": {

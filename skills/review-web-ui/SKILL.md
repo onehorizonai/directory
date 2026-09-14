@@ -1,7 +1,7 @@
 ---
-name: audit-web-ui
+name: review-web-ui
 description: >-
-  Use when an already-implemented web interface needs a UX and quality audit
+  Use when an already-implemented web interface needs a UX and quality review
   against the running product — a route, page, or flow that exists and is
   reachable, checked for task flow and hierarchy, complete states, state
   preservation, responsive behavior, keyboard/focus/accessibility, API and
@@ -12,8 +12,8 @@ description: >-
   Returns validated, prioritized findings with observed evidence; does not
   edit the UI and does not review a design mockup or an unimplemented plan.
 metadata:
-  title: Audit Web UI
-  tagline: Audit an implemented web interface for UX, state, accessibility, and consistency defects against the running product.
+  title: Review Web UI
+  tagline: Review an implemented web interface for UX, state, accessibility, and consistency defects against the running product.
   category: engineering
   tags:
     - ux-review
@@ -29,7 +29,7 @@ A finished screen can look plausible in a screenshot and still fail the task
 it exists for: state that resets on navigation, an empty or error state that
 was never built, an action that only a mouse can reach, or a layout that
 contradicts how the rest of the product groups the same objects. This skill
-is a fixed procedure for auditing one implemented web interface — a route,
+is a fixed procedure for reviewing one implemented web interface — a route,
 page, or flow that is actually running, not a mockup or a plan — against the
 product's own interface model and design system. It inspects the real UI
 (browser/Playwright evidence over static reading of the code), exercises the
@@ -55,12 +55,12 @@ it does not edit the interface.
 - Nothing is implemented yet and the request is a design review of a mockup,
   wireframe, or written plan — that's a design/positioning step, not this
   skill; there is no running UI to inspect.
-- The ask is to also fix what's found, not just audit it — finish the audit
-  first, then invoke an implementation step as a separate, explicitly
+- The ask is to also fix what's found, not just review it — finish the
+  review first, then invoke an implementation step as a separate, explicitly
   authorized action.
 - The target route or version can't be pinned down (see
   [Failure behavior](#failure-behavior)) — resolve that first rather than
-  auditing a moving target.
+  reviewing a moving target.
 - The request is a pure code-correctness review with no UI/UX angle —
   review it for defects and requirement coverage generally instead.
 - The UI is a native iOS/Android/desktop app rather than a web interface —
@@ -88,7 +88,7 @@ contracts the UI is bound by.
 
 - The exact target: route/URL, environment, and build/version/commit — fixed
   before inspection starts, not left implicit.
-- What kind of pass this is: full audit, or focused on specific concerns
+- What kind of pass this is: full review, or focused on specific concerns
   (e.g. accessibility only, or state handling only) — ask if unstated and
   it changes scope materially.
 - Access to the design system/component library/tokens and any reference
@@ -220,19 +220,19 @@ Before handing back findings, check:
 
 ## Boundaries
 
-This skill audits and reports; it does not edit the interface under review
+This skill reviews and reports; it does not edit the interface under review
 and does not apply any of its own suggested corrections unless a human or the
 invoking step explicitly authorizes a separate edit step. It does not change
 API contracts, permissions, or backend behavior to test them — it observes
 and reports against the contracts as they exist. The natural next step — an
 implementation/fix skill — is a follow-on the caller can invoke separately,
-not a hard dependency. Keep audit and modification separate unless both are
+not a hard dependency. Keep review and modification separate unless both are
 explicitly requested together.
 
 ## Failure behavior
 
 - No fixed target route/environment/version, or the target is still actively
-  changing → stop and ask rather than auditing a moving target.
+  changing → stop and ask rather than reviewing a moving target.
 - No browser/Playwright access to the running interface → say so as a
   coverage gap; do not substitute a static read of the source for observed
   behavior and report it as equivalent evidence.
@@ -252,7 +252,7 @@ explicitly requested together.
 ## Examples
 
 ```
-Audit the new /settings/billing page (staging, build abc123) for UX and
+Review the new /settings/billing page (staging, build abc123) for UX and
 accessibility problems before it ships.
 ```
 

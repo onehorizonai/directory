@@ -1,5 +1,5 @@
 ---
-name: implement-web-ui-change
+name: build-web-ui-change
 description: >-
   Use when an approved web UI change — a design, mock, spec, ticket, or
   linked Initiative, Bug, or TODO that's already decided — needs to be
@@ -11,7 +11,7 @@ description: >-
   routing-architecture, or global design-token migration — that needs an
   explicit prior decision, not this skill.
 metadata:
-  title: Implement a Web UI Change
+  title: Build a Web UI Change
   tagline: Turn an approved web UI change into a working, accessible, design-system-consistent patch verified in a running browser.
   category: engineering
   tags:

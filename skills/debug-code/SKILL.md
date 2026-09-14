@@ -1,5 +1,5 @@
 ---
-name: debug-a-bug
+name: debug-code
 description: >-
   Use when a reported bug needs to be reproduced, diagnosed, fixed, and
   verified end to end — the fix should actually be applied and proven
@@ -16,7 +16,7 @@ description: >-
   for independently checking someone else's completion claim, and not for
   reviewing an already-written fix.
 metadata:
-  title: Debug a Bug
+  title: Debug Code
   tagline: Reproduce, diagnose, fix, and verify a reported bug — evidence-driven, one hypothesis at a time.
   category: engineering
   tags:

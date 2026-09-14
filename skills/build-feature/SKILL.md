@@ -1,5 +1,5 @@
 ---
-name: implement-feature
+name: build-feature
 description: >-
   Use when there's an approved feature, bugfix, or behavior change to build
   in an existing codebase — a linked Initiative, Bug, TODO, spec, or
@@ -10,7 +10,7 @@ description: >-
   result. Not for discovery, design, or approval work, and not for
   unscoped refactors, dependency upgrades, or architecture changes.
 metadata:
-  title: Implement a Feature
+  title: Build a Feature
   tagline: Turn an approved feature or change into a small, verified patch that fits the existing codebase.
   category: engineering
   tags:
