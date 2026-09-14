@@ -20,6 +20,25 @@
       "path": "skills/audit-web-ui/SKILL.md"
     },
     {
+      "name": "debug-a-bug",
+      "title": "Debug a Bug",
+      "tagline": "Reproduce, diagnose, fix, and verify a reported bug — evidence-driven, one hypothesis at a time.",
+      "description": "Use when a reported bug needs to be reproduced, diagnosed, fixed, and verified end to end — the fix should actually be applied and proven against the original symptom, not just planned. Triggers on requests like \"fix this bug\", \"here's a bug report, find the cause and fix it\", \"this is broken, debug it and ship a fix\", or \"reproduce, diagnose, and resolve this issue\". Captures the actual symptom and environment, builds the strongest repeatable reproduction signal, investigates before patching, tests one supported hypothesis at a time, applies the smallest cause-focused fix, and reruns the original reproduction plus relevant regressions on the final state to report passed, failed, or not verified. Not for investigation-and-plan-only work where no patch is applied (see plan-a-bug-fix), not for a cause that's already confirmed with nothing left to diagnose (see implement-feature), not for independently checking someone else's completion claim (see verify-implementation), and not for reviewing an already-written fix (see review-code).",
+      "category": "engineering",
+      "tags": [
+        "debugging",
+        "bug-fix",
+        "root-cause",
+        "regression-testing",
+        "verification"
+      ],
+      "compatibility": [],
+      "overview": "A bug report tempts an immediate patch, but a fix built on a guessed cause\ntends to hide the symptom instead of removing it, or breaks something else\nthat was working. This skill covers the full cycle for a reported bug:\ncapture what actually happened, build the strongest available reproduction,\ntrace the cause through real evidence rather than the first plausible\nstory, apply the smallest change that addresses the confirmed cause, and\nrerun the original reproduction plus relevant regressions against the final\nstate before reporting the result. It both diagnoses and fixes — unlike\n`plan-a-bug-fix`, which stops at a plan.",
+      "whenToUse": "- A bug, defect, error, or \"X is broken\" report exists and the requested\n  outcome is a working fix that's actually applied and proven against the\n  original symptom — not just a diagnosis or a plan.\n- The symptom is described but the cause isn't yet confirmed, and evidence\n  (a reproduction, logs, recent changes) exists or can be gathered from the\n  codebase or system.\n- The user wants the whole loop — reproduce, find the cause, fix it, prove\n  it's fixed — done in one pass, not split into separate investigation and\n  implementation steps.",
+      "examples": "```\nUsers report that exporting a project to CSV sometimes comes back empty.\nFind out what's wrong and fix it.\n```\n\nExpected approach: build a reproduction (a project size or shape that\ntriggers the empty export), trace the export code path, compare an export\nthat works against one that comes back empty, confirm the cause (e.g. an\nexception silently swallowed past some row count) with actual evidence,\napply the smallest fix (stop swallowing that exception and surface it),\nrerun the original reproduction to confirm it now exports correctly, run\nthe export module's existing test suite, and report each as passed, with\nthe confirmed cause and the exact lines changed.\n\n```\nSome users see their dashboard widgets randomly reorder after a page\nrefresh, roughly one in ten refreshes. No error is thrown. Debug and fix\nit.\n```\n\nExpected approach: record the reproduction rate (~1 in 10) and stabilize\nwhat can be stabilized (same account, same widget set, same browser) to\nraise it; read the widget-ordering code and recent changes to it; compare\na stable session against an unstable one; test hypotheses one at a time\n(an unstable sort, a race between two writes of the same preference, a\nmissing tiebreaker) until one is confirmed by evidence; apply the smallest\nfix for that specific cause; rerun the original repro across enough\nrefreshes to trust the result and add a regression test asserting stable\norder. If the existing end-to-end suite can't run in the available\nenvironment, report that check as not verified with the reason, rather\nthan counting it as passed.",
+      "path": "skills/debug-a-bug/SKILL.md"
+    },
+    {
       "name": "implement-feature",
       "title": "Implement a Feature",
       "tagline": "Turn an approved feature or change into a small, verified patch that fits the existing codebase.",
@@ -98,7 +117,7 @@
       "name": "plan-a-bug-fix",
       "title": "Plan a Bug Fix",
       "tagline": "Turn a reported problem into a confirmed cause and a bounded, verifiable fix plan — without patching it yet.",
-      "description": "Use when a bug, error, or reported problem needs investigation and a bounded fix plan before any code changes — e.g. \"here's a bug report, plan the fix\", \"users say X is broken, find out what's wrong and how to fix it\", \"investigate this error and tell me the smallest fix\", \"don't patch it yet, just find the cause and plan it out\". Establishes expected vs. observed behavior and the strongest available reproduction signal, separates confirmed evidence from hypotheses, and produces a plan for the smallest cause-focused fix plus how to verify it against the original symptom. Not for a request to build new behavior (see plan-a-feature) and not for writing the fix itself (see implement-feature) — this skill investigates and plans only.",
+      "description": "Use when a bug, error, or reported problem needs investigation and a bounded fix plan before any code changes — e.g. \"here's a bug report, plan the fix\", \"users say X is broken, find out what's wrong and how to fix it\", \"investigate this error and tell me the smallest fix\", \"don't patch it yet, just find the cause and plan it out\". Establishes expected vs. observed behavior and the strongest available reproduction signal, separates confirmed evidence from hypotheses, and produces a plan for the smallest cause-focused fix plus how to verify it against the original symptom. Not for a request to build new behavior (see plan-a-feature) and not for a request where the fix should actually be written and verified, not just planned (see debug-a-bug) — this skill investigates and plans only.",
       "category": "engineering",
       "tags": [
         "debugging",
