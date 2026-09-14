@@ -59,7 +59,7 @@ section of it:
 - **Plan** — turns a request into a self-contained implementation plan
   grounded in the real system. Reads and reasons; never edits code, never
   performs the change. (`plan-a-feature`, `plan-a-refactor`,
-  `plan-a-bug-fix`)
+  `plan-a-bug-fix`, `plan-ux`)
 - **Research** — investigates an external or technical question and returns
   sourced findings with visible uncertainty. Never edits code or performs
   the action it researches. (`research-technical-question`)
