@@ -66,6 +66,12 @@ it does not edit the interface.
 - The UI is a native iOS/Android/desktop app rather than a web interface —
   the checks here (browser rendering, DOM, CSS breakpoints) don't apply to
   a native shell.
+- The primary question is whether the product's prioritized use cases and
+  their model (actors, objects, actions, relationships, lifecycle states)
+  hold together as an experience — not whether this specific build renders,
+  performs, or complies with platform/accessibility mechanics correctly —
+  that is a product-model and interaction-quality review, not the
+  build-quality audit this skill performs.
 
 ## Prerequisites
 

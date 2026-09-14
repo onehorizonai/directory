@@ -5,8 +5,10 @@ description: >-
   written interaction plan/spec, or a built screen/flow on any platform —
   needs review for UX problems and product-model consistency: whether its
   prioritized use cases are understandable, executable, consistent, and
-  recoverable. Establishes the actors, objects, actions, prioritized use
-  cases, relationships, and lifecycle states from evidence before judging
+  recoverable, judged against the actors, objects, actions, use cases,
+  relationships, and lifecycle states the experience is meant to support —
+  not against how a specific build renders, performs, or complies with
+  platform mechanics. Establishes that model from evidence before judging
   anything, then checks entry/orientation, state-specific actions, hierarchy
   against use-case priority, decision context, consistency, progressive
   disclosure, consequences/reversibility, recovery, continuity, 0/1/some/many
@@ -14,12 +16,14 @@ description: >-
   useful — plus structural clarity (shared alignment axes, unnecessary
   containers/insets/dividers, vertical rhythm) judged only by whether it
   supports hierarchy and grouping, never visual taste. Exercises important
-  use cases in the real interface when tooling permits, but doesn't require
-  it. Returns confirmed UX problems, questions about product intent, and
-  judgment-based recommendations, kept separate. Not for a pure visual-style
-  critique, not for platform-specific mechanics like rendered
-  accessibility-tree behavior or DOM/CSS inspection, and does not modify the
-  reviewed implementation.
+  use cases in the real interface when tooling permits, to confirm the model
+  holds, but doesn't require it. Returns confirmed UX problems, questions
+  about product intent, and judgment-based recommendations, kept separate.
+  Not for a pure visual-style critique, not for a platform/technical
+  build-quality audit of an implemented interface (rendered
+  accessibility-tree behavior, DOM/CSS inspection, design-system token
+  conformance, responsive breakpoints, or platform interface-convention
+  compliance), and does not modify the reviewed implementation.
 metadata:
   title: Review UX
   tagline: Review a proposed or implemented experience for UX problems and product-model consistency, without critiquing visual style.
@@ -57,9 +61,11 @@ implementation.
 - A proposed experience (mockup, wireframe, written interaction plan or
   spec) or an implemented one (a specific build, screen, or flow, on any
   platform) needs a UX pass focused on whether its prioritized use cases
-  actually work — "review this flow for UX problems", "does this plan hold
-  together as an experience", "check this design against how the product
-  already models this object".
+  actually work against the product's own model — "review this flow for UX
+  problems", "does this plan hold together as an experience", "check this
+  design against how the product already models this object" — as distinct
+  from whether a specific build renders, performs, or complies with
+  platform mechanics correctly.
 - Someone wants to know whether hierarchy, grouping, progressive
   disclosure, recovery paths, and continuity match the experience's own
   stated or evident priorities — not a generic best-practices checklist and
@@ -77,11 +83,14 @@ implementation.
   finish the review first, then apply changes only as a separate,
   explicitly authorized step.
 - The review needs to be against rendered accessibility-tree/assistive-
-  technology behavior, DOM/computed styles, CSS breakpoint mechanics, or a
-  named platform's interface-convention guidelines (HIG, Material, or
-  similar) as the primary concern — that is platform-specific implementation
-  review, not the product-model and interaction-quality review this skill
-  performs.
+  technology behavior, DOM/computed styles, CSS breakpoint mechanics,
+  design-system token/component conformance, WCAG numeric criteria
+  (contrast, text resizing, target size), API/permission-boundary
+  verification, or a named platform's interface-convention guidelines (HIG,
+  Material, or similar) as the primary concern — that is a platform/
+  technical build-quality audit of an implemented interface, not the
+  product-model and interaction-quality review this skill performs, even
+  when the target is an implemented screen.
 - The target keeps changing while under review, or can't be pinned to one
   fixed version (see [Failure behavior](#failure-behavior)) — fix a version
   first rather than reviewing a moving target.
