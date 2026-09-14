@@ -41,14 +41,14 @@ Turning a feature request straight into code skips the step where the request me
 ## Prerequisites
 
 - Read access to the target codebase (or the system being changed) and to any repo history, tests, and configuration that reveal current behavior.
-- Access to whatever authoritative source material is already available: linked tickets, specs, requirement docs, prior decisions — not to be re-derived from memory or invented.
+- Access to whatever authoritative source material is already available: the linked Initiative, Bug, or TODO, tickets, specs, requirement docs, prior decisions — not to be re-derived from memory or invented.
 - No write access, deploy access, or execution of the target system is required.
 
 ## Inputs
 
 - The feature/change/bug-fix request, in full, including any stated acceptance criteria.
 - Pointers to relevant code paths, modules, or services, if already known — otherwise locate them during inspection.
-- Any canonical references the request depends on (design docs, prior related plans, API contracts, tickets) with their identifiers preserved exactly.
+- Any canonical references the request depends on (design docs, prior related plans, API contracts, linked Initiatives/Bugs/TODOs, tickets) with their identifiers preserved exactly.
 
 ## Procedure
 

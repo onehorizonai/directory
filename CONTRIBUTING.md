@@ -53,13 +53,13 @@ generically, in the [README](README.md#installing-a-skill) for every skill.
 ## Terminology conventions
 
 Skills in this directory describe work using a small, consistent set of
-modes, so an agent can tell what a skill produces without reading every
-section of it:
+modes that mirror One Horizon's own workflow step roles, so an agent can
+tell what a skill produces without reading every section of it:
 
 - **Plan** — turns a request into a self-contained implementation plan
   grounded in the real system. Reads and reasons; never edits code, never
   performs the change. (`plan-a-feature`, `plan-a-refactor`,
-  `plan-a-bug-fix`)
+  `plan-a-bug-fix`, `plan-ux`)
 - **Research** — investigates an external or technical question and returns
   sourced findings with visible uncertainty. Never edits code or performs
   the action it researches. (`research-technical-question`)
@@ -68,11 +68,12 @@ section of it:
   baseline and returns validated, prioritized findings only. Never edits
   the thing under review. (`review-a-plan`, `review-a-refactor`,
   `review-code`, `review-native-ui`, `audit-web-ui`)
-- **Implement / Debug / Refactor** — carries out an already-approved change:
-  writes the code, verifies it against real checks, and reports the result.
-  Doesn't decide what to build or approve scope — that's Plan's job.
-  (`implement-feature`, `implement-web-ui-change`, `implement-native-ui`,
-  `refactor-code`, `debug-a-bug`)
+- **Code** (or a domain-specific verb like **Implement**, **Debug**, or
+  **Refactor**) — carries out an already-approved change: writes the code,
+  verifies it against real checks, and reports the result. Doesn't decide
+  what to build or approve scope — that's Plan's job. (`implement-feature`,
+  `implement-web-ui-change`, `implement-native-ui`, `refactor-code`,
+  `debug-a-bug`)
 - **Verify** — independently checks a completion claim against stated
   acceptance criteria after the fact; distinct from the inline verification
   an implementation skill already runs on its own work.
@@ -80,6 +81,31 @@ section of it:
 - **Write** — produces copy or other content for an already-decided scope;
   doesn't decide strategy, positioning, or product behavior itself.
   (`write-ux-copy`, `write-website-copy`)
+
+### One Horizon concept map
+
+When a skill's job touches a concrete One Horizon object, name it with the
+product's own term instead of a generic stand-in:
+
+- **Initiative, Bug, TODO** — the three work-item kinds a workflow run
+  operates against. Use one of these, not a bare `task`, `ticket`, `issue`,
+  `story`, or `work item`, when a skill genuinely means the work record
+  itself (e.g. "an Initiative, Bug, or TODO is moved to review"), while
+  still naming a generic ticket/spec alongside it where the skill also has
+  to work against a non-One-Horizon tracker.
+- **Workflow, workflow run, step, step task/role** — a workflow run
+  executes a sequence of steps; each step has a task/role such as the modes
+  above. Don't invent an adjacent verb or category (`developing`,
+  `recapping`, `implementation task`) for a job one of these modes already
+  names.
+- **Artifact, document** — the structured outputs a step produces or
+  consumes and hands to the next step. Only call a skill's own working file
+  an "artifact" in this sense when it's actually meant to flow to another
+  step that way — a code diff, a PDF, or a UI screen under review isn't.
+- Leave generic language alone for what the product genuinely doesn't own —
+  Git branches, pull requests, source-code tests, browser pages, a UI's own
+  task flow, or a third-party tracker. Relabeling a real external thing
+  with a One Horizon word would misdescribe it, not clarify it.
 
 A skill's own domain verb (`audit`, `debug`, `refactor`) can stay
 descriptive in its name — it doesn't need to literally repeat "review" or

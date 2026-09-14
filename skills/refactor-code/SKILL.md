@@ -25,7 +25,7 @@ metadata:
 Refactoring work drifts in two common ways: it quietly changes behavior
 while looking like a cleanup, or it never stops because "while we're in
 here" keeps expanding the scope. This skill is a procedure for the
-narrower, more disciplined version of the task — improving how code is
+narrower, more disciplined version of the job — improving how code is
 structured without changing what it does. It exists separately from
 general implementation work because the two need different defaults: a
 feature change is judged by whether the new behavior is correct, while a

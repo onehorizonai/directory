@@ -1,8 +1,9 @@
 ---
 name: implement-native-ui
 description: >-
-  Use when an approved native UI change — a design, mock, spec, or ticket
-  that's already decided — needs to be built into an existing iOS, Android,
+  Use when an approved native UI change — a design, mock, spec, ticket, or
+  linked Initiative, Bug, or TODO that's already decided — needs to be
+  built into an existing iOS, Android,
   desktop, or other native app, and the next step is writing the code for it
   using the app's existing native architecture and the target platform's
   interaction conventions. Not for deciding or approving the design itself,
@@ -37,9 +38,9 @@ result on the actual target platform rather than from code alone.
 
 ## When to use
 
-- An approved native UI change (design, mock, spec, or ticket) exists for an
-  existing iOS, Android, desktop, or other native app, and the next step is
-  building it.
+- An approved native UI change (design, mock, spec, ticket, or a linked
+  Initiative, Bug, or TODO) exists for an existing iOS, Android, desktop, or
+  other native app, and the next step is building it.
 - The user asks to implement a specific screen, view, or interaction in a
   native app project where the scope is already settled.
 
@@ -215,7 +216,7 @@ pattern rather than a new one; verify with Dynamic Type and VoiceOver on a
 simulator or device.
 
 ```
-Add multi-select to the existing Android task list, per the approved
+Add multi-select to the existing Android contacts list, per the approved
 design: long-press selects an item, a selection toolbar appears, and the
 selection and scroll position must survive rotation and returning from
 the backgrounded app.
