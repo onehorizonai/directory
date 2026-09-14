@@ -216,7 +216,7 @@ Before handing back findings, check:
 
 This skill audits and reports; it does not edit the interface under review
 and does not apply any of its own suggested corrections unless a human or the
-invoking task explicitly authorizes a separate edit step. It does not change
+invoking step explicitly authorizes a separate edit step. It does not change
 API contracts, permissions, or backend behavior to test them — it observes
 and reports against the contracts as they exist. The natural next step — an
 implementation/fix skill — is a follow-on the caller can invoke separately,
