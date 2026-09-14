@@ -45,7 +45,8 @@ containers and uneven spacing quietly work against the hierarchy it's
 supposed to show. This skill is a fixed procedure for reviewing one
 proposed or implemented experience — a mockup, a written interaction
 plan/spec, or a built screen/flow, on any platform or technology — against
-its own product model rather than against visual preference. It
+its own product model rather than against visual preference or a specific
+build's rendering and platform mechanics. It
 establishes the actors, objects, actions, prioritized use cases,
 relationships, and lifecycle states from real evidence first, then checks
 whether the experience makes those use cases understandable, executable,
@@ -283,11 +284,14 @@ fresher but breaks an established use-case priority, grouping, or recovery
 path is a problem, not an improvement, even when nothing else about it is
 wrong. This skill does not adjudicate open questions about product intent;
 it surfaces them precisely and leaves the decision to whoever owns product
-direction. It does not cover platform-specific implementation mechanics
-(rendered accessibility-tree behavior, DOM/CSS inspection, a named
-platform's interface-convention compliance) as its primary concern — those
-require a review targeted at that platform and technology. Keep review and
-modification separate unless both are explicitly requested together.
+direction. It does not cover platform/technical build-quality mechanics
+(rendered accessibility-tree behavior, DOM/CSS inspection, design-system
+token conformance, WCAG numeric criteria, API/permission-boundary
+verification, a named platform's interface-convention compliance) as its
+primary concern, even when the target is an implemented screen — those
+require a build-quality audit targeted at that platform and technology.
+Keep review and modification separate unless both are explicitly requested
+together.
 Protect secrets and sensitive material encountered while reviewing —
 reference their location rather than reproducing them in findings.
 
