@@ -169,6 +169,25 @@
       "path": "skills/plan-a-refactor/SKILL.md"
     },
     {
+      "name": "plan-ux",
+      "title": "Plan UX",
+      "tagline": "Model actors, objects, actions, and use cases into an interaction plan before anyone designs the surface.",
+      "description": "Use when a feature request, defect report, or scoped task needs its interaction model and UX planned before an implementation plan or UI change is written — e.g. \"plan the UX for X\", \"figure out the interaction model before we build this\", \"what should this flow look like\", \"design the experience, not the visuals yet\". Models actors, objects, actions, and prioritized use cases against existing product context, then works through lifecycle states, information needs, structure, interaction, and visual hierarchy to produce a platform-independent UX plan with named verification scenarios for later steps to execute against. Not for deciding data models, APIs, or technical architecture; not for building, restyling, or reviewing an already-built interface; not for writing copy for one already-decided state; not for producing the implementation plan itself.",
+      "category": "design",
+      "tags": [
+        "ux",
+        "interaction-design",
+        "information-architecture",
+        "product-planning",
+        "usability"
+      ],
+      "compatibility": [],
+      "overview": "Jumping straight from a request to screens skips the step where the\nrequest meets how people actually accomplish things: who's involved, what\nthey're acting on, what they're trying to get done, and what the product\nalready trains them to expect. This skill produces that missing step — a\nplatform-independent interaction model grounded in the actual request and\nexisting product context, worked through in order from actors down to\nvisual hierarchy, that names the interaction and information decisions a\nlater implementation plan or UI change can rely on without re-deriving\nthem. It plans the experience; it does not design or build the surface.",
+      "whenToUse": "- A feature request, change request, defect, or small scoped task names\n  user-facing behavior, and the next needed output is an interaction model\n  or UX plan — not an implementation plan and not a finished interface.\n- The request touches objects, actions, or flows a user interacts with\n  (new, changed, or removed) where getting the interaction model wrong\n  would make anything built from it hard to use or inconsistent with the\n  rest of the product.\n- Someone explicitly wants the experience designed before the surface —\n  \"plan how this should work before we design the screens\", \"what's the\n  interaction model here\".",
+      "examples": "```\nWe're adding the ability for a team to archive a project instead of only\ndeleting it. Plan the UX before anyone designs the screens.\n```\n\nExpected approach: find how \"project\" and \"delete\" already work in the\nproduct, model the new archived state and who can act on it, note that\narchive is reversible where delete isn't (so it doesn't need the same\nprotection as delete), define what an archived project looks like in\nexisting lists/navigation and what actions remain available on it, then\nreturn use cases (archive a project, view archived projects, restore one)\neach with priority, an interaction model, and a verification scenario —\nwithout designing the actual screen.\n\n```\nSupport wants a way for an admin to see which team members haven't\naccepted their invite yet and re-send or revoke it. Plan the UX for this\nbefore we build it.\n```\n\nExpected approach: model the actor (admin), object (pending invite) and\nits lifecycle states (sent, expired, accepted, revoked), the actions\navailable in each state, derive use cases (find pending invites, re-send,\nrevoke) and prioritize them against how often support says this comes up,\nwork through what information the admin needs to decide (who, how long\npending) and where this list should live relative to existing team\nmanagement, then produce verification scenarios for re-send and revoke\ncovering the happy path and the case where the invite already expired.",
+      "path": "skills/plan-ux/SKILL.md"
+    },
+    {
       "name": "refactor-code",
       "title": "Refactor Code",
       "tagline": "Restructure code safely — same behavior, verified — without smuggling in a feature or a fix.",
