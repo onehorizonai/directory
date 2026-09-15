@@ -20,6 +20,10 @@ metadata:
     - desktop
     - ui
     - defects
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - review
 ---
 
 ## Overview

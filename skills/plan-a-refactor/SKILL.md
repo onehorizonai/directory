@@ -18,6 +18,10 @@ metadata:
     - refactoring
     - code-quality
     - architecture
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - plan
 ---
 
 ## Overview

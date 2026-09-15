@@ -19,6 +19,12 @@ metadata:
     - bug-fix
     - root-cause
     - regression-testing
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - plan
+  worksOn:
+    - bug
 ---
 
 ## Overview

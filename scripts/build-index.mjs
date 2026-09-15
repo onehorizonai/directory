@@ -17,7 +17,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { REPO_ROOT, listSkillFolders, parseSkillMd, extractSections } from "./lib.mjs";
+import { REPO_ROOT, listSkillFolders, parseSkillMd, extractSections, DEFAULT_SOURCE } from "./lib.mjs";
 
 const { version } = JSON.parse(readFileSync(join(REPO_ROOT, "package.json"), "utf8"));
 
@@ -28,6 +28,7 @@ const skills = folders
     const { frontmatter, body } = parseSkillMd(skillMdPath);
     const sections = extractSections(body);
     const metadata = frontmatter.metadata ?? {};
+    const compatibility = metadata.compatibility ?? {};
 
     return {
       name,
@@ -36,7 +37,14 @@ const skills = folders
       description: frontmatter.description,
       category: metadata.category,
       tags: metadata.tags ?? [],
-      compatibility: metadata.compatibility ?? [],
+      source: metadata.source ?? DEFAULT_SOURCE,
+      compatibility: {
+        runtimes: compatibility.runtimes ?? [],
+        oneHorizon: {
+          taskModes: compatibility.oneHorizon?.taskModes ?? [],
+        },
+      },
+      worksOn: metadata.worksOn ?? [],
       overview: sections.overview ?? "",
       whenToUse: sections.whenToUse ?? "",
       examples: sections.examples ?? "",

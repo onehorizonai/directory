@@ -16,6 +16,10 @@ metadata:
     - implementation-plan
     - requirements
     - architecture
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - plan
 ---
 
 ## Overview

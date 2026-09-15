@@ -19,6 +19,10 @@ metadata:
     - accessibility
     - design-system
     - testing
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - code
 ---
 
 ## Overview

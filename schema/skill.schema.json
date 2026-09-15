@@ -48,8 +48,61 @@
           }
         },
         "compatibility": {
+          "type": "object",
+          "description": "Optional compatibility declarations, split by concern. Omit entirely when the skill works on any Agent-Skills-compatible runtime and isn't bound to a specific One Horizon workflow step.",
+          "additionalProperties": false,
+          "properties": {
+            "runtimes": {
+              "type": "array",
+              "description": "Runtime ids (see schema/runtimes.json) this skill depends on. Omit when the skill works on any Agent-Skills-compatible runtime.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "oneHorizon": {
+              "type": "object",
+              "description": "One Horizon workflow integration. Omit entirely when the skill isn't bound to a specific workflow task mode.",
+              "additionalProperties": false,
+              "properties": {
+                "taskModes": {
+                  "type": "array",
+                  "description": "One Horizon workflow task-mode wire values (see schema/task-modes.json) this skill is intended for.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "source": {
+          "type": "object",
+          "description": "Provenance: where this skill came from and who maintains it. Omit for curated One Horizon skills — the index build fills in the One Horizon directory's own provenance. Set explicitly for external submissions to preserve their original source.",
+          "additionalProperties": false,
+          "required": ["kind", "repository", "maintainer"],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": ["one-horizon", "external"],
+              "description": "\"one-horizon\" for skills authored/maintained in this repo; \"external\" for submissions preserving an outside origin."
+            },
+            "repository": {
+              "type": "string",
+              "description": "Repository URL or owner/repo slug this skill's source lives in."
+            },
+            "maintainer": {
+              "type": "string",
+              "description": "Who maintains this skill."
+            },
+            "homepage": {
+              "type": "string",
+              "description": "Optional homepage or docs URL for the skill or its source project."
+            }
+          }
+        },
+        "worksOn": {
           "type": "array",
-          "description": "Optional list of runtime ids (see schema/runtimes.json) this skill depends on. Omit when the skill works on any Agent-Skills-compatible runtime.",
+          "description": "Optional list of One Horizon work-object wire values (see schema/work-objects.json) this skill meaningfully applies to. Omit/empty when the skill applies to any object equally.",
           "items": {
             "type": "string"
           }
@@ -58,13 +111,7 @@
           "type": "string",
           "description": "Defaults to the repo LICENSE when omitted."
         },
-        "author": {
-          "type": "string"
-        },
         "version": {
-          "type": "string"
-        },
-        "sourceRepo": {
           "type": "string"
         },
         "taxonomyId": {

@@ -16,6 +16,10 @@ metadata:
     - refactoring
     - code-quality
     - testing
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - code
 ---
 
 ## Overview

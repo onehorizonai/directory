@@ -17,6 +17,10 @@ metadata:
     - evidence
     - sources
     - technical-question
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - research
 ---
 
 ## Overview

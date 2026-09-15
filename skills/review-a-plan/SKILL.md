@@ -19,6 +19,10 @@ metadata:
     - code-review
     - requirements
     - risk-assessment
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - review
 ---
 
 ## Overview

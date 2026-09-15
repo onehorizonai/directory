@@ -74,6 +74,8 @@ directory/
     skill.schema.json         # JSON Schema for SKILL.md frontmatter
     categories.json           # closed list of allowed categories
     runtimes.json             # closed list of runtime ids
+    task-modes.json           # closed list of One Horizon workflow task modes
+    work-objects.json         # closed list of One Horizon work-object kinds
   scripts/
     validate.mjs              # validates every skills/*/SKILL.md
     build-index.mjs           # generates index.json + marketplace.json

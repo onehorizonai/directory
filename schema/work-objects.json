@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Closed list of One Horizon work-object wire values a skill's metadata.worksOn may pick from. Omit metadata.worksOn (or leave it empty) when a skill applies to any object equally — only set it when the skill genuinely doesn't apply to some of these kinds.",
+  "workObjects": [
+    { "id": "initiative", "label": "Initiative" },
+    { "id": "bug", "label": "Bug" },
+    { "id": "task", "label": "TODO" }
+  ]
+}

@@ -11,7 +11,20 @@
         "implementation",
         "testing"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "code"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "This skill covers only the implementation step for a feature or change\nthat's already approved — a linked Initiative, Bug, TODO, spec, or plan\nstates what should happen. It does not cover deciding what to build;\nthat happens before this skill is invoked. Given the approved scope, it\nproduces the smallest clean patch among options that match the\ncodebase's own code style and architecture patterns — never a hack or\ncode smell — built test-first unless a named skip applies, and verified\nagainst real checks rather than described from memory.",
       "whenToUse": "- An approved feature, bug fix, or behavior change exists (a linked\n  Initiative, Bug, TODO, spec, or approved plan) and the next step is\n  writing the code for it in an existing codebase.\n- The user asks to \"implement X\" / \"build this\" / \"make this change\" and\n  points at scope that's already decided, not still being explored.",
       "examples": "```\nImplement the approved change: add a `status` filter query param to\nGET /api/orders that returns only orders matching the given status.\nAcceptance: invalid status returns 400; omitted status returns all\norders (current behavior unchanged).\n```\n\nExpected approach: read the existing orders route/controller, its tests,\ncode style, and how other query params are validated on this endpoint;\nwrite failing tests for a valid status, an invalid status (400), and the\nomitted case (unchanged); implement the filter via the same validation/\nerror pattern and layering already used there — not a one-off\n`if status == …` special case; confirm the tests pass and refactor if the\ngreen path left a smell; run the route's test suite and report the\nresults.\n\n```\nAdd a \"Duplicate order\" action next to the existing \"Delete order\" action\nin the orders list UI, per the approved design. Duplicating should copy\nthe order's fields except id and createdAt.\n```\n\nExpected approach: find the existing Delete action's component/handler as\nthe pattern and style to mirror. If a component/UI test surface already\nexists, write a failing test covering the duplicated order's fields and\nthat id/createdAt differ, then implement Duplicate on the same event/\nstate-update path and confirm the test passes. If no meaningful automated\ntest is achievable, skip TDD with that reason in the report and verify\nthrough the real UI boundary instead; inspect the diff before reporting.",
@@ -32,7 +45,20 @@
         "accessibility",
         "ui"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "code"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "This skill covers only implementing an already-approved native UI change in\nan existing app — it does not cover deciding what the UI should be. Given\nthe approved change, it declares the target platform and inspects the app's\nexisting native architecture, models the interface's objects, actions, and\nconcepts before touching layout, implements using the platform's own\ninteraction conventions and the app's established patterns, defines state\nownership/lifetime and interruption behavior explicitly, and verifies the\nresult on the actual target platform rather than from code alone.",
       "whenToUse": "- An approved native UI change (design, mock, spec, or a linked\n  Initiative, Bug, or TODO) exists for an existing iOS, Android, desktop,\n  or other native app, and the next step is building it.\n- The user asks to implement a specific screen, view, or interaction in a\n  native app project where the scope is already settled.",
       "examples": "```\nAdd a \"Notify me\" toggle to the existing iOS settings screen, per the\napproved design. Toggling it on should request notification permission if\nnot already granted.\n```\n\nExpected approach: inspect the existing settings screen's state/binding\npattern and how other toggles on that screen are wired; implement the new\ntoggle using that same pattern and SwiftUI's system `Toggle` control;\nhandle the permission-request flow using the app's existing permission\npattern rather than a new one; verify with Dynamic Type and VoiceOver on a\nsimulator or device.\n\n```\nImplement the approved Apple Watch step-goal glance: complication +\nvertical-page detail, Crown scroll, Always On redaction, per design.\n```\n\nExpected approach: load `watchos.md` + `swiftui.md` and current watchOS\nHIG (not iPhone HIG); implement with WidgetKit complications (not\nClockKit), watchOS navigation patterns, and energy-aware updates; verify\nacross Watch sizes and VoiceOver — do not reuse iPhone IA.\n\nWhen the target platform is Android rather than iOS, see\n[references/worked-example-android-multiselect.md](references/worked-example-android-multiselect.md)\nfor a worked multi-select/rotation-survival example.",
@@ -52,7 +78,20 @@
         "design-system",
         "testing"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "code"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "This skill covers only implementing an already-approved web UI change in an\nexisting product — it does not cover deciding what the UI should be. Given\nthe approved change, it inspects the existing route, design system, and\nAPI/permission contracts before touching anything; models the interface's\nobjects, actions, and workflows to decide layout and priority before\nstyling; implements with the **web platform first** (semantic HTML, modern\nCSS, browser APIs) and the product's existing components, tokens, and\nstate patterns — loading React/Next guidance only when that is the stack —\nwith real (not mocked) states and preserved input/focus; builds in\naccessible, mouse-optional interaction; and verifies the result in a\nrunning browser rather than from code or description alone.",
       "whenToUse": "- An approved web UI change (design, mock, spec, or a linked Initiative,\n  Bug, or TODO) exists for an existing web app or website, and the next\n  step is building it.\n- The user asks to implement a specific page, view, or interaction on the\n  web where the scope is already settled.",
       "examples": "```\nOn the web project list, add a real empty state (no projects yet) and a\nfiltered-empty state (filters applied but no matches), per the approved\ndesign. Both should reuse the existing illustration/message pattern from\nother list pages, and the filtered-empty state needs a \"Clear filters\"\naction.\n```\n\nExpected approach: inspect how other list pages in the product already\nrender empty vs. filtered-empty (component, copy pattern, illustration\ntokens) and reuse that pattern rather than inventing a new one; wire the\ndistinction to the real query/filter state instead of a heuristic guess;\nimplement \"Clear filters\" using the existing filter-reset action; verify\nboth states render correctly at narrow and wide viewports, that \"Clear\nfilters\" is reachable and operable by keyboard, and that the transition\nbetween states doesn't shift the surrounding layout.\n\nWhen the change is driven by a permission check rather than a plain data\nstate, see\n[references/worked-example-permission-banner.md](references/worked-example-permission-banner.md)\nfor a worked example.",
@@ -71,7 +110,22 @@
         "regression-testing",
         "verification"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "code"
+          ]
+        }
+      },
+      "worksOn": [
+        "bug"
+      ],
       "overview": "A bug report tempts an immediate patch, but a fix built on a guessed cause\ntends to hide the symptom instead of removing it, or breaks something else\nthat was working. This skill covers the full cycle for a reported bug:\ncapture what actually happened, build the strongest available reproduction,\ntrace the cause through real evidence rather than the first plausible\nstory, apply the smallest change that addresses the confirmed cause, and\nrerun the original reproduction plus relevant regressions against the final\nstate before reporting the result. It both diagnoses the cause and applies\nthe fix in one pass, rather than stopping at a diagnosis or a plan.",
       "whenToUse": "- A bug, defect, error, or \"X is broken\" report exists and the requested\n  outcome is a working fix that's actually applied and proven against the\n  original symptom — not just a diagnosis or a plan.\n- The symptom is described but the cause isn't yet confirmed, and evidence\n  (a reproduction, logs, recent changes) exists or can be gathered from the\n  codebase or system.\n- The user wants the whole loop — reproduce, find the cause, fix it, prove\n  it's fixed — done in one pass, not split into separate investigation and\n  implementation steps.",
       "examples": "```\nUsers report that exporting a project to CSV sometimes comes back empty.\nFind out what's wrong and fix it.\n```\n\nExpected approach: build a reproduction (a project size or shape that\ntriggers the empty export), trace the export code path, compare an export\nthat works against one that comes back empty, confirm the cause (e.g. an\nexception silently swallowed past some row count) with actual evidence,\napply the smallest fix (stop swallowing that exception and surface it),\nrerun the original reproduction to confirm it now exports correctly, run\nthe export module's existing test suite, and report each as passed, with\nthe confirmed cause and the exact lines changed.\n\nWhen the symptom is intermittent rather than reliably reproducible, see\n[references/worked-example-intermittent.md](references/worked-example-intermittent.md)\nfor how to handle reproduction rate and stabilization.",
@@ -91,7 +145,18 @@
         "wearable-design",
         "ui-design"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": []
+        }
+      },
+      "worksOn": [],
       "overview": "Jumping to screens, components, or styling skips the model the interface\nis supposed to render: what the user is trying to accomplish, on which\nobjects, with which actions, at what priority, in which states. This\nskill produces **application UI design** for one named non-web platform\n(mobile, tablet, desktop, or Apple Watch). It works in a fixed order —\nOutcome → Objects → Actions → Concepts → Use cases → Priority →\nStates → Structure → Hierarchy → Interaction → Visual refinement →\nVerification — then applies that OS's conventions. It returns a design\nhandoff an implementer (and a later review) can use. It does not write\nproduction code, does not cover browser/web design, and does not review\na running build.\n\n**Design vs build:** this skill answers what the experience should look\nlike and how it should behave. State ownership, framework APIs, tests,\nand patches are later implementation work — not this procedure.\n\nMethod detail lives in `references/` and is loaded on demand. Platform\ncatalogs are loaded only for the target OS.",
       "whenToUse": "- The ask is to **design** a screen, flow, or UI for a native or desktop\n  app — \"design this iOS onboarding\", \"propose the Android settings\n  flow\", \"design the macOS preferences window\", \"design an Apple Watch\n  complication + glance screen\".\n- The target is iOS, Android, iPad, macOS, Windows, Linux, Apple Watch /\n  watchOS, or a similar non-browser surface (including an Electron or\n  Flutter app whose **ship OS** is one of those).\n- Someone wants platform-appropriate visual/interaction design before or\n  without implementing it.",
       "examples": "```\nDesign an Apple Watch complication + glance screen for today's step goal —\nraise-wrist readable in two seconds; Crown scrolls detail; tap opens the\nrelevant goal screen.\n```\n\nExpected approach: load `references/wearable-apple.md` (not `mobile-ios`);\nmodel outcome (see today's progress at a glance; act on the goal) and\nthe goal/step objects before chrome; keep the Watch slice glanceable\n(priority 1 on the first screen); specify Always On redaction; return a\nhandoff — no code.\n\n```\nDesign the iOS onboarding screens for granting notification permission —\nthree steps, fits Human Interface conventions, light and dark.\n```\n\nExpected approach: load `references/mobile-ios.md` and current Apple HIG;\nmodel the permission object/action (grant, deny, skip) and first-use\nstate before picking a page-control; use system-aligned controls; specify\ndenied and skip; return a handoff — no code.\n\n```\nDesign a Windows desktop preferences window for account + notifications,\nconsistent with the rest of our WinUI app.\n```\n\nExpected approach: load `references/desktop-windows.md` and current\nFluent guidance; match existing app chrome and Settings-style grouping;\nspecify narrow/snap behavior; return a handoff for implementation.\n\n```\nDesign an iPhone settings flow and its companion Apple Watch glance for\nthe same notification preference.\n```\n\nExpected approach: two handoffs — [references/mobile-ios.md](references/mobile-ios.md)\nfor the phone flow and\n[references/wearable-apple.md](references/wearable-apple.md) for the Watch\nslice; do not shrink the iPhone UI onto the Watch.",
@@ -110,7 +175,18 @@
         "responsive",
         "ui-design"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": []
+        }
+      },
+      "worksOn": [],
       "overview": "A web interface designed from a template, or from components first,\ntends to ignore what the user is actually trying to accomplish and which\nstates they hit. This skill produces **web front-end design** for\nbrowser surfaces. It works in a fixed order — Outcome → Objects →\nActions → Concepts → Use cases → Priority → States → Structure →\nHierarchy → Interaction → Visual refinement → Verification — then\napplies the product's design system. It returns a handoff an implementer\n(and a later review) can use. It does not write production code, does\nnot cover native/desktop chrome, and does not review a running build.\n\n**Design vs build:** this skill answers what the experience should look\nlike and how it should behave. Component APIs, React/architecture,\ntesting, and patches are later implementation work — not this\nprocedure.\n\nMethod detail lives in `references/` and is loaded on demand. Do not\nload every file up front.",
       "whenToUse": "- The ask is to **design** a web page, web app screen, marketing\n  section, or responsive browser UI — \"design this pricing page\",\n  \"propose a layout for the dashboard\", \"redesign this flow for mobile\n  and desktop web\".\n- Someone wants layout / visual / interaction treatment for the **web**\n  before or without implementing it.\n- The target surface is a browser (narrow, medium, or wide web).",
       "examples": "```\nDesign a pricing page for our marketing site: three tiers, monthly/annual\ntoggle, FAQ below. Match the existing brand; desktop and mobile web.\n```\n\nExpected approach: inspect existing marketing pages and tokens; model\noutcome (choose a plan) and objects (tier, interval, FAQ) with priority\nbefore layout; load ui-reasoning then responsive-adaptive + visual-design\nlast; specify toggle/FAQ states; return a handoff — no production code.\n\n```\nRedesign the web app's project list empty state and filtered-empty state\nso they feel consistent with the rest of the product.\n```\n\nExpected approach: distinguish empty vs filtered-empty as different\nstates with different next actions; load states + interaction-and-states;\npropose layout, copy placement, and dead-chrome removal from that model;\nreturn a handoff — no code.",
@@ -129,7 +205,22 @@
         "root-cause",
         "regression-testing"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "plan"
+          ]
+        }
+      },
+      "worksOn": [
+        "bug"
+      ],
       "overview": "A bug report invites an immediate patch, but a fix built on a guessed\ncause instead of a confirmed one tends to hide the symptom rather than\nremove it, or breaks something else that was working. This skill is the\ninvestigation-and-planning step for a reported problem: pin down what was\nexpected, what was actually observed, and the strongest available\nreproduction signal; trace the cause through the real code, logs, and\nrecent changes rather than the first plausible story; and return a plan\nfor the smallest fix that addresses the confirmed cause, with a way to\nverify it against the original symptom. It investigates and plans; it does\nnot edit code.",
       "whenToUse": "- A bug, defect, error, or \"X is broken\" report exists and the next needed\n  output is a diagnosis and fix plan, not an immediate patch.\n- The symptom is described but the cause isn't yet confirmed, and evidence\n  (a reproduction, logs, recent changes) exists or can be gathered from\n  the codebase or system.\n- The user explicitly wants the cause and approach separated from\n  implementation — \"figure out what's wrong first\", \"plan the fix, don't\n  apply it yet\".",
       "examples": "```\nUsers report that exporting a project to CSV sometimes comes back empty.\nCan you figure out what's going on and plan the fix?\n```\n\nExpected approach: get or build a reproduction (a project size or shape\nthat triggers it), trace the export code path, compare an export that\nworks against one that comes back empty, confirm the cause (e.g. an\nexception silently swallowed past some row count) with the actual\nevidence, then plan the smallest fix — e.g. stop swallowing that\nexception and surface it — paired with rerunning the reproduction and a\nregression test for that project shape.\n\n```\nSome users see their dashboard widgets randomly reorder after a page\nrefresh. No error is thrown. Investigate and plan the fix.\n```\n\nExpected approach: get a concrete reproduction (which widget set, browser,\naccount state triggers it), read the widget-ordering code and any recent\nchanges to it, compare a session where order is stable against one where\nit isn't, form and test hypotheses one at a time (e.g. an unstable sort,\na race between two writes of the same preference, a missing tiebreaker)\nuntil one is confirmed by evidence, then plan a fix that addresses that\nspecific cause, with verification against the original reproduction plus\na regression test asserting stable order across repeated refreshes.",
@@ -147,7 +238,20 @@
         "requirements",
         "architecture"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "plan"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "Turning a feature request straight into code skips the step where the request meets the real system: what already exists, what it assumes, what must keep working, and where the request is actually ambiguous. This skill produces that missing step — an implementation plan grounded in the actual codebase (not the request text alone) that names the current behavior, the desired behavior, the decisions that had to be made to get from one to the other, and the checkable increments another agent can execute without rejoining this conversation.",
       "whenToUse": "- A feature request, change request, or bug-fix request arrives and the next expected output is a plan, spec, or design — not a diff — e.g. \"plan how we'd add X\", \"write an implementation plan for Y\", \"spec this out before anyone codes it\", \"what would it take to change Z\".\n- The request touches existing, non-trivial behavior (an existing endpoint, data model, UI flow, integration, or user-facing contract) where getting the current behavior wrong would produce a plan nobody can execute safely.\n- The user explicitly wants investigation and decisions separated from implementation (\"don't build it yet, just figure out the approach\").",
       "examples": "```\nWe need to let users export their project data as a CSV. Can you plan how\nwe'd build that before anyone writes code?\n```\n\nExpected approach: find the existing project/data model and any current\nexport or serialization code, note what \"project data\" concretely includes\ntoday, decide (or ask, if genuinely ambiguous) what belongs in the export,\npreserve existing API/permission boundaries, and return a plan with steps\nlike \"add an export endpoint,\" \"stream large projects instead of loading\nthem fully,\" each paired with how it'll be verified (e.g. a test with a\nproject over the in-memory threshold).\n\n```\nWe want to let a team have more than one admin instead of exactly one.\nPlan the change before anyone implements it.\n```\n\nExpected approach: find where \"admin\" is currently modeled and enforced\n(schema, permission checks, UI that assumes a single admin), state current\nvs. desired behavior precisely (exactly-one vs. one-or-more), identify\ninvariants to preserve (existing single-admin teams must keep working\nunchanged), decide how the transition/migration works for existing teams,\nand produce increments such as \"relax the schema constraint,\" \"update\npermission checks to allow multiple admins,\" \"add an admin-management UI\naffordance,\" each paired with its own verification.",
@@ -165,7 +269,20 @@
         "code-quality",
         "architecture"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "plan"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "A refactor plan is judged by a different standard than a feature plan: not\n\"is the new behavior correct\" but \"did anything observable change at all.\"\nJumping straight to moving code skips the step where that standard gets\nestablished — what the current structure actually does, which of its\neffects callers depend on, and how a reviewer would tell a safe\ntransformation from one that quietly changed something. This skill produces\nthat missing step: a plan that names the concrete maintenance problem, fixes\nthe invariants the change must preserve, records the baseline evidence for\nthem, and breaks the work into small transformations a reviewer can check\none at a time — without doing any of the moving itself.",
       "whenToUse": "- The ask is to plan reducing duplication, splitting a tangled module,\n  extracting a function/component, renaming for clarity, collapsing a dead\n  abstraction, or otherwise restructuring code that already works — before\n  anyone starts moving code.\n- Someone says \"plan how we'd clean this up,\" \"what would it take to split\n  this module,\" or \"figure out the safest way to extract this, don't do it\n  yet.\"\n- The request is explicitly scoped as internal-only (no new capability, no\n  different output, no different API response) and wants the approach and\n  risk worked out before execution.",
       "examples": "```\nThis file has the same validation logic copy-pasted across four handler\nfunctions. Plan how we'd extract it into one shared helper without changing\nwhat any handler returns — don't write the change yet.\n```\n\nExpected approach: name the problem (validation duplicated across four\nhandlers), freeze invariants (each handler's current return value and error\nresponse for valid/invalid input), inspect existing tests and note which\nhandlers lack coverage for those cases, plan characterization tests for the\ngaps, then plan the extraction as one small step per handler (each paired\nwith a check that the handler's response is unchanged), name the stopping\ncondition (all four handlers call the shared helper, no handler's response\nchanged), and return the plan without touching the handlers.\n\nWhen the named problem is a broken dependency boundary rather than\nduplicated logic, see\n[references/worked-example-dependency-boundary.md](references/worked-example-dependency-boundary.md)\nfor a worked example.",
@@ -184,7 +301,20 @@
         "product-planning",
         "usability"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "plan"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "Jumping straight from a request to screens skips the step where the\nrequest meets how people actually accomplish things: who's involved, what\nthey're acting on, what they're trying to get done, and what the product\nalready trains them to expect. This skill produces that missing step — a\nplatform-independent interaction model grounded in the actual request and\nexisting product context, worked through in order from actors down to\nvisual hierarchy, that names the interaction and information decisions a\nlater implementation plan or UI change can rely on without re-deriving\nthem. It plans the experience; it does not design or build the surface.",
       "whenToUse": "- A feature request, change request, defect, or small scoped task names\n  user-facing behavior, and the next needed output is an interaction model\n  or UX plan — not an implementation plan and not a finished interface.\n- The request touches objects, actions, or flows a user interacts with\n  (new, changed, or removed) where getting the interaction model wrong\n  would make anything built from it hard to use or inconsistent with the\n  rest of the product.\n- Someone explicitly wants the experience designed before the surface —\n  \"plan how this should work before we design the screens\", \"what's the\n  interaction model here\".",
       "examples": "```\nWe're adding the ability for a team to archive a project instead of only\ndeleting it. Plan the UX before anyone designs the screens.\n```\n\nExpected approach: find how \"project\" and \"delete\" already work in the\nproduct, model the new archived state and who can act on it, note that\narchive is reversible where delete isn't (so it doesn't need the same\nprotection as delete), define what an archived project looks like in\nexisting lists/navigation and what actions remain available on it, then\nreturn use cases (archive a project, view archived projects, restore one)\neach with priority, an interaction model, and a verification scenario —\nwithout designing the actual screen.\n\nWhen priority must be derived from an external signal (e.g. how often\nsupport says something comes up) rather than stated directly in the\nrequest, see\n[references/worked-example-invites.md](references/worked-example-invites.md)\nfor a worked example.",
@@ -201,7 +331,20 @@
         "code-quality",
         "testing"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "code"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "Refactoring work drifts in two common ways: it quietly changes behavior\nwhile looking like a cleanup, or it never stops because \"while we're in\nhere\" keeps expanding the scope. This skill is a procedure for the\nnarrower, more disciplined version of the job — improving how code is\nstructured without changing what it does. It exists separately from\ngeneral implementation work because the two need different defaults: a\nfeature change is judged by whether the new behavior is correct, while a\nrefactor is judged by whether *no* behavior changed at all. Mixing the two\nin one patch makes it impossible to tell, from the diff alone, which lines\nwere supposed to change what.",
       "whenToUse": "- The ask is to reduce duplication, split up a tangled module, extract a\n  function/component, rename something for clarity, collapse dead\n  abstraction, or otherwise reorganize code that already works.\n- Someone says \"clean this up,\" \"this file is doing too much,\" \"extract a\n  helper for this,\" or \"simplify this without changing what it does.\"\n- A change is described as internal-only: no new capability, no different\n  output, no different API response — just a different shape internally.",
       "examples": "```\nThis file has the same validation logic copy-pasted across four handler\nfunctions. Extract it into one shared helper without changing what any\nhandler returns.\n```\n\nExpected approach: name the problem (validation duplicated across four\nhandlers), freeze invariants (each handler's current return value and\nerror response for valid/invalid input), confirm or add tests covering\neach handler's current validation behavior, extract one shared helper and\nswitch handlers to it one at a time, inspect each step's diff including\nany test changes, then run the full handler test suite and confirm all\nfour still return exactly what they did before reporting the change as\ndone.\n\nWhen the named problem is a broken dependency boundary rather than\nduplicated logic, see\n[references/worked-example-dependency-boundary.md](references/worked-example-dependency-boundary.md)\nfor a worked example.",
@@ -219,7 +362,20 @@
         "sources",
         "technical-question"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "research"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "Technical questions often get answered from memory or from the first search\nresult, and the confidence of the answer ends up disconnected from how much\nwas actually checked. This skill is a procedure for answering one defined\ntechnical question — how something behaves, whether a claim holds, or how\ntwo options compare — by scoping the question, finding and reading primary\nsources, actively checking for contradicting evidence, and returning an\nanswer that keeps evidence, uncertainty, and recommendation visibly\nseparate instead of blended into one confident-sounding paragraph.",
       "whenToUse": "- The user asks how an external library, API, protocol, or standard\n  actually behaves — e.g. \"How does library X's v3 API actually handle\n  retries?\"\n- The user asks whether a specific technical claim is true, and wants it\n  checked rather than taken on faith — e.g. \"Is it true that Postgres\n  logical replication can't handle DDL changes?\"\n- The user wants two technical options compared against a defined\n  criterion — e.g. \"Compare gRPC vs REST for our mobile client's battery\n  usage.\"\n- The user asks for a current external fact that could have changed —\n  pricing, an API surface, a spec, a rate limit — for a product or\n  standard, and wants it verified against current sources rather than\n  recalled from memory.",
       "examples": "```\nDoes library X's v3 API still support the Y callback, or was it removed?\n```\n\nExpected approach: scope to the exact library/version and the specific\ncallback, check the official changelog/migration guide and the source\nitself (not a blog post referencing the change), and return an answer that\nseparates the direct finding (\"removed in v3.0, per the migration guide\")\nfrom decisive evidence (the changelog entry and the relevant source diff),\nany uncertainty (e.g. whether a compatibility shim exists), and coverage\ngaps (e.g. couldn't check an unreleased pre-release branch).\n\nWhen the question is a comparison between two options rather than a single\nfact-check, see\n[references/worked-example-comparison.md](references/worked-example-comparison.md)\nfor a worked example, including normalizing claims to stated constraints.",
@@ -238,7 +394,20 @@
         "requirements",
         "risk-assessment"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "review"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "A plan is cheapest to fix before anyone builds from it, but only if the\nreview actually checks the things that make a plan executable: that its\nclaims about current behavior are true, that its decisions and open\nquestions are visible rather than smoothed over, and that its steps are\nconcrete enough for someone else to execute without rejoining the original\nconversation. This skill is a procedure for reviewing one fixed version of\nan implementation plan against the requirements it's supposed to satisfy and\nthe real system it describes — checking current/desired behavior,\ninvariants, decisions, open questions, dependencies, testable increments,\nverification, and approval points — and flagging unsupported assumptions and\nnon-executable vagueness with evidence. It reviews and reports; it does not\nrewrite or implement the plan.",
       "whenToUse": "- A written plan, spec, or design doc exists — agent- or human-written —\n  and needs a check before implementation starts: \"review this plan\", \"is\n  this spec ready to build from\", \"check this implementation plan before\n  we execute it\".\n- Someone wants to know whether a plan's \"current behavior\" claims are\n  actually true, whether its decisions and open questions are visible, or\n  whether its steps are concrete enough for another agent to execute.\n- A plan needs checking against the original request or requirements it was\n  supposed to satisfy, not just read for internal consistency.",
       "examples": "```\nHere's the plan for letting a team have more than one admin (pasted below).\nReview it against the original request before anyone implements it.\n```\n\nExpected approach: fix the plan text and the original request (teams should\nsupport one-or-more admins instead of exactly one) as the baseline; check\nthe plan's stated goal against that request; inspect the actual\nadmin-permission code to confirm its \"current behavior\" claims (e.g. \"admin\nis enforced as a single foreign key\") are accurate; check that the\nmigration path for existing single-admin teams is a visible decision, not\nan unstated assumption; check each implementation step is concrete enough\nto execute (e.g. \"update permission checks\" without naming which checks is\ntoo vague) and has a mapped verification; check any behavior-changing step\nis marked for approval; validate any suspected gap against the code before\nreporting it; and return confirmed gaps, open questions, and optional\nimprovements with an overall readiness verdict.\n\nWhen reviewing a bug-fix plan that names a specific root cause, see\n[references/worked-example-bug-fix-plan.md](references/worked-example-bug-fix-plan.md)\nfor a worked example of validating that claim and flagging a missing test\nplan.",
@@ -256,7 +425,20 @@
         "regressions",
         "testing"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "review"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "A refactor is judged by a stricter bar than a normal change: nothing\nobservable is supposed to be different. That bar is easy to violate quietly\n— a \"just a rename\" diff that also changes a return value, a \"just an\nextraction\" that drops an error path, a \"cleanup\" that fixes a bug or adds a\ncapability along the way, or a test that was loosened just enough to let a\nreal behavior change through green. This skill is a procedure for reviewing\none concrete change that's been claimed as behavior-preserving: fix the\nchange range and the invariants/baseline it's supposed to preserve, check\nbehavioral equivalence against them, check the diff didn't grow into\napproved-behavior work while looking structural, inspect the test diff for\nweakened coverage, and judge whether the named structural problem was\nactually solved — all without demanding a different architecture as a\nmatter of taste. It reviews and reports; it does not edit the code or\nperform the refactor itself.",
       "whenToUse": "- A diff, PR, commit range, or branch is presented as a refactor —\n  \"behavior-preserving,\" \"just cleanup,\" \"no functional change,\" \"internal\n  only\" — and needs checking against that claim before merge.\n- Someone wants to know whether a \"simple rename/extraction/reorg\" quietly\n  changed what the system does, drops state, or weakens a permission check.\n- A refactor's test diff needs scrutiny for deleted cases, relaxed\n  assertions, or altered snapshots/mocks/fixtures that could be hiding a\n  behavior change behind a passing suite.\n- A change claims to solve a specific structural problem and it's unclear\n  whether it actually solved it, left the problem half-done, or expanded\n  into adjacent restructuring beyond what was named.",
       "examples": "```\nReview this PR: it claims to extract the duplicated discount-calculation\nlogic from three checkout handlers into one shared function, behavior\nunchanged. Base is main.\n```\n\nExpected approach: fix the range (PR vs main), pull the named problem\n(duplicated discount logic across three handlers) and invariants (each\nhandler's current discount output and error behavior for the same inputs),\ncheck scope purity (confirm no handler's actual discount math changed),\ncheck equivalence by comparing each handler's output before/after for the\nsame inputs, read the full test diff for any relaxed discount assertions,\njudge whether all three call sites now genuinely share the one function\n(not two still duplicated and one migrated), validate any suspected mismatch\nby running the handler tests, and report confirmed regressions, open\nquestions, and optional improvements separately with an overall verdict.\n\nWhen no invariants were stated and must be derived from the code itself,\nsee\n[references/worked-example-no-invariants.md](references/worked-example-no-invariants.md)\nfor a worked example.",
@@ -275,7 +457,20 @@
         "regressions",
         "quality"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "review"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "Code review quality tends to drift toward whatever the diff itself shows,\nskipping the two things that catch the worst bugs: checking the change\nagainst what was actually asked for, and validating a suspicion before\ncalling it a defect. This skill is a fixed procedure for reviewing one\nconcrete code change — a diff, PR, commit range, or branch against a named\nbase — for defects, regressions, requirement gaps, and important risks. It\nchecks requirement coverage and system integration (callers, state,\npermissions, interfaces, tests, side effects), validates every suspected\nissue before it counts as a finding, and returns prioritized, structured\nfindings. It reviews and reports; it does not edit the code under review.",
       "whenToUse": "- The user asks to review a diff, pull request, branch, or commit range —\n  \"review this PR\", \"review my changes before I merge\", \"did this diff\n  break anything\", \"check this change for defects or regressions\".\n- A change needs checking against its original requirements or acceptance\n  criteria, not just a general code-quality pass.\n- Someone wants a second look at a change's blast radius — callers, state,\n  permissions, interfaces, tests, side effects — before it ships.",
       "examples": "```\nReview PR #482 (feature/order-status-filter branch vs main) for defects\nbefore merge. Acceptance: invalid status returns 400; omitted status\nreturns all orders (unchanged).\n```\n\nExpected approach: fix the baseline (feature/order-status-filter vs main\nat the PR's current head), check the diff against the stated acceptance\ncriteria (invalid-status handling, omitted-status behavior), check\nintegration with the route's existing callers/tests/permissions, validate\nany suspected issue (e.g. by reading the validation code or running the\nroute's tests) before reporting it, and return confirmed defects, open\nquestions, and optional improvements as separate groups — without editing\nthe PR.\n\n```\nReview my last three commits on this branch against main. I don't have a\nwritten spec, just: \"add retry logic to the payment webhook handler.\"\n```\n\nExpected approach: fix the range (last three commits vs main), note the\nrequirement is informal and check the diff against that stated intent\n(retry logic added, existing webhook behavior otherwise preserved), inspect\nintegration (callers of the handler, idempotency/state on retry,\nerror/side-effect behavior), validate any suspected defect (e.g. a\nduplicate-charge risk) against the actual code path before reporting it,\nand flag anything that can't be checked (e.g. no test suite access) as a\nnamed coverage gap rather than skipping it silently.",
@@ -297,7 +492,20 @@
         "ui",
         "defects"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "review"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "Native UI review drifts toward opinions about visual style unless it's\nanchored to the same model used to design the surface: outcome, objects,\nactions, concepts, use cases, and priority — then platform conventions,\nlifecycle, and the real accessibility tree. This skill is a fixed\nprocedure for reviewing one concrete native interface — a built screen,\nflow, or release candidate on a named app/platform/version. It\n**reconstructs** that model from evidence, walks important use cases on\nthe running interface, then checks HIG/Material/Fluent/GNOME conventions\nand a11y. It does not start from whether a screenshot looks good. It\nreviews and reports; it does not edit the interface.",
       "whenToUse": "- The user asks to review a native screen, flow, or build — \"review this\n  iOS screen before release\", \"check this Android flow for accessibility\n  issues\", \"does this desktop dialog follow platform conventions\", \"audit\n  this native interface for lifecycle bugs\".\n- A built native interface needs checking against platform HIG/Material/\n  Windows conventions, the app's own established patterns, or its\n  state/lifecycle and accessibility behavior — not just a general visual\n  pass.\n- Someone wants a second look at how an interface handles interruption,\n  restoration, permissions, adaptive layout, or assistive technology before\n  it ships.",
       "examples": "```\nReview the iOS \"Order details\" screen on the current App Store build\nbefore we ship an update to it. iOS 17+, SwiftUI.\n```\n\nExpected approach: fix the target (iOS 17+, SwiftUI, current App Store\nbuild, \"Order details\" screen); reconstruct outcome/objects/actions/\nconcepts/priority from the handoff or running UI before judging chrome;\ninspect the real screen on a simulator or device rather than just the\nsource; walk the important use cases; check navigation/presentation\nagainst current Apple HIG, state ownership/lifetime across backgrounding\nand rotation, Dynamic Type, and VoiceOver labels/reading order; validate\nany suspected issue against the running interface or HIG before reporting\nit; separate a confirmed defect (e.g. a control missing a VoiceOver\nlabel) from a subjective preference (e.g. \"I'd make this button bigger\"\nwith no usability basis); report confirmed defects, open questions, and\noptional improvements with environment evidence (simulator vs. device,\niOS version used).\n\nWhen the target platform is Android rather than iOS, see\n[references/worked-example-android.md](references/worked-example-android.md)\nfor a worked lifecycle/accessibility review.",
@@ -316,7 +524,20 @@
         "interaction-design",
         "usability"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "review"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "An experience can look reasonable and still fail the people using it: a\npriority action buried behind a rarely used one, a state with no way back,\na decision made without the information it needs, or a layout whose extra\ncontainers and uneven spacing quietly work against the hierarchy it's\nsupposed to show. This skill is a fixed procedure for reviewing one\nproposed or implemented experience — a mockup, a written interaction\nplan/spec, or a built screen/flow, on any platform or technology — against\nits own product model rather than against visual preference or a specific\nbuild's rendering and platform mechanics. It reconstructs Outcome →\nObjects → Actions → Concepts → Use cases → Priority (1–5) → States\nfrom evidence first — the same order used to design the surface — then\nwalks those use cases. It does not start from whether a screenshot looks\ngood. Then it checks whether the experience makes those use cases\nunderstandable, executable, consistent, and recoverable, and whether its\nstructure (alignment, containers, rhythm) reinforces that model instead of\njust decorating it. It exercises the real interface when the target is\nimplemented and tooling permits, but a proposed experience with no running\ninterface yet is still a valid target. It reviews and reports; it does not\nmodify the reviewed implementation.",
       "whenToUse": "- A proposed experience (mockup, wireframe, written plan/spec) or an\n  implemented one (a specific build, screen, or flow, on any platform)\n  needs a UX pass on whether its prioritized use cases work against the\n  product's own model — distinct from whether a build renders, performs,\n  or complies with platform mechanics.\n- Hierarchy, grouping, progressive disclosure, recovery paths, and\n  continuity need checking against the experience's own stated or evident\n  priorities — not a generic best-practices checklist or a visual-style\n  opinion.\n- A screen or plan's structure (alignment axes, containers, spacing,\n  rhythm) needs checking for whether it supports the intended hierarchy\n  and grouping, distinct from matching a particular visual style.",
       "examples": "```\nHere's a wireframe for a new \"project archive\" flow (attached). Review it\nfor UX problems before we build it.\n```\n\nExpected approach: fix the wireframe as the target; establish the model\nfrom it and from how \"project\" is already handled elsewhere in the\nproduct; walk the prioritized use case (archive without losing access to\ndata) for entry, consequence, and reversibility; since nothing is built\nyet, trace the walkthrough through the wireframe instead of exercising a\nreal interface, and note that explicitly; separate a confirmed problem (no\nrestore action shown) from a question (is archiving reversible for every\nrole? — unclear from the wireframe).\n\nWhen the target is an implemented, running build rather than a proposed\nartifact, see\n[references/worked-examples.md](references/worked-examples.md) for a\nfull walkthrough including a state × action matrix.",
@@ -335,7 +556,20 @@
         "consistency",
         "web"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "review"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "A finished screen can look plausible in a screenshot and still fail the\ntask it exists for. This skill reviews one **implemented** web interface\nagainst the same model used to design it: reconstruct Outcome → Objects →\nActions → Concepts → Use cases → Priority, walk those use cases in a\nrunning browser, then check states, hierarchy, a11y, and the design\nsystem. It does not start from whether the page \"looks good.\" It reviews\nand reports; it does not edit the interface.",
       "whenToUse": "- A newly built or changed web screen, component, or flow needs an\n  independent UX/quality pass before or after it ships — \"audit this page\",\n  \"review this flow for UX problems\", \"is this screen accessible and\n  consistent with the rest of the app\".\n- Someone wants to know whether an implemented interface's states (loading,\n  empty, error, permission-limited, long-content, narrow/wide) actually work,\n  not just whether the happy path renders.\n- A screen needs checking against the product's established interaction\n  patterns, spacing/typography scale, terminology, and information hierarchy\n  rather than against generic best-practice checklists alone.",
       "examples": "```\nReview the new /settings/billing page (staging, build abc123) for UX and\naccessibility problems before it ships.\n```\n\nExpected approach: fix the target (staging, that route, that build);\nreconstruct outcome, objects, actions, concepts, and priority (1–5) from\nthe product model and the running page — not from whether the screenshot\nlooks good; inspect the real page; walk the important use cases (view\nplan, update payment method, cancel) with the twelve questions; exercise\nloading, empty (no payment method), error (failed update), and\npermission-limited (non-admin) states; check keyboard/focus and state\npreservation across a validation error; check hierarchy against declared\npriority; validate each suspected issue against rendered output or the\ndesign system before reporting it; return confirmed defects, open\nquestions, and optional improvements as separate groups without editing\nthe page.\n\nWhen comparing a redesign against a prior version rather than reviewing a\nsingle build, see\n[references/worked-examples.md](references/worked-examples.md) for a\nworked example, including matched-condition screenshot comparison.",
@@ -353,7 +587,20 @@
         "acceptance-criteria",
         "evidence"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": [
+            "review"
+          ]
+        }
+      },
+      "worksOn": [],
       "overview": "A completion claim (\"this is done\", a PR ready for review, an Initiative,\nBug, or TODO moved to review) is a claim, not evidence. This skill is a\nprocedure for\nindependently checking that claim: map the stated acceptance criteria to\nconcrete checks, run those checks against the final, integrated state of\nthe implementation, and report exactly what passed, what failed, and what\ncould not be verified at all. It never repairs what it finds — fixing is a\nseparate, later step owned by whoever invoked this skill.",
       "whenToUse": "- An implementation, PR, or Initiative/Bug/TODO is claimed complete and\n  needs an independent pass to confirm it actually satisfies its\n  acceptance criteria before it's accepted.\n- Someone hands off work with \"this should be done\" or \"can you verify\n  this\" and wants a real answer, not a restatement of what was intended.\n- An Initiative, Bug, or TODO is moved to a review/done state and the\n  review step needs evidence, not just the author's word, that each\n  criterion holds.",
       "examples": "```\nVerify the merged PR that adds a `status` filter to GET /api/orders\nagainst its stated acceptance: invalid status returns 400; omitted status\nreturns all orders unchanged; valid status filters correctly.\n```\n\nExpected approach: map each acceptance line to a check (invalid value →\n400, omitted param → unchanged full list, valid value → filtered list);\nrun all three against the merged branch through the real API, not just by\nreading the diff. All three come back matching the stated acceptance, and\nan unrelated test that was already failing on the base branch before this\nPR is confirmed pre-existing rather than attributed to this change; report\nall three criteria as passed with the actual response evidence, and note\nthe endpoint's existing pagination behavior as out of scope for this\nverification.\n\nWhen a criterion depends on an environment that isn't fully reachable, see\n[references/worked-example-partial-environment.md](references/worked-example-partial-environment.md)\nfor a worked example of reporting the reachable and unreachable parts\nseparately.",
@@ -371,7 +618,18 @@
         "error-messages",
         "accessibility"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": []
+        }
+      },
+      "worksOn": [],
       "overview": "This skill writes copy for one specific, already-decided interface moment\n— a state, action, error, confirmation, or recovery path — not whole\nflows or products, and not the decision about what the interface should\ndo. It produces copy grounded in what the interface actually does at that\nmoment, not invented behavior: the copy is only as specific as what the\nimplementation can actually establish, and it always points to a real next\naction.",
       "whenToUse": "- Writing or rewriting a loading, success, or validation message.\n- Writing an error string, including a server-failure or permission-denied\n  message.\n- Writing an empty state (first-use or filtered-empty) or a\n  destructive-action confirmation dialog.\n- Writing a retry or recovery message for a failed action.\n\nDon't use this for marketing or landing-page copy, naming a feature or\nproduct, copy for a state that hasn't been implemented or decided yet\n(resolve that first), or translating existing copy into another language.",
       "examples": "```\nWrite the error copy for a failed file upload. The API can return a\nsize-limit error, a network error, or a generic server error.\n```\n\nExpected approach: inspect the actual error the API returns for each\ncase rather than assuming one generic message; write copy for what could\nnot complete plus the real retry or next action for each case; if the UI\ncurrently can't tell two of these causes apart, flag that instead of\ninventing distinct messages for causes the code can't actually\ndistinguish.\n\n```\nWrite the confirmation dialog for \"Delete project.\"\n```\n\nExpected approach: check the actual behavior to confirm whether deletion\nis recoverable (e.g. a trash/undo window) or permanent; name the project\nand the real consequence in the dialog body; put \"Delete project\" — not\n\"OK\" or \"Confirm\" — on the confirming button.",
@@ -390,7 +648,18 @@
         "cta",
         "conversion"
       ],
-      "compatibility": [],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": [],
+        "oneHorizon": {
+          "taskModes": []
+        }
+      },
+      "worksOn": [],
       "overview": "This skill writes or rewrites product website copy — a homepage, landing\npage, pricing page, feature page, about page, or similar — for one already-\ndefined reader, page purpose, offer, and next action. It produces copy\ngrounded in approved facts and real material conditions, not invented proof,\nurgency, or outcomes: a benefit only appears if a supported capability backs\nit, and the call to action only promises what the offer actually delivers.",
       "whenToUse": "- Writing new copy for a website page once the audience, purpose, offer, and\n  approved facts are known.\n- Rewriting or tightening existing page copy — a headline, subheadline,\n  body section, or CTA — against the same defined reader and offer.\n- Producing headline or CTA options for a page where the underlying strategy\n  (what the page is for, what it offers) is already decided.",
       "examples": "```\nRewrite the hero section of our pricing page. Reader: a solution-aware\nevaluator comparing us to two competitors. Offer: 14-day free trial, no\ncard required, cancel anytime. Approved facts: SOC 2 Type II, 99.9% uptime\nSLA, works with our three listed integrations. Voice: direct, no hype.\n```\n\nExpected approach: state the proposition (what the product does, for whom,\nwhat changes) in the headline; use only SOC 2, uptime, and the named\nintegrations as proof; keep \"14-day free trial, no card required, cancel\nanytime\" exact in the CTA area; no invented urgency or comparison claims\nagainst the named competitors beyond what's approved; check the draft in\nthe actual pricing page layout before calling it done.\n\n```\nGive me three headline options for the feature page for our new export\ntool. Approved fact: exports to CSV and Sheets today; PDF is not supported\nyet.\n```\n\nExpected approach: produce three genuinely different angles (e.g. framed\naround the workflow it removes, the formats it supports, the audience it\nserves) rather than three reorderings of one sentence; keep PDF out of all\nthree since it isn't an approved capability; flag if any angle would need a\nfact that isn't on the approved list.",

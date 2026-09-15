@@ -20,9 +20,13 @@ import {
 const schema = JSON.parse(readFileSync(join(REPO_ROOT, "schema", "skill.schema.json"), "utf8"));
 const categoriesDoc = JSON.parse(readFileSync(join(REPO_ROOT, "schema", "categories.json"), "utf8"));
 const runtimesDoc = JSON.parse(readFileSync(join(REPO_ROOT, "schema", "runtimes.json"), "utf8"));
+const taskModesDoc = JSON.parse(readFileSync(join(REPO_ROOT, "schema", "task-modes.json"), "utf8"));
+const workObjectsDoc = JSON.parse(readFileSync(join(REPO_ROOT, "schema", "work-objects.json"), "utf8"));
 
 const VALID_CATEGORIES = new Set(categoriesDoc.categories.map((c) => c.id));
 const VALID_RUNTIMES = new Set(runtimesDoc.runtimes.map((r) => r.id));
+const VALID_TASK_MODES = new Set(taskModesDoc.taskModes.map((m) => m.id));
+const VALID_WORK_OBJECTS = new Set(workObjectsDoc.workObjects.map((o) => o.id));
 const KEBAB_CASE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const OPENAI_INTERFACE_FIELDS = new Set([
   "display_name",
@@ -231,15 +235,47 @@ function checkSkillMd(label, frontmatter, body, baseDir) {
   }
 
   if (metadata.compatibility !== undefined) {
-    if (!Array.isArray(metadata.compatibility)) {
-      fail(label, "`metadata.compatibility` must be an array");
-    } else {
-      for (const runtime of metadata.compatibility) {
-        if (!VALID_RUNTIMES.has(runtime)) {
-          fail(label, `\`metadata.compatibility\` entry "${runtime}" is not in schema/runtimes.json`);
+    const runtimes = metadata.compatibility.runtimes;
+    if (runtimes !== undefined) {
+      if (!Array.isArray(runtimes)) {
+        fail(label, "`metadata.compatibility.runtimes` must be an array");
+      } else {
+        for (const runtime of runtimes) {
+          if (!VALID_RUNTIMES.has(runtime)) {
+            fail(label, `\`metadata.compatibility.runtimes\` entry "${runtime}" is not in schema/runtimes.json`);
+          }
         }
       }
     }
+
+    const taskModes = metadata.compatibility.oneHorizon?.taskModes;
+    if (taskModes !== undefined) {
+      if (!Array.isArray(taskModes)) {
+        fail(label, "`metadata.compatibility.oneHorizon.taskModes` must be an array");
+      } else {
+        for (const mode of taskModes) {
+          if (!VALID_TASK_MODES.has(mode)) {
+            fail(label, `\`metadata.compatibility.oneHorizon.taskModes\` entry "${mode}" is not in schema/task-modes.json`);
+          }
+        }
+      }
+    }
+  }
+
+  if (metadata.worksOn !== undefined) {
+    if (!Array.isArray(metadata.worksOn)) {
+      fail(label, "`metadata.worksOn` must be an array");
+    } else {
+      for (const object of metadata.worksOn) {
+        if (!VALID_WORK_OBJECTS.has(object)) {
+          fail(label, `\`metadata.worksOn\` entry "${object}" is not in schema/work-objects.json`);
+        }
+      }
+    }
+  }
+
+  if (metadata.source !== undefined && metadata.source.kind === "one-horizon") {
+    fail(label, "`metadata.source` with kind \"one-horizon\" should be omitted — the index build applies this default automatically");
   }
 
   const sections = extractSections(body);
