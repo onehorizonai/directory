@@ -23,6 +23,8 @@ directory/
     skill.schema.json         # JSON Schema for SKILL.md frontmatter
     categories.json           # closed list of allowed categories
     runtimes.json             # closed list of runtime ids
+    task-modes.json           # closed list of One Horizon workflow task modes
+    work-objects.json         # closed list of One Horizon work-object kinds
   scripts/
     validate.mjs              # validates every skills/*/SKILL.md
     build-index.mjs           # generates index.json + marketplace.json
@@ -57,10 +59,24 @@ committed, and diff-checked in CI — keep them in sync with `SKILL.md`.
      invoke the skill — not marketing copy for humans.
    - Fill in `metadata.title`, `metadata.tagline` (≤160 chars), and
      `metadata.category` (an id from `schema/categories.json`).
-   - Add `metadata.tags` and/or `metadata.compatibility` if relevant
-     (`compatibility` values must come from `schema/runtimes.json`; omit
-     it entirely if the skill works on any Agent-Skills-compatible
-     runtime).
+   - Add `metadata.tags` if relevant.
+   - Add `metadata.compatibility.runtimes` if the skill depends on
+     specific tooling (values from `schema/runtimes.json`); omit it
+     entirely if the skill works on any Agent-Skills-compatible runtime.
+   - Add `metadata.compatibility.oneHorizon.taskModes` if the skill is
+     intended for a specific One Horizon workflow step (values from
+     `schema/task-modes.json`; see the mode mapping below). Omit
+     `oneHorizon` entirely for skills that aren't workflow-bound (design
+     and copywriting skills, for example).
+   - Add `metadata.worksOn` only when the skill genuinely doesn't apply to
+     every One Horizon work object (values from `schema/work-objects.json`,
+     e.g. `bug` for a bug-only skill). Omit it when the skill applies
+     equally to any object.
+   - Add `metadata.source` only for an external submission that should
+     preserve its original provenance (`kind: external`, plus
+     `repository` and `maintainer`). Omit it for skills authored/
+     maintained in this repo — the index build fills in this repo's own
+     provenance (`kind: one-horizon`) automatically.
    - Write the three required body sections: `## Overview`,
      `## When to use`, `## Examples`.
    - Add `references/`, `scripts/`, or extra `assets/` as needed, and
@@ -100,8 +116,14 @@ Mirrors what `npm run validate` checks:
       chars.
 - [ ] `metadata.category` is one of `schema/categories.json`.
 - [ ] `metadata.tags`, if present, are lowercase-kebab with no duplicates.
-- [ ] `metadata.compatibility`, if present, values are from
+- [ ] `metadata.compatibility.runtimes`, if present, values are from
       `schema/runtimes.json`.
+- [ ] `metadata.compatibility.oneHorizon.taskModes`, if present, values
+      are from `schema/task-modes.json`.
+- [ ] `metadata.worksOn`, if present, values are from
+      `schema/work-objects.json`.
+- [ ] `metadata.source`, if present, has `kind: external` (curated skills
+      omit `source` and get the repo's default provenance automatically).
 - [ ] Body has non-empty `## Overview`, `## When to use`, and
       `## Examples`.
 - [ ] Relative links to `references/`, `assets/`, or `scripts/` resolve.
@@ -124,6 +146,14 @@ Skills describe work with a small set of modes (maintainer index — do
   already-approved change and verifies it.
 - **Verify** — independently checks a completion claim after the fact.
 - **Write** — produces copy for an already-decided scope.
+
+When a skill's mode above maps onto a One Horizon workflow step, set
+`metadata.compatibility.oneHorizon.taskModes` to the matching wire value
+from `schema/task-modes.json`: Plan → `plan`, Research → `research`,
+Review → `review`, Code / Build / Debug / Refactor → `code`, Verify →
+`review` (there is no separate verifier task mode). Write, and any skill
+outside this mode list (Design, for example), isn't bound to a One Horizon
+workflow step — omit `oneHorizon` for those.
 
 Each skill must stand alone: describe out-of-scope situations by artifact
 type / work state / requested outcome, not by naming another skill. Don't
@@ -166,7 +196,16 @@ https://raw.githubusercontent.com/onehorizonai/directory/main/index.json
       "description": "Runtime-facing trigger text: when an agent should invoke this skill.",
       "category": "productivity",
       "tags": ["example-tag"],
-      "compatibility": ["claude-code", "cursor"],
+      "source": {
+        "kind": "one-horizon",
+        "repository": "onehorizonai/directory",
+        "maintainer": "One Horizon"
+      },
+      "compatibility": {
+        "runtimes": ["claude-code", "cursor"],
+        "oneHorizon": { "taskModes": ["code"] }
+      },
+      "worksOn": ["bug"],
       "overview": "...",
       "whenToUse": "...",
       "examples": "...",
@@ -181,9 +220,19 @@ real skill whose index entry follows this shape.
 
 - `category` values come from `schema/categories.json` — fetch that file
   too if you need display labels rather than raw ids.
-- `compatibility` is an empty array when omitted in frontmatter (skill
-  works on any Agent-Skills-compatible runtime); only list runtimes when
-  the skill is tied to specific tooling.
+- `source` is always present. Curated skills get this repo's default
+  provenance (`kind: "one-horizon"`) automatically when `metadata.source`
+  is omitted; external submissions carry the provenance they declared.
+- `compatibility.runtimes` is an empty array when omitted in frontmatter
+  (skill works on any Agent-Skills-compatible runtime); only list runtimes
+  when the skill is tied to specific tooling.
+- `compatibility.oneHorizon.taskModes` is an empty array when the skill
+  isn't bound to a specific One Horizon workflow step — values come from
+  `schema/task-modes.json` (fetch it for display labels; render plain
+  language like "Useful for planning", not the raw wire value).
+- `worksOn` is an empty array when the skill applies to any One Horizon
+  work object equally — values come from `schema/work-objects.json`
+  (fetch it for display labels like "For bugs").
 - `overview` / `whenToUse` / `examples` are the raw markdown bodies of
   those `SKILL.md` sections — render as markdown on the site.
 - `path` lets the site link to or fetch the full `SKILL.md` via the same

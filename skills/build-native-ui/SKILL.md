@@ -20,6 +20,10 @@ metadata:
     - desktop
     - accessibility
     - ui
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - code
 ---
 
 ## Overview

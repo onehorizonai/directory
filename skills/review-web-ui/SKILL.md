@@ -18,6 +18,10 @@ metadata:
     - ui-audit
     - consistency
     - web
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - review
 ---
 
 ## Overview

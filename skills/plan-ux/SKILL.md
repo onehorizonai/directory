@@ -20,6 +20,10 @@ metadata:
     - information-architecture
     - product-planning
     - usability
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - plan
 ---
 
 ## Overview

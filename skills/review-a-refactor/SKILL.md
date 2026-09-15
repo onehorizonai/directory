@@ -18,6 +18,10 @@ metadata:
     - code-review
     - regressions
     - testing
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - review
 ---
 
 ## Overview

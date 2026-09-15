@@ -16,6 +16,16 @@ export const SKILLS_DIR = join(REPO_ROOT, "skills");
 // and build-index.mjs and has no underscore-prefix exclusion.
 export const TEMPLATE_SKILL_MD_PATH = join(REPO_ROOT, "_template", "SKILL.md");
 
+// Provenance applied to any skill whose frontmatter omits `metadata.source`.
+// Curated skills authored in this repo don't repeat this in all 21+ files;
+// external submissions set `metadata.source` explicitly to preserve their
+// original origin instead of getting this default.
+export const DEFAULT_SOURCE = Object.freeze({
+  kind: "one-horizon",
+  repository: "onehorizonai/directory",
+  maintainer: "One Horizon",
+});
+
 const REQUIRED_SECTIONS = [
   { heading: "## Overview", key: "overview" },
   { heading: "## When to use", key: "whenToUse" },

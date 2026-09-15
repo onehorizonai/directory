@@ -20,6 +20,10 @@ metadata:
     - defects
     - regressions
     - quality
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - review
 ---
 
 ## Overview

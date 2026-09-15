@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Closed list of One Horizon workflow task-mode wire values a skill's metadata.compatibility.oneHorizon.taskModes may pick from. These mirror the WorkflowTaskMode values One Horizon workflows already use — do not invent a mode that doesn't exist there (there is no separate \"verifier\" mode; skills that verify or check work map to \"review\"). Omit metadata.compatibility.oneHorizon entirely on a skill that isn't bound to a specific One Horizon workflow step.",
+  "taskModes": [
+    { "id": "plan", "label": "Plan" },
+    { "id": "code", "label": "Code / Build" },
+    { "id": "review", "label": "Review" },
+    { "id": "research", "label": "Research" },
+    { "id": "execute", "label": "Execute" },
+    { "id": "resolve_conflicts", "label": "Resolve Conflicts" }
+  ]
+}

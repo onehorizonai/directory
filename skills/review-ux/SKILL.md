@@ -21,6 +21,10 @@ metadata:
     - consistency
     - interaction-design
     - usability
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - review
 ---
 
 ## Overview

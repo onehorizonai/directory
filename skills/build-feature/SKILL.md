@@ -16,6 +16,10 @@ metadata:
     - coding
     - implementation
     - testing
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - code
 ---
 
 ## Overview

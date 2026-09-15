@@ -17,6 +17,10 @@ metadata:
     - testing
     - acceptance-criteria
     - evidence
+  compatibility:
+    oneHorizon:
+      taskModes:
+        - review
 ---
 
 ## Overview
