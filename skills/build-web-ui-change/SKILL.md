@@ -55,18 +55,13 @@ change that happens to touch a web component but isn't itself about the
 interface (e.g. a new query param, a validation rule, a backend
 integration).
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read/write access to the target repository, its design system/component
-  library, and its test/build tooling.
-- A way to run the app and inspect it in a real, rendered browser —
-  ideally with browser automation (e.g. Playwright) for repeatable
-  verification; a manual browser check is the floor if that isn't
-  available.
-- The approved UI change itself, ideally with a design/mock reference.
-
-## Inputs
-
+  library, and its test/build tooling. A way to run the app and inspect
+  it in a real, rendered browser — ideally with browser automation (e.g.
+  Playwright) for repeatable verification; a manual browser check is the
+  floor if that isn't available.
 - The approved UI change or design reference.
 - The route/screen it belongs to, and the supported browsers, breakpoints,
   themes, languages, and accessibility target — declared explicitly if not
@@ -130,21 +125,6 @@ integration).
    end and run the project's final-state checks (tests, build, type-check,
    lint) plus the browser verification in
    [Verification](#verification).
-
-The stop/continue decision points in this procedure:
-
-```mermaid
-flowchart TD
-  Start[Approved web UI change] --> Declare[Declare route, breakpoints,<br/>themes, a11y target]
-  Declare --> Inspect[Inspect design system,<br/>API/permission contracts, existing states]
-  Inspect --> Scope{Scope implies framework, routing,<br/>or global token change?}
-  Scope -- Yes --> StopA[Stop: report blocker,<br/>needs explicit prior decision]
-  Scope -- No --> Model[Model objects, actions,<br/>concepts, priority]
-  Model --> Implement[Implement with existing<br/>components/tokens + real states]
-  Implement --> Verify{Verified in a running<br/>browser?}
-  Verify -- No --> StopB[Report as not run,<br/>with the reason]
-  Verify -- Yes --> Done[Report result, evidence,<br/>and any coverage gaps]
-```
 
 ## Output
 
@@ -238,17 +218,7 @@ both states render correctly at narrow and wide viewports, that "Clear
 filters" is reachable and operable by keyboard, and that the transition
 between states doesn't shift the surrounding layout.
 
-```
-Update the account settings page to show a "read-only" banner and disable
-all form fields when the current user's role lacks edit permission, per
-the approved spec.
-```
-
-Expected approach: inspect the actual permission check the API already
-enforces for this page rather than inferring it from the UI; reuse the
-product's existing disabled-field and banner/alert components and tokens;
-confirm the disabled state is exposed to assistive technology (not just
-visually dimmed) and that focus order skips disabled controls sensibly;
-verify both the permitted and read-only cases in a running browser,
-including that the API still rejects an edit attempt server-side even if a
-client bypasses the disabled UI.
+When the change is driven by a permission check rather than a plain data
+state, see
+[references/worked-example-permission-banner.md](references/worked-example-permission-banner.md)
+for a worked example.

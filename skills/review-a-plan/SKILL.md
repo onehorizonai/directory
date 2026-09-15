@@ -63,22 +63,16 @@ rewrite or implement the plan.
   finish the review first, then apply changes only as a separate,
   explicitly authorized step.
 
-## Prerequisites
+## Prerequisites and inputs
 
-A fixed plan version to review — a specific document, file, or pasted text,
-not "the plan we're discussing" if it's still shifting. The original
-request or requirements the plan is supposed to satisfy. Read access to the
-codebase or system the plan describes, so current-state claims and
-invariants can be checked against reality rather than taken on faith.
-
-## Inputs
-
-- The fixed plan text or document.
+- A fixed plan version to review — a specific document, file, or pasted
+  text, not "the plan we're discussing" if it's still shifting.
 - The original request/requirements and any stated acceptance criteria the
-  plan is supposed to satisfy. Ask for it if not supplied — reviewing a plan
-  with no requirements source is a materially narrower, weaker job.
+  plan is supposed to satisfy. Ask for it if not supplied — reviewing a
+  plan with no requirements source is a materially narrower, weaker job.
 - Read access to the relevant code, docs, and configuration the plan
-  describes, to verify its current-state and invariant claims.
+  describes, so current-state and invariant claims can be checked against
+  reality rather than taken on faith.
 - Any invariants or exclusions stated in the requirements but not restated
   in the plan.
 
@@ -132,26 +126,11 @@ invariants can be checked against reality rather than taken on faith.
    actually go wrong if the plan were executed as written.
 
 Step 7 is where the review has to resist turning a template into a
-checklist — a missing section is not automatically a defect, and a
-suspected weakness only becomes a finding once it's checked against
-evidence:
-
-```mermaid
-stateDiagram-v2
-  [*] --> SuspectedWeakness
-  SuspectedWeakness --> ConfirmedGap: contradicted by inspected code/docs/requirements
-  SuspectedWeakness --> OpenQuestion: cannot confirm or deny with available evidence
-  SuspectedWeakness --> Dropped: nothing concrete is actually at risk
-  ConfirmedGap --> Reported
-  OpenQuestion --> Reported
-  Dropped --> [*]
-  Reported --> [*]
-```
-
-A suspected weakness that fails validation is either dropped (nothing
-concrete was actually at risk) or downgraded to an open question (cannot
-confirm or deny with available evidence) — it never becomes a confirmed
-gap either way.
+checklist — a missing section is not automatically a defect. A suspected
+weakness that fails validation is either dropped (nothing concrete was
+actually at risk) or downgraded to an open question (cannot confirm or
+deny with available evidence) — it never becomes a confirmed gap either
+way.
 
 ## Output
 
@@ -191,31 +170,19 @@ result when the plan is sound.
 
 ## Verification
 
-Before handing back findings, check:
-
-- The plan version and requirements baseline were fixed and stated, not
-  left implicit.
-- The plan's requested result and desired behavior were checked against the
-  original request, kept distinct from current behavior, not just read for
-  internal consistency.
-- Every current-state and invariant claim that plausibly matters was
-  checked against actual code, docs, or config, not taken on faith.
-- Decisions, open questions, and assumptions were checked for visibility —
-  none silently resolved, dropped, or stated as fact without support.
-- Named dependencies and risks were checked against the system, and the
-  system was checked for a real dependency the plan never named.
-- Every implementation step was checked for executability, real sequencing,
-  and mapped verification; every scope/risk/cost-changing point was checked
-  for an approval gate.
-- Every confirmed gap was validated against evidence — not left as an
-  unvalidated suspicion, and no finding rests on a missing section alone
-  with nothing concrete at risk.
-- Confirmed gaps, open questions, and optional improvements stayed in
-  separate groups.
-- No part of the plan was rewritten and nothing was implemented during the
-  review.
-- No secrets or sensitive material encountered during review were
-  reproduced in the output.
+Before handing back findings, confirm: the plan version and requirements
+baseline were fixed and stated (step 1); the requested result and desired
+behavior were checked against the original request, kept distinct from
+current behavior (step 2); every current-state and invariant claim that
+plausibly matters was checked against actual code, docs, or config, not
+taken on faith (step 3); decisions, open questions, and assumptions were
+checked for visibility (step 4); named dependencies/risks were checked
+against the system, and the system was checked for a real dependency the
+plan never named (step 5); every step was checked for executability, real
+sequencing, mapped verification, and approval gates (step 6); every
+confirmed gap was validated, with no finding resting on a missing section
+alone (step 7); the three output groups stayed separate; nothing was
+rewritten or implemented; no secrets were reproduced in the output.
 
 ## Boundaries
 
@@ -268,17 +235,7 @@ is marked for approval; validate any suspected gap against the code before
 reporting it; and return confirmed gaps, open questions, and optional
 improvements with an overall readiness verdict.
 
-```
-Review this bug-fix plan. It says the root cause is a race condition in the
-webhook retry handler and proposes adding a lock. No test plan is included.
-```
-
-Expected approach: fix the plan version and the original bug report as the
-baseline; check the claimed root cause against the actual retry handler
-code rather than accepting it as given; check whether the proposed lock
-addresses that root cause or only a symptom; flag the missing verification
-mapping as a confirmed gap since a race-condition fix with no reproduction
-or test plan is a step no one else could confirm as done; check for a
-missing rollback/approval point given the change affects concurrency
-behavior; and report the verdict as "not ready" if the root cause can't be
-confirmed from the code, naming exactly what evidence would confirm it.
+When reviewing a bug-fix plan that names a specific root cause, see
+[references/worked-example-bug-fix-plan.md](references/worked-example-bug-fix-plan.md)
+for a worked example of validating that claim and flagging a missing test
+plan.

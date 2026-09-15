@@ -62,23 +62,18 @@ not edit code.
   reproduction, and none obtainable) — say so; see Failure behavior rather
   than fabricating a diagnosis.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read access to the affected codebase, its recent history (commits,
   deploys, config changes), logs, and any existing tests or error output.
-- The bug report itself, including anything the reporter already knows:
-  expected behavior, observed behavior, environment, steps already tried.
-- No write, deploy, or product-code execution access is required beyond
+  No write, deploy, or product-code execution access is required beyond
   read-only reproduction (running an existing test suite, a script, or a
   controlled replay) — no product code should be edited.
-
-## Inputs
-
-- The reported symptom in the reporter's own words, plus expected vs.
-  observed behavior if already stated.
-- Reproduction steps, environment details, error messages/stack traces,
-  and identifiers (IDs, requests, timestamps) already available —
-  preserved exactly, not paraphrased.
+- The bug report itself: the reported symptom in the reporter's own words,
+  expected vs. observed behavior, environment, and steps already tried.
+- Reproduction steps, error messages/stack traces, and identifiers (IDs,
+  requests, timestamps) already available — preserved exactly, not
+  paraphrased.
 - Pointers to relevant code paths or services if already known; otherwise
   located during inspection.
 - Any recent related changes (commits, deploys, config or dependency

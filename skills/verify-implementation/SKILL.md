@@ -55,17 +55,15 @@ separate, later step owned by whoever invoked this skill.
 - The ask is to fix, rework, or extend the implementation. This skill only
   reports; route fixes back to whatever process does implementation work.
 
-## Prerequisites
+## Prerequisites and inputs
 
-Access to whatever the project already uses to check itself — build, test,
-lint, type-check, a way to run it, or a way to inspect the real medium the
-change is reached through. This skill does not assume a specific command
-or runtime; it works with whatever the project documents or already has in
-place. If nothing available can run a needed check, that's a coverage gap
-to report, not a reason to skip verification entirely.
-
-## Inputs
-
+- Access to whatever the project already uses to check itself — build,
+  test, lint, type-check, a way to run it, or a way to inspect the real
+  medium the change is reached through. This skill does not assume a
+  specific command or runtime; it works with whatever the project
+  documents or already has in place. If nothing available can run a
+  needed check, that's a coverage gap to report, not a reason to skip
+  verification entirely.
 - The acceptance criteria or spec the implementation is being held to, or
   a completion claim detailed enough to derive testable criteria from.
 - The location of the implementation to verify: a diff, a PR, a branch, or
@@ -209,17 +207,7 @@ all three criteria as passed with the actual response evidence, and note
 the endpoint's existing pagination behavior as out of scope for this
 verification.
 
-```
-Verify the claimed-complete "export to CSV" feature. Acceptance criteria
-say the export must include all visible columns and match the current
-filter/sort state. The CI environment for this repo has no access to the
-production database used for the export job.
-```
-
-Expected approach: map both criteria to checks — columns/order for the
-first, filter/sort parity for the second — and run what can be run against
-a reachable environment (e.g. a staging dataset or local fixture); for the
-part of the export path that depends on the production database that
-isn't reachable, report that portion as not verified with the specific
-access gap named, rather than assuming it behaves like the reachable
-environment or reporting it as passed.
+When a criterion depends on an environment that isn't fully reachable, see
+[references/worked-example-partial-environment.md](references/worked-example-partial-environment.md)
+for a worked example of reporting the reachable and unreachable parts
+separately.

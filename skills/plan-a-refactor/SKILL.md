@@ -63,24 +63,21 @@ one at a time — without doing any of the moving itself.
   more abstraction" isn't a scoped refactor to plan; see
   [Failure behavior](#failure-behavior) instead of inventing one.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read access to the target codebase: the code in scope, its callers, its
   existing tests, and any recorded architecture decisions or design docs
-  covering that area.
-- No write access, execution of the target system, or build/deploy access
-  is required — this skill only reads and plans.
-
-## Inputs
-
+  covering that area. No write, execution, or build/deploy access is
+  required — this skill only reads and plans.
 - The maintenance problem to plan for — e.g. "this logic is duplicated
   across three call sites," "this module imports from a layer it
-  shouldn't," "this function does five unrelated things." A goal stated only
-  as fewer lines, fewer files, or more abstraction is not specific enough to
-  plan from.
-- Any invariants already known to matter (a public API a caller depends on,
-  a persisted data format another system reads) — if none are supplied,
-  derive them during the procedure rather than skipping the step.
+  shouldn't," "this function does five unrelated things." A goal stated
+  only as fewer lines, fewer files, or more abstraction is not specific
+  enough to plan from.
+- Any invariants already known to matter (a public API a caller depends
+  on, a persisted data format another system reads) — if none are
+  supplied, derive them during the procedure rather than skipping the
+  step.
 - Explicit exclusions: code, files, or behavior that's off-limits for this
   pass even if related.
 - Pointers to the code in scope, if already known; otherwise locate it
@@ -232,17 +229,7 @@ with a check that the handler's response is unchanged), name the stopping
 condition (all four handlers call the shared helper, no handler's response
 changed), and return the plan without touching the handlers.
 
-```
-This module reaches directly into another module's internals instead of
-going through its public interface. Plan a safe way to fix the dependency
-without changing any of its outputs — plan only, no code yet.
-```
-
-Expected approach: name the problem (the module bypasses the other module's
-public interface), freeze invariants (every value and side effect currently
-produced through the internal reach-in), inspect existing tests for those
-call sites and plan characterization tests where coverage is missing, plan
-redirecting the calls through the public interface in small per-call-site
-steps each checked against the consuming code's current output, list
-anything found that behaves like a latent bug as excluded follow-up work,
-and return the plan.
+When the named problem is a broken dependency boundary rather than
+duplicated logic, see
+[references/worked-example-dependency-boundary.md](references/worked-example-dependency-boundary.md)
+for a worked example.

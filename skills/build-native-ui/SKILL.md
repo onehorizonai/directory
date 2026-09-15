@@ -51,22 +51,16 @@ existing native architecture to follow. Don't use it for any change that
 would require migrating framework, navigation architecture, or deployment
 target without an explicit prior decision to do so.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read/write access to the native app repository and its build/test
   tooling, including the relevant simulator/emulator and, depending on
   risk, a physical device.
-- The approved UI change itself, ideally with a design/mock reference.
+- The approved UI change or design reference.
 - The target platform, minimum OS, and UI framework/library version. If
   it's not already obvious from the repository, declare it explicitly
-  before proceeding (Procedure step 1) or treat it as a blocker if it can't
-  be determined.
-
-## Inputs
-
-- The approved UI change or design reference.
-- The target platform, minimum OS, and UI framework/library version —
-  declared explicitly if not already evident from the repo.
+  before proceeding (Procedure step 1) or treat it as a blocker if it
+  can't be determined.
 - Any explicit constraints called out in the approval (must preserve an
   existing API or permission, must not change navigation, must ship behind
   a flag).
@@ -124,21 +118,6 @@ target without an explicit prior decision to do so.
    navigation-architecture, or deployment-target change, stop and report it
    as a blocker instead of proceeding — that needs an explicit separate
    decision (see Failure behavior).
-
-The stop/continue decision points in this procedure:
-
-```mermaid
-flowchart TD
-  Start[Approved native UI change] --> Declare[Declare platform, min OS, framework version]
-  Declare --> Inspect[Inspect existing native architecture]
-  Inspect --> Scope{Scope implies framework, nav, or<br/>deployment-target change?}
-  Scope -- Yes --> StopA[Stop: report blocker,<br/>needs explicit prior decision]
-  Scope -- No --> Model[Model objects, actions, concepts, priority]
-  Model --> Implement[Implement with platform conventions<br/>+ app's existing patterns]
-  Implement --> Verify{Verified on target<br/>platform/device?}
-  Verify -- No --> StopB[Report as not run,<br/>with the reason]
-  Verify -- Yes --> Done[Report result, evidence,<br/>and any coverage gaps]
-```
 
 ## Output
 
@@ -215,17 +194,6 @@ handle the permission-request flow using the app's existing permission
 pattern rather than a new one; verify with Dynamic Type and VoiceOver on a
 simulator or device.
 
-```
-Add multi-select to the existing Android contacts list, per the approved
-design: long-press selects an item, a selection toolbar appears, and the
-selection and scroll position must survive rotation and returning from
-the backgrounded app.
-```
-
-Expected approach: inspect the existing list's state-hoisting pattern and
-where scroll position is currently tracked; hoist selection state the same
-way and persist both selection and scroll position across
-configuration change and process death using the app's existing
-`SavedStateHandle`/state-restoration pattern; verify with TalkBack, a
-rotation check, and a background/foreground round-trip on an emulator or
-device.
+When the target platform is Android rather than iOS, see
+[references/worked-example-android-multiselect.md](references/worked-example-android-multiselect.md)
+for a worked multi-select/rotation-survival example.

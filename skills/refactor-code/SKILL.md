@@ -61,23 +61,17 @@ were supposed to change what.
   more abstraction" is not a scoped refactor; ask what maintenance problem
   it's meant to solve first.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read/write access to the target code and whatever test/build tooling the
   project already uses to check it.
-- A named structural problem in the code that's in scope (see Inputs). If
-  none exists yet, treat that as a blocker per
-  [Failure behavior](#failure-behavior) rather than inventing one to
-  justify a change.
-
-## Inputs
-
-- The specific maintenance problem to solve — e.g. "this logic is
-  duplicated in three call sites," "this module imports from a layer it
-  shouldn't," "this function does five unrelated things," "this
-  abstraction has one caller and adds a layer of indirection with no
-  payoff." A goal stated only as fewer lines, fewer files, or more
-  abstraction is not specific enough to start from.
+- A named structural problem in the code that's in scope — e.g. "this
+  logic is duplicated in three call sites," "this module imports from a
+  layer it shouldn't," "this abstraction has one caller and adds a layer
+  of indirection with no payoff." A goal stated only as fewer lines, fewer
+  files, or more abstraction is not specific enough to start from; if none
+  exists yet, treat that as a blocker (see [Failure behavior](#failure-behavior))
+  rather than inventing one.
 - Any invariants already known to matter (a public API a caller depends
   on, a data format another system reads) — if none are supplied, they get
   derived during the procedure rather than skipped.
@@ -133,28 +127,12 @@ were supposed to change what.
 7. **Final verification** — once the loop exits, verify the whole change
    together (not just the last step) per [Verification](#verification).
 
-The loop stays inside transforming and inspecting while the named problem
-remains, with an explicit blocked branch for anything that turns out to
-need a behavior change or an invariant clarification — it does not resolve
-that branch by proceeding past it:
-
-```mermaid
-stateDiagram-v2
-  [*] --> NamingProblem
-  NamingProblem --> FreezingInvariants
-  FreezingInvariants --> EstablishingBaseline
-  EstablishingBaseline --> Transforming
-  Transforming --> InspectingDiff
-  InspectingDiff --> Transforming: named problem not yet solved
-  InspectingDiff --> Blocked: behavior change or unclear invariant found
-  Blocked --> FreezingInvariants: invariant clarified
-  InspectingDiff --> FinalVerification: named problem solved
-  FinalVerification --> [*]
-```
-
-`Blocked` resolves only by clarifying the invariant or by exiting into
-[Failure behavior](#failure-behavior) — never by continuing the
-transformation on top of an unresolved gap.
+The loop stays inside transforming and inspecting (steps 4–5) while the
+named problem remains, with an explicit blocked branch for anything that
+turns out to need a behavior change or an invariant clarification. That
+branch resolves only by clarifying the invariant (back to step 2) or by
+exiting into [Failure behavior](#failure-behavior) — never by continuing
+the transformation on top of an unresolved gap.
 
 ## Output
 
@@ -242,17 +220,7 @@ any test changes, then run the full handler test suite and confirm all
 four still return exactly what they did before reporting the change as
 done.
 
-```
-This module reaches directly into another module's internals instead of
-going through its public interface. Fix the dependency without changing
-any of its outputs.
-```
-
-Expected approach: name the problem (the module bypasses the other
-module's public interface), freeze invariants (every value and side effect
-currently produced through the internal reach-in), check whether existing
-tests cover those call sites and add characterization tests where they
-don't, redirect the calls through the public interface in small steps,
-inspect the diff and full test-diff after each step, and verify the
-consuming code's outputs are byte-for-byte the same as the baseline before
-reporting.
+When the named problem is a broken dependency boundary rather than
+duplicated logic, see
+[references/worked-example-dependency-boundary.md](references/worked-example-dependency-boundary.md)
+for a worked example.
