@@ -1,0 +1,7 @@
+interface:
+  display_name: "Design Web"
+  short_description: "Design responsive web UI without writing production code."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $design-web to design this web interface for browser surfaces."

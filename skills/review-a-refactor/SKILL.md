@@ -1,19 +1,17 @@
 ---
 name: review-a-refactor
 description: >-
-  Use when a change under review is claimed to be a behavior-preserving
-  refactor — a diff, PR, commit range, or branch against a named base — and
-  the job is to check whether it actually is one. Checks behavioral
-  equivalence (public interfaces, state, side effects, permissions, async
-  ordering), catches hidden scope expansion (a feature, bug fix, or
-  migration smuggled in under refactor cover), inspects test diffs for
-  weakened coverage, and judges structural correctness against the named
-  problem. Returns prioritized findings only; does not edit the code, and
-  is not for reviewing a change that was never claimed to be
-  behavior-preserving or for performing the refactor itself.
+  Use when a diff, PR, or branch is claimed to be a behavior-preserving
+  refactor and you need to verify that claim. Check behavioral
+  equivalence, catch hidden features/fixes/migrations, inspect weakened
+  tests, and judge structural correctness against the named problem.
+  Returns prioritized findings only.
+
+  Does not edit code. Not for changes never claimed as refactors, and not
+  for performing the refactor.
 metadata:
   title: Review a Refactor
-  tagline: Check a claimed behavior-preserving refactor for hidden behavior changes, scope creep, and weakened tests.
+  tagline: "Check whether a claimed refactor actually preserved behavior."
   category: engineering
   tags:
     - refactoring

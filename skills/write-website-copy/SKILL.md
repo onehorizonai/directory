@@ -1,16 +1,15 @@
 ---
 name: write-website-copy
 description: >-
-  Use when writing or rewriting product website copy — homepage, landing
-  page, pricing page, feature page, about page, or similar — for a defined
-  reader, page purpose, offer, and next action, using only approved facts and
-  proof. Not for interface copy such as error strings, empty states, or
-  confirmation dialogs, not for deciding page strategy, structure, or
-  positioning before it's approved (resolve that first), and not for
-  translating existing page copy into another language.
+  Use when writing or rewriting product website copy — homepage, landing,
+  pricing, feature, about — for a defined reader, purpose, offer, and next
+  action, using only approved facts and proof.
+
+  Not for UI strings (errors, empty states, confirmations), deciding page
+  strategy or positioning before it's approved, or translation.
 metadata:
   title: Write Website Copy
-  tagline: Write or rewrite product website copy for a defined reader, purpose, offer, and action using only approved facts.
+  tagline: "Write product website copy from approved facts for a defined reader and action."
   category: content-and-writing
   tags:
     - website-copy
@@ -105,7 +104,10 @@ a blocker (see Failure behavior), not something to assume:
    an arbitrary universal word count, and place the draft into the actual
    surrounding layout before finalizing.
 10. Edit once for meaning and hierarchy, once for clarity, voice, and
-    repetition, then do the layout and factual verification pass below.
+    repetition. Load [references/slop.md](references/slop.md) on that
+    last edit and fail the pass if drafted copy still contains `—`,
+    synonym triplets, or a list that could have been a sentence. Then
+    do the layout and factual verification pass below.
 
 ## Output
 
@@ -133,6 +135,8 @@ claim that had to be cut or softened for lack of approved evidence.
   if none exists, the claim doesn't go in, however plausible it sounds.
 - Confirm links and named actions in the copy match what the page actually
   does.
+- [references/slop.md](references/slop.md): no em dashes, no synonym
+  triplets, no list that could have been a sentence.
 - Report what was checked directly, what was inferred, and what couldn't be
   verified — separately, not folded into one "done" claim.
 

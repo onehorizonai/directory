@@ -1,16 +1,16 @@
 ---
 name: research-technical-question
 description: >-
-  Use when the user asks a scoped technical question about the outside world
-  — an external library, API, protocol, standard, or product — that needs a
-  sourced, evidence-backed answer: how it actually behaves, whether a
-  technical claim about it is true, or how two such options compare. Not
-  for questions answerable from this repo's own code, subjective opinions,
-  requests to make a change, or decisions needing human authority (budget,
-  legal, irreversible commitments).
+  Use when a scoped technical question about an external library, API,
+  protocol, standard, or product needs a sourced answer — how it behaves,
+  whether a claim is true, or how two options compare.
+
+  Not for questions answerable from this repo, subjective opinions, making
+  a change, or decisions that need human authority (budget, legal,
+  irreversible commitments).
 metadata:
   title: Research a Technical Question
-  tagline: Answer a scoped technical question with sourced findings and visible uncertainty.
+  tagline: "Answer a scoped technical question with sources and clear uncertainty."
   category: research
   tags:
     - research

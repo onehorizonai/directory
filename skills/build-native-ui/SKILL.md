@@ -1,19 +1,16 @@
 ---
 name: build-native-ui
 description: >-
-  Use when an approved native UI change — a design, mock, spec, ticket, or
-  linked Initiative, Bug, or TODO that's already decided — needs to be
-  built into an existing iOS, Android,
-  desktop, or other native app, and the next step is writing the code for it
-  using the app's existing native architecture and the target platform's
-  interaction conventions. Not for deciding or approving the design itself,
-  not for web/browser-only UI, not for a new app with no existing
-  architecture to follow, and not for migrating framework, navigation
-  architecture, or deployment target — that needs an explicit prior
-  decision, not this skill.
+  Use when an approved native UI change needs implementing in an existing
+  iOS, watchOS, Android, or desktop app — follow the app's architecture
+  and platform conventions.
+
+  Not for inventing the design, web-only UI, greenfield apps with no
+  architecture, or framework/navigation/deployment migrations without a
+  prior decision.
 metadata:
   title: Build Native UI
-  tagline: Turn an approved native app UI change into a platform-conventional, verified patch using the app's existing architecture.
+  tagline: "Implement an approved native UI change using the app's architecture and the target OS conventions."
   category: engineering
   tags:
     - native
@@ -38,18 +35,24 @@ result on the actual target platform rather than from code alone.
 
 ## When to use
 
-- An approved native UI change (design, mock, spec, ticket, or a linked
-  Initiative, Bug, or TODO) exists for an existing iOS, Android, desktop, or
-  other native app, and the next step is building it.
+- An approved native UI change (design, mock, spec, or a linked
+  Initiative, Bug, or TODO) exists for an existing iOS, Android, desktop,
+  or other native app, and the next step is building it.
 - The user asks to implement a specific screen, view, or interaction in a
   native app project where the scope is already settled.
 
-Don't use this for deciding or approving the design itself — resolve that
-first. Don't use it for web or browser-only UI, which has a different
-layout and platform constraint set. Don't use it for a new app with no
-existing native architecture to follow. Don't use it for any change that
-would require migrating framework, navigation architecture, or deployment
-target without an explicit prior decision to do so.
+## Do not use when
+
+- The design itself still needs deciding or approving — resolve that
+  first.
+- The UI is web or browser-only (no native shell) — layout and platform
+  constraints differ.
+- There is no existing native architecture to follow (a greenfield app).
+- The change would migrate framework, navigation architecture, or
+  deployment target without an explicit prior decision to do so.
+- The approved scope is behavior/API behind the UI rather than the
+  interface itself — that's a generic feature build, not native UI
+  implementation.
 
 ## Prerequisites and inputs
 
@@ -72,11 +75,31 @@ target without an explicit prior decision to do so.
 1. Restate the approved UI change as concrete, testable behavior. Declare
    the target platform, minimum OS, and UI framework/library version from
    the repo, or explicitly if not yet evident.
-2. Inspect the existing native architecture before writing anything:
+2. Load the matching **engineering** reference(s) for the declared stack
+   (same-skill `references/` only). Framework APIs must not override the
+   **target OS** visual/interaction conventions — fetch current official
+   platform design guidance for that OS (Apple HIG including watchOS,
+   Material/Android, Microsoft Fluent, GNOME HIG) when making UX or
+   visual decisions, rather than recalling it from memory:
+
+   | Target / stack | Load engineering |
+   | --- | --- |
+   | iPhone / iOS (SwiftUI) | [references/ios.md](references/ios.md) + [references/swiftui.md](references/swiftui.md) |
+   | iPad | [references/ios.md](references/ios.md) + [references/swiftui.md](references/swiftui.md) |
+   | Apple Watch / watchOS | [references/watchos.md](references/watchos.md) + [references/swiftui.md](references/swiftui.md) |
+   | iPhone + Watch companion | Phone: ios + swiftui; Watch: watchos + swiftui — separately, never one IA for both |
+   | macOS (SwiftUI) | [references/macos.md](references/macos.md) + [references/swiftui.md](references/swiftui.md) |
+   | Android (Compose) | [references/android.md](references/android.md) |
+   | Windows (WinUI) | [references/windows.md](references/windows.md) |
+   | Linux (GTK/libadwaita) | [references/linux-gtk.md](references/linux-gtk.md) |
+   | Electron | [references/electron.md](references/electron.md) — HIG for the **host OS** |
+   | Flutter | [references/flutter.md](references/flutter.md) — HIG for the **ship OS** |
+
+3. Inspect the existing native architecture before writing anything:
    navigation pattern, state-management approach, component/view
    conventions, the API and permission contracts the screen touches, and
    existing accessibility/localization patterns.
-3. Model the interface before styling it: identify the primary objects, the
+4. Model the interface before styling it: identify the primary objects, the
    actions available on them, and the broader workflows/concepts that
    combine them; assign relative priority. Let that hierarchy drive
    navigation, prominence, grouping, and progressive disclosure. For
@@ -84,23 +107,26 @@ target without an explicit prior decision to do so.
    (actors/roles/permissions, lifecycle states, what must survive
    interruption, 0/1/some/many cases) in
    [references/design-and-verification-checklist.md](references/design-and-verification-checklist.md).
-4. For the platform declared in step 1, confirm the applicable convention
-   against the current official platform design guidance (Apple Human
-   Interface Guidelines, Google Material/Android guidance, or Microsoft
-   Windows design guidance) rather than recalling it from memory —
-   guidance changes over time. Use it as the default for navigation,
-   controls, gestures, typography, and spacing; deviate only with a
-   documented product/usability reason, verified on-platform.
-   Cross-platform visual sameness alone never justifies a deviation.
-5. Define ownership and lifetime of transient UI state, screen state, and
+5. For the platform declared in step 1, confirm the applicable convention
+   against current official platform design guidance (Apple HIG including
+   watchOS, Material/Android, Microsoft Fluent, GNOME HIG) rather than
+   recalling it from memory — guidance changes over time. Use it as the
+   default for navigation, controls, gestures, typography, and spacing;
+   deviate only with a documented product/usability reason, verified
+   on-platform. Cross-platform visual sameness alone never justifies a
+   deviation. Electron/Flutter must follow the **host/ship OS**, not a
+   web- or Flutter-only visual language. Watch UI must not reuse iPhone
+   information architecture.
+6. Define ownership and lifetime of transient UI state, screen state, and
    any cached or domain data the change touches; specify what survives
    navigation, backgrounding, rotation/resizing, recreation, and relaunch.
    Handle interruption — connectivity loss, authorization expiry,
    backgrounding, cancellation/retry — without duplicate requests or false
    success.
-6. Implement using the app's existing state-ownership/binding patterns,
-   component system, and platform conventions, in small increments. Apply
-   the object/action/concept priority from step 3 to vertical rhythm,
+7. Implement using the app's existing state-ownership/binding patterns,
+   component system, and platform conventions, in small increments,
+   following the loaded engineering reference (TDD where achievable). Apply
+   the object/action/concept priority from step 4 to vertical rhythm,
    typography scale, alignment, and color as authoring rules, not just a
    later check: use a deliberate platform-appropriate spacing/type scale, a
    small number of strong alignment axes, and color used semantically
@@ -114,10 +140,26 @@ target without an explicit prior decision to do so.
    motion), localization (platform-aware dates/numbers/plurals/direction,
    longer translation lengths), and adaptive layout (rotation/folding,
    multitasking, keyboard, safe areas/insets) as part of the same change.
-7. If the approved scope turns out to require a framework,
+8. If the approved scope turns out to require a framework,
    navigation-architecture, or deployment-target change, stop and report it
    as a blocker instead of proceeding — that needs an explicit separate
    decision (see Failure behavior).
+
+The stop/continue decision points in this procedure:
+
+```mermaid
+flowchart TD
+  Start[Approved native UI change] --> Declare[Declare platform, min OS, framework version]
+  Declare --> LoadRefs[Load engineering refs + current OS HIG]
+  LoadRefs --> Inspect[Inspect existing native architecture]
+  Inspect --> Scope{Scope implies framework, nav, or<br/>deployment-target change?}
+  Scope -- Yes --> StopA[Stop: report blocker,<br/>needs explicit prior decision]
+  Scope -- No --> Model[Model objects, actions, concepts, priority]
+  Model --> Implement[Implement with platform conventions<br/>+ app's existing patterns]
+  Implement --> Verify{Verified on target<br/>platform/device?}
+  Verify -- No --> StopB[Report as not run,<br/>with the reason]
+  Verify -- Yes --> Done[Report result, evidence,<br/>and any coverage gaps]
+```
 
 ## Output
 
@@ -148,8 +190,8 @@ Separate observable violations (a clear guideline or contract break) from
 subjective recommendations, and state any simulator-only, device-only, or
 assistive-technology coverage gap explicitly rather than omitting it. See
 [references/design-and-verification-checklist.md](references/design-and-verification-checklist.md)
-for the full per-platform (iOS/SwiftUI, Android/Compose, desktop/Electron)
-checklist.
+for the full per-platform (iOS/SwiftUI, watchOS, Android/Compose,
+desktop/Electron) checklist.
 
 ## Boundaries
 
@@ -193,6 +235,16 @@ toggle using that same pattern and SwiftUI's system `Toggle` control;
 handle the permission-request flow using the app's existing permission
 pattern rather than a new one; verify with Dynamic Type and VoiceOver on a
 simulator or device.
+
+```
+Implement the approved Apple Watch step-goal glance: complication +
+vertical-page detail, Crown scroll, Always On redaction, per design.
+```
+
+Expected approach: load `watchos.md` + `swiftui.md` and current watchOS
+HIG (not iPhone HIG); implement with WidgetKit complications (not
+ClockKit), watchOS navigation patterns, and energy-aware updates; verify
+across Watch sizes and VoiceOver — do not reuse iPhone IA.
 
 When the target platform is Android rather than iOS, see
 [references/worked-example-android-multiselect.md](references/worked-example-android-multiselect.md)

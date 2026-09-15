@@ -52,7 +52,7 @@ writeFileSync(join(REPO_ROOT, "index.json"), `${JSON.stringify(index, null, 2)}\
 // Code plugins expect (a skills/ directory at the source root), so this
 // lists one plugin with source "./" rather than one plugin per skill —
 // which would require nesting a skills/ dir inside every skills/<name>/,
-// contradicting the flat layout. See docs/website-integration.md.
+// contradicting the flat layout. See AGENTS.md (Website integration).
 //
 // No sibling .claude-plugin/plugin.json is needed: per
 // code.claude.com/docs/en/plugins-reference and /plugin-marketplaces

@@ -1,18 +1,16 @@
 ---
-name: build-web-ui-change
+name: build-web-ui
 description: >-
-  Use when an approved web UI change — a design, mock, spec, ticket, or
-  linked Initiative, Bug, or TODO that's already decided — needs to be
-  built into an existing web app or
-  website, using the product's existing design system, components, and
-  interaction conventions. Not for deciding or approving the design itself,
-  not for native iOS/Android/desktop UI, not for a new site/app with no
-  existing design system to follow, and not for a framework,
-  routing-architecture, or global design-token migration — that needs an
-  explicit prior decision, not this skill.
+  Use when an approved web UI change needs implementing in an existing
+  site or web app — use the product's design system, components, and
+  conventions.
+
+  Not for inventing the design, native app UI, greenfield products with no
+  design system, or framework/routing/token migrations without a prior
+  decision.
 metadata:
-  title: Build a Web UI Change
-  tagline: Turn an approved web UI change into a working, accessible, design-system-consistent patch verified in a running browser.
+  title: Build Web UI
+  tagline: "Implement an approved web UI change with the product's design system, then verify it in a browser."
   category: engineering
   tags:
     - web
@@ -30,30 +28,33 @@ existing product — it does not cover deciding what the UI should be. Given
 the approved change, it inspects the existing route, design system, and
 API/permission contracts before touching anything; models the interface's
 objects, actions, and workflows to decide layout and priority before
-styling; implements using the product's existing components, tokens, and
-state patterns, with real (not mocked) states and preserved input/focus;
-builds in accessible, mouse-optional interaction; and verifies the result
-in a running browser rather than from code or description alone.
+styling; implements with the **web platform first** (semantic HTML, modern
+CSS, browser APIs) and the product's existing components, tokens, and
+state patterns — loading React/Next guidance only when that is the stack —
+with real (not mocked) states and preserved input/focus; builds in
+accessible, mouse-optional interaction; and verifies the result in a
+running browser rather than from code or description alone.
 
 ## When to use
 
-- An approved web UI change (design, mock, spec, ticket, or a linked
-  Initiative, Bug, or TODO) exists for an existing web app or website, and
-  the next step is building it.
+- An approved web UI change (design, mock, spec, or a linked Initiative,
+  Bug, or TODO) exists for an existing web app or website, and the next
+  step is building it.
 - The user asks to implement a specific page, view, or interaction on the
   web where the scope is already settled.
 
-Don't use this for deciding or approving the design itself — resolve that
-first. Don't use it for native iOS, Android, or desktop UI, which has a
-different component system and platform convention set. Don't use it for a
-new site or app with no existing design system to follow. Don't use it for
-any change that would require migrating framework, routing architecture, or
-global design tokens without an explicit prior decision to do so. This
-skill is for changes whose approved scope is the interface itself: layout,
-states, interaction, or visual/structural presentation — not a behavior
-change that happens to touch a web component but isn't itself about the
-interface (e.g. a new query param, a validation rule, a backend
-integration).
+## Do not use when
+
+- The design itself still needs deciding or approving — resolve that
+  first.
+- The UI is native iOS, Android, or desktop (including a desktop shell
+  whose chrome should follow the host OS).
+- There is no existing design system to follow (a greenfield site/app).
+- The change would migrate framework, routing architecture, or global
+  design tokens without an explicit prior decision to do so.
+- The approved scope is behavior/API behind the UI (a query param, a
+  validation rule, a backend integration) rather than the interface
+  itself.
 
 ## Prerequisites and inputs
 
@@ -79,13 +80,31 @@ integration).
    accessibility target from the repo, or explicitly if not yet evident.
    State whether the work reproduces an approved design, refines an
    existing interface, or changes behavior.
-2. Inspect before writing anything: the current route/component tree, the
+2. Load the matching **engineering** references (same-skill `references/`
+   only — conditional, not all at once). When making UX or visual
+   decisions, fetch current public web UI guidance (the product's design
+   system plus the Web Interface Guidelines / WCAG links named in the
+   loaded refs) rather than inventing a visual language here:
+
+   | Concern | Load |
+   | --- | --- |
+   | HTML/CSS/platform, progressive enhancement | [references/web-platform.md](references/web-platform.md) |
+   | Where state lives / survives | [references/state-management.md](references/state-management.md) |
+   | React / Next App Router | [references/react-and-nextjs.md](references/react-and-nextjs.md) (only if stack is React) |
+   | Component APIs / composition | [references/composition-patterns.md](references/composition-patterns.md) |
+   | Implementing responsive layout | [references/responsive-implementation.md](references/responsive-implementation.md) |
+   | A11y implementation + verify | [references/accessibility-implementation.md](references/accessibility-implementation.md) |
+   | Tests + browser loop | [references/testing-and-browser-verification.md](references/testing-and-browser-verification.md) |
+   | Perf investigation / CWV | [references/performance.md](references/performance.md) |
+   | Substantial modeling / full checklist | [references/design-and-verification-checklist.md](references/design-and-verification-checklist.md) |
+
+3. Inspect before writing anything: the current route/component tree, the
    design system (tokens, component library, typography/spacing scale,
    icons), the API and permission contracts the screen touches, the
    existing state-management approach, existing tests, and how comparable
    screens in this product already handle loading/empty/error/permission
    states and terminology.
-3. Model the interface before styling it: identify the primary objects,
+4. Model the interface before styling it: identify the primary objects,
    the actions available on them, and the broader workflows/concepts that
    combine them; assign relative priority. Let that hierarchy — not
    borders, radius, shadows, or a new accent hue — drive layout,
@@ -93,17 +112,27 @@ integration).
    consistency with the product's existing interaction patterns, spacing,
    typography, and terminology takes precedence over local visual novelty;
    a locally prettier screen that breaks predictability is a regression.
-   For substantial changes, also work through the fuller checklist
-   (actors/roles/permissions, object lifecycle states, action
-   frequency/consequence/reversibility, 0/1/some/many cases, state that
-   must survive navigation) in
+   For substantial changes, also work through the fuller checklist in
    [references/design-and-verification-checklist.md](references/design-and-verification-checklist.md).
-4. If the approved scope turns out to require a framework, routing, or
+5. Define ownership and lifetime of transient UI state, form state, URL
+   state, server/cache data, and any shared or persisted state the change
+   touches ([references/state-management.md](references/state-management.md)).
+   Specify what survives navigation and reload; handle interruption
+   (connectivity loss, auth expiry, cancel/retry) without duplicate
+   requests or false success. Prefer the smallest appropriate scope; do
+   not copy server data into global client state without cause; do not
+   add a state library mid-change unless approved.
+6. If the approved scope turns out to require a framework, routing, or
    global-design-token change, stop and report it as a blocker instead of
    proceeding — that needs an explicit separate decision (see Failure
    behavior).
-5. Implement using the product's existing components, tokens, and state
-   patterns, in small increments, running targeted checks after each one:
+7. Implement using the product's existing components, tokens, and state
+   patterns, in small increments, running targeted checks after each one.
+   Prefer platform capabilities before new dependencies
+   ([references/web-platform.md](references/web-platform.md)); use
+   [references/react-and-nextjs.md](references/react-and-nextjs.md) only
+   when the stack is React. TDD where achievable
+   ([references/testing-and-browser-verification.md](references/testing-and-browser-verification.md)):
    - Build every real state the change implies — pending, success,
      failure, empty, filtered-empty, validation, disabled, and
      permission-limited — with one authoritative owner for that state and
@@ -114,17 +143,35 @@ integration).
    - Build accessible, mouse-optional interaction: semantic controls,
      full keyboard activation, correct focus order and restoration, error
      text associated with its field, and status changes exposed to
-     assistive technology, not signaled by icon/color/position alone.
+     assistive technology, not signaled by icon/color/position alone
+     ([references/accessibility-implementation.md](references/accessibility-implementation.md)).
    - Design for realistic content and space: narrow and wide viewports,
      long labels, larger text sizes, localization, and sparse/dense data
-     — not just the design mock's exact content.
+     — implement adaptation per
+     [references/responsive-implementation.md](references/responsive-implementation.md).
    - Preserve the existing API/permission contract; hidden UI is never a
      substitute for a real authorization check.
    - Put state in the URL only where it already belongs there.
-6. Once the approved scope is covered, inspect the complete diff end to
+8. Once the approved scope is covered, inspect the complete diff end to
    end and run the project's final-state checks (tests, build, type-check,
    lint) plus the browser verification in
    [Verification](#verification).
+
+The stop/continue decision points in this procedure:
+
+```mermaid
+flowchart TD
+  Start[Approved web UI change] --> Declare[Declare route, breakpoints,<br/>themes, a11y target]
+  Declare --> LoadRefs[Load engineering refs; fetch live UI guidance if UX]
+  LoadRefs --> Inspect[Inspect design system,<br/>API/permission contracts, existing states]
+  Inspect --> Scope{Scope implies framework, routing,<br/>or global token change?}
+  Scope -- Yes --> StopA[Stop: report blocker,<br/>needs explicit prior decision]
+  Scope -- No --> Model[Model objects, actions,<br/>concepts, priority + state ownership]
+  Model --> Implement[Implement platform-first + existing<br/>components/tokens + real states]
+  Implement --> Verify{Verified in a running<br/>browser?}
+  Verify -- No --> StopB[Report as not run,<br/>with the reason]
+  Verify -- Yes --> Done[Report result, evidence,<br/>and any coverage gaps]
+```
 
 ## Output
 
@@ -141,33 +188,41 @@ inspecting that evidence.
 
 Verification must inspect the actual rendered interface in a running
 browser — ideally through browser automation (e.g. Playwright) — rather
-than describe it from code alone. Check:
+than describe it from code alone. For meaningful UI changes, generally:
+
+1. Run the relevant automated tests.
+2. Build / type-check / lint per the repository's existing workflow.
+3. Run the application where possible.
+4. Exercise the affected user flow in a real browser.
+5. Check for runtime and console errors.
+6. Verify keyboard / focus behavior when the change is interactive.
+7. Check responsive behavior at the declared sizes.
+8. Verify loading, empty, error, and other edge states the change affects.
+9. Check accessibility proportionate to risk (automated + keyboard; AT
+   when warranted).
+10. Measure performance when performance is part of the task — fetch
+    current thresholds rather than memorizing them
+    ([references/performance.md](references/performance.md)).
+
+Do **not** claim the UI is correct solely because tests or compilation
+pass. Also check, as applicable:
 
 - Vertical rhythm and type/spacing consistency, and alignment axes/visual
   seams (unnecessary extra edges, dividers, or independently aligned
   columns).
-- Responsive reprioritization across the declared breakpoints, including
-  realistic 0/1/some/many content cases (empty, single item, a typical
-  list, a very long list/label).
-- Every state the change implies (loading, success, failure, empty,
-  filtered-empty, validation, disabled, permission-limited) rendered with
-  real data/contracts, not just the happy path.
 - Spatial stability across state transitions (no unexpected layout shift
   or lost scroll position).
 - Terminology consistency with the rest of the product.
-- Color and contrast in each supported theme, confirming state is never
-  communicated by color alone.
-- Focus order/restoration and full keyboard operability — the complete
-  task reachable and completable without a mouse.
-- Status changes exposed to assistive technology (not just visually), and
-  errors associated with their field.
+- Color and contrast in each supported theme; state never by color alone.
+- Status changes exposed to assistive technology; errors associated with
+  their field.
 
-Separate observable/measurable violations (a clear guideline, contract, or
-contrast/keyboard failure) from subjective design recommendations, and
-state any browser, breakpoint, theme, or assistive-technology coverage gap
-explicitly rather than omitting it. See
+Separate observable/measurable violations from subjective design
+recommendations, and state any browser, breakpoint, theme, or
+assistive-technology coverage gap explicitly. See
 [references/design-and-verification-checklist.md](references/design-and-verification-checklist.md)
-for the fuller per-concern verification checklist.
+and
+[references/testing-and-browser-verification.md](references/testing-and-browser-verification.md).
 
 ## Boundaries
 
@@ -178,11 +233,13 @@ effects outside the approved scope. Never mock or stub functionality that
 should call the real API/permission contract unless the approval
 explicitly authorizes it. Never claim a design principle or accessibility
 requirement is satisfied without having actually inspected the evidence
-for it. This skill doesn't commit, push, or open a pull request — that's
-governed by whatever process invoked it. Ask rather than assume when the
-approved scope is ambiguous about something affecting correctness, state
-ownership, or a deviation from the existing design system; for small
-reversible choices, state the assumption and proceed.
+for it. Prefer standards and native browser capabilities before new
+dependencies; do not prescribe Zustand, TanStack Query, or similar unless
+the project already uses them. This skill doesn't commit, push, or open a
+pull request — that's governed by whatever process invoked it. Ask rather
+than assume when the approved scope is ambiguous about something affecting
+correctness, state ownership, or a deviation from the existing design
+system; for small reversible choices, state the assumption and proceed.
 
 ## Failure behavior
 

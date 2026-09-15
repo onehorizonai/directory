@@ -52,6 +52,20 @@ objects/actions/concepts model in the main skill:
 - Any performance concern is profiled before an architectural change is
   made to address it — not fixed speculatively.
 
+### watchOS / SwiftUI
+
+- Navigation is watchOS-native (`NavigationStack`, vertical-page
+  `TabView`) — not an iPhone stack or `NavigationSplitView`.
+- Complications use WidgetKit accessory widgets, not ClockKit.
+- Crown-driven scroll/value change has a touch equivalent and immediate
+  visual feedback.
+- Glance/complication UI is readable on wrist-raise without requiring a
+  long scroll; Always On redaction is specified if the face stays visible.
+- Independent Watch core loops do not require the iPhone unless the
+  domain truly needs it.
+- VoiceOver labels and Digital Crown announcements work on a Watch
+  simulator or device; energy/update budget is considered.
+
 ### Android / Compose
 
 - State is hoisted to the appropriate level, matching the app's existing

@@ -1,22 +1,18 @@
 ---
 name: plan-ux
 description: >-
-  Use when a feature request, defect report, or scoped task needs its
-  interaction model and UX planned before an implementation plan or UI
-  change is written — e.g. "plan the UX for X", "figure out the
-  interaction model before we build this", "what should this flow look
-  like", "design the experience, not the visuals yet". Models actors,
-  objects, actions, and prioritized use cases against existing product
-  context, then works through lifecycle states, information needs,
-  structure, interaction, and visual hierarchy to produce a
-  platform-independent UX plan with named verification scenarios for later
-  steps to execute against. Not for deciding data models, APIs, or
-  technical architecture; not for building, restyling, or reviewing an
-  already-built interface; not for writing copy for one already-decided
-  state; not for producing the implementation plan itself.
+  Use when a feature, defect, or task needs its interaction model planned
+  before implementation or UI work — "plan the UX", "what should this flow
+  look like", "design the experience, not the visuals yet". Models actors,
+  objects, actions, and use cases into a platform-independent UX plan with
+  verification scenarios.
+
+  Not for data models, APIs, or architecture; not for building, restyling,
+  or reviewing a UI; not for copy on an already-decided state; not for the
+  implementation plan itself.
 metadata:
   title: Plan UX
-  tagline: Model actors, objects, actions, and use cases into an interaction plan before anyone designs the surface.
+  tagline: "Plan the interaction model (actors, objects, actions, use cases) before surface design."
   category: design
   tags:
     - ux
