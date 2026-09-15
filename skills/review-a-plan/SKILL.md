@@ -1,19 +1,17 @@
 ---
 name: review-a-plan
 description: >-
-  Use when a fixed implementation plan, spec, or design doc — written by an
-  agent or a human — needs review before implementation starts: "review
-  this plan", "is this spec ready to build from", "check this
-  implementation plan for gaps before we execute it". Checks the plan's
-  current/desired behavior claims against real system evidence, and
-  whether its invariants, decisions, open questions, dependencies, and
-  approval points are present, traceable, and executable. Returns
-  prioritized findings only; does not rewrite or implement the plan, and is
-  not for reviewing code (a diff, PR, or branch) or for producing the plan
-  itself.
+  Use when an implementation plan, spec, or design doc needs review before
+  build starts — "is this plan ready to execute". Check behavior claims
+  against system evidence, and whether invariants, decisions, open
+  questions, dependencies, and approval points are present and executable.
+  Returns prioritized findings only.
+
+  Does not rewrite or implement the plan. Not for reviewing code, and not
+  for producing the plan itself.
 metadata:
   title: Review a Plan
-  tagline: Check a fixed implementation plan against original requirements and system evidence before anyone builds from it.
+  tagline: "Review an implementation plan against requirements and the real system before build."
   category: engineering
   tags:
     - planning

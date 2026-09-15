@@ -1,7 +1,7 @@
 interface:
-  display_name: "Build a Web UI Change"
+  display_name: "Build Web UI"
   short_description: "Implement an approved web UI with existing components."
   icon_small: "./assets/icon-small.svg"
   icon_large: "./assets/icon-large.svg"
   brand_color: "#52525B"
-  default_prompt: "Use $build-web-ui-change to implement this approved web interface change in the running product."
+  default_prompt: "Use $build-web-ui to implement this approved web interface change in the running product."

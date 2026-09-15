@@ -1,19 +1,17 @@
 ---
 name: plan-a-refactor
 description: >-
-  Use when the ask is to plan a structural code change — reduce duplication,
-  untangle a dependency, split a module, extract or rename something, clarify
-  a boundary — before anyone touches code, and the system's externally
-  observable behavior must stay exactly the same. Produces an executable
-  refactor plan: the named maintenance problem, the invariants it must not
-  break, the baseline evidence, and small reviewable transformation steps
-  each paired with a check. Not for writing the refactor itself, and not for
-  planning a feature, bug fix, dependency/framework migration, or any change
-  where behavior is expected to change, and not for executing an
-  already-approved refactor plan.
+  Use when planning a structural code change that must keep external
+  behavior identical — reduce duplication, untangle dependencies, split a
+  module, extract or rename, clarify a boundary. Returns a refactor plan:
+  the maintenance problem, invariants, baseline evidence, and small
+  reviewable steps with checks.
+
+  Not for executing the refactor, or for planning features, bug fixes,
+  migrations, or any change that alters behavior.
 metadata:
   title: Plan a Refactor
-  tagline: Turn a structural code change into a reviewable, behavior-preserving plan without writing code.
+  tagline: "Plan a behavior-preserving structural change as small, reviewable steps."
   category: engineering
   tags:
     - planning

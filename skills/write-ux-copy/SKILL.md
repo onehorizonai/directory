@@ -1,17 +1,15 @@
 ---
 name: write-ux-copy
 description: >-
-  Use when writing or revising interface copy for one specific,
-  already-decided product state, action, error, confirmation, or recovery
-  path in an existing product — for example a loading message, an error
-  string, a permission-denied message, an empty state, or a
-  destructive-action confirmation. Not for marketing or landing-page copy,
-  not for naming a whole feature or product, not for writing copy when the
-  underlying product state or behavior hasn't been decided yet, and not
-  for translating existing copy into another language.
+  Use when writing or revising interface copy for one already-decided
+  product state or action — loading, error, empty state, permission
+  denied, destructive confirmation, and similar.
+
+  Not for marketing or landing-page copy, naming a whole feature or
+  product, copy before the underlying behavior is decided, or translation.
 metadata:
   title: Write UX Copy
-  tagline: Write interface copy for a specific product state, action, error, confirmation, or recovery path.
+  tagline: "Write UI copy for one decided state, action, error, or confirmation."
   category: design
   tags:
     - ux-writing
@@ -89,6 +87,9 @@ For each string, gather:
    "OK" or "Confirm" — on the confirming button.
 6. Apply the accessibility and localization checks below before
    finalizing.
+7. Load [references/slop.md](references/slop.md) and fail the pass if
+   drafted strings still contain `—`, synonym triplets, or extra CTAs
+   the interface does not actually offer.
 
 ### State taxonomy
 
@@ -168,6 +169,8 @@ flagged as indistinguishable.
 - Confirm tone is plain and respectful and scaled to the action's stakes,
   and that no raw technical diagnostics (error codes, stack traces,
   internal identifiers) leaked into user-facing text.
+- [references/slop.md](references/slop.md): no em dashes, no synonym
+  triplets, no list that could have been a sentence with one next action.
 - Report which states were inspected, which were inferred, and which
   weren't checked — separately, not blended into one "done" claim.
 

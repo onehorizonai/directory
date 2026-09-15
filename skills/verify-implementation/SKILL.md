@@ -1,17 +1,16 @@
 ---
 name: verify-implementation
 description: >-
-  Use when an implementation is already claimed complete — a handoff, a
-  pull request, a "this is done" message, or an Initiative, Bug, or TODO
-  marked ready for review — and the job is to independently establish what
-  it actually does
-  against its stated acceptance criteria, then report what passed, failed,
-  or could not be verified. Not for writing or fixing the implementation
-  itself, and not for the inline verification a developer already does
-  while actively writing the code.
+  Use when an implementation is claimed complete — handoff, PR, "this is
+  done", or work marked ready for review — and you need an independent
+  check against acceptance criteria. Report what passed, failed, or could
+  not be verified.
+
+  Not for writing or fixing the implementation, and not for the checks a
+  developer already runs while coding.
 metadata:
   title: Verify an Implementation
-  tagline: Check a finished implementation against its acceptance criteria and report what passed, failed, or couldn't be verified.
+  tagline: "Independently check a claimed-complete implementation against its acceptance criteria."
   category: engineering
   tags:
     - verification

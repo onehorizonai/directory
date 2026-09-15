@@ -1,0 +1,7 @@
+interface:
+  display_name: "Design App"
+  short_description: "Design native, desktop, and Watch UI per OS conventions."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $design-app to design this app interface for the target platform."

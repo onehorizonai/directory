@@ -1,20 +1,17 @@
 ---
 name: plan-a-bug-fix
 description: >-
-  Use when a bug, error, or reported problem needs investigation and a
-  bounded fix plan before any code changes — e.g. "here's a bug report,
-  plan the fix", "users say X is broken, find out what's wrong and how to
-  fix it", "investigate this error and tell me the smallest fix", "don't
-  patch it yet, just find the cause and plan it out". Establishes expected
-  vs. observed behavior and the strongest available reproduction signal,
-  separates confirmed evidence from hypotheses, and produces a plan for
-  the smallest cause-focused fix plus how to verify it against the
-  original symptom. Not for a request to build new behavior, and not for a
-  request where the fix should actually be written and verified, not just
-  planned — this skill investigates and plans only.
+  Use when a bug or error needs investigation and a bounded fix plan
+  before any code changes — "plan the fix", "find the cause, don't patch
+  yet". Establish expected vs observed behavior, separate evidence from
+  hypotheses, and plan the smallest cause-focused fix plus how to verify
+  it.
+
+  Not for building new behavior, and not for writing and verifying the fix
+  itself — this skill plans only.
 metadata:
   title: Plan a Bug Fix
-  tagline: Turn a reported problem into a confirmed cause and a bounded, verifiable fix plan — without patching it yet.
+  tagline: "Investigate a reported bug and produce a fix plan. Don't patch yet."
   category: engineering
   tags:
     - debugging

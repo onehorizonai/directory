@@ -1,19 +1,18 @@
 ---
 name: review-code
 description: >-
-  Use when a code change needs to be reviewed for defects, regressions,
-  requirement gaps, or important risks — a diff, a pull request, a commit
-  range, or a branch against a named base. Covers fixing the exact change
-  range and baseline, checking the change against its original requirements
-  (not just code quality), checking integration with callers, state,
-  permissions, interfaces, tests, and side effects, and validating every
-  suspected defect before reporting it. Returns prioritized findings only;
-  does not edit the code. Not for applying a fix — do that as a separate,
-  explicitly authorized step (e.g. an implementation skill), and not for
-  approving scope or deciding what to build in the first place.
+  Use when reviewing a diff, PR, commit range, or branch for defects,
+  regressions, requirement gaps, or risks. Fix the change range and
+  baseline, check requirements and integration (callers, state,
+  permissions, interfaces, tests, side effects), and validate suspected
+  defects before reporting. Returns prioritized findings only; does not
+  edit code.
+
+  Not for applying a fix, and not for approving scope or deciding what to
+  build.
 metadata:
   title: Review Code
-  tagline: Review a code change for defects, regressions, and requirement gaps without editing it.
+  tagline: "Find defects, regressions, and requirement gaps in a code change. Findings only."
   category: engineering
   tags:
     - code-review

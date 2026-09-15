@@ -1,23 +1,17 @@
 ---
 name: debug-code
 description: >-
-  Use when a reported bug needs to be reproduced, diagnosed, fixed, and
-  verified end to end — the fix should actually be applied and proven
-  against the original symptom, not just planned. Triggers on requests like
-  "fix this bug", "here's a bug report, find the cause and fix it", "this is
-  broken, debug it and ship a fix", or "reproduce, diagnose, and resolve
-  this issue". Captures the actual symptom and environment, builds the
-  strongest repeatable reproduction signal, investigates before patching,
-  tests one supported hypothesis at a time, applies the smallest
-  cause-focused fix, and reruns the original reproduction plus relevant
-  regressions on the final state to report passed, failed, or not verified.
-  Not for investigation-and-plan-only work where no patch is applied, not
-  for a cause that's already confirmed with nothing left to diagnose, not
-  for independently checking someone else's completion claim, and not for
-  reviewing an already-written fix.
+  Use when a bug needs reproducing, diagnosing, fixing, and verifying end
+  to end — "fix this bug", "find the cause and ship a fix". Capture the
+  symptom, reproduce it, test one hypothesis at a time, apply the smallest
+  cause-focused fix, then re-run the original case.
+
+  Not for plan-only investigation, already-confirmed causes with nothing
+  left to diagnose, verifying someone else's "done" claim, or reviewing an
+  already-written fix.
 metadata:
   title: Debug Code
-  tagline: Reproduce, diagnose, fix, and verify a reported bug — evidence-driven, one hypothesis at a time.
+  tagline: "Reproduce a bug, find the cause, fix it, and prove the original symptom is gone."
   category: engineering
   tags:
     - debugging

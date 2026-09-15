@@ -9,7 +9,8 @@ Browse the full listing at **[onehorizon.ai/directory](https://onehorizon.ai/dir
 or explore the [`skills/`](skills/) folder directly on GitHub.
 
 Every entry here has passed review: this is a curated collection, not an open
-dump. Have a skill you'd like considered? See [CONTRIBUTING.md](CONTRIBUTING.md).
+dump. Have a skill you'd like considered? See [CONTRIBUTING.md](CONTRIBUTING.md)
+and [AGENTS.md](AGENTS.md) for how skills are authored in this repo.
 
 ## What's a skill?
 
@@ -62,27 +63,27 @@ to filter by category.
 ```
 directory/
   README.md
+  AGENTS.md                   # how to author skills + index.json contract
   LICENSE
-  CONTRIBUTING.md
+  CONTRIBUTING.md             # short pointer to AGENTS.md
   _template/                  # copy this to start a new skill
     SKILL.md
   .claude-plugin/
     marketplace.json          # generated — Claude Code plugin manifest
   schema/
     skill.schema.json         # JSON Schema for SKILL.md frontmatter
-    categories.json             # closed list of allowed categories
-    runtimes.json               # closed list of runtime ids
+    categories.json           # closed list of allowed categories
+    runtimes.json             # closed list of runtime ids
   scripts/
     validate.mjs              # validates every skills/*/SKILL.md
     build-index.mjs           # generates index.json + marketplace.json
   skills/
     <skill-name>/
       SKILL.md
-      references/              # optional, loaded on demand
-      assets/                  # optional
+      agents/openai.yaml      # OpenAI/Codex presentation metadata
+      assets/                 # icons (+ optional other assets)
+      references/             # optional, loaded on demand
   index.json                  # generated — the website's fetch target
-  docs/
-    website-integration.md    # index.json contract for the website
 ```
 
 `_template/` lives at the repo root, not inside `skills/`, so it's never
@@ -92,12 +93,13 @@ under `skills/` as a real skill.
 
 `index.json` and `.claude-plugin/marketplace.json` are generated, committed,
 and diff-checked in CI — they're always in sync with the `SKILL.md` files
-that produce them.
+that produce them. The website fetch contract and skill-authoring steps are
+documented in [AGENTS.md](AGENTS.md).
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a skill, including the
-validation rules CI enforces.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md) for how to
+add a skill, including the validation rules CI enforces.
 
 ## Author & Maintainer
 

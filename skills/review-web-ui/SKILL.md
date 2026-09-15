@@ -1,19 +1,16 @@
 ---
 name: review-web-ui
 description: >-
-  Use when an already-implemented web interface needs a UX and quality review
-  against the running product — a route, page, or flow that exists and is
-  reachable, checked for task flow and hierarchy, complete states, state
-  preservation, responsive behavior, keyboard/focus/accessibility, API and
-  permission boundaries, and visual consistency with the existing design
-  system. Requests like "review this screen for UX issues", "audit the new
-  settings page", "check this flow for accessibility and consistency
-  problems", or "does this UI match how the rest of the product behaves".
-  Returns validated, prioritized findings with observed evidence; does not
-  edit the UI and does not review a design mockup or an unimplemented plan.
+  Use when an already-built web route, page, or flow needs a UX and
+  quality review against the running product — task flow, hierarchy,
+  states, responsiveness, keyboard/focus/accessibility, API and permission
+  boundaries, and design-system consistency. Returns prioritized findings
+  with observed evidence.
+
+  Does not edit the UI. Not for mockups or unimplemented plans.
 metadata:
   title: Review Web UI
-  tagline: Review an implemented web interface for UX, state, accessibility, and consistency defects against the running product.
+  tagline: "Review a live web UI for UX, state, accessibility, and design-system consistency."
   category: engineering
   tags:
     - ux-review
@@ -25,17 +22,13 @@ metadata:
 
 ## Overview
 
-A finished screen can look plausible in a screenshot and still fail the task
-it exists for: state that resets on navigation, an empty or error state that
-was never built, an action that only a mouse can reach, or a layout that
-contradicts how the rest of the product groups the same objects. This skill
-is a fixed procedure for reviewing one implemented web interface — a route,
-page, or flow that is actually running, not a mockup or a plan — against the
-product's own interface model and design system. It inspects the real UI
-(browser/Playwright evidence over static reading of the code), exercises the
-states the task requires, and separates measurable inconsistencies and
-behavioral defects from subjective visual preference. It reviews and reports;
-it does not edit the interface.
+A finished screen can look plausible in a screenshot and still fail the
+task it exists for. This skill reviews one **implemented** web interface
+against the same model used to design it: reconstruct Outcome → Objects →
+Actions → Concepts → Use cases → Priority, walk those use cases in a
+running browser, then check states, hierarchy, a11y, and the design
+system. It does not start from whether the page "looks good." It reviews
+and reports; it does not edit the interface.
 
 ## When to use
 
@@ -102,66 +95,41 @@ contracts the UI is bound by.
 
 ## Procedure
 
-1. **Fix the target.** Resolve and state the exact route/screen, environment,
-   and build/version before inspecting anything. Confirm it isn't mid-change.
-2. **Load context.** Identify the product's component system, tokens,
-   typography/spacing scale, and terminology from the design
-   system/reference screens — not just this screen in isolation. Identify the
-   primary objects the interface represents, the actions available on them,
-   and the broader workflows/concepts that combine them; note the apparent
-   priority each carries in the implementation.
-3. **Inspect the real running UI.** Use browser/Playwright inspection to
-   gather observable evidence rather than reading the code and assuming
-   rendered behavior matches it. Read the actual DOM/computed styles,
-   keyboard/focus behavior, and network calls where relevant.
-4. **Walk the task flow.** For each primary use case the screen supports,
-   check that the current state and primary action are clear, the object and
-   its state are understandable, the action can be found and completed, the
-   result is understandable, and recovery from a realistic failure works.
-5. **Exercise representative states.** Loading, success, error,
-   empty, filtered-empty, validation, disabled, and permission-limited
-   states — for each state that plausibly exists, confirm it was actually
-   built rather than assumed to inherit from the happy path.
-6. **Check state handling.** One authoritative state owner, deliberate
-   persistence/reset behavior, and preserved input/focus/selection across
-   navigation, refresh, and interruption — flag state that resets, drifts,
-   or duplicates when it shouldn't.
-7. **Check responsive and spatial behavior.** Narrow/wide viewports, long
-   labels/larger text/localization, and spatial stability through state
-   changes (layout shouldn't jump or reflow unnecessarily as content or state
-   changes). Check vertical rhythm (whether type size, line height, control
-   height, and spacing form a coherent scale) and note excessive or
-   inconsistent alignment axes, containers, or dividers.
-8. **Check keyboard, focus, and accessibility.** Confirm the complete task is
-   operable by keyboard alone (no hover-only or pointer-only essential
-   actions), focus order and restoration are sensible, names/labels/errors
-   are associated correctly, and status changes are announced. Where an
-   accessibility target is stated (e.g. WCAG 2.2 AA), check current criteria
-   for that target — contrast, 200% text resizing, reflow, and target
-   size, with their exceptions — rather than treating remembered numbers as
-   timeless; verify against current guidance. Use automated tooling as
-   partial evidence only; confirm manually.
-9. **Check API/permission boundaries.** Confirm the UI's visible
-   affordances match what the backend actually authorizes — hidden or
-   disabled UI is not itself authorization; a permission-limited state should
-   correspond to a real, enforced boundary, not just a hidden button.
-10. **Check consistency.** Compare terminology, spacing, color use, grouping,
-    and control placement against the product's established patterns from
-    step 2. Flag conflicts between this screen's visual prominence/space/
-    grouping/disclosure and the interface's own model (per step 2) or the
-    product's conventions elsewhere — not just against generic taste. Weigh
-    consistency over novelty: a screen that looks fresher but breaks an
-    established pattern or makes the product less predictable is a
-    regression, not an improvement, even when nothing else about it is wrong.
-11. **Validate every suspected issue.** Before it counts as a finding, check
-    it against the rendered DOM/styles, the design system reference, the API
-    contract, or a reproduction in the browser. Where a visual comparison is
-    part of a finding, use only screenshots taken under matching viewport,
-    theme, data, and state — an unmatched comparison is not usable evidence.
-    Separate objective, evidence-backed defects from a reviewer's own visual
-    preference — a preference is not reported as a defect.
-12. **Rank and structure findings**, consolidating duplicates and prioritizing
-    by real impact on the task, before returning them.
+1. **Fix the target.** Exact route/screen, environment, and
+   build/version. Confirm it isn't mid-change.
+2. **Reconstruct the model.** Load
+   [references/ui-reasoning.md](references/ui-reasoning.md). From the
+   handoff, requirements, design system, and the running page, establish
+   Outcome → Objects → Actions → Concepts → Use cases → Priority
+   (1–5). Do not invent priorities. Do not start from cards or styling.
+3. **Inspect the real UI.** Browser/Playwright evidence over assuming
+   source matches render. DOM, computed styles, keyboard, network where
+   relevant.
+4. **Walk use cases.** Load
+   [references/verification.md](references/verification.md). For each
+   important use case run the twelve questions. A beautiful page that
+   fails a use case is a failed design.
+5. **States and coverage.** Load [references/states.md](references/states.md).
+   Empty ≠ filtered-empty ≠ error ≠ permission; work preserved; one
+   authoritative owner per piece of state.
+6. **Structure vs priority.** Load
+   [references/structure-hierarchy.md](references/structure-hierarchy.md).
+   Alignment, rhythm, Gestalt, attention budget, grayscale and skeleton.
+   Responsive: what each region does as width changes — not a stretched
+   phone layout.
+7. **Keyboard, focus, a11y.** Full task by keyboard; names/errors
+   associated; status announced. Check current WCAG (or product target)
+   rather than remembered numbers. Load
+   [references/motion-feedback.md](references/motion-feedback.md) when
+   motion, feedback, or recovery is in question.
+8. **API/permission boundaries.** Visible affordances match what the
+   backend authorizes; hidden UI is not authorization.
+9. **Consistency.** Terminology, spacing, grouping, and control placement
+   against the product's established patterns and the reconstructed
+   model. Novelty that breaks predictability is a regression.
+10. **Validate and rank.** Evidence from the running UI; matching
+    viewport/theme/data for screenshots; no taste-as-defect. Confirmed
+    defects, open questions, optional improvements.
 
 ## Output
 
@@ -200,6 +168,11 @@ Before handing back findings, check:
 
 - The target route/environment/version was fixed and stated, not left
   implicit.
+- Outcome, objects, actions, concepts, use cases, and priority were
+  reconstructed from evidence before styling was judged.
+- Important use cases were walked in the running browser using
+  [references/verification.md](references/verification.md); coverage
+  gaps are named.
 - Findings come from observed evidence in the running UI (browser/Playwright
   inspection), not solely from reading source and assuming rendered
   behavior.
@@ -256,16 +229,18 @@ Review the new /settings/billing page (staging, build abc123) for UX and
 accessibility problems before it ships.
 ```
 
-Expected approach: fix the target (staging, that route, that build); load the
-product's design system and check what the billing object/actions/workflow
-priority should look like; inspect the real page in the browser; walk the
-primary flow (view plan, update payment method, cancel); exercise loading,
-empty (no payment method), error (failed update), and permission-limited
-(non-admin) states; check keyboard/focus operation and state preservation
-across a validation error; check spacing/terminology/grouping against other
-settings pages; validate each suspected issue against rendered output or the
-design system before reporting it; return confirmed defects, open questions,
-and optional improvements as separate groups without editing the page.
+Expected approach: fix the target (staging, that route, that build);
+reconstruct outcome, objects, actions, concepts, and priority (1–5) from
+the product model and the running page — not from whether the screenshot
+looks good; inspect the real page; walk the important use cases (view
+plan, update payment method, cancel) with the twelve questions; exercise
+loading, empty (no payment method), error (failed update), and
+permission-limited (non-admin) states; check keyboard/focus and state
+preservation across a validation error; check hierarchy against declared
+priority; validate each suspected issue against rendered output or the
+design system before reporting it; return confirmed defects, open
+questions, and optional improvements as separate groups without editing
+the page.
 
 ```
 Review this dashboard redesign against the old one — does it actually work

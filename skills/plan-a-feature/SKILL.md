@@ -1,17 +1,15 @@
 ---
 name: plan-a-feature
 description: >-
-  Use when the user hands you a feature request or change request that
-  touches existing behavior and asks for an implementation plan, spec, or
-  design before code is written — e.g. "plan how to build X", "write a
-  spec for Y before we implement it", "what's the plan for this change",
-  "don't write code yet, just plan it out". Produces a self-contained
-  implementation plan grounded in the real codebase, not a code change.
-  Not for a reported defect where the cause isn't confirmed yet — that
-  needs cause confirmation before a fix can be planned.
+  Use when a feature or change request needs an implementation plan or
+  spec before code — "plan how to build X", "write a spec first", "don't
+  write code yet". Produces a codebase-grounded plan, not a patch.
+
+  Not for defects whose cause isn't confirmed yet — confirm the cause
+  before planning a fix.
 metadata:
   title: Plan a Feature
-  tagline: Turn a feature request into a self-contained, executable implementation plan without writing code.
+  tagline: "Write an implementation plan for a feature request before any code."
   category: engineering
   tags:
     - planning

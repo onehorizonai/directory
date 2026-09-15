@@ -1,18 +1,16 @@
 ---
 name: refactor-code
 description: >-
-  Use when the ask is to improve a codebase's internal structure — reduce
-  duplication, untangle a dependency, extract or rename something, clarify
-  a boundary — while the system's externally observable behavior stays
-  exactly the same. Covers naming the specific structural problem, freezing
-  the behavior that must not change, moving code in small verified steps,
-  and proving nothing observable drifted. Not for adding a capability,
-  fixing a bug, migrating a framework/dependency, or any other change where
-  what the system does is expected to change — that's approved-behavior
-  work, not a refactor.
+  Use when improving internal structure while external behavior stays the
+  same — reduce duplication, untangle a dependency, extract or rename,
+  clarify a boundary. Name the structural problem, freeze invariants, move
+  code in small verified steps, prove nothing observable drifted.
+
+  Not for new capabilities, bug fixes, framework migrations, or any change
+  that alters what the system does.
 metadata:
   title: Refactor Code
-  tagline: Restructure code safely — same behavior, verified — without smuggling in a feature or a fix.
+  tagline: "Restructure code without changing what it does. Prove behavior held."
   category: engineering
   tags:
     - refactoring
