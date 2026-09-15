@@ -1,8 +1,13 @@
 # Per-step review checklist
 
-The full set of sub-checks behind Procedure steps 3, 4, 5, and 7. Apply
-this for anything beyond a trivial, single-state screen — the one-line
-summary in SKILL.md is enough only for the smallest, most obvious cases.
+Extra sub-checks behind Procedure steps 3, 4, 5, and 7, beyond what's
+already stated inline in SKILL.md. Steps 3 and 7 below just itemize the
+inline prose — nothing new. Steps 4 and 5 add two checks not restated
+inline: grouping things with consistent terminology, and letting a user
+recognize relevant context in place rather than needing to remember it.
+Load this file when one of those two specific checks is in question;
+skip it otherwise — the inline steps are a complete, self-contained
+review pass on their own.
 
 ## Step 3 — walk each prioritized use case
 

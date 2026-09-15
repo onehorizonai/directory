@@ -120,20 +120,27 @@ does not edit the interface under review.
    relaunch; behavior through connectivity loss, authorization
    expiry/denial, cancellation/retry, and return-to-app. Flag duplicate
    requests or false success on uncertain outcomes.
-6. **Review permissions, adaptive layout, text scaling/localization, and
-   input/accessibility** — permissions requested in context and handled
-   gracefully when denied; layout across window sizes, orientation/
-   folding, multitasking, keyboard, safe areas; platform text-scaling and
-   locale-aware formatting; and actual accessibility-tree/assistive-
-   technology behavior (labels, reading order, target sizes, contrast,
-   reduced motion) — not visual inspection alone.
+6. **Review permissions and adaptive layout** — permissions requested in
+   context and handled gracefully when denied or revoked, matching the
+   app's existing permission pattern; layout across window sizes,
+   orientation/folding, multitasking, keyboard, safe areas, and spatial
+   stability during transitions (layout shouldn't jump or reflow
+   unnecessarily as state changes).
+7. **Review text scaling/localization and input/accessibility** — platform
+   text-scaling behavior and locale-aware formatting (dates, numbers,
+   plurals, direction, longer-translation handling); the input methods
+   relevant to the platform (touch, keyboard, precision pointer where
+   applicable); and actual accessibility-tree/assistive-technology behavior
+   (labels, reading order, target sizes, contrast, reduced motion) — not
+   visual inspection alone.
 
-   Steps 3, 4, and 6 each have a fuller per-platform checklist — see
-   [references/platform-review-checklist.md](references/platform-review-checklist.md)
-   and consult it for any non-trivial platform-convention or accessibility
-   check, and whenever a suspected finding needs sorting between "confirmed
-   defect" and "cross-platform visual preference."
-7. **Validate and separate findings** — before any suspected issue counts
+   For the specifics of the one platform under review — iOS/Compose,
+   Android/Compose, or Desktop — see the matching section of
+   [references/platform-review-checklist.md](references/platform-review-checklist.md);
+   it also has extra edge-case examples for the rare finding steps 3, 4, and
+   8 don't already resolve into "confirmed defect" or "cross-platform visual
+   preference."
+8. **Validate and separate findings** — before any suspected issue counts
    as a finding, check it against the real interface, platform guidance,
    the app's own patterns, or another appropriate source. Explicitly
    separate observable violations (a documented convention or contract
@@ -142,11 +149,11 @@ does not edit the interface under review.
    disclosure or semantic color actually communicates) from subjective
    cross-platform visual preferences — the latter are not findings unless
    tied to a concrete usability or accessibility problem.
-8. **Report environment evidence** — record what was actually checked:
+9. **Report environment evidence** — record what was actually checked:
    device/OS/window used, simulator vs. physical device, and any
    simulator-only limitation (e.g. some permission flows, haptics, or
    assistive-technology behavior don't fully reproduce off-device).
-9. **Rank and structure findings** — prioritize by real impact,
+10. **Rank and structure findings** — prioritize by real impact,
    consolidate duplicates, and split into confirmed defects, open
    questions, and optional improvements before returning them.
 
@@ -191,11 +198,11 @@ assumed correct because individual conventions passed (step 3); platform
 conventions and semantic color were checked against current official
 guidance, not memory (step 4); state/lifecycle, interruption/restoration,
 permissions, adaptive layout, text scaling/localization, input, and
-accessibility-tree behavior were each considered (steps 5–6); every
-confirmed defect was validated (step 7); confirmed defects stayed separated
+accessibility-tree behavior were each considered (steps 5–7); every
+confirmed defect was validated (step 8); confirmed defects stayed separated
 from cross-platform visual preferences, open questions, and optional
 improvements; environment/device evidence and any coverage gap were stated
-explicitly (step 8); nothing was edited; no secrets were reproduced in the
+explicitly (step 9); nothing was edited; no secrets were reproduced in the
 output.
 
 ## Boundaries

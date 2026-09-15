@@ -140,9 +140,11 @@ modify what it reviews.
    sizing, spacing forming a coherent scale) — judged only by whether it
    supports hierarchy/grouping/scanning, never pixel sameness or taste.
 
-   Steps 3, 4, 5, and 7 each carry a longer sub-checklist — see
-   [references/review-checklist.md](references/review-checklist.md) and
-   apply it for anything beyond a trivial, single-state screen.
+   The inline checks above are a complete pass on their own. Two of them
+   have one extra sub-check each (grouping by consistent terminology, in
+   step 4; recognizing context in place, in step 5) — see
+   [references/review-checklist.md](references/review-checklist.md) if
+   either specific point is in question.
 8. **Exercise the real interface when reachable.** For an implemented
    target with available tooling, actually walk the prioritized use cases:
    enter → orient → act → understand result → recover. For a proposed
