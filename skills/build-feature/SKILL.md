@@ -52,17 +52,13 @@ against real checks rather than described from memory.
 - There is no approved scope that maps to a real code path — see
   Failure behavior.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read/write access to the target repository and its test/build tooling.
 - The approved scope itself: what should change and, ideally, how success
-  will be checked. If neither exists, treat that as a blocker (see Failure
-  behavior) rather than inferring scope from the codebase alone.
-
-## Inputs
-
-- The approved behavior or change, in enough detail to restate as a
-  testable statement.
+  will be checked, in enough detail to restate as a testable statement. If
+  neither exists, treat that as a blocker (see Failure behavior) rather
+  than inferring scope from the codebase alone.
 - Any explicit constraints called out in the approval (must preserve an
   API, must not touch a given area, must ship behind a flag, etc.).
 - Pointers to the relevant part of the codebase, if already known;

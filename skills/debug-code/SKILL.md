@@ -57,25 +57,19 @@ the fix in one pass, rather than stopping at a diagnosis or a plan.
   reproduction, and none obtainable) — say so; see
   [Failure behavior](#failure-behavior) rather than patching blind.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read and write access to the affected codebase, its recent history
   (commits, deploys, config changes), logs, and any existing tests or
-  error output.
-- Ability to run the project's existing checks (tests, build, lint,
-  type-check, or a way to execute/replay the affected path) — both to build
-  a reproduction and to verify the fix afterward.
-- The bug report itself, including anything the reporter already knows:
-  expected behavior, observed behavior, environment, steps already tried.
-
-## Inputs
-
-- The reported symptom in the reporter's own words, plus expected vs.
-  observed behavior if already stated.
-- Reproduction steps, environment details, complete error messages/stack
-  traces, and identifiers (IDs, requests, timestamps) already available —
-  preserved exactly, not paraphrased, with credentials and unnecessary
-  personal data redacted before they're carried into any output.
+  error output. Ability to run the project's existing checks (tests,
+  build, lint, type-check, or a way to execute/replay the affected path) —
+  both to build a reproduction and to verify the fix afterward.
+- The bug report itself: reported symptom in the reporter's own words,
+  expected vs. observed behavior, environment, steps already tried.
+- Reproduction steps, complete error messages/stack traces, and
+  identifiers (IDs, requests, timestamps) already available — preserved
+  exactly, not paraphrased, with credentials and unnecessary personal data
+  redacted before they're carried into any output.
 - Pointers to relevant code paths or services if already known; otherwise
   located during investigation.
 - Any recent related changes (commits, deploys, config or dependency
@@ -226,20 +220,6 @@ rerun the original reproduction to confirm it now exports correctly, run
 the export module's existing test suite, and report each as passed, with
 the confirmed cause and the exact lines changed.
 
-```
-Some users see their dashboard widgets randomly reorder after a page
-refresh, roughly one in ten refreshes. No error is thrown. Debug and fix
-it.
-```
-
-Expected approach: record the reproduction rate (~1 in 10) and stabilize
-what can be stabilized (same account, same widget set, same browser) to
-raise it; read the widget-ordering code and recent changes to it; compare
-a stable session against an unstable one; test hypotheses one at a time
-(an unstable sort, a race between two writes of the same preference, a
-missing tiebreaker) until one is confirmed by evidence; apply the smallest
-fix for that specific cause; rerun the original repro across enough
-refreshes to trust the result and add a regression test asserting stable
-order. If the existing end-to-end suite can't run in the available
-environment, report that check as not verified with the reason, rather
-than counting it as passed.
+When the symptom is intermittent rather than reliably reproducible, see
+[references/worked-example-intermittent.md](references/worked-example-intermittent.md)
+for how to handle reproduction rate and stabilization.

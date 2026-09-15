@@ -45,53 +45,38 @@ and reports; it does not edit the interface.
 
 ## Do not use when
 
-- Nothing is implemented yet and the request is a design review of a mockup,
-  wireframe, or written plan — that's a design/positioning step, not this
-  skill; there is no running UI to inspect.
-- The ask is to also fix what's found, not just review it — finish the
-  review first, then invoke an implementation step as a separate, explicitly
-  authorized action.
-- The target route or version can't be pinned down (see
-  [Failure behavior](#failure-behavior)) — resolve that first rather than
-  reviewing a moving target.
-- The request is a pure code-correctness review with no UI/UX angle —
-  review it for defects and requirement coverage generally instead.
-- The UI is a native iOS/Android/desktop app rather than a web interface —
-  the checks here (browser rendering, DOM, CSS breakpoints) don't apply to
-  a native shell.
+- Nothing is implemented yet and the request is a design review of a
+  mockup, wireframe, or written plan — there is no running UI to inspect.
+- The ask is to also fix what's found — finish the review first, then
+  invoke an implementation step as a separate, explicitly authorized
+  action.
+- The request is a pure code-correctness review with no UI/UX angle.
+- The UI is a native iOS/Android/desktop app — the checks here (browser
+  rendering, DOM, CSS breakpoints) don't apply to a native shell.
 - The primary question is whether the product's prioritized use cases and
   their model (actors, objects, actions, relationships, lifecycle states)
-  hold together as an experience — not whether this specific build renders,
-  performs, or complies with platform/accessibility mechanics correctly —
-  that is a product-model and interaction-quality review, not the
-  build-quality audit this skill performs.
+  hold together as an experience, not whether this specific build renders,
+  performs, or complies with mechanics correctly — that's a product-model
+  review, not the build-quality audit this skill performs.
 
-## Prerequisites
+## Prerequisites and inputs
 
-Browser access to the actual running interface at a fixed route/version
-(local dev server, staging, or production build) — ideally through
-Playwright or an equivalent browser-automation tool, so findings are observed
-evidence rather than inferred from source. Read access to the frontend source
-and the product's design system/component library/tokens, for tracing an
-observed problem to its cause and for checking against established patterns.
-Where relevant to a flagged flow, awareness of the underlying API/permission
-contracts the UI is bound by.
-
-## Inputs
-
-- The exact target: route/URL, environment, and build/version/commit — fixed
-  before inspection starts, not left implicit.
+- The exact target: route/URL, environment, and build/version/commit,
+  fixed before inspection starts. Browser access to the running interface
+  — ideally through Playwright or equivalent browser automation, so
+  findings are observed evidence rather than inferred from source.
 - What kind of pass this is: full review, or focused on specific concerns
-  (e.g. accessibility only, or state handling only) — ask if unstated and
-  it changes scope materially.
-- Access to the design system/component library/tokens and any reference
-  screens that establish the product's existing patterns, so novelty can be
-  told apart from inconsistency.
-- The primary task(s) the interface exists to support, if not obvious from
-  the interface itself — needed to judge hierarchy and priority, not just
-  surface polish.
+  (e.g. accessibility only) — ask if unstated and it changes scope
+  materially.
+- Read access to the frontend source and the design system/component
+  library/tokens/reference screens, for tracing an observed problem to its
+  cause and telling novelty apart from inconsistency.
+- The primary task(s) the interface exists to support, if not obvious —
+  needed to judge hierarchy and priority, not just surface polish.
 - Any known constraints: supported browsers, breakpoints, themes,
-  accessibility target (e.g. WCAG 2.2 AA), localization requirements.
+  accessibility target (e.g. WCAG 2.2 AA), localization requirements. Where
+  relevant to a flagged flow, awareness of the underlying API/permission
+  contracts the UI is bound by.
 
 ## Procedure
 
@@ -242,18 +227,7 @@ design system before reporting it; return confirmed defects, open
 questions, and optional improvements as separate groups without editing
 the page.
 
-```
-Review this dashboard redesign against the old one — does it actually work
-better, or does it just look different?
-```
-
-Expected approach: fix both targets (redesigned route/build vs. the prior
-version, same environment); identify the dashboard's primary objects and
-which metrics/actions the task model says should carry the most priority;
-inspect both versions in the browser under matching viewport/theme/data;
-compare only screenshots taken under those matching conditions; separate
-measurable regressions (e.g. a primary action now behind an extra click, a
-lost keyboard path, broken vertical rhythm) from the reviewer's own visual
-taste; report the former as confirmed defects with the evidence and design
-principle involved, and explicitly exclude the latter rather than reporting
-it as a defect.
+When comparing a redesign against a prior version rather than reviewing a
+single build, see
+[references/worked-examples.md](references/worked-examples.md) for a
+worked example, including matched-condition screenshot comparison.

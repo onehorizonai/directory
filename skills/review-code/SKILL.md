@@ -56,29 +56,22 @@ findings. It reviews and reports; it does not edit the code under review.
 - The change range or baseline can't be pinned down (see Failure behavior)
   — resolve that first rather than reviewing a moving or undefined target.
 
-## Prerequisites
+## Prerequisites and inputs
 
-A fixed review target and comparison baseline are required input, not
-something this skill infers — a diff, a specific PR, a commit range, or a
-branch compared against a named base commit/branch. Read access to the
-repository at that target and baseline, and, where available, the ability
-to run its tests/build/lint. If the target is still moving (e.g. a branch
-being actively pushed to), that's a blocker, not something to review
-anyway.
-
-## Inputs
-
-- The exact change range and baseline (diff, PR, commit range, or
-  branch-vs-base).
+- A fixed review target and comparison baseline, not something this skill
+  infers — a diff, a specific PR, a commit range, or a branch compared
+  against a named base commit/branch. If the target is still moving (e.g.
+  a branch being actively pushed to), that's a blocker, not something to
+  review anyway.
+- Read access to the repository at that target and baseline, and, where
+  available, the ability to run its tests/build/lint to validate suspected
+  defects.
 - The original requirements, acceptance criteria, linked Initiative/Bug/
   TODO, or spec the change is supposed to satisfy. Ask for it if not
-  supplied — reviewing
-  only for code quality with no requirement source is a materially
-  different, narrower job.
-- Any known invariants, design/source references, or constraints the change
-  must respect.
-- Access to run tests/build/lint, if available, for validating suspected
-  defects.
+  supplied — reviewing only for code quality with no requirement source is
+  a materially different, narrower job.
+- Any known invariants, design/source references, or constraints the
+  change must respect.
 
 ## Procedure
 
@@ -108,25 +101,10 @@ anyway.
 
 Step 5 is the step most likely to get skipped under time pressure — a
 suspected issue is not allowed to go straight from "noticed" to "reported"
-without passing through validation:
-
-```mermaid
-stateDiagram-v2
-  [*] --> Inspecting
-  Inspecting --> SuspectedFinding
-  SuspectedFinding --> Validating
-  Validating --> ConfirmedDefect: reproduced against code/docs/tests
-  Validating --> OpenQuestion: cannot confirm or deny
-  Validating --> Dropped: contradicted by evidence
-  ConfirmedDefect --> Reported
-  OpenQuestion --> Reported
-  Dropped --> [*]
-  Reported --> [*]
-```
-
-A suspected issue that fails validation is either dropped (contradicted by
-evidence) or downgraded to an open question (cannot confirm or deny with
-available evidence) — it never becomes a confirmed defect either way.
+without passing through validation. A suspected issue that fails
+validation is either dropped (contradicted by evidence) or downgraded to
+an open question (cannot confirm or deny with available evidence) — it
+never becomes a confirmed defect either way.
 
 ## Output
 

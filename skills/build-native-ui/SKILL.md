@@ -54,22 +54,16 @@ result on the actual target platform rather than from code alone.
   interface itself — that's a generic feature build, not native UI
   implementation.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Read/write access to the native app repository and its build/test
   tooling, including the relevant simulator/emulator and, depending on
   risk, a physical device.
-- The approved UI change itself, ideally with a design/mock reference.
+- The approved UI change or design reference.
 - The target platform, minimum OS, and UI framework/library version. If
   it's not already obvious from the repository, declare it explicitly
-  before proceeding (Procedure step 1) or treat it as a blocker if it can't
-  be determined.
-
-## Inputs
-
-- The approved UI change or design reference.
-- The target platform, minimum OS, and UI framework/library version —
-  declared explicitly if not already evident from the repo.
+  before proceeding (Procedure step 1) or treat it as a blocker if it
+  can't be determined.
 - Any explicit constraints called out in the approval (must preserve an
   existing API or permission, must not change navigation, must ship behind
   a flag).
@@ -252,17 +246,6 @@ HIG (not iPhone HIG); implement with WidgetKit complications (not
 ClockKit), watchOS navigation patterns, and energy-aware updates; verify
 across Watch sizes and VoiceOver — do not reuse iPhone IA.
 
-```
-Add multi-select to the existing Android contacts list, per the approved
-design: long-press selects an item, a selection toolbar appears, and the
-selection and scroll position must survive rotation and returning from
-the backgrounded app.
-```
-
-Expected approach: inspect the existing list's state-hoisting pattern and
-where scroll position is currently tracked; hoist selection state the same
-way and persist both selection and scroll position across
-configuration change and process death using the app's existing
-`SavedStateHandle`/state-restoration pattern; verify with TalkBack, a
-rotation check, and a background/foreground round-trip on an emulator or
-device.
+When the target platform is Android rather than iOS, see
+[references/worked-example-android-multiselect.md](references/worked-example-android-multiselect.md)
+for a worked multi-select/rotation-survival example.

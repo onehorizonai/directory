@@ -59,17 +59,15 @@ separate instead of blended into one confident-sounding paragraph.
   commitments) — surface it as an open question in the output instead of
   resolving it.
 
-## Prerequisites
+## Prerequisites and inputs
 
-Access to at least one tool that can reach primary sources for the
-question's domain — web search/fetch, official docs, source code, package
-registries, or internal systems, as relevant. Which tool that is depends on
-the runtime; this skill doesn't assume a specific one. If nothing available
-can reach an authoritative source for the domain, say so per
-[Failure behavior](#failure-behavior) rather than answering from memory.
-
-## Inputs
-
+- Access to at least one tool that can reach primary sources for the
+  question's domain — web search/fetch, official docs, source code,
+  package registries, or internal systems, as relevant. Which tool that is
+  depends on the runtime; this skill doesn't assume a specific one. If
+  nothing available can reach an authoritative source for the domain, say
+  so per [Failure behavior](#failure-behavior) rather than answering from
+  memory.
 - The exact question or decision to answer.
 - Audience and purpose — why the answer is needed.
 - Scope: system/product/version/geography boundaries and explicit
@@ -112,29 +110,12 @@ instead of stopping to ask.
    materially changing the answer, not on a fixed source count or time
    budget.
 
-The stop condition and the contradiction check are the two steps most
-likely to get skipped under time pressure — the loop is not allowed to go
-straight from reading to stopping without passing through a contradiction
-check:
-
-```mermaid
-stateDiagram-v2
-  [*] --> Scoping
-  Scoping --> Searching
-  Searching --> Reading
-  Reading --> UpdatingFindings
-  UpdatingFindings --> CheckingContradictions
-  CheckingContradictions --> Searching: gap or contradiction found
-  CheckingContradictions --> Stable: new sources add nothing material
-  Searching --> Blocked: evidence inaccessible
-  Blocked --> Searching: alternate source found
-  Stable --> Synthesizing
-  Synthesizing --> [*]
-```
-
-`Blocked` does not resolve itself by guessing. If no alternate source can be
-found, exit into [Failure behavior](#failure-behavior) with the gap named,
-rather than looping indefinitely or fabricating a source.
+The stop condition and the contradiction check (steps 5 and 7) are the two
+steps most likely to get skipped under time pressure — the loop is not
+allowed to go straight from reading to stopping without passing through a
+contradiction check. If evidence is inaccessible and no alternate source
+can be found, exit into [Failure behavior](#failure-behavior) with the gap
+named, rather than looping indefinitely or fabricating a source.
 
 ## Output
 
@@ -214,15 +195,7 @@ from decisive evidence (the changelog entry and the relevant source diff),
 any uncertainty (e.g. whether a compatibility shim exists), and coverage
 gaps (e.g. couldn't check an unreleased pre-release branch).
 
-```
-Compare Postgres logical replication vs Debezium/CDC for near-real-time
-sync into a search index, for our use case (single-region, <10ms lag
-target, existing Postgres 15 cluster).
-```
-
-Expected approach: identify primary sources for each option (Postgres docs,
-Debezium docs, relevant RFCs/issues), read them rather than summary
-articles, normalize claims to the stated constraints (region, lag target,
-Postgres version), check for contradicting claims about lag or operational
-overhead, and return a recommendation with the evidence and any unresolved
-disagreement stated separately — not folded into one paragraph.
+When the question is a comparison between two options rather than a single
+fact-check, see
+[references/worked-example-comparison.md](references/worked-example-comparison.md)
+for a worked example, including normalizing claims to stated constraints.

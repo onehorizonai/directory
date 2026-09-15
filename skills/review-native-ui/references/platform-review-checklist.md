@@ -1,10 +1,14 @@
 # Platform review checklist
 
-On-demand detail for [../SKILL.md](../SKILL.md). Load this when running the
-per-platform verification pass, or when a suspected finding needs to be
-sorted between "confirmed defect" and "cross-platform visual preference."
-Skip it for a narrow, self-contained check where the inline procedure
-already covers the risk.
+On-demand detail for [../SKILL.md](../SKILL.md). The core rules (what
+separates a defect from a preference, the object/action/priority and
+semantic-color checks) are already stated inline in steps 3, 4, and 8 —
+this file adds two genuinely conditional things: the per-platform
+checklist section matching the one platform under review (iOS/Compose,
+Android/Compose, or Desktop — load only that section), and extra
+edge-case examples for sorting an ambiguous finding between "confirmed
+defect" and "cross-platform visual preference." Skip this file entirely
+when the inline steps already resolved the finding.
 
 ## Separating defects from preferences
 

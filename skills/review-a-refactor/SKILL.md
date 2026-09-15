@@ -67,31 +67,25 @@ perform the refactor itself.
   finish the review first, then invoke an implementation or refactor step as
   a separate, explicitly authorized action.
 
-## Prerequisites
+## Prerequisites and inputs
 
-A fixed review target and comparison baseline: a diff, a specific PR, a
-commit range, or a branch compared against a named base commit/branch. Read
-access to the repository at that target and baseline, and, where available,
-the ability to run its tests/build/lint to validate suspected findings. If
-the target is still moving (e.g. a branch being actively pushed to), that's
-a blocker, not something to review anyway.
-
-## Inputs
-
-- The exact change range and baseline (diff, PR, commit range, or
-  branch-vs-base).
+- A fixed review target and comparison baseline: a diff, a specific PR, a
+  commit range, or a branch compared against a named base commit/branch.
+  If the target is still moving (e.g. a branch being actively pushed to),
+  that's a blocker, not something to review anyway.
+- Read access to the repository at that target and baseline, and, where
+  available, the ability to run its tests/build/lint to validate suspected
+  findings.
 - The named structural problem the refactor is supposed to solve, and any
-  stated invariants — the public interfaces, values/errors, side effects,
+  stated invariants — public interfaces, values/errors, side effects,
   ordering, persisted state, permissions, timing guarantees, and external
   contracts that are supposed to stay exactly the same. If these weren't
   supplied explicitly, derive them from the PR description, the linked
   Initiative/Bug/TODO, the code's existing callers and tests, and its
-  current behavior — never
-  invent an invariant that isn't traceable to one of those sources.
+  current behavior — never invent an invariant that isn't traceable to one
+  of those sources.
 - Any explicit exclusions — code or behavior stated as out of scope for
   this change.
-- Access to run tests/build/lint, if available, for validating suspected
-  findings.
 
 ## Procedure
 
@@ -147,30 +141,11 @@ a blocker, not something to review anyway.
 Step 3 is where the review has to draw a line the diff itself won't draw for
 you — the same hunk can look like a harmless structural move or like
 approved-behavior work in disguise, and only checking it against the stated
-invariants and named problem tells the two apart:
-
-```mermaid
-stateDiagram-v2
-  [*] --> InspectingHunk
-  InspectingHunk --> StructuralMove: matches named problem, no invariant touched
-  InspectingHunk --> BehaviorChange: an invariant from step 2 is affected
-  InspectingHunk --> HiddenScope: adds/fixes/migrates something not named as in-scope
-  StructuralMove --> JudgingCorrectness
-  BehaviorChange --> Validating
-  HiddenScope --> Validating
-  Validating --> ConfirmedRegression: reproduced against code/tests
-  Validating --> OpenQuestion: cannot confirm or deny
-  Validating --> Dropped: contradicted by evidence
-  JudgingCorrectness --> [*]
-  ConfirmedRegression --> [*]
-  OpenQuestion --> [*]
-  Dropped --> [*]
-```
-
-A hunk that reads as a plain structural move still gets judged for
-correctness in step 6; a hunk that reads as a behavior change or hidden
-scope goes through the same validation discipline as any other suspected
-defect before it's reported.
+invariants and named problem tells the two apart. A hunk that reads as a
+plain structural move still gets judged for correctness in step 6; a hunk
+that reads as a behavior change or hidden scope goes through the same
+validation discipline (step 7) as any other suspected defect before it's
+reported.
 
 ## Output
 
@@ -205,27 +180,18 @@ change is clean.
 
 ## Verification
 
-Before handing back findings, check:
-
-- The target and baseline were fixed and stated, not left implicit.
-- The invariants/baseline being reviewed against were stated or explicitly
-  derived, not invented.
-- Scope purity was checked — every hunk was placed as a structural move or
-  flagged as possible hidden behavior/scope, not skipped.
-- Behavioral equivalence was checked against every stated invariant class
-  that plausibly applies, including state, side effects, permissions, and
-  async ordering, not just the return value.
-- Every changed or deleted test was read in full for weakened coverage, not
-  just checked for a passing run.
-- Structural correctness was judged against the diff's own named problem,
-  and no finding rests on "a different architecture would be nicer" alone.
-- Every confirmed regression was validated against code, tests, or a
-  reproduction — not left as an unvalidated suspicion.
-- Confirmed regressions, open questions, and optional improvements stayed
-  in separate groups.
-- No code was edited during the review.
-- No secrets or sensitive material encountered during review were
-  reproduced in the output.
+Before handing back findings, confirm: the target and baseline were fixed
+and stated (step 1); invariants were stated or explicitly derived, not
+invented (step 2); every hunk was placed as a structural move or flagged as
+possible hidden behavior/scope (step 3); behavioral equivalence was checked
+against every stated invariant class that plausibly applies — state, side
+effects, permissions, async ordering, not just the return value (step 4);
+every changed or deleted test was read in full for weakened coverage, not
+just a passing run (step 5); structural correctness was judged against the
+diff's own named problem, with no finding resting on "a different
+architecture would be nicer" alone (step 6); every confirmed regression was
+validated (step 7); the three output groups stayed separate; nothing was
+edited; no secrets were reproduced in the output.
 
 ## Boundaries
 
@@ -278,22 +244,7 @@ judge whether all three call sites now genuinely share the one function
 by running the handler tests, and report confirmed regressions, open
 questions, and optional improvements separately with an overall verdict.
 
-```
-Review this branch against main. The commit message says "refactor: split
-the 800-line UserService into smaller modules, no behavior change." No
-written invariants were given.
-```
-
-Expected approach: fix the range (branch vs main), derive invariants since
-none were stated — read UserService's current public methods, callers, and
-existing tests to establish what "no behavior change" must mean here; check
-scope purity for anything beyond splitting (e.g. a changed permission check
-tucked into the new module boundaries); check equivalence for each public
-method's return values, side effects, and any ordering between the new
-modules; read the full test diff for tests that were split apart in a way
-that dropped an assertion instead of just relocating it; judge whether the
-split actually reduced the original problem (one 800-line file) rather than
-just moving the same tangle into multiple files that still call each other
-directly; validate suspected issues against the code and test suite before
-reporting; and state clearly if any invariant had to be assumed because none
-was given.
+When no invariants were stated and must be derived from the code itself,
+see
+[references/worked-example-no-invariants.md](references/worked-example-no-invariants.md)
+for a worked example.

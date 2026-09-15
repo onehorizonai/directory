@@ -51,51 +51,33 @@ reviews and reports; it does not edit the interface.
 
 ## Do not use when
 
-- The request is to also fix what's found, not just review — finish the
-  review first, then invoke a native implementation skill as a separate,
-  explicitly authorized step. Don't blend review and modification into one
-  pass.
+- The request is to also fix what's found — finish the review first, then
+  invoke a native implementation skill as a separate, explicitly
+  authorized step. Don't blend review and modification into one pass.
 - Nothing has been built yet and the ask is to decide or approve a new
   design — that's design/product work, not review of an existing interface.
-- The UI is web or browser-only with no native shell to inspect — this
-  skill's platform-convention and accessibility-tree checks are
-  native-specific.
-- The exact app, platform, and version under review can't be pinned down
-  (see Failure behavior) — resolve that first rather than reviewing a
-  moving or undefined target.
-- The ask is only to check a finished implementation against its stated
-  acceptance criteria (pass/fail against a spec), with no native
-  platform-convention, state/lifecycle, or accessibility-tree dimension in
-  scope.
-- The ask is a general source-diff or code-quality review (correctness,
-  reuse, maintainability) with no request to inspect the running native
-  interface itself.
+- The UI is web or browser-only with no native shell to inspect.
+- The ask is only pass/fail against stated acceptance criteria with no
+  native platform-convention, state/lifecycle, or accessibility-tree
+  dimension in scope, or is a general source-diff/code-quality review with
+  no request to inspect the running interface itself.
 
-## Prerequisites
+## Prerequisites and inputs
 
-A fixed review target is required input, not something this skill infers:
-the app, the target platform (iOS, Android, desktop, or other), the
-minimum OS and UI framework/library version, and the specific
-screen/flow/build under review. Access to the real interface — a
-simulator/emulator at minimum, a physical device where risk warrants it —
-and, where available, the app's source for inspecting architecture and
-existing patterns. Access to the platform's assistive technology
-(VoiceOver, TalkBack, UI Automation, or equivalent screen reader) for the
-accessibility checks; if unavailable, that's a named coverage gap, not a
-reason to skip the review.
-
-## Inputs
-
-- The exact app, platform, minimum OS, and UI framework/library version,
-  and the specific screen/flow/build under review.
+- A fixed review target, not something this skill infers: the app, target
+  platform (iOS, Android, desktop, or other), minimum OS and UI
+  framework/library version, and the specific screen/flow/build under
+  review.
 - Any original requirements, design/mock reference, or acceptance criteria
-  the interface is supposed to satisfy, plus known invariants (must
-  preserve an existing permission contract, must match an established
-  pattern elsewhere in the app).
-- Access to the running interface (simulator/emulator or device) and,
-  where available, the source repository.
-- Access to the platform's assistive technology, if accessibility findings
-  are in scope.
+  the interface should satisfy, plus known invariants (must preserve an
+  existing permission contract, must match an established pattern
+  elsewhere in the app).
+- Access to the real interface — a simulator/emulator at minimum, a
+  physical device where risk warrants it — and, where available, the
+  app's source for inspecting architecture and existing patterns.
+- Access to the platform's assistive technology (VoiceOver, TalkBack, UI
+  Automation, or equivalent) for the accessibility checks; if unavailable,
+  that's a named coverage gap, not a reason to skip the review.
 
 ## Procedure
 
@@ -284,17 +266,6 @@ with no usability basis); report confirmed defects, open questions, and
 optional improvements with environment evidence (simulator vs. device,
 iOS version used).
 
-```
-Check the Android contacts-list multi-select flow for accessibility and
-lifecycle issues. It should survive rotation and returning from a
-backgrounded app.
-```
-
-Expected approach: fix the target (Android, the contacts-list screen, the
-multi-select flow, stated min OS); inspect the real running flow on an
-emulator or device; verify selection state and scroll position actually
-survive rotation and a background/foreground round-trip; verify TalkBack
-can reach and describe the selection toolbar and touch targets meet the
-platform minimum; validate each suspected issue against the running app
-before reporting it; state explicitly if TalkBack access wasn't available
-for part of the check rather than omitting that gap.
+When the target platform is Android rather than iOS, see
+[references/worked-example-android.md](references/worked-example-android.md)
+for a worked lifecycle/accessibility review.

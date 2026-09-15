@@ -36,17 +36,12 @@ Turning a feature request straight into code skips the step where the request me
 - The request's own goal, not just the approach, is undefined — resolve what's being asked for first; see Failure behavior.
 - The request is a reported defect where the cause isn't confirmed yet — establish the symptom and cause first, then plan the fix.
 
-## Prerequisites
+## Prerequisites and inputs
 
-- Read access to the target codebase (or the system being changed) and to any repo history, tests, and configuration that reveal current behavior.
-- Access to whatever authoritative source material is already available: the linked Initiative, Bug, or TODO, tickets, specs, requirement docs, prior decisions — not to be re-derived from memory or invented.
-- No write access, deploy access, or execution of the target system is required.
-
-## Inputs
-
+- Read access to the target codebase (or the system being changed) and to any repo history, tests, and configuration that reveal current behavior. No write, deploy, or execution access is required.
 - The feature/change/bug-fix request, in full, including any stated acceptance criteria.
 - Pointers to relevant code paths, modules, or services, if already known — otherwise locate them during inspection.
-- Any canonical references the request depends on (design docs, prior related plans, API contracts, linked Initiatives/Bugs/TODOs, tickets) with their identifiers preserved exactly.
+- Any canonical references the request depends on (the linked Initiative/Bug/TODO, design docs, prior related plans, API contracts, tickets, requirement docs) with their identifiers preserved exactly — not re-derived from memory or invented.
 
 ## Procedure
 

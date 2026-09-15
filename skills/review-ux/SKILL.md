@@ -47,70 +47,52 @@ modify the reviewed implementation.
 
 ## When to use
 
-- A proposed experience (mockup, wireframe, written interaction plan or
-  spec) or an implemented one (a specific build, screen, or flow, on any
-  platform) needs a UX pass focused on whether its prioritized use cases
-  actually work against the product's own model — "review this flow for UX
-  problems", "does this plan hold together as an experience", "check this
-  design against how the product already models this object" — as distinct
-  from whether a specific build renders, performs, or complies with
-  platform mechanics correctly.
-- Someone wants to know whether hierarchy, grouping, progressive
-  disclosure, recovery paths, and continuity match the experience's own
-  stated or evident priorities — not a generic best-practices checklist and
-  not a visual-style opinion.
-- A screen or plan needs checking for whether its structure (alignment
-  axes, containers, spacing, rhythm) supports the intended hierarchy and
-  grouping, as distinct from whether it matches a particular visual style.
+- A proposed experience (mockup, wireframe, written plan/spec) or an
+  implemented one (a specific build, screen, or flow, on any platform)
+  needs a UX pass on whether its prioritized use cases work against the
+  product's own model — distinct from whether a build renders, performs,
+  or complies with platform mechanics.
+- Hierarchy, grouping, progressive disclosure, recovery paths, and
+  continuity need checking against the experience's own stated or evident
+  priorities — not a generic best-practices checklist or a visual-style
+  opinion.
+- A screen or plan's structure (alignment axes, containers, spacing,
+  rhythm) needs checking for whether it supports the intended hierarchy
+  and grouping, distinct from matching a particular visual style.
 
 ## Do not use when
 
 - The request is only about visual style, taste, or aesthetic preference
-  with no interaction-model or product-consistency question attached — that
-  is not this skill's job at any stage.
-- The ask is to also fix or redesign what's found, not just review it —
-  finish the review first, then apply changes only as a separate,
-  explicitly authorized step.
-- The review needs to be against rendered accessibility-tree/assistive-
-  technology behavior, DOM/computed styles, CSS breakpoint mechanics,
-  design-system token/component conformance, WCAG numeric criteria
-  (contrast, text resizing, target size), API/permission-boundary
-  verification, or a named platform's interface-convention guidelines (HIG,
-  Material, or similar) as the primary concern — that is a platform/
-  technical build-quality audit of an implemented interface, not the
-  product-model and interaction-quality review this skill performs, even
-  when the target is an implemented screen.
-- The target keeps changing while under review, or can't be pinned to one
-  fixed version (see [Failure behavior](#failure-behavior)) — fix a version
-  first rather than reviewing a moving target.
+  with no interaction-model or product-consistency question attached.
+- The ask is to also fix or redesign what's found — finish the review
+  first; apply changes only as a separate, explicitly authorized step.
+- The primary concern is platform/technical build-quality mechanics —
+  rendered accessibility-tree behavior, DOM/CSS, design-system token
+  conformance, WCAG numeric criteria, API/permission-boundary verification,
+  or a named platform's interface-convention guidelines — even when the
+  target is an implemented screen. That's a build-quality audit, not this
+  skill.
 - The ask is a general source-diff or code-quality review (correctness,
   reuse, maintainability) with no UX or product-model question in scope.
 
-## Prerequisites
+## Prerequisites and inputs
 
-The artifact under review, fixed to one version: a mockup/wireframe image,
-a written interaction plan or spec, or an implemented build/route/screen
-with its environment and version stated. Access to whatever establishes the
-product model — existing product requirements, prior UX planning output, or
-observable behavior elsewhere in the product — is required; it is the
-primary evidence this review runs on. Access to the real running interface
-(browser, simulator/emulator, or device) raises confidence and is used to
-exercise prioritized use cases when the target is implemented and that
-access exists, but it is not a hard requirement: a proposed experience with
-no running interface yet is still reviewable by tracing its described
-model and flows.
-
-## Inputs
-
-- The fixed artifact: mockup/wireframe, written plan/spec text, or the
-  exact implemented build/route/screen/flow and its version.
-- The outcome, objects, actions, concepts, prioritized use cases, and
-  states the artifact is meant to support, and any product requirements or
-  prior UX planning output that establishes or constrains them. Ask for
-  this if it isn't discoverable — reviewing product-model consistency with
-  no model to check against is a materially narrower job.
-- Access to the real interface, where the target is implemented and such
-  access exists.
+- The artifact under review, fixed to one version: a mockup/wireframe
+  image, written plan/spec text, or an implemented build/route/screen with
+  its environment and version stated.
+- Whatever establishes the product model — existing product requirements,
+  prior UX planning output, or observable behavior elsewhere in the
+  product: the outcome, objects, actions, concepts, prioritized use cases,
+  and states the artifact is meant to support. This is the primary
+  evidence the review runs on; ask for it if it isn't discoverable, since
+  reviewing product-model consistency with no model to check against is a
+  materially narrower job.
+- Access to the real running interface (browser, simulator/emulator,
+  device), when the target is implemented and such access exists. It
+  raises confidence and is used to exercise prioritized use cases, but
+  isn't a hard requirement — a proposed experience with no running
+  interface yet is still reviewable by tracing its described model and
+  flows.
 - Any known invariants: an established pattern elsewhere in the product
   this experience must stay consistent with, a platform/technology
   constraint, or a stated target audience/permission model.
@@ -157,6 +139,9 @@ model and flows.
    Grayscale and skeleton reviews: if structure fails without decoration,
    that is a finding about structure — not taste. Judge only whether
    structure supports hierarchy, grouping, scanning, or consistency.
+   Extra grouping/context sub-checks live in
+   [references/review-checklist.md](references/review-checklist.md) if
+   either point is in question.
 8. **Exercise the real interface when reachable.** For an implemented
    target with available tooling, actually walk the prioritized use cases:
    enter → orient → act → understand result → recover. For a proposed
@@ -264,24 +249,18 @@ Before handing back findings, check:
 ## Boundaries
 
 This is a Review-step skill: it reviews and reports, and does not modify
-the implementation or artifact under review, and does not apply any of its
-own suggested corrections, unless a human or the invoking task explicitly
+the implementation or artifact under review or apply any of its own
+suggested corrections, unless a human or the invoking task explicitly
 authorizes a separate step. Product-model and interaction-quality
 consistency takes precedence over local novelty — a change that looks
 fresher but breaks an established use-case priority, grouping, or recovery
-path is a problem, not an improvement, even when nothing else about it is
-wrong. This skill does not adjudicate open questions about product intent;
-it surfaces them precisely and leaves the decision to whoever owns product
-direction. It does not cover platform/technical build-quality mechanics
-(rendered accessibility-tree behavior, DOM/CSS inspection, design-system
-token conformance, WCAG numeric criteria, API/permission-boundary
-verification, a named platform's interface-convention compliance) as its
-primary concern, even when the target is an implemented screen — those
-require a build-quality audit targeted at that platform and technology.
-Keep review and modification separate unless both are explicitly requested
-together.
-Protect secrets and sensitive material encountered while reviewing —
-reference their location rather than reproducing them in findings.
+path is a problem, not an improvement. This skill does not adjudicate open
+questions about product intent; it surfaces them precisely and leaves the
+decision to whoever owns product direction. It stays out of platform/
+technical build-quality mechanics (see [Do not use when](#do-not-use-when))
+even on an implemented screen. Protect secrets and sensitive material
+encountered while reviewing — reference their location rather than
+reproducing them in findings.
 
 ## Failure behavior
 
@@ -311,38 +290,16 @@ Here's a wireframe for a new "project archive" flow (attached). Review it
 for UX problems before we build it.
 ```
 
-Expected approach: fix the wireframe as the target, one version; establish
-the model from it and from how "project" is already handled elsewhere in
-the product — actors (owner, member, viewer), the project object and its
-active/archived states, the archive/restore actions, and the prioritized
-use case (archive a project without losing access to its data); walk that
-use case for entry point, whether the consequence (can members still see
-it?) and reversibility (can it be restored?) are clear, and what the empty
-and error states look like; check whether "archived" is visually
-distinguished consistently with how other states are shown elsewhere in the
-product; since nothing is built yet, trace the walkthrough through the
-wireframe rather than exercising a real interface, and note that
-explicitly; separate a confirmed problem (no restore action is shown
-anywhere) from a question (is archiving reversible for all roles, or only
-owners? — unclear from the wireframe) before reporting.
+Expected approach: fix the wireframe as the target; establish the model
+from it and from how "project" is already handled elsewhere in the
+product; walk the prioritized use case (archive without losing access to
+data) for entry, consequence, and reversibility; since nothing is built
+yet, trace the walkthrough through the wireframe instead of exercising a
+real interface, and note that explicitly; separate a confirmed problem (no
+restore action shown) from a question (is archiving reversible for every
+role? — unclear from the wireframe).
 
-```
-Review the new bulk-tagging feature on the /library route (staging, build
-def456) — does it fit how the rest of the app handles multi-select actions?
-```
-
-Expected approach: fix the target (staging, that route, that build);
-establish the model from the library's existing single-select actions and
-any stated requirements for bulk tagging; identify the prioritized use case
-(tag many items at once) and its states (0 selected, 1, some, all); inspect
-the real running page and exercise the use case — select several items, add
-a tag, check the result and undo path; build a state × action matrix if the
-available bulk actions differ meaningfully between "some selected" and "all
-selected"; check whether the bulk toolbar's placement and prominence match
-how other primary actions are surfaced elsewhere in the app, and whether
-its container/spacing choices reinforce that hierarchy or just add an extra
-visual boundary; validate any suspected issue against the running page or
-existing patterns before reporting it; report confirmed problems (e.g. no
-way to undo a bulk tag) separately from a judgment-based recommendation
-(e.g. the toolbar could sit closer to the selection count for scanability)
-with its reasoning stated.
+When the target is an implemented, running build rather than a proposed
+artifact, see
+[references/worked-examples.md](references/worked-examples.md) for a
+full walkthrough including a state × action matrix.

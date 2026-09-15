@@ -41,24 +41,17 @@ Don't use this for marketing or landing-page copy, naming a feature or
 product, copy for a state that hasn't been implemented or decided yet
 (resolve that first), or translating existing copy into another language.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - Access to the actual screen(s)/component(s) involved, or their spec, and
   the real state transitions and permission logic behind them.
 - The product's existing terminology and action-label conventions (a style
   guide, existing strings, or the surrounding UI) to stay consistent with.
-
-## Inputs
-
-For each string, gather:
-
-- Its exact location and trigger (what causes it to show).
-- What the system actually knows at that moment, versus what it might be
-  tempting to imply.
-- The next real action available to the user from that point.
-- Any variables or placeholders it must carry.
-- Layout or character constraints, and whether it's persistent or
-  temporary.
+- For each string: its exact location and trigger (what causes it to
+  show); what the system actually knows at that moment, versus what it
+  might be tempting to imply; the next real action available to the user
+  from that point; any variables or placeholders it must carry; and layout
+  or character constraints, and whether it's persistent or temporary.
 
 ## Procedure
 

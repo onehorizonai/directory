@@ -65,27 +65,20 @@ them. It plans the experience; it does not design or build the surface.
 - The request's own goal is undefined, not just the UX approach — resolve
   what's being asked for first; see Failure behavior.
 
-## Prerequisites
+## Prerequisites and inputs
 
 - The request itself: a feature request, change request, defect report, or
-  scoped task describing what should change, in full.
+  scoped task describing what should change, in full, including any
+  acceptance criteria or constraints already stated.
 - Read access to existing product context relevant to the change: current
-  screens or flows it touches or sits beside, the objects and actions
-  already in the product, any design system or pattern language, and
-  platform/accessibility constraints already in force.
+  screens or flows it touches or sits beside, adjacent objects, actions,
+  and terminology already in the product, any design system or pattern
+  language, and platform/accessibility constraints already in force —
+  preserved with exact names, not paraphrased.
+- Any product priorities already established (by the request, existing
+  product behavior, or explicit prior decisions) — not invented.
 - No write, build, or design-tool execution access is required — this
   skill produces a document, not an interface.
-
-## Inputs
-
-- The feature/change/defect/task request, in full, including any
-  acceptance criteria or constraints already stated.
-- Existing product context: adjacent objects, actions, flows, and
-  terminology already in the product, and any prior UX decisions the
-  change must stay consistent with — preserved with exact names, not
-  paraphrased.
-- Any product priorities already established (by the request, by existing
-  product behavior, or by explicit prior decisions) — not invented.
 
 ## Procedure
 
@@ -233,17 +226,8 @@ return use cases (archive a project, view archived projects, restore one)
 each with priority, an interaction model, and a verification scenario —
 without designing the actual screen.
 
-```
-Support wants a way for an admin to see which team members haven't
-accepted their invite yet and re-send or revoke it. Plan the UX for this
-before we build it.
-```
-
-Expected approach: model the actor (admin), object (pending invite) and
-its lifecycle states (sent, expired, accepted, revoked), the actions
-available in each state, derive use cases (find pending invites, re-send,
-revoke) and prioritize them against how often support says this comes up,
-work through what information the admin needs to decide (who, how long
-pending) and where this list should live relative to existing team
-management, then produce verification scenarios for re-send and revoke
-covering the happy path and the case where the invite already expired.
+When priority must be derived from an external signal (e.g. how often
+support says something comes up) rather than stated directly in the
+request, see
+[references/worked-example-invites.md](references/worked-example-invites.md)
+for a worked example.
