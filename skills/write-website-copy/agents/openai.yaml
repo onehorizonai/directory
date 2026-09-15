@@ -1,0 +1,7 @@
+interface:
+  display_name: "Write Website Copy"
+  short_description: "Write factual website copy for a defined reader and offer."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $write-website-copy to write this page for the defined reader, offer, proof, and next action."

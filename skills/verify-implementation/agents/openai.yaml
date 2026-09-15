@@ -1,0 +1,7 @@
+interface:
+  display_name: "Verify an Implementation"
+  short_description: "Check completed work against its acceptance criteria."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $verify-implementation to independently check this completed work against every acceptance criterion."

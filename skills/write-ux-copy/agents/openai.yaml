@@ -1,0 +1,7 @@
+interface:
+  display_name: "Write UX Copy"
+  short_description: "Write precise interface copy for a decided product state."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $write-ux-copy to write clear interface copy for this specific state and its real next action."

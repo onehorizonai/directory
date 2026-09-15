@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review a Plan"
+  short_description: "Find gaps and risks before implementation begins."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $review-a-plan to review this fixed plan against its requirements and the real system."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Web UI"
+  short_description: "Audit a running web UI for accessibility and state defects."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $review-web-ui to review this running web interface across its important states, inputs, and breakpoints."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Code"
+  short_description: "Find validated defects, regressions, and requirement gaps."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $review-code to inspect this change for confirmed defects, regressions, and requirement gaps."

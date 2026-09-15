@@ -1,0 +1,7 @@
+interface:
+  display_name: "Debug Code"
+  short_description: "Reproduce, fix, and verify a reported code defect."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $debug-code to reproduce this defect, trace its cause, apply the smallest fix, and verify it."

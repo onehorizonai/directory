@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img">
+  <style>
+    .tile { fill: #F6F7F8; stroke: #E8EBEF; }
+    .mark { stroke: #15181C; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #151A1F; stroke: #20262D; }
+      .mark { stroke: #F4F6F8; }
+    }
+  </style>
+  <rect class="tile" x="0.5" y="0.5" width="31" height="31" rx="5"/>
+  <g class="mark" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9h6v6H9zM17 9h6v6h-6zM9 17h6v6H9z"/><path d="M20 18v4m-2-2h4"/></g>
+</svg>
