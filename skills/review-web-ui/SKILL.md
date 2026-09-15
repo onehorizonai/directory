@@ -52,53 +52,38 @@ it does not edit the interface.
 
 ## Do not use when
 
-- Nothing is implemented yet and the request is a design review of a mockup,
-  wireframe, or written plan — that's a design/positioning step, not this
-  skill; there is no running UI to inspect.
-- The ask is to also fix what's found, not just review it — finish the
-  review first, then invoke an implementation step as a separate, explicitly
-  authorized action.
-- The target route or version can't be pinned down (see
-  [Failure behavior](#failure-behavior)) — resolve that first rather than
-  reviewing a moving target.
-- The request is a pure code-correctness review with no UI/UX angle —
-  review it for defects and requirement coverage generally instead.
-- The UI is a native iOS/Android/desktop app rather than a web interface —
-  the checks here (browser rendering, DOM, CSS breakpoints) don't apply to
-  a native shell.
+- Nothing is implemented yet and the request is a design review of a
+  mockup, wireframe, or written plan — there is no running UI to inspect.
+- The ask is to also fix what's found — finish the review first, then
+  invoke an implementation step as a separate, explicitly authorized
+  action.
+- The request is a pure code-correctness review with no UI/UX angle.
+- The UI is a native iOS/Android/desktop app — the checks here (browser
+  rendering, DOM, CSS breakpoints) don't apply to a native shell.
 - The primary question is whether the product's prioritized use cases and
   their model (actors, objects, actions, relationships, lifecycle states)
-  hold together as an experience — not whether this specific build renders,
-  performs, or complies with platform/accessibility mechanics correctly —
-  that is a product-model and interaction-quality review, not the
-  build-quality audit this skill performs.
+  hold together as an experience, not whether this specific build renders,
+  performs, or complies with mechanics correctly — that's a product-model
+  review, not the build-quality audit this skill performs.
 
-## Prerequisites
+## Prerequisites and inputs
 
-Browser access to the actual running interface at a fixed route/version
-(local dev server, staging, or production build) — ideally through
-Playwright or an equivalent browser-automation tool, so findings are observed
-evidence rather than inferred from source. Read access to the frontend source
-and the product's design system/component library/tokens, for tracing an
-observed problem to its cause and for checking against established patterns.
-Where relevant to a flagged flow, awareness of the underlying API/permission
-contracts the UI is bound by.
-
-## Inputs
-
-- The exact target: route/URL, environment, and build/version/commit — fixed
-  before inspection starts, not left implicit.
+- The exact target: route/URL, environment, and build/version/commit,
+  fixed before inspection starts. Browser access to the running interface
+  — ideally through Playwright or equivalent browser automation, so
+  findings are observed evidence rather than inferred from source.
 - What kind of pass this is: full review, or focused on specific concerns
-  (e.g. accessibility only, or state handling only) — ask if unstated and
-  it changes scope materially.
-- Access to the design system/component library/tokens and any reference
-  screens that establish the product's existing patterns, so novelty can be
-  told apart from inconsistency.
-- The primary task(s) the interface exists to support, if not obvious from
-  the interface itself — needed to judge hierarchy and priority, not just
-  surface polish.
+  (e.g. accessibility only) — ask if unstated and it changes scope
+  materially.
+- Read access to the frontend source and the design system/component
+  library/tokens/reference screens, for tracing an observed problem to its
+  cause and telling novelty apart from inconsistency.
+- The primary task(s) the interface exists to support, if not obvious —
+  needed to judge hierarchy and priority, not just surface polish.
 - Any known constraints: supported browsers, breakpoints, themes,
-  accessibility target (e.g. WCAG 2.2 AA), localization requirements.
+  accessibility target (e.g. WCAG 2.2 AA), localization requirements. Where
+  relevant to a flagged flow, awareness of the underlying API/permission
+  contracts the UI is bound by.
 
 ## Procedure
 
@@ -118,41 +103,35 @@ contracts the UI is bound by.
    check that the current state and primary action are clear, the object and
    its state are understandable, the action can be found and completed, the
    result is understandable, and recovery from a realistic failure works.
-5. **Exercise representative states.** Loading, success, error,
-   empty, filtered-empty, validation, disabled, and permission-limited
-   states — for each state that plausibly exists, confirm it was actually
-   built rather than assumed to inherit from the happy path.
-6. **Check state handling.** One authoritative state owner, deliberate
+5. **Exercise representative states** — loading, success, error, empty,
+   filtered-empty, validation, disabled, and permission-limited — for each
+   that plausibly exists, confirming it was actually built rather than
+   assumed to inherit from the happy path.
+6. **Check state handling** — one authoritative state owner, deliberate
    persistence/reset behavior, and preserved input/focus/selection across
-   navigation, refresh, and interruption — flag state that resets, drifts,
+   navigation, refresh, and interruption; flag state that resets, drifts,
    or duplicates when it shouldn't.
-7. **Check responsive and spatial behavior.** Narrow/wide viewports, long
-   labels/larger text/localization, and spatial stability through state
-   changes (layout shouldn't jump or reflow unnecessarily as content or state
-   changes). Check vertical rhythm (whether type size, line height, control
-   height, and spacing form a coherent scale) and note excessive or
-   inconsistent alignment axes, containers, or dividers.
-8. **Check keyboard, focus, and accessibility.** Confirm the complete task is
-   operable by keyboard alone (no hover-only or pointer-only essential
-   actions), focus order and restoration are sensible, names/labels/errors
-   are associated correctly, and status changes are announced. Where an
-   accessibility target is stated (e.g. WCAG 2.2 AA), check current criteria
-   for that target — contrast, 200% text resizing, reflow, and target
-   size, with their exceptions — rather than treating remembered numbers as
-   timeless; verify against current guidance. Use automated tooling as
-   partial evidence only; confirm manually.
-9. **Check API/permission boundaries.** Confirm the UI's visible
-   affordances match what the backend actually authorizes — hidden or
-   disabled UI is not itself authorization; a permission-limited state should
-   correspond to a real, enforced boundary, not just a hidden button.
-10. **Check consistency.** Compare terminology, spacing, color use, grouping,
-    and control placement against the product's established patterns from
-    step 2. Flag conflicts between this screen's visual prominence/space/
-    grouping/disclosure and the interface's own model (per step 2) or the
-    product's conventions elsewhere — not just against generic taste. Weigh
-    consistency over novelty: a screen that looks fresher but breaks an
-    established pattern or makes the product less predictable is a
-    regression, not an improvement, even when nothing else about it is wrong.
+7. **Check responsive and spatial behavior** — narrow/wide viewports, long
+   labels/larger text/localization, spatial stability through state
+   changes, vertical rhythm (type size, line height, control height,
+   spacing forming a coherent scale), and excessive or inconsistent
+   alignment axes, containers, or dividers.
+8. **Check keyboard, focus, and accessibility** — the complete task
+   operable by keyboard alone, sensible focus order/restoration, correctly
+   associated names/labels/errors, and announced status changes. Where an
+   accessibility target is stated (e.g. WCAG 2.2 AA), check current
+   criteria for it — contrast, 200% text resizing, reflow, target size,
+   with their exceptions — rather than remembered numbers. Automated
+   tooling is partial evidence only; confirm manually.
+9. **Check API/permission boundaries** — the UI's visible affordances
+   match what the backend actually authorizes; hidden/disabled UI is not
+   itself authorization, and a permission-limited state should correspond
+   to a real, enforced boundary, not just a hidden button.
+10. **Check consistency** — terminology, spacing, color use, grouping, and
+    control placement against the product's established patterns (step 2),
+    and against the screen's own model, not just against generic taste.
+    Weigh consistency over novelty: a screen that looks fresher but breaks
+    an established pattern is a regression, not an improvement.
 11. **Validate every suspected issue.** Before it counts as a finding, check
     it against the rendered DOM/styles, the design system reference, the API
     contract, or a reproduction in the browser. Where a visual comparison is
@@ -196,27 +175,17 @@ exercised, and which were not, as explicit scope — not left implicit.
 
 ## Verification
 
-Before handing back findings, check:
-
-- The target route/environment/version was fixed and stated, not left
-  implicit.
-- Findings come from observed evidence in the running UI (browser/Playwright
-  inspection), not solely from reading source and assuming rendered
-  behavior.
-- Every state the task realistically produces (loading, empty,
-  filtered-empty, error, permission-limited, long-content, narrow/wide) was
-  either exercised or explicitly named as not covered.
-- Any screenshot comparison used as evidence was taken under matching
-  viewport/theme/data/state conditions.
-- Every confirmed defect is validated against rendered output, the design
-  system, the API contract, or a reproduction — not left as an unvalidated
-  suspicion.
-- Aesthetic preference is not present in the confirmed-defects group; each
-  hierarchy/consistency finding names the evidence and the design principle
-  it conflicts with.
-- Confirmed defects, open questions, and optional improvements stayed in
-  separate groups, deduplicated and ranked by real impact.
-- No UI code was edited during the audit.
+Before handing back findings, confirm: the target was fixed and stated
+(step 1); findings come from observed evidence in the running UI (step 3),
+not solely from reading source and assuming rendered behavior; every state
+the task realistically produces was exercised or explicitly named as not
+covered (step 5); any screenshot comparison used matching viewport/theme/
+data/state conditions; every confirmed defect was validated against
+rendered output, the design system, the API contract, or a reproduction
+(step 11); aesthetic preference is absent from the confirmed-defects group,
+and each hierarchy/consistency finding names the design principle it
+conflicts with; the three output groups stayed separate, deduplicated, and
+ranked by real impact; nothing was edited.
 
 ## Boundaries
 
@@ -256,29 +225,14 @@ Review the new /settings/billing page (staging, build abc123) for UX and
 accessibility problems before it ships.
 ```
 
-Expected approach: fix the target (staging, that route, that build); load the
-product's design system and check what the billing object/actions/workflow
-priority should look like; inspect the real page in the browser; walk the
-primary flow (view plan, update payment method, cancel); exercise loading,
-empty (no payment method), error (failed update), and permission-limited
-(non-admin) states; check keyboard/focus operation and state preservation
-across a validation error; check spacing/terminology/grouping against other
-settings pages; validate each suspected issue against rendered output or the
-design system before reporting it; return confirmed defects, open questions,
-and optional improvements as separate groups without editing the page.
+Expected approach: fix the target; load the design system and check what the
+billing object/actions/workflow priority should look like; inspect the real
+page in the browser; walk the primary flow; exercise loading, empty, error,
+and permission-limited states; check keyboard/focus operation and state
+preservation across a validation error; validate each suspected issue
+against rendered output or the design system before reporting it.
 
-```
-Review this dashboard redesign against the old one — does it actually work
-better, or does it just look different?
-```
-
-Expected approach: fix both targets (redesigned route/build vs. the prior
-version, same environment); identify the dashboard's primary objects and
-which metrics/actions the task model says should carry the most priority;
-inspect both versions in the browser under matching viewport/theme/data;
-compare only screenshots taken under those matching conditions; separate
-measurable regressions (e.g. a primary action now behind an extra click, a
-lost keyboard path, broken vertical rhythm) from the reviewer's own visual
-taste; report the former as confirmed defects with the evidence and design
-principle involved, and explicitly exclude the latter rather than reporting
-it as a defect.
+When comparing a redesign against a prior version rather than reviewing a
+single build, see
+[references/worked-examples.md](references/worked-examples.md) for a
+worked example, including matched-condition screenshot comparison.

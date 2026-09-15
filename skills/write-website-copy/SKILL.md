@@ -49,15 +49,7 @@ it, and the call to action only promises what the offer actually delivers.
 - The request is to translate existing page copy into another language
   rather than write or rewrite it.
 
-## Prerequisites
-
-- The approved facts, proof points, and material offer conditions this copy
-  must draw from — not facts recalled from memory or inferred from the
-  product's general reputation.
-- Access to the page's real surrounding layout (existing page, mockup, or
-  component structure) so copy can be checked in context, not in isolation.
-
-## Inputs
+## Prerequisites and inputs
 
 Gather all of the following before drafting; treat any that are missing as
 a blocker (see Failure behavior), not something to assume:
