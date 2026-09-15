@@ -1,0 +1,7 @@
+interface:
+  display_name: "Plan a Refactor"
+  short_description: "Plan a structural change with behavior preserved."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $plan-a-refactor to plan this structural change while preserving every observable behavior."

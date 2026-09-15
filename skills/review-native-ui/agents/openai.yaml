@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Native UI"
+  short_description: "Audit a native interface for platform and UX defects."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $review-native-ui to review this running native interface for platform, lifecycle, accessibility, and layout defects."

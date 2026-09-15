@@ -1,0 +1,7 @@
+interface:
+  display_name: "Build a Feature"
+  short_description: "Build an approved change in an existing codebase."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $build-feature to implement this approved change with the smallest verified patch."

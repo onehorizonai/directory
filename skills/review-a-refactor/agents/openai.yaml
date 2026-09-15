@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review a Refactor"
+  short_description: "Check a refactor for behavior drift and scope creep."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $review-a-refactor to check this refactor for behavior changes, scope expansion, and weakened tests."

@@ -4,8 +4,9 @@
 // one pass instead of fixing errors one CI run at a time.
 
 import { existsSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, relative, resolve, sep } from "node:path";
 import Ajv from "ajv";
+import matter from "gray-matter";
 import {
   REPO_ROOT,
   TEMPLATE_SKILL_MD_PATH,
@@ -23,6 +24,15 @@ const runtimesDoc = JSON.parse(readFileSync(join(REPO_ROOT, "schema", "runtimes.
 const VALID_CATEGORIES = new Set(categoriesDoc.categories.map((c) => c.id));
 const VALID_RUNTIMES = new Set(runtimesDoc.runtimes.map((r) => r.id));
 const KEBAB_CASE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const OPENAI_INTERFACE_FIELDS = new Set([
+  "display_name",
+  "short_description",
+  "icon_small",
+  "icon_large",
+  "brand_color",
+  "default_prompt",
+]);
+const OPENAI_TOOL_FIELDS = new Set(["type", "value", "description", "transport", "url"]);
 
 const ajv = new Ajv({ allErrors: true });
 const validateSchema = ajv.compile(schema);
@@ -32,6 +42,143 @@ const seenNames = new Map(); // lowercase name -> label that first used it
 
 function fail(label, message) {
   errors.push(`${label}: ${message}`);
+}
+
+function unknownFields(value, supported) {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? Object.keys(value).filter((key) => !supported.has(key))
+    : [];
+}
+
+function parsePlainYaml(raw) {
+  return matter(`---\n${raw}\n---\n`).data;
+}
+
+function checkIcon(label, skillDir, iconPath, expectedViewBox, expectedStroke, expectedRadius) {
+  if (typeof iconPath !== "string" || !iconPath.startsWith("./assets/")) {
+    fail(label, "icon paths must be quoted strings under ./assets/");
+    return;
+  }
+
+  const assetsDir = resolve(skillDir, "assets");
+  const target = resolve(skillDir, iconPath);
+  if (target !== assetsDir && !target.startsWith(`${assetsDir}${sep}`)) {
+    fail(label, `icon path "${iconPath}" escapes the skill assets directory`);
+    return;
+  }
+  if (!existsSync(target)) {
+    fail(label, `references missing icon asset "${iconPath}"`);
+    return;
+  }
+
+  const svg = readFileSync(target, "utf8");
+  if (!svg.includes(`viewBox="${expectedViewBox}"`)) {
+    fail(label, `${relative(skillDir, target)} must use viewBox="${expectedViewBox}"`);
+  }
+  if (!svg.includes(`stroke-width="${expectedStroke}"`)) {
+    fail(label, `${relative(skillDir, target)} must use the ${expectedStroke}px family stroke`);
+  }
+  if (!svg.includes(`class="tile"`) || !svg.includes(`rx="${expectedRadius}"`)) {
+    fail(label, `${relative(skillDir, target)} must use the ${expectedRadius}px family tile radius`);
+  }
+  if (!svg.includes("prefers-color-scheme: dark") || !svg.includes('class="tile"') || !svg.includes('class="mark"')) {
+    fail(label, `${relative(skillDir, target)} must define shared light/dark tile and mark styles`);
+  }
+  if (/<(?:text|foreignObject)\b|<(?:linear|radial)Gradient\b|<filter\b/i.test(svg)) {
+    fail(label, `${relative(skillDir, target)} contains text, a gradient, or a filter`);
+  }
+}
+
+function checkOpenAiYaml(label, skillDir, frontmatter, skillBody) {
+  const path = join(skillDir, "agents", "openai.yaml");
+  if (!existsSync(path)) {
+    fail(label, "missing agents/openai.yaml");
+    return;
+  }
+
+  const raw = readFileSync(path, "utf8");
+  let doc;
+  try {
+    doc = parsePlainYaml(raw);
+  } catch (err) {
+    fail(label, `agents/openai.yaml failed to parse: ${err.message}`);
+    return;
+  }
+
+  for (const key of unknownFields(doc, new Set(["interface", "dependencies", "policy"]))) {
+    fail(label, `agents/openai.yaml has unsupported top-level field \`${key}\``);
+  }
+
+  const ui = doc.interface;
+  if (!ui || typeof ui !== "object" || Array.isArray(ui)) {
+    fail(label, "agents/openai.yaml must contain an `interface` mapping");
+    return;
+  }
+  for (const key of unknownFields(ui, OPENAI_INTERFACE_FIELDS)) {
+    fail(label, `agents/openai.yaml has unsupported interface field \`${key}\``);
+  }
+
+  for (const field of ["display_name", "short_description", "icon_small", "icon_large", "brand_color"]) {
+    if (typeof ui[field] !== "string" || ui[field].trim().length === 0) {
+      fail(label, `agents/openai.yaml is missing non-empty \`interface.${field}\``);
+    } else if (!new RegExp(`^  ${field}: "(?:[^"\\\\]|\\\\.)*"\\s*$`, "m").test(raw)) {
+      fail(label, `agents/openai.yaml \`interface.${field}\` must be quoted`);
+    }
+  }
+
+  if (ui.display_name !== frontmatter?.metadata?.title) {
+    fail(label, "`interface.display_name` must match `metadata.title` in SKILL.md");
+  }
+  if (typeof ui.short_description === "string" && (ui.short_description.length < 25 || ui.short_description.length > 64)) {
+    fail(label, `\`interface.short_description\` must be 25–64 chars (found ${ui.short_description.length})`);
+  }
+  if (typeof ui.brand_color === "string" && !/^#[0-9A-F]{6}$/.test(ui.brand_color)) {
+    fail(label, "`interface.brand_color` must be an uppercase six-digit hex color");
+  }
+  if (ui.icon_small === ui.icon_large) {
+    fail(label, "small and large icons must use separate assets");
+  }
+
+  checkIcon(label, skillDir, ui.icon_small, "0 0 32 32", "1.5", "5");
+  checkIcon(label, skillDir, ui.icon_large, "0 0 64 64", "1.75", "10");
+
+  if (ui.default_prompt !== undefined) {
+    if (typeof ui.default_prompt !== "string" || !ui.default_prompt.includes(`$${frontmatter.name}`)) {
+      fail(label, `\`interface.default_prompt\` must be a string that mentions $${frontmatter.name}`);
+    } else if (!/^  default_prompt: "(?:[^"\\]|\\.)*"\s*$/m.test(raw)) {
+      fail(label, "`interface.default_prompt` must be quoted");
+    }
+  }
+
+  if (doc.dependencies !== undefined) {
+    const dependencies = doc.dependencies;
+    for (const key of unknownFields(dependencies, new Set(["tools"]))) {
+      fail(label, `agents/openai.yaml has unsupported dependencies field \`${key}\``);
+    }
+    if (!dependencies || !Array.isArray(dependencies.tools)) {
+      fail(label, "`dependencies.tools` must be an array");
+    } else {
+      for (const [index, tool] of dependencies.tools.entries()) {
+        for (const key of unknownFields(tool, OPENAI_TOOL_FIELDS)) {
+          fail(label, `dependencies.tools[${index}] has unsupported field \`${key}\``);
+        }
+        if (tool?.type !== "mcp") fail(label, `dependencies.tools[${index}].type must be "mcp"`);
+      }
+    }
+  }
+
+  if (doc.policy !== undefined) {
+    for (const key of unknownFields(doc.policy, new Set(["allow_implicit_invocation"]))) {
+      fail(label, `agents/openai.yaml has unsupported policy field \`${key}\``);
+    }
+    if (typeof doc.policy?.allow_implicit_invocation !== "boolean") {
+      fail(label, "`policy.allow_implicit_invocation` must be a boolean");
+    }
+  }
+
+  if (/\b(?:icon_small|icon_large|brand_color|default_prompt)\b/.test(skillBody)) {
+    fail(label, "presentation metadata belongs in agents/openai.yaml, not SKILL.md");
+  }
 }
 
 /**
@@ -152,6 +299,7 @@ for (const { name: folder, dir, skillMdPath } of folders) {
   }
 
   checkSkillMd(label, frontmatter, body, dir);
+  checkOpenAiYaml(label, dir, frontmatter, body);
 }
 
 // --- Template: _template/SKILL.md, outside skills/ --------------------------
@@ -204,4 +352,4 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`validate: ${folders.length} skill folder(s) + template + README checked, 0 errors.`);
+console.log(`validate: ${folders.length} skill folder(s), OpenAI metadata/icons, template, and README checked, 0 errors.`);

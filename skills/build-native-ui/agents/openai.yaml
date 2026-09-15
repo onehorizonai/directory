@@ -1,0 +1,7 @@
+interface:
+  display_name: "Build Native UI"
+  short_description: "Implement approved native UI with platform conventions."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $build-native-ui to implement this approved native interface in the existing app."

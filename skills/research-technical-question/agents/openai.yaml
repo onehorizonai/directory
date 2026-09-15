@@ -1,0 +1,7 @@
+interface:
+  display_name: "Research a Technical Question"
+  short_description: "Answer a technical question with sourced evidence."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $research-technical-question to answer this scoped technical question with primary sources and visible uncertainty."

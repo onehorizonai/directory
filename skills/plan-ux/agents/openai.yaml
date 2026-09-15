@@ -1,0 +1,7 @@
+interface:
+  display_name: "Plan UX"
+  short_description: "Define the interaction model before implementation."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $plan-ux to model the actors, actions, states, and recovery paths for this experience."

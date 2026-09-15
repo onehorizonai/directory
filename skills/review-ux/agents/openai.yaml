@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review UX"
+  short_description: "Assess product-model clarity, consistency, and recovery."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $review-ux to assess this experience against its actors, objects, actions, states, and recovery paths."

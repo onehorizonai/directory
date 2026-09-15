@@ -1,0 +1,7 @@
+interface:
+  display_name: "Refactor Code"
+  short_description: "Improve code structure without changing behavior."
+  icon_small: "./assets/icon-small.svg"
+  icon_large: "./assets/icon-large.svg"
+  brand_color: "#52525B"
+  default_prompt: "Use $refactor-code to improve this structure in small verified steps without changing behavior."
