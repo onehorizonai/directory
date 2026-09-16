@@ -140,6 +140,9 @@ original reproduction, plus regression coverage); Out-of-scope
 observations (anything else noticed but not part of this fix); Open
 questions or blockers (only if any remain).
 
+Write the plan in plain, concrete English — the shortest phrasing that
+still tells the reader what they need to act.
+
 ## Verification
 
 Before returning the plan, confirm:

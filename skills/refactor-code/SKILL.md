@@ -33,7 +33,10 @@ general implementation work because the two need different defaults: a
 feature change is judged by whether the new behavior is correct, while a
 refactor is judged by whether *no* behavior changed at all. Mixing the two
 in one patch makes it impossible to tell, from the diff alone, which lines
-were supposed to change what.
+were supposed to change what. KISS governs the target state: the smallest
+clean structure that fits, reusing existing patterns over inventing new
+ones — complexity needs a reason, not just a feeling that it might be
+useful later.
 
 ## When to use
 
@@ -147,6 +150,9 @@ The patch, limited to the named structural problem, plus a report with:
 - A separate list of anything discovered but deliberately excluded: bugs,
   missing features, migrations, or performance issues, each named
   specifically enough that a follow-up task could pick it up.
+
+Write the report in plain, concrete English — the shortest phrasing that
+still tells the reader what they need to act.
 
 ## Verification
 

@@ -137,6 +137,9 @@ A check that couldn't be run is always reported under not-verified, never
 folded into passed. Unavailable infrastructure, credentials, or
 environments are a gap, not silent grounds for skipping a criterion.
 
+Write the report in plain, concrete English — the shortest phrasing
+that still tells the reader what they need to act.
+
 ## Verification
 
 Before returning the report, confirm:

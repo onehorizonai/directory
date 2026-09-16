@@ -69,8 +69,6 @@ XCUITest/Appium doesn't need a second framework for the same journey.
 
 ## What "done" requires (meaningful UI changes)
 
-Align with the skill's Verification section:
-
 1. Relevant unit/widget tests for the stack (per-platform reference).
 2. Project build / lint / static-analysis as usual.
 3. App running on simulator/emulator, and on a physical device when the

@@ -154,6 +154,9 @@ Each finding includes:
 State which states, viewports, input methods, and flows were actually
 exercised, and which were not, as explicit scope — not left implicit.
 
+Write each finding in plain, concrete English — the shortest phrasing
+that still tells the reader what they need to act.
+
 ## Verification
 
 Before handing back findings, check:

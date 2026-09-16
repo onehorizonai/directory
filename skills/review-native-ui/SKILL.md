@@ -183,6 +183,9 @@ simulator used, which checks ran on a physical device vs. simulator/
 emulator, and any coverage gap (no device, no assistive-technology access,
 a check that couldn't run) stated explicitly rather than omitted.
 
+Write each finding in plain, concrete English — the shortest phrasing
+that still tells the reader what they need to act.
+
 ## Verification
 
 Before handing back findings, check:

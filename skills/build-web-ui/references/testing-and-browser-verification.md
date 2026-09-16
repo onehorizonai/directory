@@ -66,9 +66,6 @@ browser coverage or existing Playwright tests broke from a markup
 change; don't reach for it just because it exists — the smallest useful
 test level still wins for pure logic.
 
-Use the project's existing test runner (Vitest, Jest, Playwright,
-Cypress, Testing Library, etc.). Match neighboring test style.
-
 ## Anthropic-style browser verification loop
 
 When the app can run locally (or in a preview):
@@ -100,8 +97,6 @@ Browser MCP / DevTools automation is fine when Playwright scripts aren't
 set up — same loop, same evidence bar.
 
 ## What "done" requires (meaningful UI changes)
-
-Align with the skill Verification section:
 
 1. Relevant automated tests
 2. Project build / type-check / lint as usual
