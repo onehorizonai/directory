@@ -36,8 +36,11 @@ procedure for reviewing one concrete native interface — a built screen,
 flow, or release candidate on a named app/platform/version. It
 **reconstructs** that model from evidence, walks important use cases on
 the running interface, then checks HIG/Material/Fluent/GNOME conventions
-and a11y. It does not start from whether a screenshot looks good. It
-reviews and reports; it does not edit the interface.
+and a11y. It does not start from whether a screenshot looks good. **Less
+is more:** actively look for controls, containers, chrome, visual levels,
+words, or decorative elements that could be removed, combined, or hidden
+behind progressive disclosure without losing anything the use case
+needs. It reviews and reports; it does not edit the interface.
 
 ## When to use
 

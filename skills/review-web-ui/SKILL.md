@@ -31,8 +31,11 @@ task it exists for. This skill reviews one **implemented** web interface
 against the same model used to design it: reconstruct Outcome → Objects →
 Actions → Concepts → Use cases → Priority, walk those use cases in a
 running browser, then check states, hierarchy, a11y, and the design
-system. It does not start from whether the page "looks good." It reviews
-and reports; it does not edit the interface.
+system. It does not start from whether the page "looks good." **Less is
+more:** actively look for controls, containers, borders, visual levels,
+words, or decorative elements that could be removed, combined, or hidden
+behind progressive disclosure without losing anything the use case
+needs. It reviews and reports; it does not edit the interface.
 
 ## When to use
 

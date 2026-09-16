@@ -88,7 +88,12 @@ running browser rather than from code or description alone.
    only — conditional, not all at once). When making UX or visual
    decisions, fetch current public web UI guidance (the product's design
    system plus the Web Interface Guidelines / WCAG links named in the
-   loaded refs) rather than inventing a visual language here:
+   loaded refs) rather than inventing a visual language here. Load
+   [references/testing-and-browser-verification.md](references/testing-and-browser-verification.md)
+   whenever the change affects something a user can see or interact
+   with; decide the right test level from the risk — a small visual
+   change doesn't need a new automated test, a new flow or state usually
+   does:
 
    | Concern | Load |
    | --- | --- |
@@ -186,27 +191,19 @@ accessibility coverage, and anything left out of scope. Design judgments
 are reported separately from measurable violations, each with the
 evidence behind it (a screenshot, a computed style, an automated-tool
 result, a keyboard trace) — never asserted as satisfied without
-inspecting that evidence.
+inspecting that evidence. Write the report in plain, concrete English —
+the shortest phrasing that still tells the reader what they need to act.
 
 ## Verification
 
 Verification must inspect the actual rendered interface in a running
 browser — ideally through browser automation (e.g. Playwright) — rather
-than describe it from code alone. For meaningful UI changes, generally:
-
-1. Run the relevant automated tests.
-2. Build / type-check / lint per the repository's existing workflow.
-3. Run the application where possible.
-4. Exercise the affected user flow in a real browser.
-5. Check for runtime and console errors.
-6. Verify keyboard / focus behavior when the change is interactive.
-7. Check responsive behavior at the declared sizes.
-8. Verify loading, empty, error, and other edge states the change affects.
-9. Check accessibility proportionate to risk (automated + keyboard; AT
-   when warranted).
-10. Measure performance when performance is part of the task — fetch
-    current thresholds rather than memorizing them
-    ([references/performance.md](references/performance.md)).
+than describe it from code alone. Run the relevant automated tests, the
+repo's build/type-check/lint, and the full browser-verification loop
+(app running, flow exercised, console errors checked, keyboard/focus,
+responsive sizes, edge states, accessibility, and performance when in
+scope) in
+[references/testing-and-browser-verification.md](references/testing-and-browser-verification.md).
 
 Do **not** claim the UI is correct solely because tests or compilation
 pass. Also check, as applicable:
@@ -230,8 +227,11 @@ and
 
 ## Boundaries
 
-Stay tied to the approved UI scope only — no unrelated visual refactor,
-global design-token change, or component-library migration. Preserve
+Prefer the smallest clean implementation that fits the product's existing
+patterns (KISS) — reuse what's there before adding a component, a
+dependency, or an abstraction; complexity needs a reason. Stay tied to
+the approved UI scope only — no unrelated visual refactor, global
+design-token change, or component-library migration. Preserve
 existing public APIs, permission contracts, data semantics, and side
 effects outside the approved scope. Never mock or stub functionality that
 should call the real API/permission contract unless the approval

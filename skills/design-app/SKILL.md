@@ -40,6 +40,11 @@ a running build.
 like and how it should behave. State ownership, framework APIs, tests,
 and patches are later implementation work — not this procedure.
 
+**Less is more:** every visible element has to earn its place. Prefer
+fewer controls, competing actions, containers, borders, visual levels,
+words, and decorative elements over more of them; use progressive
+disclosure for anything that doesn't need to be visible all the time.
+
 Method detail lives in `references/` and is loaded on demand. Platform
 catalogs are loaded only for the target OS.
 
@@ -180,7 +185,9 @@ this order:
 10. **Out of scope** — including any OS not designed in this pass.
 
 Not production code, not a component API, not a test plan. This model
-is what a later review walks — not a screenshot.
+is what a later review walks — not a screenshot. Write the handoff in
+plain, concrete English — the shortest phrasing that still tells the
+reader what they need to act.
 
 ## Verification
 

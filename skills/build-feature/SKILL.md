@@ -29,8 +29,9 @@ that's already approved — a linked Initiative, Bug, TODO, spec, or plan
 states what should happen. It does not cover deciding what to build;
 that happens before this skill is invoked. Given the approved scope, it
 produces the smallest clean patch among options that match the
-codebase's own code style and architecture patterns — never a hack or
-code smell — built test-first unless a named skip applies, and verified
+codebase's own code style and architecture patterns (KISS: the simplest
+solution that fits, not the cleverest one) — never a hack or code
+smell — built test-first unless a named skip applies, and verified
 against real checks rather than described from memory.
 
 ## When to use
@@ -111,6 +112,8 @@ against real checks rather than described from memory.
 The code patch, limited to what the approved behavior requires, plus a
 short report: what changed, the verification evidence (passed / failed /
 not run), any TDD skip and its reason, and anything left out of scope.
+Write the report in plain, concrete English — the shortest phrasing
+that still tells the reader what they need to act.
 
 ## Verification
 

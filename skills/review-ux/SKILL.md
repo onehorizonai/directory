@@ -44,7 +44,10 @@ walks those use cases. It does not start from whether a screenshot looks
 good. Then it checks whether the experience makes those use cases
 understandable, executable, consistent, and recoverable, and whether its
 structure (alignment, containers, rhythm) reinforces that model instead of
-just decorating it. It exercises the real interface when the target is
+just decorating it. **Less is more:** actively look for controls,
+containers, borders, visual levels, words, or decorative elements that
+could be removed, combined, or hidden behind progressive disclosure
+without losing anything the use case needs. It exercises the real interface when the target is
 implemented and tooling permits, but a proposed experience with no running
 interface yet is still a valid target. It reviews and reports; it does not
 modify the reviewed implementation.
