@@ -165,6 +165,9 @@ enter → understand → act → complete → understand-result → recover shap
 explicitly out-of-scope items. Facts, assumptions, decisions, and open
 questions stay visibly separate — never merged into one narrative.
 
+Write the plan in plain, concrete English — the shortest phrasing that
+still tells the reader what they need to act.
+
 ## Verification
 
 Before returning the plan, confirm:

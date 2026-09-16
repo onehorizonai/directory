@@ -99,6 +99,13 @@ result on the actual target platform rather than from code alone.
    | Electron | [references/electron.md](references/electron.md) — HIG for the **host OS** |
    | Flutter | [references/flutter.md](references/flutter.md) — HIG for the **ship OS** |
 
+   Load
+   [references/testing-and-device-verification.md](references/testing-and-device-verification.md)
+   whenever the change affects something a user can see or interact
+   with; decide the right test level from the risk — a small visual
+   change doesn't need a new automated test, a new journey or state
+   usually does.
+
 3. Inspect the existing native architecture before writing anything:
    navigation pattern, state-management approach, component/view
    conventions, the API and permission contracts the screen touches, and
@@ -129,7 +136,11 @@ result on the actual target platform rather than from code alone.
    success.
 7. Implement using the app's existing state-ownership/binding patterns,
    component system, and platform conventions, in small increments,
-   following the loaded engineering reference (TDD where achievable). Apply
+   following the loaded engineering reference (TDD where achievable, at
+   the smallest useful test level —
+   [references/testing-and-device-verification.md](references/testing-and-device-verification.md)).
+   For a UI bug fix, reproduce the problem on-platform first when
+   practical, then prove the regression test passes. Apply
    the object/action/concept priority from step 4 to vertical rhythm,
    typography scale, alignment, and color as authoring rules, not just a
    later check: use a deliberate platform-appropriate spacing/type scale, a
@@ -172,7 +183,9 @@ plus a report: what changed, which platform(s) were implemented and
 verified, verification evidence (passed/failed/not run, including whether
 checks ran on simulator/emulator vs. a physical device),
 accessibility/localization/adaptive-layout coverage, and anything left out
-of scope (including platforms the approval didn't cover).
+of scope (including platforms the approval didn't cover). Write the
+report in plain, concrete English — the shortest phrasing that still
+tells the reader what they need to act.
 
 ## Verification
 
@@ -195,11 +208,16 @@ subjective recommendations, and state any simulator-only, device-only, or
 assistive-technology coverage gap explicitly rather than omitting it. See
 [references/design-and-verification-checklist.md](references/design-and-verification-checklist.md)
 for the full per-platform (iOS/SwiftUI, watchOS, Android/Compose,
-desktop/Electron) checklist.
+desktop/Electron) checklist, and
+[references/testing-and-device-verification.md](references/testing-and-device-verification.md)
+for the automated-testing loop and tool choice per platform.
 
 ## Boundaries
 
-Stay tied to the approved UI scope only — no unrelated visual refactors or
+Prefer the smallest clean implementation that fits the app's existing
+patterns (KISS) — reuse what's there before adding a component, a
+dependency, or an abstraction; complexity needs a reason. Stay tied to
+the approved UI scope only — no unrelated visual refactors or
 component migrations. Preserve existing public APIs, permission contracts,
 data semantics, and side effects outside the approved scope. Never migrate
 framework, navigation architecture, or deployment target as part of this

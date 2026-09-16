@@ -156,6 +156,9 @@ Stopping condition; Open questions (blocking vs. non-blocking); Authority/
 approval points. Facts, assumptions, decisions, and open questions stay
 visibly separate.
 
+Write the plan in plain, concrete English — the shortest phrasing that
+still tells the reader what they need to act.
+
 ## Verification
 
 Before returning the plan, confirm:

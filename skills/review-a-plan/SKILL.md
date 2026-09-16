@@ -170,6 +170,9 @@ real impact, duplicates are consolidated, and this skill does not
 manufacture a quota — an empty confirmed-gaps list is a valid, complete
 result when the plan is sound.
 
+Write each finding in plain, concrete English — the shortest phrasing
+that still tells the reader what they need to act.
+
 ## Verification
 
 Before handing back findings, confirm: the plan version and requirements

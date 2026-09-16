@@ -182,6 +182,9 @@ duplicates are consolidated, and this skill does not manufacture a quota —
 an empty confirmed-regressions list is a valid, complete result when the
 change is clean.
 
+Write each finding in plain, concrete English — the shortest phrasing
+that still tells the reader what they need to act.
+
 ## Verification
 
 Before handing back findings, confirm: the target and baseline were fixed

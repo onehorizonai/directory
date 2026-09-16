@@ -37,6 +37,11 @@ like and how it should behave. Component APIs, React/architecture,
 testing, and patches are later implementation work — not this
 procedure.
 
+**Less is more:** every visible element has to earn its place. Prefer
+fewer controls, competing actions, containers, borders, visual levels,
+words, and decorative elements over more of them; use progressive
+disclosure for anything that doesn't need to be visible all the time.
+
 Method detail lives in `references/` and is loaded on demand. Do not
 load every file up front.
 
@@ -146,7 +151,9 @@ A single self-contained **web design handoff**, in this order:
 9. **Open questions** — blocking vs non-blocking.
 10. **Out of scope**
 
-Not production code. This model is what a later review walks.
+Not production code. This model is what a later review walks. Write the
+handoff in plain, concrete English — the shortest phrasing that still
+tells the reader what they need to act.
 
 ## Verification
 

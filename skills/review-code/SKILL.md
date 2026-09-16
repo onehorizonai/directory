@@ -95,6 +95,9 @@ findings. It reviews and reports; it does not edit the code under review.
 4. **Inspect for defects and regressions** — read the actual diff for
    correctness bugs, edge cases, and behavior that changed but shouldn't
    have, using the requirement and integration checks above as context.
+   Apply KISS: flag speculative abstractions, unrelated refactoring, and
+   complexity that isn't earning its keep as optional improvements, not
+   just outright bugs.
 5. **Validate every suspected issue** — before any suspected issue counts
    as a finding, check it against code, docs, a reproduction, tests, or
    another appropriate source. A suspicion that isn't validated does not
@@ -134,7 +137,8 @@ Each finding includes:
 Findings are prioritized by real impact, duplicates are consolidated, and
 this skill does not manufacture a quota of findings — an empty or short
 confirmed-defects list is a valid, complete result when the change is
-clean.
+clean. Write each finding in plain, concrete English — the shortest
+phrasing that still tells the reader what they need to act.
 
 ## Verification
 

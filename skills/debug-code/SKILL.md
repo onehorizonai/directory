@@ -150,6 +150,9 @@ Verification (original reproduction and regression results, each marked
 passed, failed, or not verified, with reason for any not verified); Out-of-
 scope observations; Open questions or blockers (only if any remain).
 
+Write the report in plain, concrete English — the shortest phrasing that
+still tells the reader what they need to act.
+
 ## Verification
 
 Before reporting completion, confirm:

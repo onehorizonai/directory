@@ -62,7 +62,7 @@ Turning a feature request straight into code skips the step where the request me
 
 ## Output
 
-A single self-contained plan with these parts, in this order: Goal; Current state; Desired behavior; Invariants and exclusions; Decisions (with the reasoning that drove each one); Open questions (only the ones still unresolved, marked blocking or non-blocking); Implementation steps, each paired with its verification; Dependencies and risks; Acceptance criteria mapped to verification; Authority/approval points. Facts, assumptions, decisions, and open questions stay visibly separate — never merged into one undifferentiated narrative.
+A single self-contained plan with these parts, in this order: Goal; Current state; Desired behavior; Invariants and exclusions; Decisions (with the reasoning that drove each one); Open questions (only the ones still unresolved, marked blocking or non-blocking); Implementation steps, each paired with its verification; Dependencies and risks; Acceptance criteria mapped to verification; Authority/approval points. Facts, assumptions, decisions, and open questions stay visibly separate — never merged into one undifferentiated narrative. Write the plan in plain, concrete English — the shortest phrasing that still tells the reader what they need to act.
 
 ## Verification
 

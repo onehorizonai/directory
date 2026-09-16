@@ -139,6 +139,9 @@ For substantial research, maintain this as one consolidated findings
 artifact updated in place rather than restated per source, using the
 structure from step 4 of the procedure above.
 
+Write the answer in plain, concrete English — the shortest phrasing that
+still tells the reader what they need to act.
+
 ## Verification
 
 Before handing back the answer, check:
