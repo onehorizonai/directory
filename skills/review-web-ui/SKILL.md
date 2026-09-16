@@ -109,16 +109,25 @@ needs. It reviews and reports; it does not edit the interface.
    Alignment, rhythm, Gestalt, attention budget, grayscale and skeleton.
    Responsive: what each region does as width changes — not a stretched
    phone layout.
-7. **Keyboard, focus, a11y.** Full task by keyboard; names/errors
-   associated; status announced. Check current WCAG (or product target)
-   rather than remembered numbers. Load
-   [references/motion-feedback.md](references/motion-feedback.md) when
-   motion, feedback, or recovery is in question.
+7. **Keyboard, focus, a11y.** Full task by keyboard: Tab/Shift+Tab reach
+   and traverse every control, Enter/Space activate, Escape dismisses
+   overlays, no keyboard trap; composite widgets (tabs, menus) follow the
+   ARIA APG pattern for that widget instead of custom key handling; names/
+   errors associated; disabled and selected states exposed, not just
+   styled; status announced; semantic headings and landmarks present.
+   Check current WCAG (or product target) rather than remembered numbers.
+   Load [references/motion-feedback.md](references/motion-feedback.md)
+   when motion, feedback, or recovery is in question.
 8. **API/permission boundaries.** Visible affordances match what the
    backend authorizes; hidden UI is not authorization.
 9. **Consistency.** Terminology, spacing, grouping, and control placement
    against the product's established patterns and the reconstructed
-   model. Novelty that breaks predictability is a regression.
+   model. Novelty that breaks predictability is a regression. Check reuse
+   specifically: when the screen introduces a new component, control, or
+   interaction pattern, verify an equivalent doesn't already exist
+   elsewhere in the design system or product — flag an unnecessary new
+   component or pattern even when it's style-consistent and bug-free,
+   since duplicating an existing solution is itself a finding.
 10. **Validate and rank.** Evidence from the running UI; matching
     viewport/theme/data for screenshots; no taste-as-defect. Confirmed
     defects, open questions, optional improvements.

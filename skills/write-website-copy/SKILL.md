@@ -82,13 +82,24 @@ a blocker (see Failure behavior), not something to assume:
    evidence. If a benefit sounds good but isn't backed by an approved fact,
    cut it or flag it as needing approval — do not infer time savings,
    outcomes, or results that aren't in the approved facts.
-4. Write in the reader's own language: concrete nouns and verbs, consistent
-   product terminology, no unexplained jargon and no oversimplifying of
-   terms the audience actually uses.
+4. Write in the reader's own language: concrete nouns and verbs, no
+   unexplained jargon, and no oversimplifying of terms the audience
+   actually uses. Reuse the product's established terminology for objects
+   and actions exactly as it already appears on the site — don't invent a
+   new synonym for something that already has a name.
 5. Build the page as an information hierarchy, not a list of slogans: give
    each section one job, make headings carry real meaning (state what the
    section proves or does, not just an attention-grabbing phrase), and order
-   sections so the argument builds toward the next action.
+   sections so the argument builds toward the next action. Keep paragraphs
+   short and give the layout room to breathe — a wall of text is a
+   structure failure, not a copy-length target to hit. Use a heading only
+   when it helps scanning, and a list only when the items are genuinely
+   easier to parse apart than as a sentence. Keep readable text columns at
+   a sensible line length: roughly 45–75 characters per line as guidance
+   for prose, with about 60–70 as a useful target — a rendered layout much
+   wider or narrower than that hurts scanning even when the words
+   themselves are fine. This is guidance for judging the layout, not a
+   mechanical rule to enforce on the raw copy text.
 6. Keep the CTA and any surrounding copy honest to the real offer: preserve
    price, trial, account, availability, eligibility, commitment, and
    cancellation conditions exactly as given. Do not add urgency, scarcity,
@@ -135,6 +146,11 @@ claim that had to be cut or softened for lack of approved evidence.
   if none exists, the claim doesn't go in, however plausible it sounds.
 - Confirm links and named actions in the copy match what the page actually
   does.
+- Confirm terminology for products, objects, and actions matches what the
+  rest of the site already uses, not a newly invented synonym.
+- Confirm paragraphs are short, headings are used only where they aid
+  scanning, and no section was padded or compressed just to fill the
+  available space.
 - [references/slop.md](references/slop.md): no em dashes, no synonym
   triplets, no list that could have been a sentence.
 - Report what was checked directly, what was inferred, and what couldn't be

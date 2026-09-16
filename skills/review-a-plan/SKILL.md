@@ -113,7 +113,10 @@ rewrite or implement the plan.
    every step or acceptance criterion have a mapped, concrete way to check
    it (test, manual check, log/metric); is every point that changes scope,
    risk, cost, or external state marked as needing approval rather than
-   folded silently into "implementation"?
+   folded silently into "implementation"? Also check reuse: where the plan
+   introduces a new component, utility, or pattern, does an existing one in
+   the codebase already solve the same problem — and if so, is there a
+   stated reason for not reusing it?
 7. **Validate every suspected issue** — before any suspected gap or
    vagueness counts as a finding, check it against the code, docs, the
    requirements, or another appropriate source. A missing element is only a
@@ -141,7 +144,8 @@ Return findings grouped in this order, each group visibly separate:
 1. **Confirmed gaps** — validated requirement mismatches, unsupported
    assumptions, missing invariants that matter, unresolved decisions that
    should have been resolved or surfaced, missed or unstated dependencies
-   and risks, non-executable or vague steps, or missing
+   and risks, non-executable or vague steps, an unnecessary new component
+   or pattern where an existing one would fit, or missing
    verification/approval points — most-impactful first.
 2. **Open questions** — suspected issues that couldn't be confirmed or
    denied with available evidence.
@@ -184,7 +188,8 @@ taken on faith (step 3); decisions, open questions, and assumptions were
 checked for visibility (step 4); named dependencies/risks were checked
 against the system, and the system was checked for a real dependency the
 plan never named (step 5); every step was checked for executability, real
-sequencing, mapped verification, and approval gates (step 6); every
+sequencing, mapped verification, approval gates, and reuse of an existing
+component or pattern over an unnecessary new one (step 6); every
 confirmed gap was validated, with no finding resting on a missing section
 alone (step 7); the three output groups stayed separate; nothing was
 rewritten or implemented; no secrets were reproduced in the output.
