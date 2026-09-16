@@ -122,7 +122,12 @@ needs. It reviews and reports; it does not edit the interface.
    backend authorizes; hidden UI is not authorization.
 9. **Consistency.** Terminology, spacing, grouping, and control placement
    against the product's established patterns and the reconstructed
-   model. Novelty that breaks predictability is a regression.
+   model. Novelty that breaks predictability is a regression. Check reuse
+   specifically: when the screen introduces a new component, control, or
+   interaction pattern, verify an equivalent doesn't already exist
+   elsewhere in the design system or product — flag an unnecessary new
+   component or pattern even when it's style-consistent and bug-free,
+   since duplicating an existing solution is itself a finding.
 10. **Validate and rank.** Evidence from the running UI; matching
     viewport/theme/data for screenshots; no taste-as-defect. Confirmed
     defects, open questions, optional improvements.

@@ -130,7 +130,12 @@ implementation.
    grouping reflect actual use-case priority and frequency, not just build
    convenience; are related things grouped with consistent terminology; do
    secondary or rare actions use progressive disclosure instead of
-   competing permanently with primary work.
+   competing permanently with primary work. Check reuse specifically: when
+   the artifact introduces a new component, pattern, or concept, verify an
+   existing one in the product wouldn't already serve — flag an
+   unnecessary new component, pattern, or concept even when it's
+   well-designed on its own terms, since duplicating an existing solution
+   is itself a finding.
 5. **Check consequence, recovery, and continuity.** Load
    [references/states.md](references/states.md) and
    [references/motion-feedback.md](references/motion-feedback.md).

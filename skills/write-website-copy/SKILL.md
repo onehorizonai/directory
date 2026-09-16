@@ -94,7 +94,12 @@ a blocker (see Failure behavior), not something to assume:
    short and give the layout room to breathe — a wall of text is a
    structure failure, not a copy-length target to hit. Use a heading only
    when it helps scanning, and a list only when the items are genuinely
-   easier to parse apart than as a sentence.
+   easier to parse apart than as a sentence. Keep readable text columns at
+   a sensible line length: roughly 45–75 characters per line as guidance
+   for prose, with about 60–70 as a useful target — a rendered layout much
+   wider or narrower than that hurts scanning even when the words
+   themselves are fine. This is guidance for judging the layout, not a
+   mechanical rule to enforce on the raw copy text.
 6. Keep the CTA and any surrounding copy honest to the real offer: preserve
    price, trial, account, availability, eligibility, commitment, and
    cancellation conditions exactly as given. Do not add urgency, scarcity,

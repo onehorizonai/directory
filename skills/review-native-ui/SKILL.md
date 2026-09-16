@@ -126,7 +126,11 @@ needs. It reviews and reports; it does not edit the interface.
 9. **Validate and separate** — a suspected issue is a finding only after
    checking the real interface, guidance, or app pattern. Drop
    cross-platform visual preference unless it ties to a use-case or a11y
-   failure.
+   failure. Check reuse specifically: when the screen introduces a new
+   component, control, or interaction pattern, verify an equivalent
+   doesn't already exist elsewhere in the app — flag an unnecessary new
+   component or pattern even when it's platform-correct and bug-free,
+   since duplicating an existing solution is itself a finding.
 10. **Report environment evidence** — device/OS, simulator vs device,
     coverage gaps, which use cases were actually walked.
 11. **Rank** — confirmed defects, open questions, optional improvements.
