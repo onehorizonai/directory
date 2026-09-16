@@ -97,7 +97,11 @@ findings. It reviews and reports; it does not edit the code under review.
    have, using the requirement and integration checks above as context.
    Apply KISS: flag speculative abstractions, unrelated refactoring, and
    complexity that isn't earning its keep as optional improvements, not
-   just outright bugs.
+   just outright bugs. Check reuse specifically: when the diff adds a new
+   component, utility, function, or pattern, does an equivalent already
+   exist elsewhere in the codebase — a second way to solve a problem the
+   codebase already solves is a finding even when the new code itself has
+   no bugs.
 5. **Validate every suspected issue** — before any suspected issue counts
    as a finding, check it against code, docs, a reproduction, tests, or
    another appropriate source. A suspicion that isn't validated does not

@@ -109,11 +109,15 @@ needs. It reviews and reports; it does not edit the interface.
    Alignment, rhythm, Gestalt, attention budget, grayscale and skeleton.
    Responsive: what each region does as width changes — not a stretched
    phone layout.
-7. **Keyboard, focus, a11y.** Full task by keyboard; names/errors
-   associated; status announced. Check current WCAG (or product target)
-   rather than remembered numbers. Load
-   [references/motion-feedback.md](references/motion-feedback.md) when
-   motion, feedback, or recovery is in question.
+7. **Keyboard, focus, a11y.** Full task by keyboard: Tab/Shift+Tab reach
+   and traverse every control, Enter/Space activate, Escape dismisses
+   overlays, no keyboard trap; composite widgets (tabs, menus) follow the
+   ARIA APG pattern for that widget instead of custom key handling; names/
+   errors associated; disabled and selected states exposed, not just
+   styled; status announced; semantic headings and landmarks present.
+   Check current WCAG (or product target) rather than remembered numbers.
+   Load [references/motion-feedback.md](references/motion-feedback.md)
+   when motion, feedback, or recovery is in question.
 8. **API/permission boundaries.** Visible affordances match what the
    backend authorizes; hidden UI is not authorization.
 9. **Consistency.** Terminology, spacing, grouping, and control placement

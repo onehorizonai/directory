@@ -116,6 +116,18 @@ clutter, unnecessary colored fills, decorative icons on every label, too
 many type sizes/weights, excessive separators, nested cards, permanent
 instructional text for obvious controls.
 
+## Let it breathe
+
+Whitespace is a structural tool, not leftover space to fill because the
+canvas has room. Before adding an element, ask whether the task still
+works without it. Before adding explanatory copy, ask whether clearer
+structure, naming, or a better default removes the need for it. Build
+hierarchy through spacing, alignment, typography, and contrast before
+reaching for a container, border, label, or decoration.
+
+Review question: does this screen let its content breathe, or is space
+filled just because it's available?
+
 ## Recognition over recall
 
 Do not require users to remember what the interface can reasonably show:

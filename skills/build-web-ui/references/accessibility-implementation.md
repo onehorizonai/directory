@@ -43,16 +43,34 @@ label / `alt` / content > `title`.
 
 ## Keyboard and focus
 
-- Full task completable without a mouse.
+- Full task completable without a mouse: Tab and Shift+Tab move forward
+  and backward through every interactive control in order; Enter and
+  Space activate controls per their native role; Escape dismisses
+  dismissible UI (menus, dialogs, popovers) where the platform expects it.
 - Focus order follows reading order; only `tabindex="0"` or `"-1"`.
 - Visible `:focus-visible` indicator meeting non-text contrast (~3:1).
-- Composite widgets: roving tabindex or `aria-activedescendant` per APG —
-  don't leave every item `tabindex="0"`.
+- Composite widgets (tabs, menus, listboxes): roving tabindex or
+  `aria-activedescendant` with arrow-key movement per the matching **APG
+  pattern** — don't leave every item `tabindex="0"`. Tab interfaces
+  specifically follow the [APG tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+  rather than ad hoc keyboard wiring.
+- No keyboard trap: every focusable region a user can Tab into has a
+  keyboard path back out.
+- Disabled controls are excluded from the tab order and exposed via the
+  native `disabled` attribute or `aria-disabled` (not style alone);
+  selected/pressed/expanded state is exposed via `aria-selected`,
+  `aria-pressed`, or `aria-expanded` to match the visual state.
 - Modal: prefer `<dialog>.showModal()` (inert background + focus trap).
   If custom, use `inert` on the background — **`aria-hidden` alone does
   not remove background from tab order**.
-- On close, restore focus to the control that opened the dialog.
+- Manage focus on open/close for dialogs, sheets, and popovers: move
+  focus into the opened UI, then on close restore focus to the control
+  that opened it.
 - Escape dismisses overlays consistently; don't trap focus without an exit.
+- Semantic headings (`h1`–`h6` in outline order, no skipped levels chosen
+  for size) and landmarks (`main`, `nav`, `header`, `footer`, `search`)
+  give assistive tech a real page structure to navigate, separate from
+  visual heading size.
 
 ## Live regions and status
 

@@ -74,6 +74,15 @@ See [structure-hierarchy.md](structure-hierarchy.md) (density and
 complexity). Accidental clutter is a defect; legitimate expert density
 is not.
 
+## Removal test
+
+See [structure-hierarchy.md](structure-hierarchy.md) (let it breathe).
+For each element and each piece of explanatory copy on the screen: does
+the task still work without it? Could clearer structure, naming, or a
+better default replace it instead of adding more UI or more words? Fix
+by removing, combining, or deferring to progressive disclosure before
+adding a container, border, label, or decoration to compensate.
+
 ## Also walk, when the use case involves them
 
 - Can the user authenticate without blocking paste or a password
