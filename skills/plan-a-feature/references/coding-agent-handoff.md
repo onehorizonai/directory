@@ -7,6 +7,9 @@ issue reads: a clear goal, the context that matters, the constraints, and
 what "done" looks like. Give enough direction to make good decisions, not
 a line-by-line recipe.
 
+These are qualities to work into the skill's own Output sections, not
+extra headings to add alongside them.
+
 ## Scale it to the work
 
 A small change gets a short plan: the goal, where to look, what done looks
@@ -33,7 +36,9 @@ another one.
 - **Behavior, not code.** Describe what must be true. Add a concrete
   example (an input and its output, a state change) where words alone are
   ambiguous. Don't write the implementation, name private helpers, or
-  settle structure the repo's conventions already settle.
+  settle structure the repo's conventions already settle. The exception is
+  when the location is the point: a bug fix names the exact place the
+  cause lives, and a refactor names exactly what moves where.
 - **Lifecycle and edge cases, when relevant.** Setup and cleanup
   (listeners, timers, subscriptions, animation frames), loading, empty,
   error, and permission states, interruption and retry, concurrency, and
@@ -74,7 +79,7 @@ page feels alive, without slowing the page down.
 
 Look first: the hero component, the existing reduced-motion hook, and the
 color tokens. Follow the repo's existing component patterns. Don't add an
-animation library; use a canvas and requestAnimationFrame.
+animation library.
 
 Required: static frame when prefers-reduced-motion is set; pauses when
 the hero is off-screen or the tab is hidden; cancels the frame loop and

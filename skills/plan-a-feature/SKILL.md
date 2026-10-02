@@ -64,7 +64,7 @@ Turning a feature request straight into code skips the step where the request me
 
 A single self-contained plan with these parts, in this order: Goal (the user-visible outcome and why it's needed); Current state (including the files, tests, and existing patterns to read first); Desired behavior; Constraints, invariants, and exclusions (each constraint marked required or suggested, plus what's out of scope); Decisions (with the reasoning that drove each one); Open questions (only the ones still unresolved, marked blocking or non-blocking); Implementation steps, each paired with its verification; Dependencies and risks; Done when (acceptance criteria mapped to verification, plus the repo's validation commands); Authority/approval points; Report back (ask the executor to finish with what changed, which validation ran, and any notable trade-offs).
 
-Scale the plan to the work. Drop any part that would be empty, only say "none", or repeat another — a small change may need only Goal, Current state, Implementation steps, and Done when. Facts, assumptions, decisions, and open questions stay visibly separate — never merged into one undifferentiated narrative. Write the plan in plain, concrete English — the shortest phrasing that still tells the reader what they need to act.
+Scale the plan to the work. Drop any part that would be empty, only say "none", or repeat another — a small change may need only Goal, Current state, Implementation steps, and Done when, plus a one-line Report back. Facts, assumptions, decisions, and open questions stay visibly separate — never merged into one undifferentiated narrative. Write the plan in plain, concrete English — the shortest phrasing that still tells the reader what they need to act.
 
 ## Verification
 
