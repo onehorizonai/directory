@@ -163,7 +163,12 @@ interaction, visual-hierarchy notes, recovery path, observable success
 condition); Verification scenarios (one per primary use case, in the
 enter → understand → act → complete → understand-result → recover shape);
 explicitly out-of-scope items. Facts, assumptions, decisions, and open
-questions stay visibly separate — never merged into one narrative.
+questions stay visibly separate — never merged into one narrative. Mark
+each decision as required or as a starting suggestion a later step may
+tune (a timing, a threshold, a default sort), and name the existing
+components, patterns, and design tokens the surface should reuse, so
+whoever builds it treats the product's existing design system as the
+source of truth.
 
 Write the plan in plain, concrete English — the shortest phrasing that
 still tells the reader what they need to act.
@@ -188,6 +193,9 @@ Before returning the plan, confirm:
 - A UX principle applied to a use case is stated as a design judgment, not
   claimed as a verified fact about an implementation that doesn't exist
   yet.
+- Required decisions are distinguishable from starting suggestions, and
+  existing components, patterns, and tokens to reuse are named where they
+  exist.
 - A capable agent with no access to this conversation could plan or build
   the surface, and later verify it, from this document alone.
 

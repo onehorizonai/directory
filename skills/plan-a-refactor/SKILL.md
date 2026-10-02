@@ -123,7 +123,11 @@ one at a time — without doing any of the moving itself.
    step 3 for the ordinary case plus the boundary and failure cases implied
    by the frozen invariants. Sequence steps so each stands independently
    checkable; leave formatting-only changes and dependency bumps out
-   entirely unless the named problem requires them.
+   entirely unless the named problem requires them. Follow the repo's own
+   conventions and agent/contributor guidance (`AGENTS.md`,
+   `CONTRIBUTING`) for where code moves and what it's called, and name the
+   commands the repo uses to test, lint, type-check, and build (package
+   scripts, Makefile, CI config) so each step can be checked with them.
 5. **Keep other work out.** Do not fold a feature, a bug fix, a dependency
    or framework migration, or a performance change into this plan, even
    when it looks trivial or adjacent. List each discovered-but-excluded
@@ -141,8 +145,10 @@ one at a time — without doing any of the moving itself.
    instead, state the assumption and proceed.
 8. **Stop at the plan.** Once the problem, invariants, baseline, steps, and
    stopping condition are concrete enough for another capable agent to
-   execute and verify without this conversation, return the plan. Do not
-   transform any code.
+   execute and verify from the plan and the repository alone, return the
+   plan. See
+   [references/coding-agent-handoff.md](references/coding-agent-handoff.md)
+   for what that handoff needs. Do not transform any code.
 
 ## Output
 
@@ -151,10 +157,14 @@ issue and what "solved" means); Invariants (by class, with exact
 identifiers); Baseline evidence (callers, existing tests, current output,
 and which invariants currently lack test coverage); Excluded work
 (discovered-but-excluded bugs, features, migrations, performance items,
-named specifically); Transformation steps, each paired with its check;
-Stopping condition; Open questions (blocking vs. non-blocking); Authority/
-approval points. Facts, assumptions, decisions, and open questions stay
-visibly separate.
+named specifically — the executor leaves these alone); Transformation
+steps, each paired with its check; Validation (the repo's test, lint,
+type-check, and build commands); Stopping condition; Open questions
+(blocking vs. non-blocking); Authority/approval points; Report back (ask
+the executor to finish with what changed, which validation ran, and
+anything that turned out not to be behavior-preserving). Facts,
+assumptions, decisions, and open questions stay visibly separate. Drop
+Excluded work and Open questions when there are none.
 
 Write the plan in plain, concrete English — the shortest phrasing that
 still tells the reader what they need to act.
@@ -176,8 +186,9 @@ Before returning the plan, confirm:
   performance work are listed as excluded, not folded into a step.
 - The stopping condition is explicit, not "keep improving while it looks
   better."
+- The validation commands named are ones actually found in the repo.
 - A capable agent with no access to this conversation could execute and
-  verify the plan from the document alone.
+  verify the plan from the document and the repository alone.
 
 ## Boundaries
 

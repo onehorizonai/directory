@@ -117,6 +117,18 @@ rewrite or implement the plan.
    introduces a new component, utility, or pattern, does an existing one in
    the codebase already solve the same problem — and if so, is there a
    stated reason for not reusing it?
+   Then check the plan as a handoff to whoever executes it, often a coding
+   agent starting from only the plan and the repository: does it point to
+   the files and existing patterns to follow; does it give a runnable way
+   to confirm done (the repo's actual test, lint, and type-check commands,
+   a reproduction to rerun, a browser or device check); does it keep
+   required constraints apart from suggestions and starting values; does it
+   name what's out of scope; and does it dictate code or structure that
+   conflicts with the repo's conventions or that the executor should
+   decide? See
+   [references/coding-agent-handoff.md](references/coding-agent-handoff.md)
+   for the standard. Step 7 still applies: a plan for a small change that
+   skips these sections is not defective on that basis alone.
 7. **Validate every suspected issue** — before any suspected gap or
    vagueness counts as a finding, check it against the code, docs, the
    requirements, or another appropriate source. A missing element is only a
@@ -145,8 +157,10 @@ Return findings grouped in this order, each group visibly separate:
    assumptions, missing invariants that matter, unresolved decisions that
    should have been resolved or surfaced, missed or unstated dependencies
    and risks, non-executable or vague steps, an unnecessary new component
-   or pattern where an existing one would fit, or missing
-   verification/approval points — most-impactful first.
+   or pattern where an existing one would fit, a guess written as a hard
+   requirement, step-by-step code that conflicts with the repo's
+   conventions, or missing verification/approval points — most-impactful
+   first.
 2. **Open questions** — suspected issues that couldn't be confirmed or
    denied with available evidence.
 3. **Optional improvements** — real but non-blocking suggestions; never a
@@ -188,8 +202,9 @@ taken on faith (step 3); decisions, open questions, and assumptions were
 checked for visibility (step 4); named dependencies/risks were checked
 against the system, and the system was checked for a real dependency the
 plan never named (step 5); every step was checked for executability, real
-sequencing, mapped verification, approval gates, and reuse of an existing
-component or pattern over an unnecessary new one (step 6); every
+sequencing, mapped verification, approval gates, reuse of an existing
+component or pattern over an unnecessary new one, and whether it hands off
+cleanly to an executor working from the repository alone (step 6); every
 confirmed gap was validated, with no finding resting on a missing section
 alone (step 7); the three output groups stayed separate; nothing was
 rewritten or implemented; no secrets were reproduced in the output.
