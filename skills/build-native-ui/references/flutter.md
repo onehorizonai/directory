@@ -3,12 +3,12 @@
 On-demand engineering detail for [../SKILL.md](../SKILL.md). Load when
 building approved UI in an existing **Flutter** app.
 
-**Design rule:** follow current official HIG for the **ship OS** — do not
-invent a Flutter-only visual language that fights the OS. Fetch Material
-(Android), Apple HIG (iOS), or the matching desktop HIG. Prefer
-`ThemeData` / `CupertinoTheme` / adaptive widgets already used by the
-app (`Switch.adaptive`, platform-aware pages). Material on iOS or
-Cupertino on Android only when the product already committed to that.
+**Design rule:** follow current official HIG for the **ship OS** — not a
+Flutter-only visual language. Fetch Material (Android), Apple HIG (iOS),
+or the matching desktop HIG. Prefer `ThemeData` / `CupertinoTheme` /
+adaptive widgets already used by the app (`Switch.adaptive`,
+platform-aware pages). Material on iOS or Cupertino on Android only when
+the product already committed to that.
 
 ## Architecture (UI / Logic / Data)
 
@@ -172,13 +172,8 @@ Prefer the app’s router. When using **go_router**:
 ## Anti-patterns
 
 - Mixing UI, networking, and persistence in one widget class
-- Introducing a new state library beside an established one
-- `MediaQuery.orientationOf` for major layout branching
 - Locking orientation “to simplify layout”
 - Eager `ListView(children: …)` for large/unknown lists
-- Hardcoded colors/strings bypassing theme and l10n
-- Custom Material chrome on iOS (or Cupertino on Android) against the
-  ship-OS HIG
 - Infinite animations / unsettled tickers breaking tests
 - Platform channels without validation or main-thread offload
 - Skipping screen-reader checks because “Flutter semantics look fine”

@@ -6,8 +6,7 @@ i18n, papercuts, empty/error recovery, and hierarchy checks without
 color. Design only. Also run the grayscale and skeleton reviews in
 [verification.md](verification.md).
 
-Ideal happy-path mockups are not production-ready. Treat edge cases as
-**design input**.
+Treat edge cases as **design input**.
 
 ## Cardinality: 0 / 1 / some / many
 
@@ -52,8 +51,8 @@ Anticipate short, average, and extreme user-generated strings:
   not concatenated fragments.
 - Language pickers: language names, not flags.
 - Locale: suggest from browser; never hard-redirect travelers/VPN users.
-- Pseudo-localization mindset: if expanded gibberish breaks the layout,
-  fix the layout before ship.
+- Pseudo-localization: if expanded gibberish breaks the layout, fix the
+  layout before ship.
 
 Deep string/TMS architecture is out of scope; capture layout and format
 requirements in the handoff.
@@ -103,7 +102,7 @@ If not, fix weight, space, and labels — don’t add more color.
 First-run and activation (when in scope): time-to-value over tour theater;
 skippable when possible; empty states as product surfaces; progressive
 permission asks; honest progress — not fake step counts. Detailed tours
-belong only when complexity truly requires them.
+only when complexity requires them.
 
 ## Anti-patterns
 

@@ -1,13 +1,11 @@
 # Per-step review checklist
 
-Extra sub-checks behind Procedure steps 3, 4, 5, and 7, beyond what's
-already stated inline in SKILL.md. Steps 3 and 7 below just itemize the
-inline prose — nothing new. Steps 4 and 5 add two checks not restated
-inline: grouping things with consistent terminology, and letting a user
-recognize relevant context in place rather than needing to remember it.
-Load this file when one of those two specific checks is in question;
-skip it otherwise — the inline steps are a complete, self-contained
-review pass on their own.
+Extra sub-checks behind Procedure steps 3, 4, 5, and 7 in SKILL.md.
+Steps 3 and 7 below only itemize the inline prose. Steps 4 and 5 add two
+checks not restated inline: grouping things with consistent terminology,
+and letting a user recognize relevant context in place rather than
+remember it. Load this file when one of those two checks is in question;
+skip it otherwise — the inline steps are a complete review pass.
 
 ## Step 3 — walk each prioritized use case
 
@@ -35,8 +33,8 @@ For entry/orientation:
 - Does context or state survive navigation or interruption where the use
   case needs it to?
 - Do 0/1/some/many cases stay usable?
-- Can a user recognize relevant context in place rather than needing to
-  remember it from elsewhere?
+- Can a user recognize relevant context in place rather than remember it
+  from elsewhere?
 
 ## Step 7 — check structural clarity
 
@@ -46,6 +44,6 @@ For entry/orientation:
 - Vertical rhythm — whether typography, line height, control sizing, and
   section spacing form a coherent, related scale.
 
-Judge every one of these only by whether it supports hierarchy, grouping,
-scanning, or consistency; never flag it for failing to match pixel-exact
-sameness or a reviewer's own visual taste.
+Judge each only by whether it supports hierarchy, grouping, scanning, or
+consistency; never flag it for failing to match pixel-exact sameness or a
+reviewer's own visual taste.

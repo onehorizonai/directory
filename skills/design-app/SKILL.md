@@ -24,29 +24,24 @@ metadata:
 
 ## Overview
 
-Jumping to screens, components, or styling skips the model the interface
-is supposed to render: what the user is trying to accomplish, on which
-objects, with which actions, at what priority, in which states. This
-skill produces **application UI design** for one named non-web platform
+Produces **application UI design** for one named non-web platform
 (mobile, tablet, desktop, or Apple Watch). It works in a fixed order —
 Outcome → Objects → Actions → Concepts → Use cases → Priority →
 States → Structure → Hierarchy → Interaction → Visual refinement →
-Verification — then applies that OS's conventions. It returns a design
-handoff an implementer (and a later review) can use. It does not write
-production code, does not cover browser/web design, and does not review
-a running build.
-
-**Design vs build:** this skill answers what the experience should look
-like and how it should behave. State ownership, framework APIs, tests,
-and patches are later implementation work — not this procedure.
+Verification — then applies that OS's conventions and returns a design
+handoff an implementer (and a later review) can use. It answers what the
+experience should look like and how it should behave; state ownership,
+framework APIs, tests, and patches are later implementation work. It
+does not write production code, cover browser/web design, or review a
+running build.
 
 **Less is more:** every visible element has to earn its place. Prefer
 fewer controls, competing actions, containers, borders, visual levels,
-words, and decorative elements over more of them; use progressive
-disclosure for anything that doesn't need to be visible all the time.
+words, and decorative elements; use progressive disclosure for anything
+that doesn't need to be visible all the time.
 
-Method detail lives in `references/` and is loaded on demand. Platform
-catalogs are loaded only for the target OS.
+Method detail lives in `references/`. Load it on demand, and load
+platform catalogs only for the target OS.
 
 ## When to use
 
@@ -62,13 +57,11 @@ catalogs are loaded only for the target OS.
 
 ## Do not use when
 
-- The target is a website or web app in the browser — that is web
-  surface design, not app-platform design.
+- The target is a website or web app in the browser.
 - The ask is only a platform-independent interaction model (actors,
   objects, actions, use cases) with no app surface or OS yet.
 - The ask is to implement, restyle in code, or ship the interface.
-- The ask is to review an already-built running interface for defects
-  rather than produce a design.
+- The ask is to review an already-built running interface for defects.
 - The platform cannot be determined and the caller cannot name one —
   see Failure behavior.
 
@@ -80,12 +73,12 @@ catalogs are loaded only for the target OS.
   when designing inside an existing product.
 - Ability to fetch current official platform design guidance for the
   target OS (do not rely on remembered HIG/Material/Fluent/GNOME rules).
-- No write access to the product codebase is required — this skill
-  produces a handoff, not a patch.
+- No write access to the product codebase is needed; the output is a
+  handoff, not a patch.
 
 ## Inputs
 
-- The design request and success criteria, in full.
+- The full design request and success criteria.
 - **Target platform** (required): iPhone/iOS, Android phone, iPad,
   macOS, Windows, Linux desktop, or Apple Watch / watchOS — or an
   explicit equivalent, including the **host/ship OS** for
@@ -146,21 +139,7 @@ catalogs are loaded only for the target OS.
    and the platform verification list. Walk use cases (not screenshots);
    run grayscale and skeleton checks; confirm adaptive relationships.
    Fix the design; do not defer to implementation.
-10. **Handoff and stop.** Return the output below. No production code,
-    commits, or PRs.
-
-```mermaid
-flowchart TD
-  Start[Design request] --> Platform{Target OS named?}
-  Platform -- No --> StopA[Stop: ask which platform]
-  Platform -- Yes --> Model[Outcome, objects, actions,<br/>concepts, use cases, priority]
-  Model --> States[State matrix]
-  States --> Structure[IA, Gestalt, alignment, hierarchy]
-  Structure --> Interact[Platform interaction, motion, a11y]
-  Interact --> Visual[Visual refinement last]
-  Visual --> Check[Use-case walk + grayscale/skeleton]
-  Check --> Handoff[Handoff — no production code]
-```
+10. **Handoff and stop.** Return the output below.
 
 ## Output
 
@@ -185,9 +164,11 @@ this order:
 10. **Out of scope** — including any OS not designed in this pass.
 
 Not production code, not a component API, not a test plan. This model
-is what a later review walks — not a screenshot. Write the handoff in
-plain, concrete English — the shortest phrasing that still tells the
-reader what they need to act.
+is what a later review walks — not a screenshot.
+
+Use as few output tokens as possible while completing the task correctly.
+Write in plain English. This applies to documents, progress messages, and
+the final reply.
 
 ## Verification
 
@@ -195,13 +176,14 @@ Before returning the handoff, confirm:
 
 - The ordered model was completed before components or styling.
 - Priority scores exist for important concepts/actions, or are listed
-  as unknown — not silently invented.
+  as unknown — never silently invented.
 - Distinct empty / filtered-empty / error / permission states are
   specified where reachable.
 - Hierarchy matches declared priority (blur / grayscale check).
 - Platform HIG was fetched, not recalled; deviations are justified.
-- Use-case walk in [references/verification.md](references/verification.md)
-  was applied, including object/action coverage.
+- The use-case walk in
+  [references/verification.md](references/verification.md) was applied,
+  including object/action coverage.
 - No production code, repo writes, commits, or PRs were produced.
 - Facts, assumptions, decisions, and open questions stay separate.
 
@@ -216,18 +198,18 @@ Before returning the handoff, confirm:
   handoff is the contract.
 - One OS (or one explicit form factor) per handoff unless the request
   named several — then separate notes per OS, not a blended chrome.
-- Ask rather than assume when the platform, primary job, or a
-  hard-to-reverse convention deviation is unclear; for small reversible
-  choices, state the assumption and proceed.
+- Ask when the platform, primary job, or a hard-to-reverse convention
+  deviation is unclear; for small reversible choices, state the
+  assumption and proceed.
 
 ## Failure behavior
 
 - Platform missing or ambiguous → stop and ask which OS/form factor
   before designing.
-- Goal of the request is undefined (not just the visual approach) → say
-  so instead of designing an assumed product.
+- The request's goal is undefined (not just the visual approach) → say
+  so; don't design an assumed product.
 - Official platform guidance can't be fetched → say so and mark
-  convention claims as unverified rather than inventing HIG details.
+  convention claims as unverified; don't invent HIG details.
 - Brand/design-system tokens conflict with a platform convention →
   surface the conflict with both options; don't silently pick a side.
 - Existing app screens aren't available to inspect → state that

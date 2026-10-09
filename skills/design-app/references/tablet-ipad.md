@@ -1,6 +1,6 @@
 # Tablet — iPad
 
-On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when designing for **iPad / iPadOS**. Apply after [ui-reasoning.md](ui-reasoning.md) — this file is OS chrome, not the starting model.
+On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when designing for **iPad / iPadOS**. Apply after [ui-reasoning.md](ui-reasoning.md) — OS chrome, not the starting model.
 
 Phone-first iOS patterns live in [mobile-ios.md](mobile-ios.md). Prefer this file whenever the canvas is regular-width, multitasking, or pointer-capable.
 
@@ -16,7 +16,7 @@ Phone-first iOS patterns live in [mobile-ios.md](mobile-ios.md). Prefer this fil
 
 - **Use the canvas** — Prefer multi-column and persistent sidebars over phone-scale single-column stacks stretched wide.
 - **Stay adaptive** — Layouts must work full screen, Split View, Slide Over, and Stage Manager window sizes.
-- **Support pointer and keyboard** — Hover, dense toolbars, and shortcuts are first-class, not afterthoughts.
+- **Support pointer and keyboard** — Hover, dense toolbars, and shortcuts are first-class.
 
 ## Size classes and layout
 
@@ -30,8 +30,8 @@ Phone-first iOS patterns live in [mobile-ios.md](mobile-ios.md). Prefer this fil
 - Drive structure from **horizontal size class**, not device name.
 - In regular width, prefer **NavigationSplitView**-style patterns: sidebar → optional content list → detail.
 - Grids gain columns in regular width; avoid a single stretched card column.
-- Maintain readable measure for body text — do not force ultra-wide paragraphs.
-- Content should reflow when the window resizes (Stage Manager / Split View), not assume a fixed iPad frame.
+- Maintain readable measure for body text.
+- Content should reflow when the window resizes (Stage Manager / Split View).
 
 ## Navigation
 
@@ -46,7 +46,7 @@ Phone-first iOS patterns live in [mobile-ios.md](mobile-ios.md). Prefer this fil
 **Rules**
 
 - Selecting a sidebar item updates the detail pane; avoid pushing a whole new phone-style stack when a column can update in place.
-- Provide an empty-detail state (“Select an item”) instead of a blank panel.
+- Provide an empty-detail state (“Select an item”).
 - Preserve selection across rotations and multitasking resizes when possible.
 - Deep links should restore the visible column path, not only a phone stack.
 
@@ -70,7 +70,7 @@ Phone-first iOS patterns live in [mobile-ios.md](mobile-ios.md). Prefer this fil
 - Prefer a **top toolbar / navigation bar** with titled panes; use trailing primary actions and leading sidebar toggles.
 - Tab bars are secondary on regular-width iPad when a sidebar already expresses top-level structure.
 - Search often lives in the sidebar or toolbar; large searchable libraries benefit from always-visible search.
-- Place inspectors and format controls in trailing bars or popovers rather than covering the whole canvas.
+- Place inspectors and format controls in trailing bars or popovers.
 
 ## Typography, color, icons
 
@@ -83,14 +83,14 @@ Phone-first iOS patterns live in [mobile-ios.md](mobile-ios.md). Prefer this fil
 ## Sheets, popovers, and dialogs
 
 - Prefer **popovers** and form sheets anchored to the control that opened them on regular width.
-- Use medium/large sheets for editing; avoid unnecessary full-screen covers when a popover suffices.
+- Use medium/large sheets for editing; avoid full-screen covers when a popover suffices.
 - Confirmation dialogs and alerts follow iOS rules — scarce, focused, labeled actions.
 - Keep modal tasks dismissible with Done/Cancel; warn on unsaved changes.
 
 ## Interaction patterns
 
 - Drag and drop between columns and from other apps when the content model allows.
-- Multi-select and bulk actions fit the larger canvas better than on phone — expose edit mode clearly.
+- Multi-select and bulk actions suit the larger canvas — expose edit mode clearly.
 - Empty, loading, and error states should fill the relevant **column**, not the entire window, when other panes remain useful.
 - Selection-driven UI: detail and inspector update with the current selection without extra navigation hops.
 

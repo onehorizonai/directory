@@ -95,9 +95,9 @@ Deep links: complication/widget tap should route into the relevant screen
 (`widgetURL` / app intents), not always root.
 
 Share tiny state with the widget via **App Group** container when needed.
-Do not rely on obsolete assumptions that
-`transferCurrentComplicationUserInfo` alone refreshes WidgetKit timelines —
-verify against current Apple guidance for your OS versions.
+Do not assume `transferCurrentComplicationUserInfo` alone refreshes
+WidgetKit timelines — verify against current Apple guidance for your OS
+versions.
 
 ## Notifications
 

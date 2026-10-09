@@ -12,12 +12,12 @@ surface's platform already has an established pattern for: navigation,
 menus, selection, search, settings, dialogs, sheets, toolbars, context
 menus, drag and drop, keyboard, back, destructive actions.
 
-Novel interactions need a reason. Familiarity is lower learning cost.
+Novel interactions need a reason.
 
 ## Motion explains change
 
-Motion is functional first. Use it for causality, continuity, hierarchy,
-spatial relationship, state change, feedback, and focus — not decoration.
+Use motion for causality, continuity, hierarchy, spatial relationship,
+state change, feedback, and focus — not decoration.
 
 Useful (translated, not Disney-literal):
 

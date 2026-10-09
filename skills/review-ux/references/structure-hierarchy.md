@@ -1,8 +1,8 @@
 # Structure and hierarchy
 
 On-demand method for [../SKILL.md](../SKILL.md). Load after objects,
-actions, concepts, use cases, and priority exist — not before. Structure
-is derived from the model; visual hierarchy is an **output** of priority.
+actions, concepts, use cases, and priority exist. Structure is derived
+from the model; visual hierarchy is an **output** of priority.
 
 ## Information architecture
 
@@ -28,13 +28,11 @@ If the user must live in a modal to do the job, it needed a destination.
 
 ## Gestalt (use on purpose)
 
-**Proximity** — related things closer than unrelated things. Spacing
-communicates relationship. Do not compensate for bad proximity with
-borders, cards, or extra labels.
+**Proximity** — related things closer than unrelated things. Do not
+compensate for bad proximity with borders, cards, or extra labels.
 
-**Common region** — containers only when a stronger grouping signal is
-necessary. Do not put everything in cards. Start with spacing; add
-containment only when it improves understanding.
+**Common region** — start with spacing; add containers only when a
+stronger grouping signal is necessary. Do not put everything in cards.
 
 **Similarity** — alike look → alike meaning or behavior. Same action
 level, same object type, same interaction → consistent treatment. Unrelated
@@ -50,8 +48,7 @@ transitions and state changes; do not animate unrelated regions together.
 
 ## Alignment audit
 
-Every extra alignment edge is another relationship the eye must process.
-Prefer fewer **strong** lines over many weak ones.
+Prefer fewer **strong** alignment lines over many weak ones.
 
 For each screen or component:
 
@@ -62,9 +59,6 @@ For each screen or component:
 - mix left / center / right only on purpose
 - avoid arbitrary widths
 - avoid nested containers that add a new margin at every level
-
-A good layout often shows a small number of strong invisible lines when
-guides are drawn over it.
 
 Prefer **optical** alignment when math looks wrong (icons, circles,
 typography, asymmetric symbols).
@@ -108,22 +102,20 @@ Checks:
 
 ## Attention budget
 
-Emphasis is scarce. Every element that gains it reduces everything else.
-
-Reserve the strongest action treatment for the most likely or important
-action **in this context**. Avoid: competing primary buttons, badge
-clutter, unnecessary colored fills, decorative icons on every label, too
-many type sizes/weights, excessive separators, nested cards, permanent
-instructional text for obvious controls.
+Emphasis is scarce. Reserve the strongest action treatment for the most
+likely or important action **in this context**. Avoid: competing primary
+buttons, badge clutter, unnecessary colored fills, decorative icons on
+every label, too many type sizes/weights, excessive separators, nested
+cards, permanent instructional text for obvious controls.
 
 ## Let it breathe
 
-Whitespace is a structural tool, not leftover space to fill because the
-canvas has room. Before adding an element, ask whether the task still
-works without it. Before adding explanatory copy, ask whether clearer
-structure, naming, or a better default removes the need for it. Build
-hierarchy through spacing, alignment, typography, and contrast before
-reaching for a container, border, label, or decoration.
+Whitespace is a structural tool, not leftover space to fill. Before
+adding an element, ask whether the task still works without it. Before
+adding explanatory copy, ask whether clearer structure, naming, or a
+better default removes the need for it. Build hierarchy through spacing,
+alignment, typography, and contrast before reaching for a container,
+border, label, or decoration.
 
 Review question: does this screen let its content breathe, or is space
 filled just because it's available?
@@ -182,8 +174,6 @@ Truncation needs a disclosure that works without hover (tap, keyboard,
 or expand). A `title` tooltip is not enough.
 
 ## Icon meaning by use
-
-The same glyph is not always the same thing:
 
 - **Decorative** next to visible text — hide it from the accessibility
   tree.

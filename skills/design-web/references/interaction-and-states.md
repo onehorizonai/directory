@@ -8,9 +8,8 @@ Design intent only — not framework event handlers.
 
 ## Live checklist (fetch before review)
 
-When auditing or finalizing interaction design against current web UI
-rules, fetch the latest Vercel Web Interface Guidelines (do not rely on
-a remembered copy):
+When auditing or finalizing interaction design, fetch the latest Vercel
+Web Interface Guidelines (do not rely on a remembered copy):
 
 ```
 https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md
@@ -18,7 +17,7 @@ https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/comm
 
 That file is the living checklist (a11y, focus, forms, animation, touch,
 navigation, anti-patterns). This reference distills **durable** principles;
-always prefer the fetched rules when they disagree with a memory of older
+always prefer the fetched rules when they disagree with remembered
 guidance.
 
 ## Semantic interaction
@@ -79,7 +78,7 @@ guidance.
 
 ## Loading, empty, error, success
 
-Design each as a real screen, not an afterthought.
+Design each as a real screen.
 
 | State | Intent |
 | --- | --- |

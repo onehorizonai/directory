@@ -60,7 +60,7 @@ MVVM engineering:
   documented breakpoints (wide / medium / phone-width).
 - **Scroll ownership:** if the page scrolls vertically, do not nest a
   scroll-owning `GridView` for a horizontal shelf — use a horizontal
-  `ScrollViewer` + `ItemsRepeater` / `ItemsControl` instead.
+  `ScrollViewer` + `ItemsRepeater` / `ItemsControl`.
 - Prefer virtualizing controls for long lists; keep item templates
   shallow.
 - Avoid redundant outer `Border` “cards” around surfaces that already
@@ -144,11 +144,8 @@ template shape before inventing structure.
 
 ## Anti-patterns
 
-- Custom control library for standard WinUI affordances
 - Hard-coded light-only brushes
-- Nested scroll-owning grids inside page `ScrollViewer` “shelves”
 - UI-thread network/disk in command handlers
-- Packaged-only APIs on an unpackaged startup path
 - Declaring success from `dotnet build` without a visible window when
   launch was in scope
 - Multi-window and custom title bars without preserving drag/caption

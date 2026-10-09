@@ -157,8 +157,6 @@ tested (macOS/Windows/Linux).
 
 ## Anti-patterns
 
-- `nodeIntegration: true` or `contextIsolation: false`
-- Exposing entire `ipcRenderer` or `require` through `contextBridge`
 - Remote module / arbitrary `executeJavaScript` from main on untrusted input
 - Loading production UI over plain HTTP
 - Web-only fake title bars / menu bars that ignore OS conventions
@@ -166,5 +164,3 @@ tested (macOS/Windows/Linux).
 - Sync IPC or huge payloads on every keystroke
 - Custom in-page “preferences” window when the OS expects native settings
   patterns already used by the app
-- Inventing Electron-only visual chrome that fights macOS, Windows, or
-  GNOME/HIG guidance for the ship target

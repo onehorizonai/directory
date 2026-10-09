@@ -4,8 +4,7 @@ On-demand engineering detail for [../SKILL.md](../SKILL.md). Load when
 building or verifying operable, perceivable UI.
 
 **First rule of ARIA:** use native HTML semantics first. ARIA supplements;
-it does **not** recreate buttons, links, checkboxes, dialogs, or
-expand/collapse when native elements exist
+it does **not** recreate controls that exist natively
 ([WAI-ARIA](https://www.w3.org/TR/wai-aria-1.2/),
 [ARIA in HTML](https://www.w3.org/TR/html-aria/),
 [APG](https://www.w3.org/WAI/ARIA/apg/)).
@@ -45,15 +44,15 @@ label / `alt` / content > `title`.
 
 - Full task completable without a mouse: Tab and Shift+Tab move forward
   and backward through every interactive control in order; Enter and
-  Space activate controls per their native role; Escape dismisses
-  dismissible UI (menus, dialogs, popovers) where the platform expects it.
+  Space activate controls per their native role; Escape consistently
+  dismisses dismissible UI (menus, dialogs, popovers, other overlays)
+  where the platform expects it.
 - Focus order follows reading order; only `tabindex="0"` or `"-1"`.
 - Visible `:focus-visible` indicator meeting non-text contrast (~3:1).
 - Composite widgets (tabs, menus, listboxes): roving tabindex or
   `aria-activedescendant` with arrow-key movement per the matching **APG
-  pattern** — don't leave every item `tabindex="0"`. Tab interfaces
-  specifically follow the [APG tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
-  rather than ad hoc keyboard wiring.
+  pattern** — don't leave every item `tabindex="0"`. Tab interfaces follow
+  the [APG tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
 - No keyboard trap: every focusable region a user can Tab into has a
   keyboard path back out.
 - Disabled controls are excluded from the tab order and exposed via the
@@ -63,14 +62,12 @@ label / `alt` / content > `title`.
 - Modal: prefer `<dialog>.showModal()` (inert background + focus trap).
   If custom, use `inert` on the background — **`aria-hidden` alone does
   not remove background from tab order**.
-- Manage focus on open/close for dialogs, sheets, and popovers: move
-  focus into the opened UI, then on close restore focus to the control
-  that opened it.
-- Escape dismisses overlays consistently; don't trap focus without an exit.
-- Semantic headings (`h1`–`h6` in outline order, no skipped levels chosen
-  for size) and landmarks (`main`, `nav`, `header`, `footer`, `search`)
-  give assistive tech a real page structure to navigate, separate from
-  visual heading size.
+- Dialogs, sheets, and popovers: on open move focus into the opened UI;
+  on close restore focus to the control that opened it.
+- Semantic headings (`h1`–`h6` in outline order, no levels skipped for
+  size) and landmarks (`main`, `nav`, `header`, `footer`, `search`) give
+  assistive tech a real page structure to navigate, separate from visual
+  heading size.
 
 ## Live regions and status
 
@@ -108,7 +105,7 @@ emulating announcement.
 
 ## Verification tiers
 
-Automation catches only part of defects. For meaningful UI changes:
+For meaningful UI changes:
 
 1. **Automated** — project a11y lint / axe-like scan on the affected route
    (partial evidence).

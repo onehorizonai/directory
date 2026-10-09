@@ -2,9 +2,7 @@
 
 On-demand engineering detail for [../SKILL.md](../SKILL.md). Load when
 building or verifying SwiftUI UI on iOS, iPadOS, macOS, or as a shared
-base for watchOS. This file covers **how to engineer** — structure, state,
-concurrency, navigation implementation, testing, accessibility wiring,
-performance, lifecycle, and API currency.
+base for watchOS.
 
 For visual / HIG conventions (chrome, typography, spacing, control
 affordance), fetch current official platform design guidance for the
@@ -106,9 +104,8 @@ Rules that prevent silent bugs:
 - Closures that may run off-main (`Shape.path`, `visualEffect`,
   `Layout`, `onGeometryChange` transform) must be `Sendable`-safe —
   capture values, do not touch MainActor state directly.
-- Define what survives navigation, sheet dismiss, backgrounding, and
-  process death (`@SceneStorage` / persistence) explicitly for the
-  change under build.
+- Define explicitly what survives navigation, sheet dismiss,
+  backgrounding, and process death (`@SceneStorage` / persistence).
 
 ## Navigation and presentation (implementation)
 
@@ -200,8 +197,8 @@ Type, sheet/navigation wiring, VoiceOver labels for custom controls.
 
 ## Performance
 
-- Update state only when the value actually changes (especially hot
-  paths: scroll, gestures).
+- Update state only when the value changes (especially hot paths:
+  scroll, gestures).
 - Narrow inputs; extract subviews so invalidation stays local.
 - Optional advanced: `Equatable` views + `.equatable()`, POD wrappers,
   per-item `@Observable` holders for list rows that otherwise share a
@@ -225,11 +222,6 @@ Type, sheet/navigation wiring, VoiceOver labels for custom controls.
 ## Anti-patterns
 
 - Business rules inside `Button` closures or `body`
-- Creating formatters / sorting large arrays inside `body`
-- Boolean sheet flags synced with a separate optional model
 - Passing entire config/context objects when a few fields suffice
-- Closures in custom environment keys; unstable `@Entry` defaults
-- `ForEach` over indices or ids derived from editable content
-- Bridging to UIKit/AppKit for something SwiftUI already provides
 - Shipping Liquid Glass / newest chrome APIs without an explicit product
   ask and availability plan

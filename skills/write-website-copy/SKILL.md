@@ -21,98 +21,93 @@ metadata:
 
 ## Overview
 
-This skill writes or rewrites product website copy — a homepage, landing
-page, pricing page, feature page, about page, or similar — for one already-
-defined reader, page purpose, offer, and next action. It produces copy
-grounded in approved facts and real material conditions, not invented proof,
-urgency, or outcomes: a benefit only appears if a supported capability backs
-it, and the call to action only promises what the offer actually delivers.
+Writes or rewrites product website copy — a homepage, landing page,
+pricing page, feature page, about page, or similar — for one
+already-defined reader, page purpose, offer, and next action. The copy is
+grounded in approved facts and real material conditions: a benefit
+appears only if a supported capability backs it, and the call to action
+promises only what the offer delivers.
 
 ## When to use
 
-- Writing new copy for a website page once the audience, purpose, offer, and
-  approved facts are known.
+- Writing new copy for a website page once the audience, purpose, offer,
+  and approved facts are known.
 - Rewriting or tightening existing page copy — a headline, subheadline,
   body section, or CTA — against the same defined reader and offer.
-- Producing headline or CTA options for a page where the underlying strategy
-  (what the page is for, what it offers) is already decided.
+- Producing headline or CTA options for a page whose strategy (what it is
+  for, what it offers) is already decided.
 
 ## Do not use when
 
 - The copy is interface copy for a specific product state, action, error,
   confirmation, or recovery path (a loading message, error string, empty
-  state, destructive-action confirmation) rather than page copy.
-- The page's strategy isn't decided yet: no defined audience, purpose,
-  offer, or approved facts to write from. Resolve that first (a positioning
-  or brief step), then come back with the decisions in hand.
-- The request is to translate existing page copy into another language
-  rather than write or rewrite it.
+  state, destructive-action confirmation).
+- The page's strategy isn't decided: no defined audience, purpose, offer,
+  or approved facts. Resolve that first (a positioning or brief step).
+- The request is to translate existing page copy into another language.
 
 ## Prerequisites and inputs
 
-Gather all of the following before drafting; treat any that are missing as
-a blocker (see Failure behavior), not something to assume:
+Gather all of these before drafting. A missing one is a blocker (see
+Failure behavior), not something to assume:
 
 - **Reader and awareness** — who the reader is and what they already know
-  or believe walking in (problem-aware, solution-aware, comparing options,
-  ready to buy).
+  or believe (problem-aware, solution-aware, comparing options, ready to
+  buy).
 - **Page purpose** — the one job this page does (e.g. convert a cold
-  visitor, qualify a lead, close a comparison, support a pricing decision).
-- **Offer and next action** — the exact action the page asks for, and its
+  visitor, qualify a lead, close a comparison, support a pricing
+  decision).
+- **Offer and next action** — the exact action the page asks for and its
   real material conditions: price, trial length, account requirement,
   availability, eligibility, commitment, and cancellation terms.
-- **Approved facts and proof** — the capabilities, evidence, testimonials,
-  logos, numbers, and claims that are actually cleared to use. Anything not
-  on this list does not go in the copy.
-- **Objections** — the doubts or hesitations the reader is likely to have
-  that this page needs to address.
-- **Approved voice** — the tone and terminology this page should match.
-- **Surrounding layout** — the page/section structure the copy will sit in,
+- **Approved facts and proof** — the capabilities, evidence,
+  testimonials, logos, numbers, and claims cleared to use. Anything not
+  on this list stays out of the copy.
+- **Objections** — the doubts the reader is likely to have that this page
+  must address.
+- **Approved voice** — the tone and terminology to match.
+- **Surrounding layout** — the page/section structure the copy sits in,
   so length and hierarchy fit the real surface.
 
 ## Procedure
 
-1. Confirm all required inputs are in hand. If any are missing, stop and
-   report the gap (see Failure behavior) rather than assuming a reader,
-   offer, or fact.
-2. State the proposition in one line before drafting anything: what the
-   product/offer does, who it's for, and the useful change it enables. Use
-   this as the throughline the rest of the copy has to support.
-3. Connect every benefit claim to a specific approved capability or piece of
-   evidence. If a benefit sounds good but isn't backed by an approved fact,
-   cut it or flag it as needing approval — do not infer time savings,
-   outcomes, or results that aren't in the approved facts.
-4. Write in the reader's own language: concrete nouns and verbs, no
-   unexplained jargon, and no oversimplifying of terms the audience
-   actually uses. Reuse the product's established terminology for objects
-   and actions exactly as it already appears on the site — don't invent a
-   new synonym for something that already has a name.
-5. Build the page as an information hierarchy, not a list of slogans: give
-   each section one job, make headings carry real meaning (state what the
-   section proves or does, not just an attention-grabbing phrase), and order
-   sections so the argument builds toward the next action. Keep paragraphs
-   short and give the layout room to breathe — a wall of text is a
-   structure failure, not a copy-length target to hit. Use a heading only
-   when it helps scanning, and a list only when the items are genuinely
-   easier to parse apart than as a sentence. Keep readable text columns at
-   a sensible line length: roughly 45–75 characters per line as guidance
-   for prose, with about 60–70 as a useful target — a rendered layout much
-   wider or narrower than that hurts scanning even when the words
-   themselves are fine. This is guidance for judging the layout, not a
-   mechanical rule to enforce on the raw copy text.
-6. Keep the CTA and any surrounding copy honest to the real offer: preserve
+1. Confirm all required inputs are in hand. If any is missing, stop and
+   report the gap (see Failure behavior); don't assume a reader, offer,
+   or fact.
+2. State the proposition in one line before drafting: what the
+   product/offer does, who it's for, and the useful change it enables.
+   The rest of the copy must support it.
+3. Connect every benefit claim to a specific approved capability or piece
+   of evidence. Cut a benefit with no approved fact behind it, or flag it
+   as needing approval — don't infer time savings, outcomes, or results
+   that aren't in the approved facts.
+4. Write in the reader's language: concrete nouns and verbs, no
+   unexplained jargon, and no oversimplifying of terms the audience uses.
+   Reuse the product's established terminology for objects and actions
+   exactly as it appears on the site — don't invent a synonym for
+   something that already has a name.
+5. Build the page as an information hierarchy, not a list of slogans: one
+   job per section, headings that state what the section proves or does,
+   and sections ordered so the argument builds toward the next action.
+   Keep paragraphs short and give the layout room — a wall of text is a
+   structure failure. Use a heading only when it helps scanning, and a
+   list only when the items are easier to parse apart than as a sentence.
+   Keep prose columns at roughly 45–75 characters per line (about 60–70
+   is a useful target). This is guidance for judging the rendered layout,
+   not a rule to enforce on the raw copy text.
+6. Keep the CTA and surrounding copy honest to the real offer: preserve
    price, trial, account, availability, eligibility, commitment, and
-   cancellation conditions exactly as given. Do not add urgency, scarcity,
-   guarantees, testimonials, logos, awards, or adoption claims that weren't
-   in the approved facts.
-7. Preserve qualifications and evidence strength from the source material —
-   a "some customers report" or "up to" is not rounded up to an
+   cancellation conditions exactly as given. Do not add urgency,
+   scarcity, guarantees, testimonials, logos, awards, or adoption claims
+   that weren't in the approved facts.
+7. Preserve qualifications and evidence strength from the source — a
+   "some customers report" or "up to" is never rounded up to an
    unconditional claim.
 8. When asked for alternatives (headline options, CTA options), produce
    genuinely different message angles — different benefits or framings —
-   not synonyms of the same sentence.
-9. Set length to the real surface (hero, card, tooltip, full section), not
-   an arbitrary universal word count, and place the draft into the actual
+   not synonyms of one sentence.
+9. Set length to the real surface (hero, card, tooltip, full section),
+   not a universal word count, and place the draft into the actual
    surrounding layout before finalizing.
 10. Edit once for meaning and hierarchy, once for clarity, voice, and
     repetition. Load [references/slop.md](references/slop.md) on that
@@ -124,58 +119,58 @@ a blocker (see Failure behavior), not something to assume:
 
 The copy itself, placed in context: the actual page/component file if
 editing in place, or a clearly labeled section-by-section draft (heading →
-body → CTA) mapped to the page structure if no file exists yet. Include a
-short note on which approved facts each benefit claim maps to, and flag any
-claim that had to be cut or softened for lack of approved evidence.
+body → CTA) mapped to the page structure if no file exists yet. Add a
+short note on which approved facts each benefit claim maps to, and flag
+any claim that was cut or softened for lack of approved evidence.
+
+Use as few output tokens as possible while completing the task correctly.
+Write in plain English. This applies to documents, progress messages, and
+the final reply.
 
 ## Verification
 
-- Read the copy in its real layout at realistic lengths and widths, not as
-  isolated text — headlines that work in a doc can break in a hero at
-  actual width.
-- Re-check every benefit and claim against the approved facts list; nothing
-  in the final copy should trace back to memory, assumption, or the
-  product's general reputation instead of an approved fact.
+- Read the copy in its real layout at realistic lengths and widths —
+  a headline that works in a doc can break in a hero.
+- Re-check every benefit and claim against the approved facts list;
+  nothing may trace back to memory, assumption, or the product's general
+  reputation.
 - Confirm the CTA and its surrounding copy preserve the exact material
   conditions given (price, trial, account, availability, eligibility,
-  commitment, cancellation) — check literally, don't paraphrase from memory.
-- Confirm no invented urgency, scarcity, guarantees, testimonials, logos,
-  awards, or adoption numbers were introduced.
+  commitment, cancellation) — check literally, not from memory.
+- Confirm no urgency, scarcity, guarantees, testimonials, logos, awards,
+  or adoption numbers were invented.
 - Confirm any conversion or performance claim ("increases signups",
-  "reduces churn") is backed by actual behavioral or experiment evidence —
-  if none exists, the claim doesn't go in, however plausible it sounds.
-- Confirm links and named actions in the copy match what the page actually
-  does.
-- Confirm terminology for products, objects, and actions matches what the
-  rest of the site already uses, not a newly invented synonym.
+  "reduces churn") is backed by behavioral or experiment evidence — if
+  none exists, the claim stays out, however plausible.
+- Confirm links and named actions match what the page does.
+- Confirm terminology for products, objects, and actions matches the rest
+  of the site.
 - Confirm paragraphs are short, headings are used only where they aid
-  scanning, and no section was padded or compressed just to fill the
-  available space.
+  scanning, and no section was padded or compressed to fill space.
 - [references/slop.md](references/slop.md): no em dashes, no synonym
   triplets, no list that could have been a sentence.
-- Report what was checked directly, what was inferred, and what couldn't be
-  verified — separately, not folded into one "done" claim.
+- Report what was checked directly, what was inferred, and what couldn't
+  be verified — separately, not as one "done" claim.
 
 ## Boundaries
 
-This skill writes copy only. It does not decide page strategy, structure,
-or positioning, does not change the offer or its material conditions, and
-does not fabricate proof, urgency, testimonials, outcomes, or conversion
-claims that aren't backed by approved facts or evidence. It does not
-translate copy into other languages. No commits, PRs, publishing, or other
-external writes are implied by this skill.
+Write copy only. Don't decide page strategy, structure, or positioning,
+change the offer or its material conditions, or fabricate proof, urgency,
+testimonials, outcomes, or conversion claims. Don't translate copy into
+other languages. No commits, PRs, publishing, or other external writes.
 
 ## Failure behavior
 
-If the reader, page purpose, offer/next action, approved facts, objections,
-voice, or surrounding layout aren't available, stop and report exactly which
-inputs are missing rather than drafting from assumption. If a requested
-benefit or claim has no approved fact or evidence behind it, say so and
-either omit the claim or name the approval needed before it can be used. If
-the surrounding layout can't be inspected, say the copy is unverified in
-context rather than reporting it as finished. If a requested claim depends
-on conversion or performance evidence that doesn't exist, refuse to state it
-as fact and offer the honest, unmeasured alternative instead.
+- The reader, page purpose, offer/next action, approved facts,
+  objections, voice, or surrounding layout isn't available → stop and
+  report exactly which inputs are missing; don't draft from assumption.
+- A requested benefit or claim has no approved fact or evidence behind it
+  → say so, and either omit it or name the approval needed.
+- The surrounding layout can't be inspected → say the copy is unverified
+  in context; don't report it as finished.
+- A requested claim depends on conversion or performance evidence that
+  doesn't exist → refuse to state it as fact and offer the honest,
+  unmeasured alternative.
 
 ## Examples
 
@@ -186,12 +181,12 @@ card required, cancel anytime. Approved facts: SOC 2 Type II, 99.9% uptime
 SLA, works with our three listed integrations. Voice: direct, no hype.
 ```
 
-Expected approach: state the proposition (what the product does, for whom,
-what changes) in the headline; use only SOC 2, uptime, and the named
-integrations as proof; keep "14-day free trial, no card required, cancel
-anytime" exact in the CTA area; no invented urgency or comparison claims
-against the named competitors beyond what's approved; check the draft in
-the actual pricing page layout before calling it done.
+Expected approach: state the proposition (what the product does, for
+whom, what changes) in the headline; use only SOC 2, uptime, and the
+named integrations as proof; keep "14-day free trial, no card required,
+cancel anytime" exact in the CTA area; add no urgency or competitor
+comparisons beyond what's approved; check the draft in the real pricing
+page layout.
 
 ```
 Give me three headline options for the feature page for our new export
@@ -199,8 +194,7 @@ tool. Approved fact: exports to CSV and Sheets today; PDF is not supported
 yet.
 ```
 
-Expected approach: produce three genuinely different angles (e.g. framed
-around the workflow it removes, the formats it supports, the audience it
-serves) rather than three reorderings of one sentence; keep PDF out of all
-three since it isn't an approved capability; flag if any angle would need a
-fact that isn't on the approved list.
+Expected approach: produce three different angles (the workflow it
+removes, the formats it supports, the audience it serves), not three
+reorderings of one sentence; keep PDF out of all three; flag any angle
+that would need a fact not on the approved list.

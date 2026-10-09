@@ -1,10 +1,9 @@
 # Desktop — Linux
 
 On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when the
-design target is **Linux desktop**, with **GNOME / libadwaita HIG** as the
-default design language unless the product already targets another DE
-(KDE, etc.). Apply after [ui-reasoning.md](ui-reasoning.md) — this file
-is OS chrome, not the starting model.
+design target is **Linux desktop**; default to **GNOME / libadwaita HIG**
+unless the product already targets another DE (KDE, etc.). Apply after
+[ui-reasoning.md](ui-reasoning.md) — OS chrome, not the starting model.
 
 Design only: look, behavior, and conventions. Do not specify GObject
 signals, packaging, or toolkit wiring.
@@ -18,8 +17,7 @@ signals, packaging, or toolkit wiring.
 
 When the product must look native on **KDE Plasma**, follow
 [KDE Human Interface Guidelines](https://develop.kde.org/hig/) instead of
-forcing GNOME chrome onto a Plasma app. State the target DE in the
-handoff.
+GNOME chrome. State the target DE in the handoff.
 
 ## Design intent
 
@@ -41,8 +39,8 @@ per view. Feedback is toast-first; dialogs are for decisions.
 | Lists of settings | Boxed preference groups and rows |
 | Empty content | Status page: icon + title + description + optional action |
 
-Remember last window size; start near a comfortable default (~800×600)
-unless the app is inherently smaller (calculator-like utilities).
+Remember last window size; default to ~800×600 unless the app is
+inherently smaller (calculator-like utilities).
 
 **Header bar:** Title and view switchers toward the center/start; primary
 actions toward the end; menu (⋯) for secondary items. Icon-only header
@@ -86,8 +84,7 @@ expensive checks on leave; final check on submit.
 - Sidebar navigation lists → selectable rows.
 - Large or dynamic data → virtualized list/grid.
 - Thumbnail collections → grid view.
-- Bulk actions → explicit selection mode + bottom/action bar — not
-  hidden multi-select without chrome.
+- Bulk actions → explicit selection mode + bottom/action bar.
 
 ## Feedback
 
@@ -101,8 +98,8 @@ expensive checks on leave; final check on submit.
 | Short wait | Spinner |
 | Long job | Progress + concrete status text |
 
-**Escalation:** toast → banner → dialog. Do not jump to a dialog for a
-transient network blip.
+**Escalation:** toast → banner → dialog. No dialog for a transient
+network blip.
 
 **Dialog copy:** Specific verbs (“Delete”, “Save”) — never “OK” / “Yes”.
 Cancel first, confirming action last. One destructive control max in the
@@ -120,7 +117,7 @@ belong in dialogs or subpages.
 - Follow system light/dark and **system accent** when the desktop
   provides them. Design both; test contrast and control states in each.
 - Header capitalization for labels; sentence case for descriptions.
-- Comfortable density — neither cramped nor sparse.
+- Comfortable density.
 - For code or document surfaces, respect user monospace / document font
   preferences when the platform exposes them.
 
@@ -128,10 +125,10 @@ belong in dialogs or subpages.
 
 - Usable at ~800×600; reflow to larger sizes; plan narrower breakpoints
   when the app may run on small / mobile-adjacent shells.
-- Bottom sheets for persistent secondary controls (e.g. player bar) when
-  the pattern fits — not as a dumping ground for primary nav.
+- Bottom sheets for persistent secondary controls (e.g. player bar) — not
+  for primary nav.
 - Full keyboard: Tab, Enter, Space; mnemonics/shortcuts where expected;
-  publish a shortcuts overview for power users.
+  publish a shortcuts overview.
 - Touch-friendly targets when the shell is touch-capable; keep pointer
   precision comfortable on desktop.
 

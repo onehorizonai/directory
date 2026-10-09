@@ -13,9 +13,8 @@ Meaningful UI changes need a rendered browser pass.
   form validation, URL sync). Skip only when the approval says so or no
   meaningful harness exists; say so in the report. Don't force TDD
   ceremony on exploratory visual polish or a small spacing change — pair
-  a direct browser look with the smallest useful test level instead of a
-  full end-to-end test for something a unit or component test already
-  proves.
+  a direct browser look with the smallest useful test level, not a full
+  end-to-end test for what a unit or component test already proves.
 - Test **observable behavior** (what the user or AT can perceive), not
   private implementation details (internal state shape, CSS class names
   that aren't contracts).
@@ -26,22 +25,21 @@ Meaningful UI changes need a rendered browser pass.
 - Visual regression where the project already has it — don't invent a
   flaky screenshot suite mid-change.
 - Cover **edge and error states** affected by the change, not only happy path.
-- Don't chase coverage % for its own sake; cover the approved risk.
+- Don't chase coverage %; cover the approved risk.
 - The use cases, priorities, and states from the approved design (or the
   step-4 object/action model) are the candidate test list — turn each
-  reachable state and primary use case into a check instead of testing
-  only what the implementation happens to do.
+  reachable state and primary use case into a check; don't test only what
+  the implementation happens to do.
 
-Inspect the repo first and prefer its existing test framework and style
-when it fits the work — don't stand up a parallel harness. When there is
-no suitable framework already in place, or the existing tooling can't
-cover the required behavior (browser-level interaction, visual
-regression), see [Choosing a framework](#choosing-a-framework) below.
+Prefer the repo's existing test framework and style — don't stand up a
+parallel harness. If none fits or it can't cover the required behavior
+(browser-level interaction, visual regression), see
+[Choosing a framework](#choosing-a-framework).
 
 ## Choosing a framework
 
-Guidance, not a mandatory stack — reach for these only when the repo's
-existing framework doesn't fit.
+Guidance, not a mandatory stack — use these only when the repo's existing
+framework doesn't fit.
 
 | Framework | Fits | When to reach for it | Limitation |
 | --- | --- | --- | --- |
@@ -51,9 +49,8 @@ existing framework doesn't fit.
 | **Jest** | Unit and component tests | Already the project's runner (common in non-Vite stacks) | Same scope limits as Vitest; slower cold start on large suites |
 | **Testing Library** (`@testing-library/*`) | Component-level behavior queried the way a user/AT would (role, label, text) | Pairs with Vitest/Jest/Playwright component testing to keep assertions on observable behavior, not markup shape | Not a runner by itself; needs a host framework |
 
-Prefer semantic selectors (role, label, text) and observable outcomes
-over implementation details (CSS class, DOM structure, internal state) in
-any of these.
+In any of these, prefer semantic selectors (role, label, text) over CSS
+class or DOM structure.
 
 **Agent-ready tooling:** Playwright ships an agent workflow — a
 **planner** that explores the running app and writes a Markdown test
@@ -63,8 +60,8 @@ assertions. Bootstrap it with the Playwright CLI (`npx playwright
 init-agents`, current flags/docs vary — check the installed version)
 rather than hand-rolling the same loop. Useful when a change needs new
 browser coverage or existing Playwright tests broke from a markup
-change; don't reach for it just because it exists — the smallest useful
-test level still wins for pure logic.
+change, not just because it exists — the smallest useful test level
+still wins for pure logic.
 
 ## Anthropic-style browser verification loop
 

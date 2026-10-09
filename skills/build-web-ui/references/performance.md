@@ -18,7 +18,7 @@ when citing numbers or Lighthouse weights:
 | [Chrome DevTools Performance](https://developer.chrome.com/docs/devtools/performance) | Trace analysis |
 | [Lighthouse scoring](https://developer.chrome.com/docs/lighthouse/performance/performance-scoring) | Score weights / metric thresholds |
 
-Illustrative CWV bands (verify before treating as normative in a report):
+Illustrative CWV bands:
 
 | Metric | Good (approx.) |
 | --- | --- |

@@ -2,8 +2,8 @@
 
 On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when the
 design target is **Windows desktop** (Fluent / WinUI design language).
-Apply after [ui-reasoning.md](ui-reasoning.md) — this file is OS chrome,
-not the starting model.
+Apply after [ui-reasoning.md](ui-reasoning.md) — OS chrome, not the
+starting model.
 
 Design only: look, behavior, and conventions. Do not specify XAML, MVVM,
 packaging, or SDK setup.
@@ -63,8 +63,7 @@ boxes, lists/grids, tabs, content dialogs, info bars, teaching tips,
 command bars.
 
 **Command surfaces:** Group document, formatting, view, and page actions
-in a native command bar (with overflow for secondary actions) before
-inventing custom button rows.
+in a native command bar (with overflow for secondary actions).
 
 **Adaptive layout (responsive design techniques):**
 
@@ -79,7 +78,7 @@ inventing custom button rows.
   rely on clipped rails everywhere.
 
 **Scroll ownership:** Decide which region scrolls vertically vs which
-owns a horizontal shelf. Nested scroll conflicts create broken layouts.
+owns a horizontal shelf.
 
 **Surfaces:** Prefer system card / layer fills over “border around cards.”
 Remove redundant outer frames when spacing and headers already group

@@ -1,6 +1,6 @@
 # Mobile — iOS
 
-On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when designing for **iPhone / iOS**. Apply after [ui-reasoning.md](ui-reasoning.md) — this file is OS chrome, not the starting model.
+On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when designing for **iPhone / iOS**. Apply after [ui-reasoning.md](ui-reasoning.md) — OS chrome, not the starting model.
 
 For iPad size classes, multitasking, and pointer, use [tablet-ipad.md](tablet-ipad.md).
 For Apple Watch, use [wearable-apple.md](wearable-apple.md) — never treat Watch as a small iPhone.
@@ -29,10 +29,10 @@ For Apple Watch, use [wearable-apple.md](wearable-apple.md) — never treat Watc
 
 **Rules**
 
-- Keep tab destinations peer-level; do not bury primary destinations behind a single “More” catch-all unless the product truly has many top-level areas.
+- Do not bury primary destinations behind a single “More” catch-all unless the product truly has many top-level areas.
 - Prefer large or inline navigation titles that match content importance.
 - Edge-swipe back must remain available on push navigation.
-- Badges on tabs only for actionable, time-sensitive counts — not decoration.
+- Badges on tabs only for actionable, time-sensitive counts.
 
 ## Layout, safe areas, and chrome
 

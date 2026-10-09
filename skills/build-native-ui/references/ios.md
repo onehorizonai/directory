@@ -4,16 +4,15 @@ On-demand engineering detail for [../SKILL.md](../SKILL.md). Load when the
 target is **iPhone / iPad (iOS / iPadOS)** and the implementation is
 SwiftUI (or UIKit only where the app already does).
 
-Shared SwiftUI engineering (state, concurrency, navigation APIs, a11y
-wiring, testing, performance, API currency) lives in
-[swiftui.md](swiftui.md) — load that first.
+Shared SwiftUI engineering lives in [swiftui.md](swiftui.md) — load that
+first.
 
-When making UX / visual decisions, fetch current Apple HIG for iOS (and
-iPadOS if the change is iPad-primary) rather than recalling spacing or
-chrome from memory. This file is engineering.
+For UX / visual decisions, fetch current Apple HIG for iOS (and iPadOS
+if the change is iPad-primary) rather than recalling spacing or chrome
+from memory.
 
 **Apple Watch is not iOS:** for watchOS targets use [watchos.md](watchos.md)
-and current watchOS HIG — do not apply this iOS delta file as the Watch UI
+and current watchOS HIG — do not apply this file as the Watch UI
 architecture.
 
 ## Declare and respect the target
@@ -96,6 +95,3 @@ run**.
 - Assuming phone-only metrics on iPad (or ignoring compact split
   collapse)
 - Boolean modal flags instead of item-driven sheets for model content
-- Imperative UIKit haptics / generators inside SwiftUI button actions
-  when `sensoryFeedback` is available
-- New UIKit bridges for features SwiftUI already covers

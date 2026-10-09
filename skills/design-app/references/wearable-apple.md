@@ -2,12 +2,10 @@
 
 On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when
 designing for **Apple Watch / watchOS**. Apply after
-[ui-reasoning.md](ui-reasoning.md) — this file is OS chrome, not the
-starting model.
+[ui-reasoning.md](ui-reasoning.md) — OS chrome, not the starting model.
 
-**Not a small iPhone.** An iPhone UI shrunk onto the wrist is a failed
-watchOS design. Prefer native watchOS patterns, glanceability, and low
-interaction cost. For the companion iPhone experience, load
+**Not a small iPhone.** Prefer native watchOS patterns, glanceability,
+and low interaction cost. For the companion iPhone experience, load
 [mobile-ios.md](mobile-ios.md) separately — do not let phone IA dictate
 Watch UI.
 
@@ -43,8 +41,7 @@ Watch UI.
 - Prefer numbers, SF Symbols, and short labels over sentences.
 - Avoid dense tables, multi-column layouts, and iPhone-style card grids.
 - If content needs a long read or multi-step form, design a **Watch slice**
-  (status + one action) and continue the deep work on iPhone — not a
-  miniature phone flow.
+  (status + one action) and continue the deep work on iPhone.
 - Truncate aggressively; never require a scroll to discover why the app
   opened.
 
@@ -52,7 +49,7 @@ Watch UI.
 
 - Primary action reachable in **one tap** (or Crown + tap) from launch or
   from a complication deep link.
-- Avoid deep trees (keep hierarchy shallow — roughly 2–3 levels max).
+- Keep hierarchy shallow — roughly 2–3 levels max.
 - Avoid hamburger menus, settings mazes, and multi-page wizards.
 - Confirmations: keep rare and focused; prefer undo/toast-style recovery
   when the platform allows over multi-step dialogs.
@@ -108,8 +105,7 @@ Avoid iPhone sidebar/tab-bar clones, split views, and deep modal stacks.
 
 ## Complications and Smart Stack
 
-- Complications are often the **real** product surface — design them
-  first, not as an afterthought.
+- Complications are often the **real** product surface — design them first.
 - Support multiple accessory families when useful (`circular`, `corner`,
   `rectangular`, `inline`).
 - Content must read at a glance **without** launching the app; include
