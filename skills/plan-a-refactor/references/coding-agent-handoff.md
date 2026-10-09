@@ -2,13 +2,12 @@
 
 The plan is usually executed by someone who starts with only the plan and
 the repository — a coding agent such as Codex, Claude Code, or Cursor, or
-a person picking it up cold. Write it the way a well-scoped engineering
-issue reads: a clear goal, the context that matters, the constraints, and
-what "done" looks like. Give enough direction to make good decisions, not
-a line-by-line recipe.
+a person picking it up cold. Write it like a well-scoped engineering
+issue: a clear goal, the context that matters, the constraints, and what
+"done" looks like. Give direction, not a line-by-line recipe.
 
-These are qualities to work into the skill's own Output sections, not
-extra headings to add alongside them.
+Work these qualities into the skill's own Output sections; don't add
+extra headings alongside them.
 
 ## Scale it to the work
 
@@ -55,7 +54,7 @@ another one.
   whole-tree snapshots; they break on harmless changes.
 - **Scope.** Name what's out of scope. Ask for a focused change: no
   unrelated refactors, renames, formatting sweeps, or dependency bumps.
-  Anything adjacent goes on a follow-up list instead.
+  Anything adjacent goes on a follow-up list.
 - **Report back.** Ask the executor to finish with a short summary: what
   changed, which validation ran and its result, and any trade-offs or
   departures from the plan.

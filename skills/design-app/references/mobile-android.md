@@ -1,6 +1,6 @@
 # Mobile — Android
 
-On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when designing for **Android phones**. Apply after [ui-reasoning.md](ui-reasoning.md) — this file is OS chrome, not the starting model.
+On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when designing for **Android phones**. Apply after [ui-reasoning.md](ui-reasoning.md) — OS chrome, not the starting model.
 
 Larger Android widths (tablet / foldable) share Material adaptive ideas below; keep phone navigation defaults unless the brief targets large screens.
 
@@ -59,7 +59,7 @@ Use the M3 roles — do not invent a one-off size ladder:
 
 - Scale with user font size / display size settings; avoid fixed px that ignore accessibility font scales.
 - `onSurface` / `onSurfaceVariant` for primary vs secondary text.
-- Keep line length readable; on larger widths, constrain measure rather than stretching sentences edge to edge.
+- Keep line length readable; on larger widths, constrain measure.
 
 ## Color, shape, elevation
 
@@ -97,7 +97,7 @@ Use the M3 roles — do not invent a one-off size ladder:
 
 - Destructive confirms use a dialog (or clear sheet actions) with labeled Cancel / Delete — not snackbars alone.
 - Sheets need a drag handle when height is variable; keep actions above the system gesture area.
-- Date/time pickers use platform Material pickers, not custom wheels that fight platform norms.
+- Date/time pickers use platform Material pickers, not custom wheels.
 
 ## Top app bars and search
 
@@ -119,7 +119,7 @@ Use the M3 roles — do not invent a one-off size ladder:
 - Content descriptions for icon-only controls; merge related text for talkback focus when needed.
 - Contrast: text and icons meet accessible contrast on surface roles (dynamic schemes included).
 - Do not rely on color alone for state (error, selected, success).
-- Respect reduced motion / animation scales when the system requests less motion.
+- Respect system reduced motion / animation scales.
 - Keyboard / switch access on large screens: focus order follows reading order.
 
 ## Anti-patterns

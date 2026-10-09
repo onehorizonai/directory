@@ -14,8 +14,7 @@ prefer [WHATWG HTML](https://html.spec.whatwg.org/multipage/), W3C CSS TRs,
 
 UX / visual hierarchy decisions (what should be prominent, how it should
 feel) are not this file — follow the product's design system and current
-public web UI guidance named in [../SKILL.md](../SKILL.md). This file is
-how to implement with HTML/CSS/platform APIs.
+public web UI guidance named in [../SKILL.md](../SKILL.md).
 
 ## Authoring layers (lowest first)
 
@@ -27,8 +26,6 @@ Place each requirement in the lowest layer that can express it:
 | Style | Layout, appearance, hover/focus, responsive | Modern CSS |
 | Behavior | Fetch, events, observers, custom elements | Smallest Web API |
 | Animation | Enter/exit, scroll-tied motion | CSS / View Transitions; compositor-only props |
-
-Promote upward only when the lower layer cannot do the job.
 
 ## Semantic HTML
 
@@ -57,8 +54,8 @@ Reach for CSS before JS for the same effect when Baseline support allows:
   decoration.
 
 Gate **Newly Available** features with `@supports` (or JS feature detection)
-and a working fallback. Do not polyfill features that are already Baseline
-Widely Available. Check current status rather than memorizing dates:
+and a working fallback. Do not polyfill Baseline Widely Available
+features. Check current status rather than memorizing dates:
 [web.dev Baseline](https://web.dev/baseline),
 [web-features](https://web-platform-dx.github.io/web-features/).
 
@@ -92,9 +89,9 @@ in `scroll`) — that forces synchronous layout. Prefer observers.
   and constrained fields unless the approval forbids it.
 - Navigation: real links for locations (`<a href>`); buttons for actions.
   Don't fake routing with non-link clickables when a URL is meaningful.
-- Focus: DOM order matches reading order; `tabindex` only `0` or `-1`
-  (positive tabindex is an anti-pattern). Use `:focus-visible` for rings;
-  never `outline: none` without a visible replacement.
+- Focus: DOM order matches reading order; `tabindex` only `0` or `-1`.
+  Use `:focus-visible` for rings; never `outline: none` without a visible
+  replacement.
 - Dialogs: prefer native modal dialog (focus trap + inert background).
   Restore focus to the invoker on close.
 - Scroll: preserve position across in-place updates; use

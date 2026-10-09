@@ -6,8 +6,8 @@ target is **Mac (AppKit-hosted SwiftUI)**.
 Shared SwiftUI engineering lives in [swiftui.md](swiftui.md) — load that
 first.
 
-When making UX / visual decisions, fetch current Apple HIG for macOS
-rather than recalling chrome or windowing from memory.
+For UX / visual decisions, fetch current Apple HIG for macOS rather than
+recalling chrome or windowing from memory.
 
 ## Scenes and windows
 
@@ -96,9 +96,6 @@ manual or UI tests.
 
 ## Anti-patterns (macOS)
 
-- Custom preferences window instead of `Settings`
-- Manual status-item management when `MenuBarExtra` fits
 - Using `NavigationSplitView` for equal peer panes (use split views)
-- Ignoring security-scoped resource access on file-importer URLs
 - Putting per-window UI state in a process-wide singleton without a
   product reason

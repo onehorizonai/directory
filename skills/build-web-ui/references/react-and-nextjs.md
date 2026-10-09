@@ -8,8 +8,8 @@ Prefer **official React and Next.js docs** when community skills conflict.
 Do not treat library choices (Zustand, TanStack Query, shadcn, Tailwind)
 as mandatory; follow what the repo already uses.
 
-Guidance below consolidates high-impact patterns (waterfalls, bundles,
-RSC boundaries, Suspense, rerenders). It is not a full framework manual.
+Covers high-impact patterns only (waterfalls, bundles, RSC boundaries,
+Suspense, rerenders) — not a full framework manual.
 
 ## Server vs client components (App Router)
 

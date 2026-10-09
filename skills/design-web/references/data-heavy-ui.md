@@ -1,8 +1,7 @@
 # Data-heavy UI
 
 On-demand guidance for [../SKILL.md](../SKILL.md). Load for dashboards,
-tables, metrics, and charts. Short by design: **hierarchy and clarity
-before decoration**.
+tables, metrics, and charts: **hierarchy and clarity before decoration**.
 
 ## Start with the question
 
@@ -12,8 +11,6 @@ Before chart or table chrome:
 2. Who is the audience (operator, exec, analyst)?
 3. At-a-glance monitoring vs exploratory analysis?
 4. What is the one primary metric or object per region?
-
-If the answer is unclear, the viz will decorate noise.
 
 ## Hierarchy before decoration
 
@@ -26,8 +23,7 @@ If the answer is unclear, the viz will decorate noise.
 - Shared category colors mean the same thing across the page.
 - Prefer dense, scannable layout over chart-junk (3D, heavy gradients,
   ornamental shadows, dual-axis tricks).
-- Grayscale test still applies: structure and weight must work without
-  hue.
+- Grayscale test: structure and weight must work without hue.
 
 ## Tables and density
 
@@ -64,7 +60,7 @@ Real-time: show last-updated; don’t disorient with full-viz thrash.
 ## Dashboards
 
 - Global filters (time range, segment) update related views together.
-- Breathing room: dense ≠ cramped; walls of equal cards overwhelm.
+- Breathing room: dense ≠ cramped.
 - Avoid auto-refresh without indication.
 - Drill-in: selecting a point should clarify detail, not open decorative
   modals with the same number larger.
@@ -81,7 +77,7 @@ Real-time: show last-updated; don’t disorient with full-viz thrash.
 
 ## Operator stress
 
-Data tools are often used under time pressure:
+Data tools are used under time pressure:
 
 - Prefer predictable layouts over novelty.
 - Make the next troubleshooting step obvious when data looks wrong

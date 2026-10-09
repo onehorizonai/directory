@@ -6,11 +6,10 @@ when the change must fit an existing boundary.
 
 This catalog is for **naming a pattern already present in the codebase**,
 not a menu of patterns to introduce. Do not invent a new architecture or
-drop in a named pattern the surrounding code doesn't use. Prefer the
-patterns peers already follow. Name the pattern you are matching (or
-extending) so the choice is deliberate. This list is **code-level** (how
-units are structured and wired) — not deployment topology (microservices,
-event-driven platforms, etc.).
+drop in a named pattern the surrounding code doesn't use. Name the pattern
+you are matching (or extending) so the choice is deliberate. This list is
+**code-level** (how units are structured and wired) — not deployment
+topology (microservices, event-driven platforms, etc.).
 
 ## Named patterns to recognize and reuse
 
@@ -91,9 +90,9 @@ Prefer whichever of these (or a close local variant) is already present.
   ([Data Mapper](https://martinfowler.com/eaaCatalog/dataMapper.html),
   [Active Record](https://martinfowler.com/eaaCatalog/activeRecord.html))
 - **Gateway** — wrap an external system (HTTP, queue, vendor SDK) behind
-  a narrow gateway whose interface looks like a normal object to the rest
-  of the app; written by the client for its use (related to, but not the
-  same as, Adapter/Facade).
+  a narrow gateway that looks like a normal object to the rest of the
+  app; written by the client for its use (related to, but distinct from,
+  Adapter/Facade).
   ([Fowler](https://martinfowler.com/eaaCatalog/gateway.html),
   [deeper write-up](https://martinfowler.com/articles/gateway-pattern.html))
 - **Anti-Corruption Layer** — translate an awkward external model at the
@@ -130,8 +129,8 @@ Prefer whichever of these (or a close local variant) is already present.
 
 ### Only if the codebase already uses them
 
-These organize code across layers; still not deployment architecture. Use
-them only when already present — don't introduce them for one feature.
+These organize code across layers; still not deployment architecture.
+Don't introduce them for one feature.
 
 - **Layered architecture** — keep presentation, application/service,
   domain, and persistence concerns in the layers peers already use.

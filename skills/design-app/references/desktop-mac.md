@@ -2,7 +2,7 @@
 
 On-demand platform guidance for [../SKILL.md](../SKILL.md). Load when the
 design target is **macOS**. Apply after [ui-reasoning.md](ui-reasoning.md)
-— this file is OS chrome, not the starting model.
+— OS chrome, not the starting model.
 
 Design only: look, behavior, and conventions. Do not specify frameworks,
 bindings, or packaging.
@@ -20,11 +20,11 @@ bindings, or packaging.
 
 macOS apps are **pointer-first**, **menu-bar driven**, and **multi-window**.
 Users expect system chrome, keyboard reachability for every primary action,
-and layouts that resize gracefully rather than phone-like stacks.
+and layouts that resize gracefully.
 
 Prefer native control language: translucent sidebars, unified toolbars,
 standard preferences, system file dialogs, and inspectors that feel like
-Finder / Mail / Notes — not iOS sheets transplanted to the desktop.
+Finder / Mail / Notes.
 
 ## Window types and roles
 
@@ -37,9 +37,8 @@ Finder / Mail / Notes — not iOS sheets transplanted to the desktop.
 | Menu bar utilities | Status-item menu or popover | Menu for short actions; compact popover for live status |
 | Documents | Document windows | File → New / Open / Save; one window per document |
 
-**Sizing:** Give every window a sensible default size and a hard minimum so
-content never becomes unusable. Fixed-size windows only for simple dialogs
-or tightly constrained utilities.
+**Sizing:** Give every window a sensible default size and a hard minimum.
+Fixed-size windows only for simple dialogs or tightly constrained utilities.
 
 **Chrome:** Unified or unified-compact toolbar for most apps; expanded title
 above toolbar when many items need room. Hide the title bar only for
@@ -52,15 +51,14 @@ minimize / zoom affordances and drag regions.
   detail). Columns stay side-by-side; sidebar uses translucent material;
   users resize columns by dragging.
 - **Peer panes (IDE-style):** Equal peer splits when panes are not
-  “navigate → content” (editor + preview + console). Distinct from sidebar
-  navigation.
+  “navigate → content” (editor + preview + console).
 - **Inspector:** Trailing supplementary panel for properties of the current
   selection — toggleable, resizable, not a second primary nav.
 - **Tables:** Multi-column data with sorting; bordered + alternating rows
   for dense data; inset for lighter lists. Collapse thoughtfully at narrow
   widths rather than crushing columns.
-- **Empty detail:** When nothing is selected, show a clear empty state
-  (“Select an item”) instead of a blank pane.
+- **Empty detail:** When nothing is selected, show an empty state
+  (“Select an item”).
 
 ## Menus, toolbars, and commands
 
@@ -80,8 +78,8 @@ minimize / zoom affordances and drag regions.
 - Full workflows must work with keyboard: Tab order, Return/Escape in
   dialogs, arrow navigation in lists/tables, Delete for remove when
   selection-focused.
-- Show a clear focus ring on custom focusable controls (or an equivalent
-  custom focus treatment that remains obvious).
+- Show a clear focus ring on custom focusable controls (or an equally
+  obvious custom focus treatment).
 - Default focus in dialogs lands on the primary field or the safest
   default control — not a destructive button.
 - Search fields should be focusable via a standard shortcut (often ⌘F)
@@ -104,8 +102,8 @@ minimize / zoom affordances and drag regions.
   menus) — do not invent a custom file browser for ordinary import/export.
 - Support **cross-app** drag and drop where content types make sense
   (Finder ↔ app).
-- Respect pasteboard conventions; expose Paste / Copy where users expect
-  them in Edit menu and context menus.
+- Respect pasteboard conventions; expose Paste / Copy in the Edit menu
+  and context menus.
 
 ## Visual language
 

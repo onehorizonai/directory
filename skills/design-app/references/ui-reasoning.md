@@ -2,7 +2,7 @@
 
 On-demand method for [../SKILL.md](../SKILL.md). Load **before placing
 screens, components, cards, buttons, or styling**. A UI is the rendered
-consequence of this model — not the starting point.
+consequence of this model.
 
 Native/desktop: after the model is stable, apply the loaded OS HIG.
 Native does **not** mean a web layout wearing system controls.
@@ -15,8 +15,7 @@ Verification
 
 ## Outcome
 
-What the surface enables the user to accomplish, independent of a
-particular UI.
+What the surface lets the user accomplish, independent of any UI.
 
 | Bad (UI) | Better (outcome) |
 | --- | --- |
@@ -60,7 +59,7 @@ Do not start from a toolbar and invent actions to fill it.
 ## Concepts
 
 Higher-level jobs that combine several objects and actions. Optimize the
-UI for these, not for the app's internal architecture.
+UI for these.
 
 Example: writing an email; finding a message; keeping the inbox
 organized; removing spam; switching accounts.
@@ -90,7 +89,7 @@ For **important** use cases also name: trigger, prerequisites, primary
 path, alternate paths, interruption/recovery, completion, failure.
 
 Every UI element should support an object, action, concept, state, or
-use case. If it supports none of them, question why it exists.
+use case. If it supports none, question why it exists.
 
 ## Priority (attention budget)
 
@@ -121,7 +120,7 @@ If everything demands attention, nothing has hierarchy.
 
 ## Progressive disclosure
 
-Only expose information and controls when they are useful **now**.
+Expose information and controls only when useful **now**.
 
 Prefer: essential → contextual → advanced.
 

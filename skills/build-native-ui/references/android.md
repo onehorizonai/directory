@@ -5,8 +5,8 @@ building approved UI in an existing **Kotlin + Jetpack Compose** app.
 
 For Material / visual HIG decisions, fetch current Material 3 / Android
 design guidance rather than recalling it from memory.
-Prefer the app's existing Material 3 theme tokens over inventing a
-parallel palette.
+Prefer the app's existing Material 3 theme tokens over a parallel
+palette.
 
 ## Prefer native Compose
 
@@ -20,8 +20,8 @@ parallel palette.
 
 ## State ownership and hoisting
 
-**Hoist state** to the lowest common owner that needs to read or write
-it. Stateless composables take values + lambdas; stateful wrappers own
+**Hoist state** to the lowest common owner that reads or writes it.
+Stateless composables take values + lambdas; stateful wrappers own
 `remember` / ViewModel.
 
 | Lifetime | Mechanism |
@@ -48,7 +48,7 @@ Rules:
 - `DisposableEffect` for listeners / callbacks that must unregister.
 - `rememberCoroutineScope` for event-driven launches (clicks), not for
   work that should cancel when leaving composition — use
-  `LaunchedEffect` / ViewModel `viewModelScope` instead.
+  `LaunchedEffect` / ViewModel `viewModelScope`.
 - Cancel and idempotency: treat recomposition and config change as
   normal; no duplicate POSTs on rotation.
 - Prefer structured concurrency in ViewModel; expose UI events once
@@ -60,8 +60,8 @@ Rules:
   typed APIs) when the project is on them; otherwise match existing
   route strings/args.
 - `NavHost` + single `NavController` at the shell; screens receive
-  lambdas (`onBack`, `onOpenDetail`) rather than reaching for a global
-  controller when peers are testable that way.
+  lambdas (`onBack`, `onOpenDetail`), not a global controller, when
+  peers are testable that way.
 - Bottom nav / rail: `popUpTo(start) { saveState = true }`,
   `launchSingleTop`, `restoreState` to avoid stacked duplicates.
 - Deep links and back: verify system back and predictive back against
@@ -152,10 +152,8 @@ network.
 
 - Business logic inside composables that peers keep in ViewModel
 - `remember` for state that must survive process death
-- Holding Lifecycle/Context in ViewModel
 - Stringly-typed navigation when the app already uses typed routes
   (or inventing typed routes in a stringly codebase without a decision)
 - `Column` of thousands of children instead of `LazyColumn`
 - Custom gesture-only controls without semantics
-- Hard-coded colors bypassing `MaterialTheme`
 - Requesting all permissions on first launch instead of point-of-use

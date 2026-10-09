@@ -30,9 +30,8 @@ autofill details.
 
 - Choose the platform keyboard / content type that matches the data
   (email, URL, number, one-time code).
-- Allow paste. Allow the system password manager and autofill. Do not
-  design a flow that only works if the user memorizes or retypes a
-  secret.
+- Allow paste, the system password manager, and autofill. Do not design
+  a flow that only works if the user memorizes or retypes a secret.
 - Show / hide for passwords.
 - Spellcheck off for emails, usernames, and codes.
 - Hit targets follow this OS (44 pt iOS, 48 dp Android, pointer-sized
@@ -62,7 +61,7 @@ autofill details.
   error.
 - MFA: large code fields; paste allowed; recovery path designed.
 - Do not ask for information the user already supplied in this process
-  (reuse a confirmed address rather than retyping it).
+  (reuse a confirmed address).
 - Session expiry: explain, keep the destination, easy resume.
 
 ## Platform anti-patterns

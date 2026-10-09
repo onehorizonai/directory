@@ -4,12 +4,12 @@ On-demand detail for [../SKILL.md](../SKILL.md). Load when a change
 affects something a user can see or interact with, to decide the test
 level and the device-level tool, and when declaring a UI change done.
 Unit/widget-level TDD for a specific stack (state, view models,
-formatting logic) lives in that stack's own reference
+formatting logic) lives in that stack's reference
 ([swiftui.md](swiftui.md), [android.md](android.md),
 [flutter.md](flutter.md), [electron.md](electron.md),
 [windows.md](windows.md), [linux-gtk.md](linux-gtk.md)) — this file
-covers the layer above that: exercising the built screen through real
-user journeys on the target platform.
+covers the layer above: exercising the built screen through real user
+journeys on the target platform.
 
 **Do not claim the UI is correct because it compiles or unit tests
 pass.** A meaningful UI change needs a pass on simulator, emulator, or
@@ -17,11 +17,11 @@ device.
 
 ## Testing philosophy
 
-- Inspect the repo first and prefer its existing test framework and
-  style when it fits — don't stand up a parallel harness. Use the
-  per-platform tools below only when the project has none yet, or the
-  existing tooling can't reach the behavior (cross-app navigation,
-  permission dialogs, a real device).
+- Prefer the repo's existing test framework and style when it fits —
+  don't stand up a parallel harness. Use the per-platform tools below
+  only when the project has none, or the existing tooling can't reach
+  the behavior (cross-app navigation, permission dialogs, a real
+  device).
 - **TDD where appropriate**, at the smallest useful level — most
   behavior is proven faster by a unit or widget/view test than a full
   UI-automation run; reserve device-level tests for journeys a lower
@@ -33,8 +33,8 @@ device.
   (a real interaction bug, not a one-off visual nit).
 - The use cases, priorities, and states from the approved design (or the
   step-4 object/action model) are the candidate test list — turn each
-  reachable state and primary journey into a check instead of testing
-  only what the implementation happens to do.
+  reachable state and primary journey into a check, not only what the
+  implementation happens to do.
 - Cover **important user journeys**: entry, navigation between screens,
   input, dialogs/sheets/alerts, permission prompts, and the empty,
   loading, error, and success states the journey passes through.
@@ -43,8 +43,7 @@ device.
 
 ## Device-level tools by platform
 
-Use the appropriate tooling for the platform rather than forcing one
-framework everywhere.
+Use each platform's tooling rather than forcing one framework everywhere.
 
 | Platform | Tool | Fits | Limitation |
 | --- | --- | --- | --- |
@@ -63,9 +62,9 @@ framework everywhere.
 assistant (Maestro Studio) that let a coding agent drive a simulator/
 emulator, inspect the current screen, and generate or run flows directly
 — useful when a change needs new cross-platform journey coverage and the
-project doesn't already have an equivalent Maestro flow. Don't reach for
-it just because it exists; a project already standardized on Espresso/
-XCUITest/Appium doesn't need a second framework for the same journey.
+project has no equivalent Maestro flow. Don't reach for it just because
+it exists; a project standardized on Espresso/XCUITest/Appium doesn't
+need a second framework for the same journey.
 
 ## What "done" requires (meaningful UI changes)
 

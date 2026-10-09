@@ -51,8 +51,7 @@ def do_activate(self):
   touch widgets from workers.
 - Marshal UI updates with `GLib.idle_add(callback, …)` (or
   `GLib.idle_add` with a lambda that returns `GLib.SOURCE_REMOVE`).
-- Never `time.sleep()` or block on network/disk inside signal handlers —
-  the UI freezes.
+- Never `time.sleep()` or block on network/disk inside signal handlers.
 - Prefer cancellable `Gio` async APIs for I/O so destroy / quit can abort.
 
 ## Signals and GObject
@@ -80,7 +79,7 @@ def do_activate(self):
 - Schema id matches application id; install via Meson / Flatpak.
 - Read/write typed getters; prefer `settings.bind(...)` to widget
   properties for prefs that map 1:1.
-- React with `changed::key`; test with `GSETTINGS_BACKEND=memory`.
+- React with `changed::key`.
 - Paths: use XDG (`GLib.get_user_config_dir`, etc.) — never hardcode
   `$HOME/.myapp`.
 
@@ -162,12 +161,7 @@ Also useful when peers already use them: `AdwBottomSheet`, `AdwWrapBox`,
 
 ## Anti-patterns
 
-- UI mutation from background threads
-- Blocking the main loop in signal handlers
-- Missing `do_startup` chain-up
 - Signal handlers that never disconnect on destroy (leaks / use-after-free)
-- Hardcoded absolute paths instead of XDG / portals
 - Wrong or missing `application_id`
-- `GtkShortcutsWindow`, `.dim-label`, spinner/toggle patterns above
 - Custom CSS that fights libadwaita tokens and system accent
 - Packaging without AppStream / desktop file id alignment

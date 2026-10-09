@@ -13,7 +13,7 @@ objects/actions/concepts model in the main skill:
 - Actors/roles and permissions: who can see or act on this, and does that
   vary by role or entitlement?
 - Prioritized use cases and entry points: which use case is primary, and
-  how does a user actually arrive at this screen/state?
+  how does a user arrive at this screen/state?
 - Object relationships and lifecycle states: what states can the primary
   object be in, and what triggers a transition between them?
 - State-specific actions: which actions are available in which state, and
@@ -39,18 +39,18 @@ objects/actions/concepts model in the main skill:
 ### iOS / SwiftUI
 
 - State ownership and bindings use the supported mechanism
-  (`@State`/`@Binding`/`@Observable`/etc.) matching how the rest of the app
-  manages equivalent state.
+  (`@State`/`@Binding`/`@Observable`/etc.) matching how the app manages
+  equivalent state.
 - View identity and navigation intent are preserved (no unintended
   resets/animations from identity changes).
-- System presentation is used where appropriate (sheets, alerts,
-  `NavigationStack`) rather than a custom re-implementation.
+- System presentation (sheets, alerts, `NavigationStack`) is used where
+  appropriate, not re-implemented.
 - Dynamic Type: layout holds up at larger accessibility text sizes.
 - VoiceOver: elements have correct labels/traits, and reading order
   matches visual order.
 - Newer APIs are availability-gated against the declared minimum OS.
-- Any performance concern is profiled before an architectural change is
-  made to address it — not fixed speculatively.
+- Any performance concern is profiled before an architectural change
+  addresses it — not fixed speculatively.
 
 ### watchOS / SwiftUI
 
@@ -59,8 +59,8 @@ objects/actions/concepts model in the main skill:
 - Complications use WidgetKit accessory widgets, not ClockKit.
 - Crown-driven scroll/value change has a touch equivalent and immediate
   visual feedback.
-- Glance/complication UI is readable on wrist-raise without requiring a
-  long scroll; Always On redaction is specified if the face stays visible.
+- Glance/complication UI is readable on wrist-raise without a long
+  scroll; Always On redaction is specified if the face stays visible.
 - Independent Watch core loops do not require the iPhone unless the
   domain truly needs it.
 - VoiceOver labels and Digital Crown announcements work on a Watch
@@ -78,13 +78,12 @@ objects/actions/concepts model in the main skill:
   (multi-window, foldables, system bars).
 - Semantics are verified with TalkBack, and touch/input targets meet the
   platform's minimum size.
-- Permissions are requested in context, at the point of use, not
-  up front.
+- Permissions are requested at the point of use, not up front.
 
 ### Desktop (including Electron / web-rendered)
 
-- Resizing and windowing behave correctly across a reasonable range of
-  window sizes, not just the default.
+- Resizing and windowing behave correctly across a range of window
+  sizes, not just the default.
 - Precision-pointer interactions (hover, right-click, drag) work as
   expected.
 - Keyboard shortcuts, menus, and focus order follow platform convention.
@@ -92,8 +91,8 @@ objects/actions/concepts model in the main skill:
   across a display boundary).
 - Screen readers / platform accessibility APIs (UI Automation on Windows,
   VoiceOver on macOS) can reach and describe the changed UI.
-- For Electron or other web-rendered desktop targets, run both sets of
-  checks: standard web checks (DOM semantics, responsive layout, browser
-  devtools accessibility audit) and desktop-shell integration checks
-  (native menu, window controls, OS-level shortcuts, file-system/IPC
-  behavior) — neither alone is sufficient.
+- For Electron or other web-rendered desktop targets, run both: standard
+  web checks (DOM semantics, responsive layout, browser devtools
+  accessibility audit) and desktop-shell integration checks (native
+  menu, window controls, OS-level shortcuts, file-system/IPC behavior) —
+  neither alone is sufficient.

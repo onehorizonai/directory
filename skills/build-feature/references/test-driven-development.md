@@ -40,17 +40,16 @@ stays deliberate.
 ### Testability seams (needed for TDD)
 
 Unit-level TDD needs a way to run the unit without its real collaborators.
-These two practices are how that usually works — match how the surrounding
-code already wires and substitutes dependencies
+These two practices provide it — match how the surrounding code already
+wires and substitutes dependencies
 ([design-patterns.md](design-patterns.md)).
 
 - **Dependency Injection** — pass collaborators in (constructor, params,
   or the project's container) instead of constructing them inside the
-  unit. Without an injectable seam, tests can't substitute a double and
-  end up hitting real I/O, clocks, or networks. When adding code under
-  test, keep (or introduce only if peers already use) the same DI style
-  neighboring units use — don't new up hidden dependencies that block
-  the red–green loop.
+  unit. Without that seam, tests can't substitute a double and hit real
+  I/O, clocks, or networks. Keep (or introduce only if peers already use)
+  the DI style neighboring units use — don't new up hidden dependencies
+  that block the red–green loop.
 - **Mocks and other test doubles** — stand-ins for those injected
   collaborators so each test controls inputs and observes interactions.
   Pick the double that matches the assertion you need (see below). Prefer

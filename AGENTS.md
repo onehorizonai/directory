@@ -169,6 +169,14 @@ Prefer putting long catalogs, checklists, and on-demand detail in
 `references/` and linking them from Procedure / Boundaries, rather than
 inflating `SKILL.md`.
 
+Keep skills compact. State each rule once, in the section where it
+applies, and cut wording that doesn't change what the agent does. End
+`## Output` with this goal so the agent keeps its own output short:
+
+> Use as few output tokens as possible while completing the task correctly.
+> Write in plain English. This applies to documents, progress messages, and
+> the final reply.
+
 ## Website integration (`index.json`)
 
 This repo's public contract with [onehorizon.ai/directory](https://onehorizon.ai/directory)

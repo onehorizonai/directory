@@ -12,9 +12,9 @@ objects/actions/concepts model in the main skill:
 
 - Actors/roles and permissions: who can see or act on this, and does that
   vary by role or entitlement? Does the UI's own logic match what the API
-  actually enforces?
+  enforces?
 - Prioritized use cases and entry points: which use case is primary, and
-  how does a user actually arrive at this route/screen?
+  how does a user arrive at this route/screen?
 - Object relationships and lifecycle states: what states can the primary
   object be in, and what triggers a transition between them?
 - State-specific actions: which actions are available in which state, and
@@ -44,14 +44,14 @@ objects/actions/concepts model in the main skill:
 ### Layout and rhythm
 
 - Vertical rhythm: text size, line height, control height, and section
-  spacing form one coherent scale from top to bottom, not sized
-  independently component by component.
+  spacing form one coherent scale top to bottom, not sized independently
+  per component.
 - Alignment axes: count the distinct vertical alignment lines/columns —
   every extra left edge, divider, nested inset, or independently aligned
-  card increases complexity; each one should communicate a real hierarchy
-  or relationship.
+  card adds complexity and should communicate a real hierarchy or
+  relationship.
 - Similar hierarchy levels carry similar visual weight and spacing unless
-  the task model gives a specific reason to differ.
+  the task model gives a reason to differ.
 
 ### Responsive and content coverage
 
@@ -59,8 +59,8 @@ objects/actions/concepts model in the main skill:
   what's hidden, collapsed, or reordered at narrow widths, and does the
   primary action stay reachable?
 - Realistic content at each breakpoint: long labels, larger text-scale
-  settings, localized strings that run longer than English, sparse data,
-  and dense data.
+  settings, localized strings longer than English, sparse data, and dense
+  data.
 - Layout holds at 200% text zoom without loss of content or function
   (verify current WCAG guidance rather than treating the number as fixed).
 
@@ -79,7 +79,7 @@ objects/actions/concepts model in the main skill:
 ### Accessibility
 
 - Full task completable by keyboard alone: every essential action is
-  reachable and operable without a mouse, not only discoverable on hover.
+  reachable and operable, not only discoverable on hover.
 - Focus order matches visual/reading order; focus is restored sensibly
   after a dialog, menu, or dynamic update closes.
 - Dialogs have an accessible name, sensible initial and final focus, real
@@ -93,17 +93,17 @@ objects/actions/concepts model in the main skill:
   or position alone.
 - Color/contrast meets the product's target in every supported theme;
   state is never communicated by color alone.
-- Automated tooling (e.g. an axe scan) is used as partial evidence only —
-  pair it with an actual keyboard pass and, where the risk warrants it, a
-  screen reader pass.
+- Automated tooling (e.g. an axe scan) is partial evidence only — pair it
+  with an actual keyboard pass and, where the risk warrants it, a screen
+  reader pass.
 
 ### Terminology and system fit
 
 - Action labels and state names match the product's existing terminology
   exactly (e.g. remove vs. delete vs. cancel vs. discard are not
   interchangeable).
-- Component, token, and spacing choices reuse the existing design system
-  rather than introducing a parallel one-off pattern.
+- Component, token, and spacing choices reuse the existing design system,
+  not a parallel one-off pattern.
 
 ### Browser/device coverage
 

@@ -12,10 +12,9 @@ layout into desktop or compress a desktop layout onto mobile.
 ## First principles
 
 - Design the **core task** under the tightest real constraint first, then
-  enrich as space/input allow — don’t squash a wide layout.
+  enrich as space/input allow.
 - Narrow layouts are their own composition, not proportional compression.
-- Preserve natural content widths (forms, prose, sidebars); fluid forever
-  is rarely right.
+- Preserve natural content widths (forms, prose, sidebars).
 - Large elements may shrink faster than small ones; relationships change.
 - Same information architecture across contexts; change presentation and
   progressive disclosure, not the product model.
@@ -60,8 +59,6 @@ layout into desktop or compress a desktop layout onto mobile.
   inspectors), not endless line length.
 
 ## Touch vs pointer vs keyboard
-
-Design for **capabilities**, not product marketing names:
 
 | Capability | Design implications |
 | --- | --- |

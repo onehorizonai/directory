@@ -20,7 +20,7 @@ Not implementation of validators or auth libraries.
 - Specific: “Card number” not “Payment info.”
 - Helper text explains format or why — doesn’t repeat the label.
 - Placeholders are examples and end with an ellipsis (“Jane…”) when used;
-  they disappear on type, so they can’t carry the only instruction.
+  they can’t carry the only instruction.
 - Required indicator consistent; don’t rely on color alone.
 
 ## Input types and entry comfort
@@ -56,7 +56,7 @@ Reward early, punish late: don’t yell mid-keystroke for incomplete email.
 - Preserve all input on failure; focus the first error after submit.
 - Form-level summary when many errors; still link each to its field.
 - Keep submit enabled until the request starts; if disabled, state what’s
-  missing — a mute gray button with no explanation is a dead end.
+  missing.
 - Soften over-strict format traps (phone, address) when the risk model
   allows override or normalization.
 - Warn on navigate with unsaved changes.
@@ -73,8 +73,7 @@ Reward early, punish late: don’t yell mid-keystroke for incomplete email.
 Design trust and recovery — not crypto details:
 
 - Sign-in: minimal fields; password show/hide; don’t clear identity on
-  failure when safe; rate-limit messaging with clear cooldown. Paste and
-  password managers must work.
+  failure when safe; rate-limit messaging with clear cooldown.
 - MFA: plain setup, multiple methods, recovery codes at setup; frame as
   protection, not punishment; large code inputs on mobile; paste allowed.
 - Do not re-ask information already supplied in this process (reuse a

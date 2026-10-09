@@ -22,28 +22,23 @@ metadata:
 
 ## Overview
 
-A web interface designed from a template, or from components first,
-tends to ignore what the user is actually trying to accomplish and which
-states they hit. This skill produces **web front-end design** for
-browser surfaces. It works in a fixed order — Outcome → Objects →
-Actions → Concepts → Use cases → Priority → States → Structure →
-Hierarchy → Interaction → Visual refinement → Verification — then
-applies the product's design system. It returns a handoff an implementer
-(and a later review) can use. It does not write production code, does
-not cover native/desktop chrome, and does not review a running build.
-
-**Design vs build:** this skill answers what the experience should look
-like and how it should behave. Component APIs, React/architecture,
-testing, and patches are later implementation work — not this
-procedure.
+Produces **web front-end design** for browser surfaces. It works in a
+fixed order — Outcome → Objects → Actions → Concepts → Use cases →
+Priority → States → Structure → Hierarchy → Interaction → Visual
+refinement → Verification — then applies the product's design system and
+returns a handoff an implementer (and a later review) can use. It answers
+what the experience should look like and how it should behave; component
+APIs, React/architecture, testing, and patches are later implementation
+work. It does not write production code, cover native/desktop chrome, or
+review a running build.
 
 **Less is more:** every visible element has to earn its place. Prefer
 fewer controls, competing actions, containers, borders, visual levels,
-words, and decorative elements over more of them; use progressive
-disclosure for anything that doesn't need to be visible all the time.
+words, and decorative elements; use progressive disclosure for anything
+that doesn't need to be visible all the time.
 
-Method detail lives in `references/` and is loaded on demand. Do not
-load every file up front.
+Method detail lives in `references/`. Load it on demand, not all up
+front.
 
 ## When to use
 
@@ -59,12 +54,11 @@ load every file up front.
 
 - The target is a native or desktop app (iOS, Android, macOS, Windows,
   Linux, iPad), including a web-rendered desktop shell whose chrome
-  should follow the **host OS** rather than the browser.
+  should follow the **host OS**.
 - The ask is only a platform-independent interaction model (actors,
   objects, actions, use cases) with no web surface yet.
 - The ask is to implement, restyle in code, or ship the interface.
-- The ask is to review an already-built running interface for defects
-  rather than produce a design.
+- The ask is to review an already-built running interface for defects.
 
 ## Prerequisites
 
@@ -75,12 +69,12 @@ load every file up front.
 - Ability to fetch current public web UI/accessibility guidance when a
   loaded reference says to (do not treat remembered WCAG numbers or
   checklist items as timeless).
-- No write access to the product codebase is required — this skill
-  produces a handoff, not a patch.
+- No write access to the product codebase is needed; the output is a
+  handoff, not a patch.
 
 ## Inputs
 
-- The design request and success criteria, in full.
+- The full design request and success criteria.
 - Known space/input constraints (or ask): widths, touch vs pointer,
   languages.
 - Brand, design-system, or reference URLs/screens if available.
@@ -128,8 +122,7 @@ load every file up front.
 7. **Verify.** Load [references/verification.md](references/verification.md).
    Walk use cases (not mockups); grayscale and skeleton; object/action
    coverage. Fix the design; do not defer to implementation.
-8. **Handoff and stop.** Return the output below. No production code,
-   commits, or PRs.
+8. **Handoff and stop.** Return the output below.
 
 ## Output
 
@@ -151,23 +144,26 @@ A single self-contained **web design handoff**, in this order:
 9. **Open questions** — blocking vs non-blocking.
 10. **Out of scope**
 
-Not production code. This model is what a later review walks. Write the
-handoff in plain, concrete English — the shortest phrasing that still
-tells the reader what they need to act.
+Not production code. This model is what a later review walks.
+
+Use as few output tokens as possible while completing the task correctly.
+Write in plain English. This applies to documents, progress messages, and
+the final reply.
 
 ## Verification
 
 Before returning the handoff, confirm:
 
 - The ordered model was completed before components or styling.
-- Priority scores exist or are listed unknown — not silently invented.
+- Priority scores exist or are listed unknown — never silently invented.
 - Distinct empty / filtered-empty / error / permission states are
   specified where reachable.
 - Hierarchy matches declared priority (grayscale / blur).
 - The design does not default to generic AI-template aesthetics unless
   the brief asked for that look.
-- Use-case walk in [references/verification.md](references/verification.md)
-  was applied, including object/action coverage.
+- The use-case walk in
+  [references/verification.md](references/verification.md) was applied,
+  including object/action coverage.
 - Live UI/a11y rules a reference says to fetch were fetched, or marked
   unverified.
 - No production code, repo writes, commits, or PRs were produced.
@@ -183,20 +179,20 @@ Before returning the handoff, confirm:
   handoff is the contract.
 - Do not emit ARIA attribute recipes or framework component trees —
   those are implementation.
-- Ask rather than assume when the page job, accessibility target, or a
-  hard-to-reverse visual direction is unclear; for small reversible
-  choices, state the assumption and proceed.
+- Ask when the page job, accessibility target, or a hard-to-reverse
+  visual direction is unclear; for small reversible choices, state the
+  assumption and proceed.
 
 ## Failure behavior
 
-- Goal of the request is undefined (not just the visual approach) →
-  say so instead of designing an assumed page.
+- The request's goal is undefined (not just the visual approach) → say
+  so; don't design an assumed page.
 - Brand/design-system context is missing for an existing product →
-  state the limitation and design against the brief, naming
-  assumptions rather than inventing a second brand.
+  state the limitation and design against the brief, naming assumptions;
+  don't invent a second brand.
 - A referenced live guidance document cannot be fetched → mark those
-  checks unverified; don't invent current WCAG/UI-checklist numbers
-  from memory as if verified.
+  checks unverified; don't present remembered WCAG/UI-checklist numbers
+  as verified.
 - The brief demands native-app chrome on the web (or identical UI to
   an iOS/Android app) → surface the conflict; design for the browser
   unless the caller explicitly accepts a documented deviation.

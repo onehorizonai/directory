@@ -15,8 +15,8 @@ Before palette or typeface choices:
    generic SaaS template.
 
 If the brief is vague, pin those three yourself and declare the
-assumption. Prefer the product’s existing tokens and patterns when they
-exist; invent only where the surface is new or the brief asks for it.
+assumption. Prefer the product’s existing tokens and patterns; invent
+only where the surface is new or the brief asks for it.
 
 ## Direction and signature
 
@@ -34,8 +34,7 @@ exist; invent only where the surface is new or the brief asks for it.
 
 - One primary focus; secondary and tertiary content visibly quieter.
 - Prefer space, weight, contrast, and placement before color or chrome.
-- Quiet section titles when content should lead; don’t make every heading
-  a billboard.
+- Quiet section titles when content should lead.
 - One clear primary action; secondary quieter; tertiary link-like.
 - **Grayscale test**: if color vanished, primary / secondary / tertiary
   should still read within ~2 seconds.
@@ -70,8 +69,7 @@ exist; invent only where the surface is new or the brief asks for it.
 ## Color
 
 - Palette as 4–6 named roles (background, surface, text, accent,
-  semantic success/warn/error) grounded in subject — not a stock purple
-  gradient or acid accent on near-black by default.
+  semantic success/warn/error) grounded in subject.
 - Accent draws attention to the right thing; same colors mean the same
   thing across the flow.
 - Never color alone for meaning (pair with label, icon, or shape).

@@ -5,7 +5,7 @@ On-demand guidance for [../SKILL.md](../SKILL.md). Load **after**
 accessibility is part of each use case, not a final paint pass. Covers
 contrast, focus, naming, targets, motion preference, reading order, and
 inclusive perception. **Not** ARIA attribute recipes or component-library
-wiring — those are implementation, not design.
+wiring — those are implementation.
 
 Baseline intent: **WCAG 2.2 Level AA** unless the product standard says
 otherwise.
@@ -21,8 +21,8 @@ otherwise.
   deficiencies (prefer blue–orange over red–green alone).
 - Informative images need text alternatives in the design (caption or
   described purpose); decorative images marked as such in handoff.
-- Don’t ship designs that require pinch-zoom to be disabled; reflow to
-  ~320 CSS px width without essential loss (see
+- Don’t require pinch-zoom to be disabled; reflow to ~320 CSS px width
+  without essential loss (see
   [responsive-adaptive.md](responsive-adaptive.md)).
 - At 200% zoom, primary tasks remain usable; avoid fixed viewports that
   clip content.
@@ -31,8 +31,7 @@ otherwise.
 
 - Visible focus for every interactive control; stronger than surrounding
   chrome; never “no focus because it looks cleaner.”
-- Hit targets ~**44×44** CSS px for pointer/touch primary controls;
-  adequate spacing between adjacent targets.
+- Hit targets ~**44×44** CSS px for pointer/touch primary controls.
 - Keyboard: full task path; logical tab order = reading order; Escape
   closes overlays; no traps.
 - Motion: honor **prefers-reduced-motion** — provide still or minimal
@@ -56,7 +55,7 @@ otherwise.
 ## Reading order and structure
 
 - Visual order matches the intended screen-reader / keyboard order;
-  don’t rearrange with visuals alone in ways that scramble sequence.
+  don’t scramble sequence with visual-only rearrangement.
 - Group related controls (fieldset-like groupings) in the design.
 - Skip link or equivalent path to main content on content-heavy pages.
 - Tables for tabular data in the design intent (headers clear); don’t
@@ -68,7 +67,7 @@ otherwise.
 - Disabled: explain how to unlock; don’t leave mute controls with no
   path.
 - Loading and live updates: design non-visual announcement intent
-  (“status region”) without specifying ARIA syntax here.
+  (“status region”).
 - Auth and permission walls: plain language recovery (sign in, request
   access) — see [forms-and-input.md](forms-and-input.md).
 
@@ -77,8 +76,7 @@ otherwise.
 
 - Primary and frequent controls meet ~44×44 CSS px; secondary icon hits
   can be visually smaller only if the hit area is enlarged invisibly in
-  implementation notes. WCAG 2.2 AA floor is 24×24 CSS px; do not treat
-  that floor as the design size.
+  implementation notes.
 - Maintain clear separation between adjacent targets (especially in
   toolbars and table row actions).
 - Sticky footers / floating CTAs must clear system gestures and safe areas
@@ -86,8 +84,8 @@ otherwise.
 
 ## WCAG 2.2 AA (named outcomes)
 
-These are design contracts, not ARIA snippets. Fetch current WCAG text
-if a number is in dispute.
+These are design contracts. Fetch current WCAG text if a number is in
+dispute.
 
 - **Focus not obscured** — sticky headers, banners, chat widgets, and
   floating CTAs must not cover the focused control. Offset scroll
@@ -101,18 +99,18 @@ if a number is in dispute.
   the same process unless re-entry is essential.
 - **Consistent help** — repeated help stays in the same relative place
   across the page set.
-- **Target size** — AA pointer-target floor is 24×24 CSS px; keep ~44×44
-  as the touch design target for primary controls (see
-  [structure-hierarchy.md](structure-hierarchy.md)).
+- **Target size** — AA pointer-target floor is 24×24 CSS px, not the
+  design size; keep ~44×44 as the touch design target for primary
+  controls (see [structure-hierarchy.md](structure-hierarchy.md)).
 - **Auto-rotation** — carousels and moving content have pause/stop and
   stop on focus or reduced motion.
 
 ## Forms and status (design contract)
 
 - Every input has a persistent visible label in the mock.
-- Error and success are visible as text (and optional icon), not hue alone.
+- Error and success are visible as text (and optional icon).
 - Async status (saving, saved, failed) has a defined place in the layout
-  and a non-visual announcement intent for assistive tech.
+  and a non-visual announcement intent.
 
 ## Anti-patterns
 
